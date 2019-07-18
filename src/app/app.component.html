@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item"><a routerLink="/users" class="btn btn-info">List Users</a></li>
+            <li class="list-inline-item"><a routerLink="/cabinets" class="btn btn-info">List Cabinets</a></li>
+            <li class="list-inline-item"><a routerLink="/patients" class="btn btn-info">List Patients</a></li>
+            <li class="list-inline-item"><a routerLink="/doctors" class="btn btn-info">List Doctors</a></li>
+            <li class="list-inline-item"><a routerLink="/timeslots" class="btn btn-info">Timeslots</a></li>
+            <li class="list-inline-item"><a routerLink="/addadmin" class="btn btn-info">Add Admin</a></li>
+            <li class="list-inline-item"><a routerLink="/addcabinet" class="btn btn-info">Add Cabinet</a></li>
+            <li class="list-inline-item"><a routerLink="/addpatient" class="btn btn-info">Add Patient</a></li>
+            <li class="list-inline-item"><a routerLink="/adddoctor" class="btn btn-info">Add Doctor</a></li>
+            <li class="list-inline-item"><a routerLink="/addspecialty" class="btn btn-info">Add Specialty</a></li>
+          </ul>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
