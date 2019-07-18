@@ -24,7 +24,7 @@ export class SpecialtyFormComponent {
   done: boolean;
 
   specialtyNameFormControl = new FormControl('', [
-    Validators.pattern('[a-z]{1,32}'),
+    Validators.pattern('[A-z]{1,32}'),
     Validators.required
   ]);
 

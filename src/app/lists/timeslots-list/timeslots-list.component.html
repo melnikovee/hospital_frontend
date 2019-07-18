@@ -1,68 +1,104 @@
 <div class="card my-5">
   <div class="card-body">
 
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр">
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="Date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
+      <ng-container matColumnDef="Дата">
+        <th mat-header-cell *matHeaderCellDef>Дата</th>
         <td mat-cell *matCellDef="let composite"> {{composite.date}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="Time">
-        <th mat-header-cell *matHeaderCellDef>Time</th>
+      <ng-container matColumnDef="Время">
+        <th mat-header-cell *matHeaderCellDef>Время</th>
         <td mat-cell *matCellDef="let composite"> {{composite.time}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="Specialty">
-        <th mat-header-cell *matHeaderCellDef>Specialty</th>
+      <ng-container matColumnDef="Специальность">
+        <th mat-header-cell *matHeaderCellDef>Специальность</th>
         <td mat-cell *matCellDef="let composite"> {{composite.specialty}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Doctor">
-        <th mat-header-cell *matHeaderCellDef>Doctor</th>
+      <ng-container matColumnDef="Доктор">
+        <th mat-header-cell *matHeaderCellDef>Доктор</th>
         <td mat-cell *matCellDef="let composite"> {{composite.doctor}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Cabinet">
-        <th mat-header-cell *matHeaderCellDef>Cabinet</th>
+      <ng-container matColumnDef="Кабинет">
+        <th mat-header-cell *matHeaderCellDef>Кабинет</th>
         <td mat-cell *matCellDef="let composite"> {{composite.cabinet}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Patient">
-        <th mat-header-cell *matHeaderCellDef>Patient</th>
+      <ng-container matColumnDef="Пациент">
+        <th mat-header-cell *matHeaderCellDef>Пациент</th>
         <td mat-cell *matCellDef="let composite"> {{composite.patient}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Запись">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button mat-button >Запись</button>
+        </mat-cell>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <!--table matSort (matSortChange)="sortData($event)">
-      <tr>
-        <th mat-sort-header="date">Date</th>
-        <th mat-sort-header="time">Time</th>
-        <th mat-sort-header="specialty">Specialty</th>
-        <th mat-sort-header="doctor">Doctor</th>
-        <th mat-sort-header="cabinet">Cabinet</th>
-        <th mat-sort-header="patient">Patient</th>
-      </tr>
-
-      <tr *ngFor="let composite of sortedData">
-        <td >{{composite.date}}</td>
-        <td>{{composite.time}}</td>
-        <td>{{composite.specialty}}</td>
-        <td>{{composite.doctor}}</td>
-        <td>{{composite.cabinet}}</td>
-        <td>{{composite.patient}}</td>
-      </tr>
-    </table-->
   </div>
 </div>
+
+
+
+
+<!--div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Дата">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата</th>
+      <td mat-cell *matCellDef="let composite"> {{composite.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Время">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Время</th>
+      <td mat-cell *matCellDef="let composite"> {{composite.time}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Специальность">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Специальность</th>
+      <td mat-cell *matCellDef="let composite"> {{composite.specialty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Доктор">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Доктор</th>
+      <td mat-cell *matCellDef="let composite"> {{composite.doctor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Пациент">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Пациент </th>
+      <td mat-cell *matCellDef="let composite"> {{composite.patient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Запись">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <button mat-button >Запись</button>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div-->
+
+
+
+
+
+
+
+

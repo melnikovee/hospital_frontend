@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Doctor} from '../../models/doctor';
-import {DoctorService} from '../../services/doctor-service.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {CompositeService} from '../../services/composite-service.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-doctors-list',
@@ -10,29 +9,22 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DoctorsListComponent implements OnInit {
 
-  doctors: Doctor[];
+  displayedColumns: string[] = ['Доктор', 'Специальность', 'Телефон', 'Расписание'];
+  dataSource;
 
-  constructor(private route: ActivatedRoute, private router: Router, private doctorService: DoctorService) {
-  }
+  constructor(private compositeService: CompositeService) {}
 
   ngOnInit() {
     this.reloadData();
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   reloadData() {
-    this.doctorService.findAll().subscribe(data => {
-      this.doctors = data;
+    this.compositeService.findDoctors().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
     });
   }
-
-  deleteDoctor(id: number) {
-    this.doctorService.deleteDoctor(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
-  }
-
 }

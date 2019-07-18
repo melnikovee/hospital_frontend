@@ -3,24 +3,24 @@
     <form class="example-form" [formGroup]="specForm">
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Specialty Name" formControlName="specialtyName"
+        <input matInput placeholder="Специальность" formControlName="specialtyName"
                [errorStateMatcher]="matcher">
         <mat-error *ngIf="specialtyNameFormControl.hasError('pattern') && !specialtyNameFormControl.hasError('required')">
-          Please enter a valid specialty name
+          Пожалуйста введите название специальности
         </mat-error>
         <mat-error *ngIf="specialtyNameFormControl.hasError('required')">
-          Specialty name is <strong>required</strong>
+          Обязательное поле
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Duration" formControlName="duration"
+        <input matInput placeholder="Продолжительность приема" formControlName="duration"
                [errorStateMatcher]="matcher">
         <mat-error *ngIf="durationFormControl.hasError('maxLength') && !durationFormControl.hasError('required')">
-          Please enter a valid duration
+          Пожалуйста введите продолжительность приема
         </mat-error>
         <mat-error *ngIf="durationFormControl.hasError('required')">
-          Duration is <strong>required</strong>
+          Обязательное поле
         </mat-error>
       </mat-form-field>
 
@@ -28,7 +28,7 @@
         <p>Специальность {{receivedSpecialty.specialtyName}} успешно добавлена</p>
       </div>
 
-      <mat-button-toggle value="bold" [disabled]="!specForm.valid" (click)="onSubmit()">Submit</mat-button-toggle>
+      <mat-button-toggle value="bold" [disabled]="!specForm.valid" (click)="onSubmit()">Добавить</mat-button-toggle>
 
     </form>
   </div>

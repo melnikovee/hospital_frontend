@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user-service.service';
-import {AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
-import {Cabinet} from '../../models/cabinet';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,12 +35,12 @@ export class AdminFormComponent {
   ]);
 
   firstNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 
   lastNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 
@@ -67,11 +67,11 @@ export class AdminFormComponent {
   }
 
   putData() {
-    this.user.login = this.adminForm.get('login').value;
-    this.user.password = this.adminForm.get('password').value;
-    this.user.firstName = this.adminForm.get('firstName').value;
-    this.user.lastName = this.adminForm.get('lastName').value;
-    this.user.middleName = this.adminForm.get('middleName').value;
+    this.user.login = this.adminForm.get('Логин').value;
+    this.user.password = this.adminForm.get('Пароль').value;
+    this.user.firstName = this.adminForm.get('Имя').value;
+    this.user.lastName = this.adminForm.get('Фамилия').value;
+    this.user.middleName = this.adminForm.get('Отчество').value;
     this.user.email = this.adminForm.get('email').value;
     this.user.role = 'ADMINISTRATOR';
   }

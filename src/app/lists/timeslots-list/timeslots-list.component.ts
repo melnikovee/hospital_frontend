@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
-import {Time} from '@angular/common';
 import {MatTableDataSource} from '@angular/material';
 
 
@@ -11,7 +10,7 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class TimeslotsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['Date', 'Time', 'Specialty', 'Doctor', 'Cabinet', 'Patient'];
+  displayedColumns: string[] = ['Дата', 'Время', 'Специальность', 'Доктор', 'Кабинет', 'Пациент', 'Запись'];
   dataSource;
 
   constructor(private compositeService: CompositeService) {
@@ -19,6 +18,10 @@ export class TimeslotsListComponent implements OnInit {
 
   ngOnInit() {
     this.reloadData();
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   reloadData() {
