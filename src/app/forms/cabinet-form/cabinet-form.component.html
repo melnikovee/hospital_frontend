@@ -1,0 +1,21 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form class="example-form" [formGroup]="cabForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cabinet Name" formControlName="cabinetName"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="cabinetNameFormControl.hasError('required')">
+          Cabinet name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="done">
+        <p>Кабинет {{receivedCabinet.cabinetName}} успешно добавлен</p>
+      </div>
+
+      <mat-button-toggle value="bold" [disabled]="!cabForm.valid" (click)="onSubmit()">Submit</mat-button-toggle>
+
+    </form>
+  </div>
+</div>

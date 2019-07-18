@@ -1,0 +1,35 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form class="example-form" [formGroup]="specForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Specialty Name" formControlName="specialtyName"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="specialtyNameFormControl.hasError('pattern') && !specialtyNameFormControl.hasError('required')">
+          Please enter a valid specialty name
+        </mat-error>
+        <mat-error *ngIf="specialtyNameFormControl.hasError('required')">
+          Specialty name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Duration" formControlName="duration"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="durationFormControl.hasError('maxLength') && !durationFormControl.hasError('required')">
+          Please enter a valid duration
+        </mat-error>
+        <mat-error *ngIf="durationFormControl.hasError('required')">
+          Duration is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="done">
+        <p>Специальность {{receivedSpecialty.specialtyName}} успешно добавлена</p>
+      </div>
+
+      <mat-button-toggle value="bold" [disabled]="!specForm.valid" (click)="onSubmit()">Submit</mat-button-toggle>
+
+    </form>
+  </div>
+</div>
