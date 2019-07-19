@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -10,15 +10,17 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatSortModule,
-  MatSelectModule,
-  MatTableModule
+  MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule, MatSelectModule, MatTableModule],
+    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule,
+    MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule],
   exports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule, MatSelectModule, MatTableModule]
+    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule,
+    MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule]
 })
-export class MaterialAppModule { }
+export class MaterialAppModule {
+}

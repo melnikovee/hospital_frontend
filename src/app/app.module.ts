@@ -25,7 +25,13 @@ import {TimeslotsListComponent} from './lists/timeslots-list/timeslots-list.comp
 import {TimeslotService} from './services/timeslot-service.service';
 import {SpecialtyService} from './services/specialty-service.service';
 import {CompositeService} from './services/composite-service.service';
-import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
+import {
+  SearchPatientFormComponent
+} from './forms/searchpatient-form/searchpatient-form.component';
+import { PatientCardFormComponent } from './forms/patient-card-form/patient-card-form.component';
+import { DialogDiagnosisFormComponent } from './forms/dialog-diagnosis-form/dialog-diagnosis-form.component';
+import {DiagnosisService} from './services/diagnosis-service.service';
+import { CardFormComponent } from './forms/card-form/card-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,10 @@ import {ScheduleListComponent} from './lists/schedule-list/schedule-list.compone
     SpecialtyFormComponent,
     DoctorsListComponent,
     TimeslotsListComponent,
-    ScheduleListComponent
+    SearchPatientFormComponent,
+    PatientCardFormComponent,
+    DialogDiagnosisFormComponent,
+    CardFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,11 +58,12 @@ import {ScheduleListComponent} from './lists/schedule-list/schedule-list.compone
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialAppModule
+    MaterialAppModule,
   ],
   providers: [UserService, CabinetService, PatientService, DoctorService,
-    TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService],
-  bootstrap: [AppComponent]
+    TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService, DiagnosisService],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogDiagnosisFormComponent]
 })
 export class AppModule {
 }
