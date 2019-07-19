@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "": {
+    "hospital": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/",
+            "outputPath": "dist/hospital",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": ":build"
+            "browserTarget": "hospital:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": ":build:production"
+              "browserTarget": "hospital:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": ":build"
+            "browserTarget": "hospital:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
         }
       }
     }},
-  "defaultProject": ""
+  "defaultProject": "hospital"
 }
