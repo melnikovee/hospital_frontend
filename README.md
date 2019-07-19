@@ -24,7 +24,7 @@
 
 -- 1. Редактирование собственных данных (ФИО, телефон, email, пароль?) PUT users, PUT doctors.
 
-++ 2. Просмотр своего расписания - таблица (дата, время, кабинет, специальность, ФИО пациента (или его отсутствие), кнопка карточка пациента). GET timeslots where doctorId, GET patients where patientId.
++- 2. Просмотр своего расписания - таблица (дата, время, кабинет, специальность, ФИО пациента (или его отсутствие), кнопка карточка пациента). GET timeslots where doctorId, GET patients where patientId.
 
 -- 3. Просмотр и редактрование карточки пациента записанного на прием, таблица (дата, специальность, ФИО доктора, заключение, кнопка создать заключение). GET diagnosis where patientId, GET doctorspecialties where doctorId, GET doctors where doctorId (добавить специальность в diagnosis?), POST diagnosis.
 
@@ -35,7 +35,7 @@
 
 -- 1. Редактирование собственных данных (ФИО, email, пароль?) PUT users.
 
--- 2. Регистрация администратора. POST users.
+++ 2. Регистрация администратора. POST users.
 
 +- 3. Регистрация доктора. POST users, POST doctors, GET specialties, POST doctorspecialties. Как реализовать выбор нескольких специальностей? Формочка, добавляющаяся при заполнении предыдущей?
 
@@ -51,7 +51,7 @@
 
 ++ 9. Просмотр общего расписания докторов, таблица (дата, время, специальность, ФИО доктора, кабинет, ФИО пациента (или отсутствие). GET timeslots, GET users where userId, GET cabinets where cabinetId, GET specialties where specialtyId.
 
-+- 10. Список докторов, таблица (Специальность, ФИО доктора, кнопка расписание). GET doctors, GET doctorspecialties where userId, GET users where userId.
+++ 10. Список докторов, таблица (Специальность, ФИО доктора, кнопка расписание). GET doctors, GET doctorspecialties where userId, GET users where userId.
 
 -- 11. Составление расписания (Доктор -> специальность -> дата -> начальное время -> конечное время -> кабинет).
 GET doctorspecialties where userId, GET schedules where userId, date (проверка занятости кабинета и доктора на указанную дату). 

@@ -26,6 +26,7 @@ import {TimeslotService} from './services/timeslot-service.service';
 import {SpecialtyService} from './services/specialty-service.service';
 import {CompositeService} from './services/composite-service.service';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
+import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {ScheduleListComponent} from './lists/schedule-list/schedule-list.compone
     SpecialtyFormComponent,
     DoctorsListComponent,
     TimeslotsListComponent,
-    ScheduleListComponent
+    ScheduleListComponent,
+    DoctorScheduleFormComponent
   ],
   imports: [
     BrowserModule,

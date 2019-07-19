@@ -5,8 +5,6 @@ import {DoctorService} from '../../services/doctor-service.service';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user-service.service';
 import {
-  AbstractControl,
-  FormArray,
   FormControl,
   FormGroup,
   FormGroupDirective,
@@ -50,12 +48,12 @@ export class DoctorFormComponent {
   ]);
 
   firstNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 
   lastNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 

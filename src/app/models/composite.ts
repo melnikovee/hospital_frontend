@@ -1,9 +1,8 @@
-import {Time} from '@angular/common';
-
 export class Composite {
 
   id: number;
-  userId: number;
+  doctorId: number;
+  patientId: number;
   doctor: string;
   patient: string;
   specialty: string;

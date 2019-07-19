@@ -3,10 +3,10 @@
     <form class="example-form" [formGroup]="cabForm">
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Cabinet Name" formControlName="cabinetName"
+        <input matInput placeholder="Название кабинета" formControlName="cabinetName"
                [errorStateMatcher]="matcher">
         <mat-error *ngIf="cabinetNameFormControl.hasError('required')">
-          Cabinet name is <strong>required</strong>
+          Обязательное поле
         </mat-error>
       </mat-form-field>
 
@@ -14,7 +14,7 @@
         <p>Кабинет {{receivedCabinet.cabinetName}} успешно добавлен</p>
       </div>
 
-      <mat-button-toggle value="bold" [disabled]="!cabForm.valid" (click)="onSubmit()">Submit</mat-button-toggle>
+      <mat-button-toggle value="bold" [disabled]="!cabForm.valid" (click)="onSubmit()">Добавить</mat-button-toggle>
 
     </form>
   </div>
