@@ -10,32 +10,18 @@ import {DialogDiagnosisFormComponent} from "../dialog-diagnosis-form/dialog-diag
   templateUrl: './card-form.component.html',
   styleUrls: ['./card-form.component.css']
 })
-export class CardFormComponent implements OnInit{
+export class CardFormComponent {
 
   selectedOpinion: Composite;
-
-  @Input()
-  patient: Composite;
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
   isGetCards: boolean;
-
-  @Input()
-  set gotcha(gotcha: boolean) {
-    if (gotcha === true) {
-      this.getCard();
-    }
-  }
-
   patientCard: Composite[];
 
   constructor(private compositeService: CompositeService, private dialog: MatDialog, private diagnosisService: DiagnosisService) {
   }
 
-  ngOnInit(): void {
-  }
-
-  getCard() {
-    this.compositeService.getDiagnosisByPatient(this.patient.id).subscribe(data => {
+  getCard(patient: Composite) {
+    this.compositeService.getDiagnosisByPatient(patient.id).subscribe(data => {
       this.patientCard = data;
       this.isGetCards = true;
     });

@@ -6,7 +6,7 @@ import {ErrorStateMatcher, MatDialog} from '@angular/material';
 import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
 import {Diagnosis} from "../../models/diagnosis";
 import {DiagnosisService} from "../../services/diagnosis-service.service";
-import {CardFormComponent} from "../card-form/card-form.component";
+import {CardFormComponent} from '../card-form/card-form.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -22,16 +22,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SearchPatientFormComponent {
 
+  @ViewChild(CardFormComponent, {static: false})
+  private childComponent: CardFormComponent;
+
   foundPatients: Composite[];
   lastName: string;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
   isGetPatients: boolean;
-  isGetCards: boolean;
   selectedPatient: Composite;
   diagnosis: Diagnosis;
   showAddForm: boolean;
   opinion = new FormControl();
   showTables: boolean;
+  getCards: boolean;
 
   lastNameFormControl = new FormControl('', [
     Validators.pattern('[A-Z][a-z]{1,31}'),
@@ -58,7 +61,8 @@ export class SearchPatientFormComponent {
 
   getCard(patient: Composite) {
     this.selectedPatient = patient;
-    this.isGetCards = true;
+    this.getCards = true;
+    this.childComponent.getCard(patient);
   }
 
   addDiagnosis() {
