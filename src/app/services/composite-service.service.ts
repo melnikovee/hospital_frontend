@@ -28,4 +28,8 @@ export class CompositeService {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'patient_diagnoses'}/${patient}`,
       {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
+
+  public findDoctors(): Observable<Composite[]> {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
 }

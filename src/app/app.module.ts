@@ -32,6 +32,8 @@ import { PatientCardFormComponent } from './forms/patient-card-form/patient-card
 import { DialogDiagnosisFormComponent } from './forms/dialog-diagnosis-form/dialog-diagnosis-form.component';
 import {DiagnosisService} from './services/diagnosis-service.service';
 import { CardFormComponent } from './forms/card-form/card-form.component';
+import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
+import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { CardFormComponent } from './forms/card-form/card-form.component';
     PatientCardFormComponent,
     DialogDiagnosisFormComponent,
     CardFormComponent,
+    ScheduleListComponent,
+    DoctorScheduleFormComponent
   ],
   imports: [
     BrowserModule,

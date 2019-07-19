@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user-service.service';
-import {AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {Patient} from '../../models/patient';
 import {PatientService} from '../../services/patient-service.service';
@@ -23,6 +23,7 @@ export class PatientFormComponent {
 
   user: User;
   patient: Patient;
+  startDate = new Date(1970, 1, 1);
 
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -35,12 +36,12 @@ export class PatientFormComponent {
   ]);
 
   firstNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 
   lastNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
+    Validators.maxLength(32),
     Validators.required
   ]);
 

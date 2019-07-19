@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatButtonToggleModule,
-  MatFormFieldControl,
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatSortModule,
-  MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule
+  MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule,
+  MatPaginatorModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -21,6 +22,9 @@ import {ReactiveFormsModule} from '@angular/forms';
   exports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
     MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule,
     MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule]
+    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule, MatSelectModule, MatTableModule, MatPaginatorModule],
+  exports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
+    MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule, MatSelectModule, MatTableModule, MatPaginatorModule]
 })
 export class MaterialAppModule {
 }

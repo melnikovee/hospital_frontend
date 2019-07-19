@@ -11,6 +11,7 @@ import {DoctorsListComponent} from './lists/doctors-list/doctors-list.component'
 import {SpecialtyFormComponent} from './forms/specialty-form/specialty-form.component';
 import {TimeslotsListComponent} from './lists/timeslots-list/timeslots-list.component';
 import {SearchPatientFormComponent} from './forms/searchpatient-form/searchpatient-form.component';
+import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'adddoctor', component: DoctorFormComponent},
   {path: 'timeslots', component: TimeslotsListComponent},
   {path: 'searchpatient', component: SearchPatientFormComponent}
+  {path: 'doctorSchedule/:id', component: DoctorScheduleFormComponent}
 ];
 
 @NgModule({
