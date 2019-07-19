@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {MatTableDataSource} from '@angular/material';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-doctors-list',
@@ -9,10 +10,10 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class DoctorsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['Доктор', 'Специальность', 'Телефон', 'Расписание'];
+  displayedColumns: string[] = ['#', 'Доктор', 'Специальность', 'Телефон', 'Расписание'];
   dataSource;
 
-  constructor(private compositeService: CompositeService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
 
   ngOnInit() {
     this.reloadData();
@@ -26,5 +27,9 @@ export class DoctorsListComponent implements OnInit {
     this.compositeService.findDoctors().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
+  }
+
+  createSchedule(id: number) {
+    this.router.navigate(['/doctorSchedule', id]);
   }
 }
