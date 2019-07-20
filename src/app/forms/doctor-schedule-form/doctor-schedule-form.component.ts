@@ -114,7 +114,6 @@ export class DoctorScheduleFormComponent {
 
   onSubmit() {
     this.putData();
-    console.log(this.schedule);
     this.scheduleService.save(this.schedule).subscribe(
         (data: Schedule) => {
           this.receivedSchedule = data;

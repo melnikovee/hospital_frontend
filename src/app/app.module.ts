@@ -34,6 +34,7 @@ import {DiagnosisService} from './services/diagnosis-service.service';
 import { CardFormComponent } from './forms/card-form/card-form.component';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
 import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
+import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-s
     DialogDiagnosisFormComponent,
     CardFormComponent,
     ScheduleListComponent,
-    DoctorScheduleFormComponent
+    DoctorScheduleFormComponent,
+    AppointmentFormComponent
   ],
   imports: [
     BrowserModule,

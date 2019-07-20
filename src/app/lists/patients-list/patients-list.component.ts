@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Patient} from '../../models/patient';
-import {PatientService} from '../../services/patient-service.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CompositeService} from '../../services/composite-service.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-patients-list',
@@ -9,29 +10,27 @@ import {PatientService} from '../../services/patient-service.service';
 })
 export class PatientsListComponent implements OnInit {
 
-  patients: Patient[];
+  displayedColumns: string[] = ['#', 'Пациент', 'Дата рождения', 'Телефон', 'Запись'];
+  dataSource;
 
-  constructor(private patientService: PatientService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
 
   ngOnInit() {
     this.reloadData();
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   reloadData() {
-    this.patientService.findAll().subscribe(data => {
-      this.patients = data;
+    this.compositeService.findPatients().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
     });
   }
 
-  deletePatient(id: number) {
-    this.patientService.deletePatient(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
+  makeAppointment(id: number) {
+    this.router.navigate(['/makeAppointment', id]);
   }
 
 }
