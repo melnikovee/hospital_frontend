@@ -41,6 +41,16 @@ export class TimeslotService {
         { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }
 
+  public findTimeslotForAppointment(specialtyId: number, doctorId: number, date: string, time: string): Observable<Timeslot> {
+    return this.http.get<Timeslot>(`${this.timeslotsUrl}/${specialtyId}/${doctorId}/${date}/${time}`,
+        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  public makeAppointment(id: number, timeslot: Timeslot): Observable<Timeslot> {
+    return this.http.put<Timeslot>(`${this.timeslotsUrl}/${id}`, timeslot,
+        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
   public save(timeslot: Timeslot) {
     return this.http.post<Timeslot>(this.timeslotsUrl, timeslot,
         { headers : new HttpHeaders().set('Content-Type', 'application/json') });

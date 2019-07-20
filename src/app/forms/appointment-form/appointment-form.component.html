@@ -1,0 +1,41 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form class="example-form" [formGroup]="appointmentForm">
+
+      <mat-form-field (click)="getSpecialties()" class="example-full-width">
+        <mat-select matInput placeholder="Специальность" formControlName="specialty">
+          <mat-option *ngFor="let specialty of specialties" [value]="specialty">
+            {{specialty.specialtyName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field (click)="getDoctors()" class="example-full-width">
+        <mat-select matInput placeholder="Доктор" formControlName="doctor">
+          <mat-option *ngFor="let user of doctors" [value]="user">
+            {{user.lastName.concat(" " + user.firstName)}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field (click)="getDate()" class="example-full-width">
+        <mat-select matInput placeholder="Дата" formControlName="date">
+          <mat-option *ngFor="let date of freeDays" [value]="date">
+            {{date}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field (click)="getTime()" class="example-full-width">
+        <mat-select matInput placeholder="Время" formControlName="time">
+          <mat-option *ngFor="let time of freeTime" [value]="time">
+            {{time}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-button-toggle value="bold" [disabled]="!appointmentForm.valid" (click)="onSubmit()">Запись</mat-button-toggle>
+
+    </form>
+  </div>
+</div>
