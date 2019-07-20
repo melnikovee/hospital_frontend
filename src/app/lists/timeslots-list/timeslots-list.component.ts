@@ -29,6 +29,4 @@ export class TimeslotsListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
     });
   }
-
-
 }

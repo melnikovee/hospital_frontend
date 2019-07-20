@@ -37,7 +37,7 @@
 
 ++ 2. Регистрация администратора. POST users.
 
-+- 3. Регистрация доктора. POST users, POST doctors, GET specialties, POST doctorspecialties. Как реализовать выбор нескольких специальностей? Формочка, добавляющаяся при заполнении предыдущей?
+++ 3. Регистрация доктора. POST users, POST doctors, GET specialties, POST doctorspecialties.
 
 ++ 4. Регистрация пациента. POST users, POST patients.
 
@@ -53,7 +53,7 @@
 
 ++ 10. Список докторов, таблица (Специальность, ФИО доктора, кнопка расписание). GET doctors, GET doctorspecialties where userId, GET users where userId.
 
--- 11. Составление расписания (Доктор -> специальность -> дата -> начальное время -> конечное время -> кабинет).
+++ 11. Составление расписания (Доктор -> специальность -> дата -> начальное время -> конечное время -> кабинет).
 GET doctorspecialties where userId, GET schedules where userId, date (проверка занятости кабинета и доктора на указанную дату). 
 
 

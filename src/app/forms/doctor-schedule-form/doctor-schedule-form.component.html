@@ -3,7 +3,6 @@
     <form class="example-form" [formGroup]="scheduleForm">
 
       <mat-form-field (click)="getSpecialties()" class="example-full-width">
-        <!--mat-label>Специальности</mat-label-->
         <mat-select matInput placeholder="Специальность" formControlName="specialty">
           <mat-option *ngFor="let specialty of specialties" [value]="specialty">
             {{specialty.specialtyName}}
@@ -11,23 +10,18 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Дата" formControlName="date"
-               [errorStateMatcher]="matcher">
-        <mat-error *ngIf="dateFormControl.hasError('maxLength') && !dateFormControl.hasError('required')">
-          Пожалуйста введите дату
-        </mat-error>
-        <mat-error *ngIf="dateFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
+      <mat-form-field (click)="getFreeDays()" class="example-full-width">
+        <mat-select matInput placeholder="Дата" formControlName="date">
+          <mat-option *ngFor="let date of freeDays" [value]="date">
+            {{date}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Начальное время" formControlName="startTime"
                [errorStateMatcher]="matcher">
-        <mat-error *ngIf="startTimeFormControl.hasError('maxLength') && !startTimeFormControl.hasError('required')">
-          Пожалуйста введите время
-        </mat-error>
+        <mat-hint>Введите время в формате 09:00</mat-hint>
         <mat-error *ngIf="startTimeFormControl.hasError('required')">
           Обязательное поле
         </mat-error>
@@ -36,23 +30,18 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Конечное время" formControlName="endTime"
                [errorStateMatcher]="matcher">
-        <mat-error *ngIf="endTimeFormControl.hasError('pattern') && !endTimeFormControl.hasError('required')">
-          Пожалуйста введите время
-        </mat-error>
+        <mat-hint>Введите время в формате 18:35</mat-hint>
         <mat-error *ngIf="endTimeFormControl.hasError('required')">
           Обязательное поле
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Кабинет" formControlName="cabinet"
-               [errorStateMatcher]="matcher">
-        <mat-error *ngIf="cabinetFormControl.hasError('pattern') && !cabinetFormControl.hasError('required')">
-          Пожалуйста введите кабинет
-        </mat-error>
-        <mat-error *ngIf="cabinetFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
+      <mat-form-field (click)="getCabinets()" class="example-full-width">
+        <mat-select matInput placeholder="Кабинет" formControlName="cabinet">
+          <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
+            {{cabinet.cabinetName}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-button-toggle value="bold" [disabled]="!scheduleForm.valid" (click)="onSubmit()">Создать</mat-button-toggle>

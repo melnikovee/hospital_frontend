@@ -10,3 +10,4 @@ describe('DiagnosisService', () => {
     expect(service).toBeTruthy();
   });
 });
+
