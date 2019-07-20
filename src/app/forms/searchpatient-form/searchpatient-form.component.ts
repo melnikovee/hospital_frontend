@@ -1,4 +1,4 @@
-import {Component, Input, Output, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {Composite} from '../../models/composite';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -7,6 +7,8 @@ import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diag
 import {Diagnosis} from "../../models/diagnosis";
 import {DiagnosisService} from "../../services/diagnosis-service.service";
 import {CardFormComponent} from '../card-form/card-form.component';
+import {Timeslot} from "../../models/timeslot";
+import {TimeslotService} from "../../services/timeslot-service.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './searchpatient-form.component.html',
   styleUrls: ['./searchpatient-form.component.css'],
 })
-export class SearchPatientFormComponent {
+export class SearchPatientFormComponent implements OnInit{
 
   @ViewChild(CardFormComponent, {static: false})
   private childComponent: CardFormComponent;
@@ -35,6 +37,7 @@ export class SearchPatientFormComponent {
   opinion = new FormControl();
   showTables: boolean;
   getCards: boolean;
+  timeSlotsForCheck: Timeslot[];
 
   lastNameFormControl = new FormControl('', [
     Validators.pattern('[A-Z][a-z]{1,31}'),
@@ -47,7 +50,8 @@ export class SearchPatientFormComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private compositeService: CompositeService, public dialog: MatDialog, private diagnosisService: DiagnosisService) {
+  constructor(private compositeService: CompositeService, public dialog: MatDialog,
+              private diagnosisService: DiagnosisService, private timeslotService: TimeslotService) {
   }
 
   onSubmit() {
@@ -61,6 +65,7 @@ export class SearchPatientFormComponent {
 
   getCard(patient: Composite) {
     this.selectedPatient = patient;
+    console.log(this.selectedPatient);
     this.getCards = true;
     this.childComponent.getCard(patient);
   }
@@ -83,5 +88,25 @@ export class SearchPatientFormComponent {
         this.diagnosis = undefined;
       });
     }
+  }
+
+  ngOnInit(): void {
+    this.timeslotService.getTimeslotsForDoctor(2).subscribe(data => {
+      this.timeSlotsForCheck  = data;
+      console.log(this.timeSlotsForCheck);
+    });
+  }
+
+  checkPatient(): boolean {
+
+    if (this.selectedPatient !== undefined) {
+      for (const timeslot of this.timeSlotsForCheck) {
+        if (timeslot.patient === this.selectedPatient.id) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 }

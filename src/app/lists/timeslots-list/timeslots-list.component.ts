@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, Sort} from '@angular/material';
 
 
 @Component({
@@ -30,4 +30,3 @@ export class TimeslotsListComponent implements OnInit {
     });
   }
 }
-
