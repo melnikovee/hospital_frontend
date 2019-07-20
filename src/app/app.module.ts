@@ -28,7 +28,6 @@ import {CompositeService} from './services/composite-service.service';
 import {
   SearchPatientFormComponent
 } from './forms/searchpatient-form/searchpatient-form.component';
-import { PatientCardFormComponent } from './forms/patient-card-form/patient-card-form.component';
 import { DialogDiagnosisFormComponent } from './forms/dialog-diagnosis-form/dialog-diagnosis-form.component';
 import {DiagnosisService} from './services/diagnosis-service.service';
 import { CardFormComponent } from './forms/card-form/card-form.component';
@@ -50,7 +49,6 @@ import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-s
     DoctorsListComponent,
     TimeslotsListComponent,
     SearchPatientFormComponent,
-    PatientCardFormComponent,
     DialogDiagnosisFormComponent,
     CardFormComponent,
     ScheduleListComponent,
