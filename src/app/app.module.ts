@@ -33,6 +33,7 @@ import {DiagnosisService} from './services/diagnosis-service.service';
 import { CardFormComponent } from './forms/card-form/card-form.component';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
 import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
+import { PatientRecordByDoctorFormComponent } from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-s
     DialogDiagnosisFormComponent,
     CardFormComponent,
     ScheduleListComponent,
-    DoctorScheduleFormComponent
+    DoctorScheduleFormComponent,
+    PatientRecordByDoctorFormComponent
   ],
   imports: [
     BrowserModule,
