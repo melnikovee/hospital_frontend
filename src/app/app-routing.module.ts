@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'addspecialty', component: SpecialtyFormComponent},
   {path: 'adddoctor', component: DoctorFormComponent},
   {path: 'timeslots', component: TimeslotsListComponent},
-  {path: 'searchpatient', component: SearchPatientFormComponent}
+  {path: 'searchpatient', component: SearchPatientFormComponent},
   {path: 'doctorSchedule/:id', component: DoctorScheduleFormComponent}
 ];
 
