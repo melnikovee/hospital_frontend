@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Sort} from '@angular/material/sort';
-import {Composite} from '../../models/composite';
+import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
+import {MatTableDataSource} from '@angular/material';
 
 
 @Component({
@@ -11,8 +10,8 @@ import {CompositeService} from '../../services/composite-service.service';
 })
 export class TimeslotsListComponent implements OnInit {
 
-  composites: Composite[];
-  sortedData: Composite[];
+  displayedColumns: string[] = ['Дата', 'Время', 'Специальность', 'Доктор', 'Кабинет', 'Пациент', 'Запись'];
+  dataSource;
 
   constructor(private compositeService: CompositeService) {
   }
@@ -48,11 +47,17 @@ export class TimeslotsListComponent implements OnInit {
     this.reloadData();
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   reloadData() {
     this.compositeService.findAll().subscribe(data => {
       this.composites = data;
     });
   }
+
+
 }
 
 function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
