@@ -22,6 +22,10 @@ export class TimeslotService {
     return this.http.post<Timeslot>(this.timeslotsUrl, timeslot, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }
 
+  public getTimeslotsForDoctor(id: number) {
+    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
   deleteTimeslot(id: number): Observable<Object> {
     return this.http.delete(`${this.timeslotsUrl}/${id}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Composite} from '../models/composite';
@@ -15,7 +15,18 @@ export class CompositeService {
   }
 
   public findAll(): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'schedule'}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'schedule'}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getUsersByName(lastName: string): Observable<Composite[]> {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'users'}/${lastName}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getDiagnosisByPatient(patient: number): Observable<Composite[]> {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patient_diagnoses'}/${patient}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public findDoctors(): Observable<Composite[]> {
