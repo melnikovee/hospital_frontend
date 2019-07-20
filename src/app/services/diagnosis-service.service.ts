@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Doctor} from '../models/doctor';
-import {Specialty} from '../models/specialty';
 import {Diagnosis} from "../models/diagnosis";
 
 @Injectable()
@@ -26,3 +24,4 @@ export class DiagnosisService {
     return this.http.delete(`${this.diagnosisUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }
+

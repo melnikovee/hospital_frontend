@@ -10,8 +10,8 @@ export class Composite {
   specialty: string;
   cabinet: string;
   medicalOpinion: string;
-  date: Date;
-  time: Time;
+  date: string;
+  time: string;
   isFree: boolean;
   birthday: Date;
   phone: string;
