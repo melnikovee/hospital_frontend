@@ -1,7 +1,3 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -14,6 +10,7 @@ import {
   MatPaginatorModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
