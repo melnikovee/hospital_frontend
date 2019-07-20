@@ -13,6 +13,7 @@ import {DoctorSpecialtyService} from '../../services/doctorspecialty-service.ser
 import {Schedule} from '../../models/schedule';
 import {ScheduleService} from '../../services/schedule-service.service';
 import {SpecialtyService} from '../../services/specialty-service.service';
+import {Cabinet} from '../../models/cabinet';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,13 +29,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class DoctorScheduleFormComponent {
   doctorId: number;
+  dateForCabinets: string;
   specialties: Specialty[];
+  cabinets: Cabinet[];
+  freeDays: string[];
   schedule: Schedule;
   receivedSchedule: Schedule;
   done: boolean;
-  //selectedSpecialtyFormControl = new FormControl();
 
-  specialtyFormControl = new FormControl();
+  specialtyFormControl = new FormControl('', [
+      Validators.required
+  ]);
 
   dateFormControl = new FormControl('', [
     Validators.required
@@ -73,9 +78,9 @@ export class DoctorScheduleFormComponent {
   putData() {
     this.schedule.userId = this.doctorId;
     this.schedule.date = this.scheduleForm.get('date').value;
-    this.schedule.startTime = this.scheduleForm.get('startTime').value;
-    this.schedule.endTime = this.scheduleForm.get('endTime').value;
-    this.schedule.cabinet = this.scheduleForm.get('cabinet').value;
+    this.schedule.startTime = this.scheduleForm.get('startTime').value.concat(':00');
+    this.schedule.endTime = this.scheduleForm.get('endTime').value.concat(':00');
+    this.schedule.cabinet = this.scheduleForm.get('cabinet').value.id;
     this.schedule.specialty = this.scheduleForm.get('specialty').value.id;
   }
 
@@ -83,6 +88,25 @@ export class DoctorScheduleFormComponent {
     this.doctorSpecialtyService.findDoctorSpecialties(this.doctorId).subscribe(
         (data: Specialty[]) => {
           this.specialties = data;
+        },
+        error => console.log(error)
+    );
+  }
+
+  getCabinets() {
+    this.dateForCabinets = this.scheduleForm.get('date').value;
+    this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
+        (data: Cabinet[]) => {
+          this.cabinets = data;
+        },
+        error => console.log(error)
+    );
+  }
+
+  getFreeDays() {
+    this.scheduleService.findFreeDays(this.doctorId).subscribe(
+        (data: string[]) => {
+          this.freeDays = data;
         },
         error => console.log(error)
     );
