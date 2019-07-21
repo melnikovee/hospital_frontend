@@ -60,7 +60,7 @@ import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.comp
     DoctorScheduleFormComponent,
     PatientRecordByDoctorFormComponent,
     AppointmentFormComponent,
-    DoctorUpdateFormComponent
+    DoctorUpdateFormComponent,
     SpecialtyListComponent
   ],
   imports: [
