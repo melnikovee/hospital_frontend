@@ -1,0 +1,47 @@
+<div class="card my-5">
+    <div class="card-body">
+        <form class="example-form" [formGroup]="docForm">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Имя" formControlName="firstName"
+                       [errorStateMatcher]="matcher">
+                <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
+                    Пожалуйста введите имя
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Фамилия" formControlName="lastName"
+                       [errorStateMatcher]="matcher">
+                <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
+                    Пожалуйста введите фамилию
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Отчество" formControlName="middleName"
+                       [errorStateMatcher]="matcher">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [formControl]="emailFormControl"
+                       [errorStateMatcher]="matcher" formControlName="email">
+                <mat-error *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+                    Пожалуйста введите действительный Email
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Телефон" formControlName="phone"
+                       [errorStateMatcher]="matcher">
+                <mat-hint>Введите номер телефона в формате 89001234567</mat-hint>
+                <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
+                    Пожалуйста введите номер телефона
+                </mat-error>
+            </mat-form-field>
+
+            <mat-button-toggle value="bold" [disabled]="!docForm.valid" (click)="onSubmit()">Регистрация</mat-button-toggle>
+
+        </form>
+    </div>
+</div>

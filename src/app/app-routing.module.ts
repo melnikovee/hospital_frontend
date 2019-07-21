@@ -14,6 +14,7 @@ import {SearchPatientFormComponent} from './forms/searchpatient-form/searchpatie
 import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
 import {PatientRecordByDoctorFormComponent} from "./forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component";
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
+import {DoctorUpdateFormComponent} from "./forms/doctor-update-form/doctor-update-form.component";
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path: 'doctorSchedule/:id', component: DoctorScheduleFormComponent},
   {path: 'makeAppointment/:id', component: AppointmentFormComponent},
   {path: 'specialties', component: SpecialtyListComponent},
-  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent}
+  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent},
+  {path: 'updatedoctor', component: DoctorUpdateFormComponent}
 ];
 
 @NgModule({
