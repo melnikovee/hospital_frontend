@@ -36,6 +36,8 @@ import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-s
 import { PatientRecordByDoctorFormComponent } from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
 import { DoctorUpdateFormComponent } from './forms/doctor-update-form/doctor-update-form.component';
+import {MatSortModule} from '@angular/material';
+import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
 
 @NgModule({
   declarations: [
@@ -59,8 +61,10 @@ import { DoctorUpdateFormComponent } from './forms/doctor-update-form/doctor-upd
     PatientRecordByDoctorFormComponent,
     AppointmentFormComponent,
     DoctorUpdateFormComponent
+    SpecialtyListComponent
   ],
   imports: [
+    MatSortModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

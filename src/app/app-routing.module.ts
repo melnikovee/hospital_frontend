@@ -15,6 +15,7 @@ import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-s
 import {PatientRecordByDoctorFormComponent} from "./forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component";
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
 import {DoctorUpdateFormComponent} from "./forms/doctor-update-form/doctor-update-form.component";
+import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -30,8 +31,9 @@ const routes: Routes = [
   {path: 'timeslots', component: TimeslotsListComponent},
   {path: 'searchpatient', component: SearchPatientFormComponent},
   {path: 'doctorSchedule/:id', component: DoctorScheduleFormComponent},
-  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent},
   {path: 'makeAppointment/:id', component: AppointmentFormComponent},
+  {path: 'specialties', component: SpecialtyListComponent},
+  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent},
   {path: 'updatedoctor', component: DoctorUpdateFormComponent}
 ];
 

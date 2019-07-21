@@ -24,12 +24,10 @@ export class SpecialtyFormComponent {
   done: boolean;
 
   specialtyNameFormControl = new FormControl('', [
-    Validators.pattern('[A-z]{1,32}'),
     Validators.required
   ]);
 
   durationFormControl = new FormControl('', [
-    Validators.max(60),
     Validators.required
   ]);
 
