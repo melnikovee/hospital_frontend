@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {Composite} from '../../models/composite';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
