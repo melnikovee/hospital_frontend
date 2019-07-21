@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Cabinet} from '../../models/cabinet';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CabinetService} from '../../services/cabinet-service.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-cabinet-list',
@@ -9,10 +10,12 @@ import {CabinetService} from '../../services/cabinet-service.service';
 })
 export class CabinetListComponent implements OnInit {
 
-  cabinets: Cabinet[];
+  displayedColumns: string[] = ['cabinet', 'delete'];
+  dataSource;
 
-  constructor(private cabinetService: CabinetService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {}
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
     this.reloadData();
@@ -20,7 +23,8 @@ export class CabinetListComponent implements OnInit {
 
   reloadData() {
     this.cabinetService.findAll().subscribe(data => {
-      this.cabinets = data;
+      const sorted = data.sort((a, b) => a.cabinetName.localeCompare(b.cabinetName));
+      this.dataSource = new MatTableDataSource(sorted);
     });
   }
 

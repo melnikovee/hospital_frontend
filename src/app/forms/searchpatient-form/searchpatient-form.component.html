@@ -5,9 +5,6 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Фамилия" formControlName="lastName"
                [errorStateMatcher]="matcher">
-        <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
-          Пожалуйста введите верную фамилию
-        </mat-error>
         <mat-error *ngIf="lastNameFormControl.hasError('required')">
           Фамилия <strong>обязательна</strong>
         </mat-error>

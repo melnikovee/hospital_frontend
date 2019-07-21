@@ -5,27 +5,22 @@
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
 
-      <ng-container matColumnDef="#">
-        <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let composite"> {{composite.doctorId}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Доктор">
+      <ng-container matColumnDef="Doctor">
         <th mat-header-cell *matHeaderCellDef>Доктор</th>
         <td mat-cell *matCellDef="let composite"> {{composite.doctor}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Специальность">
+      <ng-container matColumnDef="Specialty">
         <th mat-header-cell *matHeaderCellDef>Специальность</th>
         <td mat-cell *matCellDef="let composite"> {{composite.specialty}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Телефон">
+      <ng-container matColumnDef="Phone">
         <th mat-header-cell *matHeaderCellDef>Телефон</th>
         <td mat-cell *matCellDef="let composite"> {{composite.phone}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Расписание">
+      <ng-container matColumnDef="Schedule">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let composite" >
           <button mat-button (click)="createSchedule(composite.doctorId)">Расписание</button>

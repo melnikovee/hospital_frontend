@@ -36,6 +36,8 @@ export class DoctorFormComponent {
   specialties: Specialty[];
   selectedSpecialtiesFormControl = new FormControl();
   selectedSpecialties: Specialty[];
+  receivedUser: User;
+  done: boolean;
 
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -112,6 +114,8 @@ export class DoctorFormComponent {
     this.userService.save(this.user).subscribe(
       (data: User) => {
         this.doctor.id = data.id;
+        this.receivedUser = data;
+        this.done = true;
         this.doctorService.save(this.doctor).subscribe((doc: Doctor) => {
 
           this.selectedSpecialties = this.selectedSpecialtiesFormControl.value;
@@ -120,15 +124,9 @@ export class DoctorFormComponent {
             this.doctorSpecialtyService.save(new DoctorSpecialty(doc.id, spec.id)).subscribe((sp: DoctorSpecialty) => {
             });
           }
-
-          this.gotoUserList();
         });
       },
       error => console.log(error)
     );
-  }
-
-  gotoUserList() {
-    this.router.navigate(['/doctors']);
   }
 }

@@ -40,7 +40,6 @@ export class SearchPatientFormComponent implements OnInit{
   timeSlotsForCheck: Timeslot[];
 
   lastNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
     Validators.required
   ]);
 

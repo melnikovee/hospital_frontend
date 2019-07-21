@@ -5,9 +5,6 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Специальность" formControlName="specialtyName"
                [errorStateMatcher]="matcher">
-        <mat-error *ngIf="specialtyNameFormControl.hasError('pattern') && !specialtyNameFormControl.hasError('required')">
-          Пожалуйста введите название специальности
-        </mat-error>
         <mat-error *ngIf="specialtyNameFormControl.hasError('required')">
           Обязательное поле
         </mat-error>
@@ -16,9 +13,6 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Продолжительность приема" formControlName="duration"
                [errorStateMatcher]="matcher">
-        <mat-error *ngIf="durationFormControl.hasError('maxLength') && !durationFormControl.hasError('required')">
-          Пожалуйста введите продолжительность приема
-        </mat-error>
         <mat-error *ngIf="durationFormControl.hasError('required')">
           Обязательное поле
         </mat-error>

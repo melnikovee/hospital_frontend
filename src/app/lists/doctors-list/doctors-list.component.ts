@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DoctorsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['#', 'Доктор', 'Специальность', 'Телефон', 'Расписание'];
+  displayedColumns: string[] = ['Doctor', 'Specialty', 'Phone', 'Schedule'];
   dataSource;
 
   constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
