@@ -58,7 +58,7 @@
     </div>
 
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [hidden]="!getCards">
-      <mat-button-toggle value="underline" (click)="addDiagnosis()">Добавить заключение</mat-button-toggle>
+      <mat-button-toggle value="underline" [disabled]="!checkPatient()" (click)="addDiagnosis()">Добавить заключение</mat-button-toggle>
     </mat-button-toggle-group>
 
   </div>
