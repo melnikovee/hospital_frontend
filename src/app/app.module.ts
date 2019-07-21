@@ -33,6 +33,7 @@ import {DiagnosisService} from './services/diagnosis-service.service';
 import { CardFormComponent } from './forms/card-form/card-form.component';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
 import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
+import { PatientRecordByDoctorFormComponent } from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
 import {MatSortModule} from '@angular/material';
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
@@ -57,7 +58,8 @@ import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.comp
     ScheduleListComponent,
     DoctorScheduleFormComponent,
     AppointmentFormComponent,
-    SpecialtyListComponent
+    SpecialtyListComponent,
+    PatientRecordByDoctorFormComponent
   ],
   imports: [
     MatSortModule,

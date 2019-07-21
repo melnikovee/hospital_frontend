@@ -3,12 +3,11 @@ import {CompositeService} from '../../services/composite-service.service';
 import {Composite} from '../../models/composite';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher, MatDialog} from '@angular/material';
-import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
-import {Diagnosis} from "../../models/diagnosis";
-import {DiagnosisService} from "../../services/diagnosis-service.service";
+import {Diagnosis} from '../../models/diagnosis';
+import {DiagnosisService} from '../../services/diagnosis-service.service';
 import {CardFormComponent} from '../card-form/card-form.component';
-import {Timeslot} from "../../models/timeslot";
-import {TimeslotService} from "../../services/timeslot-service.service";
+import {Timeslot} from '../../models/timeslot';
+import {TimeslotService} from '../../services/timeslot-service.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
