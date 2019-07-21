@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, Sort} from '@angular/material';
 
 
 @Component({
@@ -10,11 +10,13 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class TimeslotsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['Дата', 'Время', 'Специальность', 'Доктор', 'Кабинет', 'Пациент', 'Запись'];
+  displayedColumns: string[] = ['Дата', 'Время', 'Специальность', 'Доктор', 'Кабинет', 'Пациент'];
   dataSource;
 
   constructor(private compositeService: CompositeService) {
   }
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
     this.reloadData();
@@ -26,8 +28,12 @@ export class TimeslotsListComponent implements OnInit {
 
   reloadData() {
     this.compositeService.findAll().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+      const sorted = data.sort((a, b) => a.time.localeCompare(b.time))
+                          .sort((a, b) => a.doctor.localeCompare(b.doctor))
+                          .sort((a, b) => a.date.localeCompare(b.date));
+      this.dataSource = new MatTableDataSource(sorted);
     });
   }
 }
+
 

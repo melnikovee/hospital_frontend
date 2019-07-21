@@ -85,6 +85,7 @@ export class AppointmentFormComponent {
     this.timeslotService.findSpecialties().subscribe(
         (data: Specialty[]) => {
           this.specialties = data;
+          this.specialties.sort();
         },
         error => console.log(error)
     );
@@ -95,6 +96,7 @@ export class AppointmentFormComponent {
     this.timeslotService.findDoctors(this.specialtyForDoctor).subscribe(
         (data: User[]) => {
           this.doctors = data;
+          this.doctors.sort();
         },
         error => console.log(error)
     );
@@ -105,6 +107,7 @@ export class AppointmentFormComponent {
     this.timeslotService.findDate(this.specialtyForDoctor, this.doctorForDate).subscribe(
         (data: string[]) => {
           this.freeDays = data;
+          this.freeDays.sort();
         },
         error => console.log(error)
     );
@@ -115,6 +118,7 @@ export class AppointmentFormComponent {
     this.timeslotService.findTime(this.specialtyForDoctor, this.doctorForDate, this.dateForTime).subscribe(
         (data: string[]) => {
           this.freeTime = data;
+          this.freeTime.sort();
         },
         error => console.log(error)
     );

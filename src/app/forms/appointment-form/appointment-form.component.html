@@ -34,6 +34,10 @@
         </mat-select>
       </mat-form-field>
 
+      <div *ngIf="done">
+        <p>Вы записаны на прием. Информация о записи добавлена в личный кабинет.</p>
+      </div>
+
       <mat-button-toggle value="bold" [disabled]="!appointmentForm.valid" (click)="onSubmit()">Запись</mat-button-toggle>
 
     </form>

@@ -35,6 +35,7 @@ import { CardFormComponent } from './forms/card-form/card-form.component';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
 import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
+import {MatSortModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {AppointmentFormComponent} from './forms/appointment-form/appointment-for
     AppointmentFormComponent
   ],
   imports: [
+    MatSortModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
