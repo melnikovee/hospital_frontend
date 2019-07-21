@@ -118,8 +118,15 @@ export class DoctorScheduleFormComponent {
         (data: Schedule) => {
           this.receivedSchedule = data;
           this.done = true;
+          this.cleanData();
         },
         error => console.log(error)
     );
+  }
+
+  cleanData() {
+    this.dateForCabinets = undefined;
+    this.cabinets = undefined;
+    this.freeDays = undefined;
   }
 }

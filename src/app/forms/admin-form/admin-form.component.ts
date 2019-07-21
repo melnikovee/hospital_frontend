@@ -67,11 +67,11 @@ export class AdminFormComponent {
   }
 
   putData() {
-    this.user.login = this.adminForm.get('Логин').value;
-    this.user.password = this.adminForm.get('Пароль').value;
-    this.user.firstName = this.adminForm.get('Имя').value;
-    this.user.lastName = this.adminForm.get('Фамилия').value;
-    this.user.middleName = this.adminForm.get('Отчество').value;
+    this.user.login = this.adminForm.get('login').value;
+    this.user.password = this.adminForm.get('password').value;
+    this.user.firstName = this.adminForm.get('firstName').value;
+    this.user.lastName = this.adminForm.get('lastName').value;
+    this.user.middleName = this.adminForm.get('middleName').value;
     this.user.email = this.adminForm.get('email').value;
     this.user.role = 'ADMINISTRATOR';
   }

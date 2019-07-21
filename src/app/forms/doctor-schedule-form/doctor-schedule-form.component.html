@@ -44,6 +44,10 @@
         </mat-select>
       </mat-form-field>
 
+      <div *ngIf="done">
+        <p>Расписание создано</p>
+      </div>
+
       <mat-button-toggle value="bold" [disabled]="!scheduleForm.valid" (click)="onSubmit()">Создать</mat-button-toggle>
 
     </form>
