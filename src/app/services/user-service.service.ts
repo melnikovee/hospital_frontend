@@ -20,7 +20,15 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, user, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
+  public getUserById(id: number) {
+    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') })
+  }
+
   deleteUser(id: number): Observable<Object> {
     return this.http.delete(`${this.usersUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  updateUser(id: number, user: User) {
+    return this.http.put(`${this.usersUrl}/${id}`, user, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }
 }

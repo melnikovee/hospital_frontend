@@ -33,6 +33,7 @@ import {ScheduleListComponent} from './lists/schedule-list/schedule-list.compone
 import {CreateScheduleFormComponent} from './forms/create-schedule-form/create-schedule-form.component';
 import {PatientRecordByDoctorFormComponent} from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
+import { DoctorUpdateFormComponent } from './forms/doctor-update-form/doctor-update-form.component';
 import {MatSortModule} from '@angular/material';
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
 import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor-timeslots-list.component';
@@ -59,7 +60,8 @@ import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor
     AppointmentFormComponent,
     SpecialtyListComponent,
     PatientRecordByDoctorFormComponent,
-    DoctorTimeslotsListComponent
+    DoctorTimeslotsListComponent,
+    DoctorUpdateFormComponent
   ],
   imports: [
     MatSortModule,
