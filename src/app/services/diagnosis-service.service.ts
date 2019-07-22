@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Diagnosis} from '../models/diagnosis';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DiagnosisService {
 
   private diagnosisUrl: string;

@@ -42,7 +42,7 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timeslotService.getTimeslotsForRecord(2).subscribe(data => {
+    this.timeslotService.getTimeslotsForRecord(20).subscribe(data => {
       this.timeSlotsForCheck = data;
       console.log(this.timeSlotsForCheck);
     });

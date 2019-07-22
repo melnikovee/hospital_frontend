@@ -1,6 +1,6 @@
 <div class="card my-5">
     <div class="card-body">
-        <form class="example-form" [formGroup]="docForm">
+        <form class="example-form" [formGroup]="adminForm">
 
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Имя" formControlName="firstName"
@@ -31,16 +31,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Телефон" formControlName="phone"
-                       [errorStateMatcher]="matcher">
-                <mat-hint>Введите номер телефона в формате 89001234567</mat-hint>
-                <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
-                    Пожалуйста введите номер телефона
-                </mat-error>
-            </mat-form-field>
-
-            <mat-button-toggle value="bold" [disabled]="!docForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
+            <mat-button-toggle value="bold" [disabled]="!adminForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
 
         </form>
     </div>

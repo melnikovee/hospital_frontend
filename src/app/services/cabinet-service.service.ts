@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Cabinet} from '../models/cabinet';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CabinetService {
 
   private cabinetsUrl: string;

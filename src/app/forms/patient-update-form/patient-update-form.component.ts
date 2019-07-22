@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
-import {Doctor} from '../../models/doctor';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DoctorService} from '../../services/doctor-service.service';
 import {UserService} from '../../services/user-service.service';
+import {Patient} from '../../models/patient';
+import {PatientService} from '../../services/patient-service.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -15,16 +15,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-doctor-update-form',
-  templateUrl: './doctor-update-form.component.html',
-  styleUrls: ['./doctor-update-form.component.css']
+  selector: 'app-patient-update-form',
+  templateUrl: './patient-update-form.component.html',
+  styleUrls: ['./patient-update-form.component.css']
 })
-export class DoctorUpdateFormComponent implements OnInit{
+export class PatientUpdateFormComponent implements OnInit{
 
   user: User;
-  doctor: Doctor;
+  patient: Patient;
   currentUser: User;
-  currentDoctor: Doctor;
+  currentPatient: Patient;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -43,7 +43,7 @@ export class DoctorUpdateFormComponent implements OnInit{
     Validators.maxLength(32)
   ]);
 
-  docForm = new FormGroup({
+  patientForm = new FormGroup({
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
     middleName: new FormControl(),
@@ -54,18 +54,18 @@ export class DoctorUpdateFormComponent implements OnInit{
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private doctorService: DoctorService, private userService: UserService) {
+              private patientService: PatientService, private userService: UserService) {
     this.user = new User();
-    this.doctor = new Doctor();
+    this.patient = new Patient();
   }
 
   ngOnInit(): void {
-    this.doctorService.getDoctorById(15).subscribe(data => {
-      this.currentDoctor = data;
-      console.log(this.currentDoctor);
+    this.patientService.getPatientById(23).subscribe(data => {
+      this.currentPatient = data;
+      console.log(this.currentPatient);
     });
 
-    this.userService.getUserById(15).subscribe(data => {
+    this.userService.getUserById(23).subscribe(data => {
       this.currentUser = data;
       console.log(this.currentUser);
     });
@@ -73,29 +73,30 @@ export class DoctorUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.docForm.get('firstName').value;
+    let changedData = this.patientForm.get('firstName').value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.docForm.get('lastName').value;
+    changedData = this.patientForm.get('lastName').value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.docForm.get('middleName').value;
+    changedData = this.patientForm.get('middleName').value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.docForm.get('email').value;
+    changedData = this.patientForm.get('email').value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
 
-    changedData = this.docForm.get('phone').value;
-    this.doctor.phone = changedData === '' ? this.currentDoctor.phone : changedData;
+    changedData = this.patientForm.get('phone').value;
+    this.patient.phone = changedData === '' ? this.currentPatient.phone : changedData;
+    this.patient.birthday = this.currentPatient.birthday;
   }
 
   onSubmit() {
     this.putData();
 
     console.log(this.user);
-    console.log(this.doctor);
+    console.log(this.patient);
 
-    this.userService.updateUser(15, this.user).subscribe();
-    this.doctorService.updateDoctor(15, this.doctor).subscribe();
+    this.userService.updateUser(23, this.user).subscribe();
+    this.patientService.updatePatient(23, this.patient).subscribe();
   }
 }
