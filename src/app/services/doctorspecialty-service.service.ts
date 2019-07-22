@@ -4,7 +4,9 @@ import {Observable} from 'rxjs';
 import {DoctorSpecialty} from '../models/doctorspecialty';
 import {Specialty} from '../models/specialty';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DoctorSpecialtyService {
 
   private doctorSpecialtiesUrl: string;

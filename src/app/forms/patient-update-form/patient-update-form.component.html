@@ -1,6 +1,6 @@
 <div class="card my-5">
     <div class="card-body">
-        <form class="example-form" [formGroup]="docForm">
+        <form class="example-form" [formGroup]="patientForm">
 
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Имя" formControlName="firstName"
@@ -40,7 +40,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-button-toggle value="bold" [disabled]="!docForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
+            <mat-button-toggle value="bold" [disabled]="!patientForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
 
         </form>
     </div>
