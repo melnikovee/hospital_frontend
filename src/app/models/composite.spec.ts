@@ -1,4 +1,4 @@
-import { Composite } from './composite';
+import {Composite} from './composite';
 
 describe('Composite', () => {
   it('should create an instance', () => {

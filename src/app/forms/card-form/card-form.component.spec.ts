@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CardFormComponent } from './card-form.component';
+import {CardFormComponent} from './card-form.component';
 
 describe('CardFormComponent', () => {
   let component: CardFormComponent;
@@ -8,7 +8,7 @@ describe('CardFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardFormComponent ]
+      declarations: [CardFormComponent]
     })
     .compileComponents();
   }));

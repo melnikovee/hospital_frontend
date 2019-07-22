@@ -1,13 +1,18 @@
 import {
+  MatBottomSheetModule,
   MatButtonModule,
   MatButtonToggleModule,
+  MatDatepickerModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatInputModule,
-  MatDatepickerModule,
+  MatListModule,
   MatNativeDateModule,
+  MatPaginatorModule,
+  MatRippleModule,
+  MatSelectModule,
   MatSortModule,
-  MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule, MatRippleModule,
-  MatPaginatorModule
+  MatTableModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';

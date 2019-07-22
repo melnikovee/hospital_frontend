@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogDiagnosisFormComponent } from './dialog-diagnosis-form.component';
+import {DialogDiagnosisFormComponent} from './dialog-diagnosis-form.component';
 
 describe('DialogDiagnosisFormComponent', () => {
   let component: DialogDiagnosisFormComponent;
@@ -8,7 +8,7 @@ describe('DialogDiagnosisFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogDiagnosisFormComponent ]
+      declarations: [DialogDiagnosisFormComponent]
     })
     .compileComponents();
   }));

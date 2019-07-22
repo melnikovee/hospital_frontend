@@ -14,26 +14,31 @@ export class CompositeService {
     this.compositeUrl = 'http://localhost:8080/composite';
   }
 
-  public findAll(): Observable<Composite[]> {
+  public getTimeslots(): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'schedule'}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getTimeslotsByDoctor(doctor: number): Observable<Composite[]> {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'schedule'}/${doctor}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public getUsersByName(lastName: string): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'users'}/${lastName}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public getDiagnosisByPatient(patient: number): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'patient_diagnoses'}/${patient}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public findDoctors(): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public findPatients(): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients'}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients'}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }

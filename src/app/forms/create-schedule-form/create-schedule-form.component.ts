@@ -1,12 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators
-} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {Specialty} from '../../models/specialty';
 import {DoctorSpecialtyService} from '../../services/doctorspecialty-service.service';
@@ -23,11 +17,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-doctor-form',
-  templateUrl: './doctor-schedule-form.component.html',
-  styleUrls: ['./doctor-schedule-form.component.css']
+  selector: 'app-create-schedule-form',
+  templateUrl: './create-schedule-form.component.html',
+  styleUrls: ['./create-schedule-form.component.css']
 })
-export class DoctorScheduleFormComponent {
+export class CreateScheduleFormComponent {
   doctorId: number;
   dateForCabinets: string;
   specialties: Specialty[];
@@ -38,7 +32,7 @@ export class DoctorScheduleFormComponent {
   done: boolean;
 
   specialtyFormControl = new FormControl('', [
-      Validators.required
+    Validators.required
   ]);
 
   dateFormControl = new FormControl('', [
@@ -71,7 +65,7 @@ export class DoctorScheduleFormComponent {
               private doctorSpecialtyService: DoctorSpecialtyService,
               private specialtyService: SpecialtyService,
               private scheduleService: ScheduleService) {
-    this.route.params.subscribe( params => this.doctorId = params['id']);
+    this.route.params.subscribe(params => this.doctorId = params['id']);
     this.schedule = new Schedule();
   }
 

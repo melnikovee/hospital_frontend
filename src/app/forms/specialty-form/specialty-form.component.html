@@ -1,18 +1,18 @@
 <div class="card my-5">
   <div class="card-body">
-    <form class="example-form" [formGroup]="specForm">
+    <form [formGroup]="specForm" class="example-form">
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Специальность" formControlName="specialtyName"
-               [errorStateMatcher]="matcher">
+        <input [errorStateMatcher]="matcher" formControlName="specialtyName" matInput
+               placeholder="Специальность">
         <mat-error *ngIf="specialtyNameFormControl.hasError('required')">
           Обязательное поле
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Продолжительность приема" formControlName="duration"
-               [errorStateMatcher]="matcher">
+        <input [errorStateMatcher]="matcher" formControlName="duration" matInput
+               placeholder="Продолжительность приема">
         <mat-error *ngIf="durationFormControl.hasError('required')">
           Обязательное поле
         </mat-error>
@@ -22,7 +22,7 @@
         <p>Специальность {{receivedSpecialty.specialtyName}} успешно добавлена</p>
       </div>
 
-      <mat-button-toggle value="bold" [disabled]="!specForm.valid" (click)="onSubmit()">Добавить</mat-button-toggle>
+      <mat-button-toggle (click)="onSubmit()" [disabled]="!specForm.valid" value="bold">Добавить</mat-button-toggle>
 
     </form>
   </div>

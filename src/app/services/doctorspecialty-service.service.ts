@@ -22,13 +22,14 @@ export class DoctorSpecialtyService {
     return this.http.get<Specialty[]>(`${this.doctorSpecialtiesUrl}/${id}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
+
   public save(doctorSpecialty: DoctorSpecialty) {
     return this.http.post<DoctorSpecialty>(this.doctorSpecialtiesUrl, doctorSpecialty,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   deleteUser(id: number): Observable<Object> {
     return this.http.delete(`${this.doctorSpecialtiesUrl}/${id}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }

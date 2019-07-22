@@ -1,9 +1,9 @@
 <div class="card my-5">
   <div class="card-body">
-    <form class="example-form" [formGroup]="scheduleForm">
+    <form [formGroup]="scheduleForm" class="example-form">
 
       <mat-form-field (click)="getSpecialties()" class="example-full-width">
-        <mat-select matInput placeholder="Специальность" formControlName="specialty">
+        <mat-select formControlName="specialty" matInput placeholder="Специальность">
           <mat-option *ngFor="let specialty of specialties" [value]="specialty">
             {{specialty.specialtyName}}
           </mat-option>
@@ -11,7 +11,7 @@
       </mat-form-field>
 
       <mat-form-field (click)="getFreeDays()" class="example-full-width">
-        <mat-select matInput placeholder="Дата" formControlName="date">
+        <mat-select formControlName="date" matInput placeholder="Дата">
           <mat-option *ngFor="let date of freeDays" [value]="date">
             {{date}}
           </mat-option>
@@ -19,8 +19,8 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Начальное время" formControlName="startTime"
-               [errorStateMatcher]="matcher">
+        <input [errorStateMatcher]="matcher" formControlName="startTime" matInput
+               placeholder="Начальное время">
         <mat-hint>Введите время в формате 09:00</mat-hint>
         <mat-error *ngIf="startTimeFormControl.hasError('required')">
           Обязательное поле
@@ -28,8 +28,8 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Конечное время" formControlName="endTime"
-               [errorStateMatcher]="matcher">
+        <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
+               placeholder="Конечное время">
         <mat-hint>Введите время в формате 18:35</mat-hint>
         <mat-error *ngIf="endTimeFormControl.hasError('required')">
           Обязательное поле
@@ -37,7 +37,7 @@
       </mat-form-field>
 
       <mat-form-field (click)="getCabinets()" class="example-full-width">
-        <mat-select matInput placeholder="Кабинет" formControlName="cabinet">
+        <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
           <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
             {{cabinet.cabinetName}}
           </mat-option>
@@ -48,7 +48,7 @@
         <p>Расписание создано</p>
       </div>
 
-      <mat-button-toggle value="bold" [disabled]="!scheduleForm.valid" (click)="onSubmit()">Создать</mat-button-toggle>
+      <mat-button-toggle (click)="onSubmit()" [disabled]="!scheduleForm.valid" value="bold">Создать</mat-button-toggle>
 
     </form>
   </div>

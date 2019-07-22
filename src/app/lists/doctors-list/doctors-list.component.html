@@ -1,34 +1,41 @@
 <div class="card my-5">
   <div class="card-body">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр">
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
     </mat-form-field>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
 
       <ng-container matColumnDef="Doctor">
-        <th mat-header-cell *matHeaderCellDef>Доктор</th>
-        <td mat-cell *matCellDef="let composite"> {{composite.doctor}} </td>
+        <th *matHeaderCellDef mat-header-cell>Доктор</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.doctor}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Specialty">
-        <th mat-header-cell *matHeaderCellDef>Специальность</th>
-        <td mat-cell *matCellDef="let composite"> {{composite.specialty}} </td>
+        <th *matHeaderCellDef mat-header-cell>Специальность</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.specialty}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Phone">
-        <th mat-header-cell *matHeaderCellDef>Телефон</th>
-        <td mat-cell *matCellDef="let composite"> {{composite.phone}} </td>
+        <th *matHeaderCellDef mat-header-cell>Телефон</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.phone}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Schedule">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let composite" >
-          <button mat-button (click)="createSchedule(composite.doctorId)">Расписание</button>
+        <mat-cell *matCellDef="let composite">
+          <button (click)="doctorSchedule(composite.doctorId)" mat-button>Расписание</button>
         </mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <ng-container matColumnDef="createSchedule">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let composite">
+          <button (click)="createSchedule(composite.doctorId)" mat-button>Составить расписание</button>
+        </mat-cell>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
     </table>
   </div>

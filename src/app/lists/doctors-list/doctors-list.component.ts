@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,10 +10,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DoctorsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['Doctor', 'Specialty', 'Phone', 'Schedule'];
+  displayedColumns: string[] = ['Doctor', 'Specialty', 'Phone', 'Schedule', 'createSchedule'];
   dataSource;
 
-  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {
+  }
 
   ngOnInit() {
     this.reloadData();
@@ -29,7 +30,11 @@ export class DoctorsListComponent implements OnInit {
     });
   }
 
+  doctorSchedule(id: number) {
+    this.router.navigate(['/doctorTimeslots', id]);
+  }
+
   createSchedule(id: number) {
-    this.router.navigate(['/doctorSchedule', id]);
+    this.router.navigate(['/createSchedule', id]);
   }
 }

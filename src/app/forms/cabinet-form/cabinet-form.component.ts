@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -45,11 +45,11 @@ export class CabinetFormComponent {
     this.putData();
 
     this.cabinetService.save(this.cabinet).subscribe(
-      (data: Cabinet) => {
-        this.receivedCabinet = data;
-        this.done = true;
-      },
-      error => console.log(error)
+        (data: Cabinet) => {
+          this.receivedCabinet = data;
+          this.done = true;
+        },
+        error => console.log(error)
     );
   }
 }

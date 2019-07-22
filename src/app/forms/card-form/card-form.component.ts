@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CompositeService} from "../../services/composite-service.service";
-import {MatDialog} from "@angular/material";
-import {DiagnosisService} from "../../services/diagnosis-service.service";
-import {Composite} from "../../models/composite";
-import {DialogDiagnosisFormComponent} from "../dialog-diagnosis-form/dialog-diagnosis-form.component";
+import {Component} from '@angular/core';
+import {CompositeService} from '../../services/composite-service.service';
+import {MatDialog} from '@angular/material';
+import {DiagnosisService} from '../../services/diagnosis-service.service';
+import {Composite} from '../../models/composite';
+import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
 
 @Component({
   selector: 'app-card-form',

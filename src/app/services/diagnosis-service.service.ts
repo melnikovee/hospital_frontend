@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Diagnosis} from "../models/diagnosis";
+import {Diagnosis} from '../models/diagnosis';
 
 @Injectable()
 export class DiagnosisService {

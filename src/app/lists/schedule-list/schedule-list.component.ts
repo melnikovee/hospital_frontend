@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Schedule} from '../../models/schedule';
 import {ScheduleService} from '../../services/schedule-service.service';
 
@@ -26,7 +26,7 @@ export class ScheduleListComponent implements OnInit {
 
   deleteSchedule(id: number) {
     this.scheduleService.deleteSchedule(id)
-      .subscribe(
+    .subscribe(
         data => {
           console.log(data);
           this.reloadData();

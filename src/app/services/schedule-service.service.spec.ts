@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ScheduleService } from './schedule-service.service';
+import {ScheduleService} from './schedule-service.service';
 
 describe('ScheduleService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

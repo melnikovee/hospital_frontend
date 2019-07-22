@@ -18,7 +18,7 @@ export class PatientService {
 
   public save(patient: Patient) {
     console.log(patient);
-    return this.http.post<Patient>(this.patientsUrl, patient, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.post<Patient>(this.patientsUrl, patient, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   deletePatient(id: number): Observable<Object> {

@@ -36,13 +36,6 @@
         <td *matCellDef="let composite" mat-cell> {{composite.patient}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="delete">
-        <th *matHeaderCellDef mat-header-cell></th>
-        <mat-cell *matCellDef="let composite">
-          <button (click)="deleteTimeslot(composite.id)" mat-button>Удалить</button>
-        </mat-cell>
-      </ng-container>
-
       <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
       <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
     </table>
