@@ -12,10 +12,10 @@ import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diag
 })
 export class CardFormComponent {
 
-  selectedOpinion: Composite;
+  selectedOpinion!: Composite;
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
-  isGetCards: boolean;
-  patientCard: Composite[];
+  isGetCards!: boolean;
+  patientCard!: Composite[];
 
   constructor(private compositeService: CompositeService, private dialog: MatDialog, private diagnosisService: DiagnosisService) {
   }

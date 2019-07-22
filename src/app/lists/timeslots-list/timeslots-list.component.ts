@@ -12,8 +12,8 @@ import {TimeslotService} from '../../services/timeslot-service.service';
 export class TimeslotsListComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient', 'delete'];
-  dataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  dataSource: any;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor(private compositeService: CompositeService, private timeSlotService: TimeslotService) {
   }

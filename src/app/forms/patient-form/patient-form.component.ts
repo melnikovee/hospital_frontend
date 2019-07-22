@@ -80,14 +80,14 @@ export class PatientFormComponent {
   }
 
   putData() {
-    this.user.login = this.patientForm.get('login').value;
-    this.user.password = this.patientForm.get('password').value;
-    this.user.firstName = this.patientForm.get('firstName').value;
-    this.user.lastName = this.patientForm.get('lastName').value;
-    this.user.middleName = this.patientForm.get('middleName').value;
-    this.user.email = this.patientForm.get('email').value;
-    this.patient.phone = this.patientForm.get('phone').value;
-    this.patient.birthday = this.patientForm.get('birthday').value;
+    this.user.login = this.patientForm.get('login')!.value;
+    this.user.password = this.patientForm.get('password')!.value;
+    this.user.firstName = this.patientForm.get('firstName')!.value;
+    this.user.lastName = this.patientForm.get('lastName')!.value;
+    this.user.middleName = this.patientForm.get('middleName')!.value;
+    this.user.email = this.patientForm.get('email')!.value;
+    this.patient.phone = this.patientForm.get('phone')!.value;
+    this.patient.birthday = this.patientForm.get('birthday')!.value;
     this.user.role = 'PATIENT';
   }
 

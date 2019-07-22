@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AdminUpdateFormComponent implements OnInit{
 
   user: User;
-  currentUser: User;
+  currentUser!: User;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -58,16 +58,16 @@ export class AdminUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.adminForm.get('firstName').value;
+    let changedData = this.adminForm.get('firstName')!.value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.adminForm.get('lastName').value;
+    changedData = this.adminForm.get('lastName')!.value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.adminForm.get('middleName').value;
+    changedData = this.adminForm.get('middleName')!.value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.adminForm.get('email').value;
+    changedData = this.adminForm.get('email')!.value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
   }
 

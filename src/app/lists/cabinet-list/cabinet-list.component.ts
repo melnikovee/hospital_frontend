@@ -11,8 +11,8 @@ import {MatSort, MatTableDataSource} from '@angular/material';
 export class CabinetListComponent implements OnInit {
 
   displayedColumns: string[] = ['cabinet', 'delete'];
-  dataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  dataSource: any;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {
   }

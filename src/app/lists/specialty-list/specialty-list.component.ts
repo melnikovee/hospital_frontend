@@ -11,8 +11,8 @@ import {SpecialtyService} from '../../services/specialty-service.service';
 export class SpecialtyListComponent implements OnInit {
 
   displayedColumns: string[] = ['specialty', 'delete'];
-  dataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  dataSource: any;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor(private route: ActivatedRoute, private router: Router, private specialtyService: SpecialtyService) {
   }

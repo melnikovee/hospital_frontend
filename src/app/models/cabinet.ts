@@ -1,4 +1,4 @@
 export class Cabinet {
-  id: number;
-  cabinetName: string;
+  id!: number;
+  cabinetName!: string;
 }

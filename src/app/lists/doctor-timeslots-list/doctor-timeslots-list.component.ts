@@ -12,11 +12,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DoctorTimeslotsListComponent implements OnInit {
 
-  doctorId: number;
+  doctorId!: number;
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient'];
-  dataSource;
+  dataSource: any;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private compositeService: CompositeService, private timeSlotService: TimeslotService) {

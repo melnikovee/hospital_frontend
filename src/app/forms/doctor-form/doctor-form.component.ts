@@ -27,11 +27,11 @@ export class DoctorFormComponent {
 
   user: User;
   doctor: Doctor;
-  specialties: Specialty[];
+  specialties!: Specialty[];
   selectedSpecialtiesFormControl = new FormControl();
-  selectedSpecialties: Specialty[];
-  receivedUser: User;
-  done: boolean;
+  selectedSpecialties!: Specialty[];
+  receivedUser!: User;
+  done!: boolean;
 
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -84,13 +84,13 @@ export class DoctorFormComponent {
   }
 
   putData() {
-    this.user.login = this.docForm.get('login').value;
-    this.user.password = this.docForm.get('password').value;
-    this.user.firstName = this.docForm.get('firstName').value;
-    this.user.lastName = this.docForm.get('lastName').value;
-    this.user.middleName = this.docForm.get('middleName').value;
-    this.user.email = this.docForm.get('email').value;
-    this.doctor.phone = this.docForm.get('phone').value;
+    this.user.login = this.docForm.get('login')!.value;
+    this.user.password = this.docForm.get('password')!.value;
+    this.user.firstName = this.docForm.get('firstName')!.value;
+    this.user.lastName = this.docForm.get('lastName')!.value;
+    this.user.middleName = this.docForm.get('middleName')!.value;
+    this.user.email = this.docForm.get('email')!.value;
+    this.doctor.phone = this.docForm.get('phone')!.value;
     this.user.role = 'DOCTOR';
   }
 

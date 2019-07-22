@@ -1,4 +1,4 @@
 export class DoctorSpecialty {
-  doctor: number;
-  specialty: number;
+  doctor!: number;
+  specialty!: number;
 }

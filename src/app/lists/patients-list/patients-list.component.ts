@@ -11,7 +11,7 @@ import {MatTableDataSource} from '@angular/material';
 export class PatientsListComponent implements OnInit {
 
   displayedColumns: string[] = ['#', 'Пациент', 'Дата рождения', 'Телефон', 'Запись'];
-  dataSource;
+  dataSource: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {
   }

@@ -9,7 +9,7 @@ import {ScheduleService} from '../../services/schedule-service.service';
 })
 export class ScheduleListComponent implements OnInit {
 
-  schedules: Schedule[];
+  schedules!: Schedule[];
 
   constructor(private scheduleService: ScheduleService) {
   }

@@ -20,8 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SpecialtyFormComponent {
 
   specialty: Specialty;
-  receivedSpecialty: Specialty;
-  done: boolean;
+  receivedSpecialty!: Specialty;
+  done!: boolean;
 
   specialtyNameFormControl = new FormControl('', [
     Validators.required
@@ -43,8 +43,8 @@ export class SpecialtyFormComponent {
   }
 
   putData() {
-    this.specialty.specialtyName = this.specForm.get('specialtyName').value;
-    this.specialty.duration = this.specForm.get('duration').value;
+    this.specialty.specialtyName = this.specForm.get('specialtyName')!.value;
+    this.specialty.duration = this.specForm.get('duration')!.value;
   }
 
   onSubmit() {

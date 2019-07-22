@@ -1,5 +1,5 @@
 export class Specialty {
-  id: number;
-  specialtyName: string;
-  duration: number;
+  id!: number;
+  specialtyName!: string;
+  duration!: number;
 }

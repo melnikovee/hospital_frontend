@@ -22,14 +22,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./create-schedule-form.component.css']
 })
 export class CreateScheduleFormComponent {
-  doctorId: number;
-  dateForCabinets: string;
-  specialties: Specialty[];
-  cabinets: Cabinet[];
-  freeDays: string[];
+  doctorId!: number;
+  dateForCabinets!: string | undefined;
+  specialties!: Specialty[];
+  cabinets!: Cabinet[] | undefined;
+  freeDays!: string[] | undefined;
   schedule: Schedule;
-  receivedSchedule: Schedule;
-  done: boolean;
+  receivedSchedule!: Schedule;
+  done!: boolean;
 
   specialtyFormControl = new FormControl('', [
     Validators.required
@@ -71,11 +71,11 @@ export class CreateScheduleFormComponent {
 
   putData() {
     this.schedule.userId = this.doctorId;
-    this.schedule.date = this.scheduleForm.get('date').value;
-    this.schedule.startTime = this.scheduleForm.get('startTime').value.concat(':00');
-    this.schedule.endTime = this.scheduleForm.get('endTime').value.concat(':00');
-    this.schedule.cabinet = this.scheduleForm.get('cabinet').value.id;
-    this.schedule.specialty = this.scheduleForm.get('specialty').value.id;
+    this.schedule.date = this.scheduleForm.get('date')!.value;
+    this.schedule.startTime = this.scheduleForm.get('startTime')!.value.concat(':00');
+    this.schedule.endTime = this.scheduleForm.get('endTime')!.value.concat(':00');
+    this.schedule.cabinet = this.scheduleForm.get('cabinet')!.value.id;
+    this.schedule.specialty = this.scheduleForm.get('specialty')!.value.id;
   }
 
   getSpecialties() {
@@ -88,8 +88,8 @@ export class CreateScheduleFormComponent {
   }
 
   getCabinets() {
-    this.dateForCabinets = this.scheduleForm.get('date').value;
-    this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
+    this.dateForCabinets = this.scheduleForm.get('date')!.value;
+    this.scheduleService.findFreeCabinets(this.dateForCabinets!).subscribe(
         (data: Cabinet[]) => {
           this.cabinets = data;
         },

@@ -21,8 +21,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AdminFormComponent {
 
   user: User;
-  receivedUser: User;
-  done: boolean;
+  receivedUser!: User;
+  done!: boolean;
 
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -67,12 +67,12 @@ export class AdminFormComponent {
   }
 
   putData() {
-    this.user.login = this.adminForm.get('login').value;
-    this.user.password = this.adminForm.get('password').value;
-    this.user.firstName = this.adminForm.get('firstName').value;
-    this.user.lastName = this.adminForm.get('lastName').value;
-    this.user.middleName = this.adminForm.get('middleName').value;
-    this.user.email = this.adminForm.get('email').value;
+    this.user.login = this.adminForm.get('login')!.value;
+    this.user.password = this.adminForm.get('password')!.value;
+    this.user.firstName = this.adminForm.get('firstName')!.value;
+    this.user.lastName = this.adminForm.get('lastName')!.value;
+    this.user.middleName = this.adminForm.get('middleName')!.value;
+    this.user.email = this.adminForm.get('email')!.value;
     this.user.role = 'ADMINISTRATOR';
   }
 

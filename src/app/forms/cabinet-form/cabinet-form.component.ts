@@ -20,8 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CabinetFormComponent {
 
   cabinet: Cabinet;
-  receivedCabinet: Cabinet;
-  done: boolean;
+  receivedCabinet!: Cabinet;
+  done!: boolean;
 
   cabinetNameFormControl = new FormControl('', [
     Validators.required
@@ -38,7 +38,7 @@ export class CabinetFormComponent {
   }
 
   putData() {
-    this.cabinet.cabinetName = this.cabForm.get('cabinetName').value;
+    this.cabinet.cabinetName = this.cabForm.get('cabinetName')!.value;
   }
 
   onSubmit() {

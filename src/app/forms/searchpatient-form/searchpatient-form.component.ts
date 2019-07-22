@@ -23,17 +23,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SearchPatientFormComponent implements OnInit {
 
-  foundPatients: Composite[];
-  lastName: string;
+  foundPatients!: Composite[];
+  lastName!: string;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
-  isGetPatients: boolean;
-  selectedPatient: Composite;
-  diagnosis: Diagnosis;
-  showAddForm: boolean;
+  isGetPatients!: boolean;
+  selectedPatient!: Composite;
+  diagnosis!: Diagnosis | undefined;
+  showAddForm!: boolean;
   opinion = new FormControl();
-  showTables: boolean;
-  getCards: boolean;
-  timeSlotsForCheck: Timeslot[];
+  showTables!: boolean;
+  getCards!: boolean;
+  timeSlotsForCheck!: Timeslot[];
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -42,14 +42,14 @@ export class SearchPatientFormComponent implements OnInit {
   });
   matcher = new MyErrorStateMatcher();
   @ViewChild(CardFormComponent, {static: false})
-  private childComponent: CardFormComponent;
+  private childComponent!: CardFormComponent;
 
   constructor(private compositeService: CompositeService, public dialog: MatDialog,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService) {
   }
 
   onSubmit() {
-    this.lastName = this.spForm.get('lastName').value;
+    this.lastName = this.spForm.get('lastName')!.value;
 
     this.compositeService.getUsersByName(this.lastName).subscribe(data => {
       this.foundPatients = data;

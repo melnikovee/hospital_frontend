@@ -23,8 +23,8 @@ export class DoctorUpdateFormComponent implements OnInit{
 
   user: User;
   doctor: Doctor;
-  currentUser: User;
-  currentDoctor: Doctor;
+  currentUser!: User;
+  currentDoctor!: Doctor;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -73,19 +73,19 @@ export class DoctorUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.docForm.get('firstName').value;
+    let changedData = this.docForm.get('firstName')!.value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.docForm.get('lastName').value;
+    changedData = this.docForm.get('lastName')!.value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.docForm.get('middleName').value;
+    changedData = this.docForm.get('middleName')!.value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.docForm.get('email').value;
+    changedData = this.docForm.get('email')!.value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
 
-    changedData = this.docForm.get('phone').value;
+    changedData = this.docForm.get('phone')!.value;
     this.doctor.phone = changedData === '' ? this.currentDoctor.phone : changedData;
   }
 
