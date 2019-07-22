@@ -1,22 +1,22 @@
 <div class="card my-5">
   <div class="card-body">
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
 
       <ng-container matColumnDef="cabinet">
-        <th mat-header-cell *matHeaderCellDef>Кабинет</th>
-        <td mat-cell *matCellDef="let cabinet"> {{cabinet.cabinetName}} </td>
+        <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+        <td *matCellDef="let cabinet" mat-cell> {{cabinet.cabinetName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <mat-cell *matCellDef="let cabinet" >
-          <button mat-button (click)="deleteCabinet(cabinet.id)">Удалить</button>
+        <th *matHeaderCellDef mat-header-cell></th>
+        <mat-cell *matCellDef="let cabinet">
+          <button (click)="deleteCabinet(cabinet.id)" mat-button>Удалить</button>
         </mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
     </table>
   </div>
 </div>

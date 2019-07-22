@@ -1,4 +1,4 @@
-import { Timeslot } from './timeslot';
+import {Timeslot} from './timeslot';
 
 describe('Timeslot', () => {
   it('should create an instance', () => {

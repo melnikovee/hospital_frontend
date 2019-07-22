@@ -1,35 +1,35 @@
-<div class="example-container" [hidden]="!isGetCards">
-  <table mat-table [dataSource]="patientCard" class="mat-elevation-z8">
+<div [hidden]="!isGetCards" class="example-container">
+  <table [dataSource]="patientCard" class="mat-elevation-z8" mat-table>
 
     <!-- Position Column -->
     <ng-container matColumnDef="doctor">
-      <th mat-header-cell *matHeaderCellDef>Доктор</th>
-      <td mat-cell *matCellDef="let element"> {{element.doctor}} </td>
+      <th *matHeaderCellDef mat-header-cell>Доктор</th>
+      <td *matCellDef="let element" mat-cell> {{element.doctor}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef>Дата</th>
-      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      <th *matHeaderCellDef mat-header-cell>Дата</th>
+      <td *matCellDef="let element" mat-cell> {{element.date}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="specialty">
-      <th mat-header-cell *matHeaderCellDef>Специалность</th>
-      <td mat-cell *matCellDef="let element"> {{element.specialty}} </td>
+      <th *matHeaderCellDef mat-header-cell>Специалность</th>
+      <td *matCellDef="let element" mat-cell> {{element.specialty}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="medicalOpinion">
-      <th mat-header-cell *matHeaderCellDef>Заключение</th>
-      <td mat-cell *matCellDef="let element">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle value="underline" (click)="getOpinion(element)">Просмотреть</mat-button-toggle>
+      <th *matHeaderCellDef mat-header-cell>Заключение</th>
+      <td *matCellDef="let element" mat-cell>
+        <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+          <mat-button-toggle (click)="getOpinion(element)" value="underline">Просмотреть</mat-button-toggle>
         </mat-button-toggle-group>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
   </table>
 </div>

@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TimeslotsListComponent} from './timeslots-list.component';
+import {CreateScheduleFormComponent} from './create-schedule-form.component';
 
-describe('TimeslotsListComponent', () => {
-  let component: TimeslotsListComponent;
-  let fixture: ComponentFixture<TimeslotsListComponent>;
+describe('CreateScheduleFormComponent', () => {
+  let component: CreateScheduleFormComponent;
+  let fixture: ComponentFixture<CreateScheduleFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TimeslotsListComponent]
+      declarations: [CreateScheduleFormComponent]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimeslotsListComponent);
+    fixture = TestBed.createComponent(CreateScheduleFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

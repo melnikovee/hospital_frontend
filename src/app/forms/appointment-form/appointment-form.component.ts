@@ -1,12 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators
-} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {Specialty} from '../../models/specialty';
 import {Timeslot} from '../../models/timeslot';
@@ -44,7 +38,7 @@ export class AppointmentFormComponent {
   done: boolean;
 
   specialtyFormControl = new FormControl('', [
-      Validators.required
+    Validators.required
   ]);
 
   doctorFormControl = new FormControl('', [
@@ -70,7 +64,7 @@ export class AppointmentFormComponent {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private timeslotService: TimeslotService) {
-    this.route.params.subscribe( params => this.patientId = params['id']);
+    this.route.params.subscribe(params => this.patientId = params['id']);
     this.timeslot = new Timeslot();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user-service.service';
 
@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit {
 
   deleteUser(id: number) {
     this.userService.deleteUser(id)
-      .subscribe(
+    .subscribe(
         data => {
           console.log(data);
           this.reloadData();

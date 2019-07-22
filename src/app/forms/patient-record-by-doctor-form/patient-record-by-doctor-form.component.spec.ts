@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PatientRecordByDoctorFormComponent } from './patient-record-by-doctor-form.component';
+import {PatientRecordByDoctorFormComponent} from './patient-record-by-doctor-form.component';
 
 describe('PatientRecordByDoctorFormComponent', () => {
   let component: PatientRecordByDoctorFormComponent;
@@ -8,7 +8,7 @@ describe('PatientRecordByDoctorFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PatientRecordByDoctorFormComponent ]
+      declarations: [PatientRecordByDoctorFormComponent]
     })
     .compileComponents();
   }));

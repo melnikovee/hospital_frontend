@@ -94,11 +94,11 @@ export class PatientFormComponent {
   onSubmit() {
     this.putData();
     this.userService.save(this.user).subscribe(
-      (data: User) => {
-        this.patient.id = data.id;
-        this.patientService.save(this.patient).subscribe(result => this.gotoUserList());
-      },
-      error => console.log(error)
+        (data: User) => {
+          this.patient.id = data.id;
+          this.patientService.save(this.patient).subscribe(result => this.gotoUserList());
+        },
+        error => console.log(error)
     );
 
   }

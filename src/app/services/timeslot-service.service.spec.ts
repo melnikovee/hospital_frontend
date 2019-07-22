@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TimeslotService } from './timeslot-service.service';
+import {TimeslotService} from './timeslot-service.service';
 
 describe('TimeslotService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -25,18 +25,17 @@ import {TimeslotsListComponent} from './lists/timeslots-list/timeslots-list.comp
 import {TimeslotService} from './services/timeslot-service.service';
 import {SpecialtyService} from './services/specialty-service.service';
 import {CompositeService} from './services/composite-service.service';
-import {
-  SearchPatientFormComponent
-} from './forms/searchpatient-form/searchpatient-form.component';
-import { DialogDiagnosisFormComponent } from './forms/dialog-diagnosis-form/dialog-diagnosis-form.component';
+import {SearchPatientFormComponent} from './forms/searchpatient-form/searchpatient-form.component';
+import {DialogDiagnosisFormComponent} from './forms/dialog-diagnosis-form/dialog-diagnosis-form.component';
 import {DiagnosisService} from './services/diagnosis-service.service';
-import { CardFormComponent } from './forms/card-form/card-form.component';
+import {CardFormComponent} from './forms/card-form/card-form.component';
 import {ScheduleListComponent} from './lists/schedule-list/schedule-list.component';
-import {DoctorScheduleFormComponent} from './forms/doctor-schedule-form/doctor-schedule-form.component';
-import { PatientRecordByDoctorFormComponent } from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
+import {CreateScheduleFormComponent} from './forms/create-schedule-form/create-schedule-form.component';
+import {PatientRecordByDoctorFormComponent} from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
 import {MatSortModule} from '@angular/material';
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
+import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor-timeslots-list.component';
 
 @NgModule({
   declarations: [
@@ -56,10 +55,11 @@ import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.comp
     DialogDiagnosisFormComponent,
     CardFormComponent,
     ScheduleListComponent,
-    DoctorScheduleFormComponent,
+    CreateScheduleFormComponent,
     AppointmentFormComponent,
     SpecialtyListComponent,
-    PatientRecordByDoctorFormComponent
+    PatientRecordByDoctorFormComponent,
+    DoctorTimeslotsListComponent
   ],
   imports: [
     MatSortModule,
