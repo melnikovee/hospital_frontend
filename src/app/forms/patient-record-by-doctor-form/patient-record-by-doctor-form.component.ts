@@ -1,10 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Composite} from '../../models/composite';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Timeslot} from '../../models/timeslot';
 import {CompositeService} from '../../services/composite-service.service';
 import {TimeslotService} from '../../services/timeslot-service.service';
-import {MyErrorStateMatcher} from '../searchpatient-form/searchpatient-form.component';
+import {ErrorStateMatcher} from '@angular/material';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        const isSubmitted = form && form.submitted;
+        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    }
+}
 
 @Component({
   selector: 'app-patient-record-by-doctor-form',

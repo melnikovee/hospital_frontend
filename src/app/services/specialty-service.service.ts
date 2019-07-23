@@ -22,6 +22,10 @@ export class SpecialtyService {
     return this.http.get<Specialty>(`${this.specialtiesUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
+  public getSpecialtiesByDoctor(doctor: number): Observable<Specialty[]> {
+    return this.http.get<Specialty[]>(`${this.specialtiesUrl}/${'get_specialties'}/${doctor}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
   public save(specialty: Specialty) {
     return this.http.post<Specialty>(this.specialtiesUrl, specialty, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }

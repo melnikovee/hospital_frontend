@@ -36,6 +36,7 @@ import {AppointmentFormComponent} from './forms/appointment-form/appointment-for
 import { DoctorUpdateFormComponent } from './forms/doctor-update-form/doctor-update-form.component';
 import {MatSortModule} from '@angular/material';
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
+import { DoctorSpecialtyUpdateFormComponent } from './forms/doctor-specialty-update-form/doctor-specialty-update-form.component';
 import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './forms/patient-update-form/patient-update-form.component';
 import {AdminUpdateFormComponent} from './forms/admin-update-form/admin-update-form.component';
@@ -64,7 +65,8 @@ import {AdminUpdateFormComponent} from './forms/admin-update-form/admin-update-f
     DoctorTimeslotsListComponent,
     DoctorUpdateFormComponent,
     PatientUpdateFormComponent,
-    AdminUpdateFormComponent
+    AdminUpdateFormComponent,
+    DoctorSpecialtyUpdateFormComponent
   ],
   imports: [
     MatSortModule,
