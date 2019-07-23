@@ -27,6 +27,10 @@ export class ScheduleService {
     return this.http.get<Cabinet[]>(`${this.schedulsUrl}/${'cabinets'}/${date}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
+  public getScheduleByDoctorAndCurrentDate(doctor: number): Observable<Schedule> {
+    return this.http.get<Schedule>(`${this.schedulsUrl}/${'get_spec'}/${doctor}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
   public save(schedule: Schedule) {
     return this.http.post<Schedule>(this.schedulsUrl, schedule, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }

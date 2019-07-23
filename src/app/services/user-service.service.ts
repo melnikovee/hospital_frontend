@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../models/user';
 import {DoctorFullName} from '../models/doctor-full-name';
+import {PatientFullName} from '../models/patient-full-name';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,11 @@ export class UserService {
 
   public getDoctorsByLastName(lastName: string): Observable<DoctorFullName[]> {
     return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`,
+        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  public getPatientsByLastName(lastName: string): Observable<PatientFullName[]> {
+    return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`,
         { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }
 

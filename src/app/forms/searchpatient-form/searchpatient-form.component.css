@@ -30,3 +30,7 @@ table {
 .element-row.expanded {
   border-bottom-color: transparent;
 }
+
+.disabled-button {
+  pointer-events: none;
+}
