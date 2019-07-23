@@ -27,6 +27,15 @@ export class DoctorSpecialtyService {
       {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
+  public getNewSpecialtiesForDoctor(doctor: number): Observable<Specialty[]> {
+    return this.http.get<Specialty[]>(`${this.doctorSpecialtiesUrl}/${'get_new_specialties'}/${doctor}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  deleteOneDoctorSpecialty(doctor: number, specialty: number): Observable<Object> {
+    return this.http.delete(`${this.doctorSpecialtiesUrl}/${'delete'}/${doctor}/${specialty}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
   deleteUser(id: number): Observable<Object> {
     return this.http.delete(`${this.doctorSpecialtiesUrl}/${id}`,
       {headers: new HttpHeaders().set('Content-Type', 'application/json')});

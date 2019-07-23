@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {User} from '../models/user';
+import {DoctorFullName} from '../models/doctor-full-name';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,11 @@ export class UserService {
   }
 
   public getUserById(id: number) {
-    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') })
+    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  public getDoctorsByLastName(lastName: string): Observable<DoctorFullName[]> {
+    return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
   }
 
   deleteUser(id: number): Observable<Object> {

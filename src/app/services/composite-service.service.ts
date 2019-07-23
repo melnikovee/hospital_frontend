@@ -24,6 +24,11 @@ export class CompositeService {
       {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
+  public getDoctorsByName(lastName: string): Observable<Composite[]> {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}/${lastName}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
   public getDiagnosisByPatient(patient: number): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'patient_diagnoses'}/${patient}`,
       {headers: new HttpHeaders().set('Content-Type', 'application/json')});
