@@ -13,6 +13,8 @@
         </mat-error>
       </mat-form-field>
 
+      <div *ngIf="foundDoctors !== undefined && foundDoctors.length === 0">Докторов с выбранной фамилией не найдено</div>
+
       <mat-button-toggle value="bold" [disabled]="!spForm.valid" (click)="onSubmit()">Принять</mat-button-toggle>
     </form>
 

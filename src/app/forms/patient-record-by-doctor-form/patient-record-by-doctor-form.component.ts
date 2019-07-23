@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Composite} from '../../models/composite';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Timeslot} from '../../models/timeslot';
-import {CompositeService} from '../../services/composite-service.service';
 import {TimeslotService} from '../../services/timeslot-service.service';
 import {ErrorStateMatcher} from '@angular/material';
+import {UserService} from '../../services/user-service.service';
+import {PatientFullName} from '../../models/patient-full-name';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
 
-  foundPatients: Composite[];
+  foundPatients: PatientFullName[];
   lastName: string;
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
   isGetPatients: boolean;
@@ -36,26 +36,29 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private compositeService: CompositeService, private timeslotService: TimeslotService) {
+  constructor(private timeslotService: TimeslotService, private userService: UserService) {
   }
 
   onSubmit() {
     this.lastName = this.spForm.get('lastName').value;
+    this.isGetPatients = false;
 
-    this.compositeService.getUsersByName(this.lastName).subscribe(data => {
+    this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
       this.foundPatients = data;
-      this.isGetPatients = true;
+
+      if (data.length !== 0) {
+        this.isGetPatients = true;
+      }
     });
   }
 
   ngOnInit(): void {
-    this.timeslotService.getTimeslotsForRecord(20).subscribe(data => {
+    this.timeslotService.getTimeslotsForRecord(1).subscribe(data => {
       this.timeSlotsForCheck = data;
-      console.log(this.timeSlotsForCheck);
     });
   }
 
-  checkPatient(patient: Composite): boolean {
+  checkPatient(patient: PatientFullName): boolean {
     for (const timeslot of this.timeSlotsForCheck) {
       if (timeslot.patient === patient.id) {
         return true;

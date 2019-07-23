@@ -8,6 +8,9 @@ import {DiagnosisService} from '../../services/diagnosis-service.service';
 import {CardFormComponent} from '../card-form/card-form.component';
 import {Timeslot} from '../../models/timeslot';
 import {TimeslotService} from '../../services/timeslot-service.service';
+import {ScheduleService} from '../../services/schedule-service.service';
+import {UserService} from '../../services/user-service.service';
+import {PatientFullName} from '../../models/patient-full-name';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,7 +26,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SearchPatientFormComponent implements OnInit {
 
-  foundPatients: Composite[];
+  foundPatients: PatientFullName[];
   lastName: string;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
   isGetPatients: boolean;
@@ -34,6 +37,9 @@ export class SearchPatientFormComponent implements OnInit {
   showTables: boolean;
   getCards: boolean;
   timeSlotsForCheck: Timeslot[];
+  currentDoctorSpecialty: number;
+  hardcodedDoctor = 2;
+
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -45,26 +51,31 @@ export class SearchPatientFormComponent implements OnInit {
   private childComponent: CardFormComponent;
 
   constructor(private compositeService: CompositeService, public dialog: MatDialog,
-              private diagnosisService: DiagnosisService, private timeslotService: TimeslotService) {
+              private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
+              private scheduleService: ScheduleService, private userService: UserService) {
   }
 
   onSubmit() {
     this.lastName = this.spForm.get('lastName').value;
+    this.isGetPatients = false;
 
-    this.compositeService.getUsersByName(this.lastName).subscribe(data => {
+    this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
       this.foundPatients = data;
-      this.isGetPatients = true;
+
+      if (data.length !== 0) {
+        this.isGetPatients = true;
+      }
     });
   }
 
   getCard(patient: Composite) {
     this.selectedPatient = patient;
-    console.log(this.selectedPatient);
     this.getCards = true;
     this.childComponent.getCard(patient);
   }
 
   addDiagnosis() {
+
     this.showAddForm = !this.showAddForm;
     this.showTables = !this.showTables;
 
@@ -72,9 +83,9 @@ export class SearchPatientFormComponent implements OnInit {
       this.diagnosis = new Diagnosis();
 
       this.diagnosis.patient = this.selectedPatient.id;
-      this.diagnosis.doctor = 1;
-      this.diagnosis.date = new Date('2017-10-10');
-      this.diagnosis.specialty = 3;
+      this.diagnosis.doctor = this.hardcodedDoctor;
+      this.diagnosis.specialty = this.currentDoctorSpecialty;
+
     } else {
       this.diagnosis.medicalOpinion = this.opinion.value;
 
@@ -85,9 +96,14 @@ export class SearchPatientFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timeslotService.getTimeslotsForDoctor(2).subscribe(data => {
+
+    this.timeslotService.getTimeslotsForDoctor(this.hardcodedDoctor).subscribe(data => {
       this.timeSlotsForCheck = data;
       console.log(this.timeSlotsForCheck);
+    });
+
+    this.scheduleService.getScheduleByDoctorAndCurrentDate(this.hardcodedDoctor).subscribe(data => {
+      this.currentDoctorSpecialty = data.specialty;
     });
   }
 

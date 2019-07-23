@@ -10,6 +10,8 @@
         </mat-error>
       </mat-form-field>
 
+      <div *ngIf="foundPatients !== undefined && foundPatients.length === 0">Пациентов с выбранной фамилией не найдено</div>
+
       <mat-button-toggle (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</mat-button-toggle>
     </form>
 
@@ -19,7 +21,7 @@
 
       <ng-container matColumnDef="patient">
         <th *matHeaderCellDef mat-header-cell>Пациент</th>
-        <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
+        <td *matCellDef="let element" mat-cell> {{element.fullName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="birthday">
