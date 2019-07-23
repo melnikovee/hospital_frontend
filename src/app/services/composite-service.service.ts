@@ -35,10 +35,12 @@ export class CompositeService {
   }
 
   public findDoctors(): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'doctors'}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public findPatients(): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients'}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients'}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }

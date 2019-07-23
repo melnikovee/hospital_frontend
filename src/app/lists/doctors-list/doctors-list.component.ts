@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class DoctorsListComponent implements OnInit {
 
   displayedColumns: string[] = ['Doctor', 'Specialty', 'Phone', 'Schedule', 'createSchedule'];
+  // tslint:disable-next-line:no-any
   dataSource: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {

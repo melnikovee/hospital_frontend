@@ -5,11 +5,6 @@
     </mat-form-field>
     <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
 
-      <ng-container matColumnDef="#">
-        <th *matHeaderCellDef mat-header-cell>#</th>
-        <td *matCellDef="let composite" mat-cell> {{composite.patientId}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="Пациент">
         <th *matHeaderCellDef mat-header-cell>Пациент</th>
         <td *matCellDef="let composite" mat-cell> {{composite.patient}} </td>

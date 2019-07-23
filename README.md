@@ -17,7 +17,7 @@
 
 -- 4. Удаление своей записи на прием (кнопка в таблице записей). PUT timeslots where timeslotId.
 
--- 5. Просмотр своей карточки - таблица (дата, специальность, ФИО доктора, заключение). GET diagnosis where patientId, GET doctorspecialties where doctorId, GET doctors where doctorId (добавить специальность в diagnosis?).
++- 5. Просмотр своей карточки - таблица (дата, специальность, ФИО доктора, заключение). GET diagnosis where patientId, GET doctorspecialties where doctorId, GET doctors where doctorId (добавить специальность в diagnosis?).
 
 
 Доктор:
@@ -45,7 +45,7 @@
 
 ++ 6. Регистрация специальностей. POST specialties.
 
--- 7. Редактирование специальностей докторов. POST doctorspecialties, DELETE doctorspecialties where doctorId.
+++ 7. Редактирование специальностей докторов. POST doctorspecialties, DELETE doctorspecialties where doctorId.
 
 ++  8. Запись пациента на прием (ФИО пациента -> специальность -> ФИО доктора -> дата -> время -> печать талона). GET users where firstName, GET patients where userId, GET specialties, GET doctorspecialties where specialtyId, GET doctors where doctorId, GET timeslots where doctorId, PUT timeslots.
 

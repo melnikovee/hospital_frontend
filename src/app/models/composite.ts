@@ -3,6 +3,12 @@ export class Composite {
   id!: number;
   doctorId!: number;
   patientId!: number;
+  doctorFirstName!: string;
+  doctorLastName!: string;
+  doctorMiddleName!: string;
+  patientFirstName!: string;
+  patientLastName!: string;
+  patientMiddleName!: string;
   doctor!: string;
   patient!: string;
   specialty!: string;

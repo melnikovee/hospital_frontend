@@ -10,7 +10,8 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class PatientsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['#', 'Пациент', 'Дата рождения', 'Телефон', 'Запись'];
+  displayedColumns: string[] = ['Пациент', 'Дата рождения', 'Телефон', 'Запись'];
+  // tslint:disable-next-line:no-any
   dataSource: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {
