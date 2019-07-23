@@ -21,7 +21,6 @@ export class CardFormComponent {
   }
 
   getCard(patient: Composite) {
-    console.log(patient);
     this.compositeService.getDiagnosisByPatient(patient.id).subscribe(data => {
       this.patientCard = data;
       this.isGetCards = true;
