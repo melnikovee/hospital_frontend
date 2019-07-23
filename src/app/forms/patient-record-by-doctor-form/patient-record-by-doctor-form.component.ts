@@ -14,54 +14,53 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-    selector: 'app-patient-record-by-doctor-form',
-    templateUrl: './patient-record-by-doctor-form.component.html',
-    styleUrls: ['./patient-record-by-doctor-form.component.css']
+  selector: 'app-patient-record-by-doctor-form',
+  templateUrl: './patient-record-by-doctor-form.component.html',
+  styleUrls: ['./patient-record-by-doctor-form.component.css']
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
 
-    foundPatients: Composite[];
-    lastName: string;
-    displayedColumns: string[] = ['patient', 'birthday', 'record'];
-    isGetPatients: boolean;
-    timeSlotsForCheck: Timeslot[];
+  foundPatients: Composite[];
+  lastName: string;
+  displayedColumns: string[] = ['patient', 'birthday', 'record'];
+  isGetPatients: boolean;
+  timeSlotsForCheck: Timeslot[];
 
-    lastNameFormControl = new FormControl('', [
-        Validators.pattern('[A-Z][a-z]{1,31}'),
-        Validators.required
-    ]);
+  lastNameFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
-    spForm = new FormGroup({
-        lastName: this.lastNameFormControl
+  spForm = new FormGroup({
+    lastName: this.lastNameFormControl
+  });
+
+  matcher = new MyErrorStateMatcher();
+
+  constructor(private compositeService: CompositeService, private timeslotService: TimeslotService) {
+  }
+
+  onSubmit() {
+    this.lastName = this.spForm.get('lastName').value;
+
+    this.compositeService.getUsersByName(this.lastName).subscribe(data => {
+      this.foundPatients = data;
+      this.isGetPatients = true;
     });
+  }
 
-    matcher = new MyErrorStateMatcher();
+  ngOnInit(): void {
+    this.timeslotService.getTimeslotsForRecord(20).subscribe(data => {
+      this.timeSlotsForCheck = data;
+      console.log(this.timeSlotsForCheck);
+    });
+  }
 
-    constructor(private compositeService: CompositeService, private timeslotService: TimeslotService) {
+  checkPatient(patient: Composite): boolean {
+    for (const timeslot of this.timeSlotsForCheck) {
+      if (timeslot.patient === patient.id) {
+        return true;
+      }
     }
-
-    onSubmit() {
-        this.lastName = this.spForm.get('lastName').value;
-
-        this.compositeService.getUsersByName(this.lastName).subscribe(data => {
-            this.foundPatients = data;
-            this.isGetPatients = true;
-        });
-    }
-
-    ngOnInit(): void {
-        this.timeslotService.getTimeslotsForRecord(2).subscribe(data => {
-            this.timeSlotsForCheck = data;
-            console.log(this.timeSlotsForCheck);
-        });
-    }
-
-    checkPatient(patient: Composite): boolean {
-        for (const timeslot of this.timeSlotsForCheck) {
-            if (timeslot.patient === patient.id) {
-                return true;
-            }
-        }
-        return false;
-    }
+    return false;
+  }
 }

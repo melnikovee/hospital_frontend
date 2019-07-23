@@ -60,12 +60,12 @@ export class DoctorUpdateFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.doctorService.getDoctorById(1).subscribe(data => {
+    this.doctorService.getDoctorById(15).subscribe(data => {
       this.currentDoctor = data;
       console.log(this.currentDoctor);
     });
 
-    this.userService.getUserById(1).subscribe(data => {
+    this.userService.getUserById(15).subscribe(data => {
       this.currentUser = data;
       console.log(this.currentUser);
     });
@@ -95,7 +95,7 @@ export class DoctorUpdateFormComponent implements OnInit{
     console.log(this.user);
     console.log(this.doctor);
 
-    this.userService.updateUser(1, this.user).subscribe();
-    this.doctorService.updateDoctor(1, this.doctor).subscribe();
+    this.userService.updateUser(15, this.user).subscribe();
+    this.doctorService.updateDoctor(15, this.doctor).subscribe();
   }
 }

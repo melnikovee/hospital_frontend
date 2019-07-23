@@ -79,11 +79,11 @@ export class AdminFormComponent {
   onSubmit() {
     this.putData();
     this.userService.save(this.user).subscribe(
-      (data: User) => {
-        this.receivedUser = data;
-        this.done = true;
-      },
-      error => console.log(error)
+        (data: User) => {
+          this.receivedUser = data;
+          this.done = true;
+        },
+        error => console.log(error)
     );
   }
 }

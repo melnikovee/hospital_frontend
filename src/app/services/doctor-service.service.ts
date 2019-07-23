@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Doctor} from '../models/doctor';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DoctorService {
 
   private doctorsUrl: string;

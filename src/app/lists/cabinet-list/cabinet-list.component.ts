@@ -12,10 +12,10 @@ export class CabinetListComponent implements OnInit {
 
   displayedColumns: string[] = ['cabinet', 'delete'];
   dataSource;
-
-  constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {}
-
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {
+  }
 
   ngOnInit() {
     this.reloadData();
@@ -29,13 +29,14 @@ export class CabinetListComponent implements OnInit {
   }
 
   deleteCabinet(id: number) {
-    this.cabinetService.deleteCabinet(id)
+    if (confirm('Уверены что хотите удалить?')) {
+      this.cabinetService.deleteCabinet(id)
       .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
+          data => {
+            console.log(data);
+            this.reloadData();
+          },
+          error => console.log(error));
+    }
   }
-
 }

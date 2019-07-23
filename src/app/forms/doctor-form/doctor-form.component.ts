@@ -4,13 +4,7 @@ import {Doctor} from '../../models/doctor';
 import {DoctorService} from '../../services/doctor-service.service';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user-service.service';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators
-} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {Specialty} from '../../models/specialty';
 import {SpecialtyService} from '../../services/specialty-service.service';
@@ -102,31 +96,31 @@ export class DoctorFormComponent {
 
   getSpecialties() {
     this.specialtyService.findAll().subscribe(
-      (data: Specialty[]) => {
-        this.specialties = data;
-      },
-      error => console.log(error)
+        (data: Specialty[]) => {
+          this.specialties = data;
+        },
+        error => console.log(error)
     );
   }
 
   onSubmit() {
     this.putData();
     this.userService.save(this.user).subscribe(
-      (data: User) => {
-        this.doctor.id = data.id;
-        this.receivedUser = data;
-        this.done = true;
-        this.doctorService.save(this.doctor).subscribe((doc: Doctor) => {
+        (data: User) => {
+          this.doctor.id = data.id;
+          this.receivedUser = data;
+          this.done = true;
+          this.doctorService.save(this.doctor).subscribe((doc: Doctor) => {
 
-          this.selectedSpecialties = this.selectedSpecialtiesFormControl.value;
+            this.selectedSpecialties = this.selectedSpecialtiesFormControl.value;
 
-          for (const spec of this.selectedSpecialties) {
-            this.doctorSpecialtyService.save(new DoctorSpecialty(doc.id, spec.id)).subscribe((sp: DoctorSpecialty) => {
-            });
-          }
-        });
-      },
-      error => console.log(error)
+            for (const spec of this.selectedSpecialties) {
+              this.doctorSpecialtyService.save(new DoctorSpecialty(doc.id, spec.id)).subscribe((sp: DoctorSpecialty) => {
+              });
+            }
+          });
+        },
+        error => console.log(error)
     );
   }
 }

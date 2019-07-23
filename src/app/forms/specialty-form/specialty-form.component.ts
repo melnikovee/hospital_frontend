@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Specialty} from '../../models/specialty';
 import {SpecialtyService} from '../../services/specialty-service.service';
@@ -51,11 +51,11 @@ export class SpecialtyFormComponent {
     this.putData();
 
     this.specialtyService.save(this.specialty).subscribe(
-      (data: Specialty) => {
-        this.receivedSpecialty = data;
-        this.done = true;
-      },
-      error => console.log(error)
+        (data: Specialty) => {
+          this.receivedSpecialty = data;
+          this.done = true;
+        },
+        error => console.log(error)
     );
   }
 

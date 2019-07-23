@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CompositeService} from '../../services/composite-service.service';
 import {MatTableDataSource} from '@angular/material';
@@ -13,7 +13,8 @@ export class PatientsListComponent implements OnInit {
   displayedColumns: string[] = ['#', 'Пациент', 'Дата рождения', 'Телефон', 'Запись'];
   dataSource;
 
-  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {
+  }
 
   ngOnInit() {
     this.reloadData();

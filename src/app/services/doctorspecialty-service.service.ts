@@ -4,7 +4,9 @@ import {Observable} from 'rxjs';
 import {DoctorSpecialty} from '../models/doctorspecialty';
 import {Specialty} from '../models/specialty';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DoctorSpecialtyService {
 
   private doctorSpecialtiesUrl: string;
@@ -22,9 +24,10 @@ export class DoctorSpecialtyService {
     return this.http.get<Specialty[]>(`${this.doctorSpecialtiesUrl}/${id}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
+
   public save(doctorSpecialty: DoctorSpecialty) {
     return this.http.post<DoctorSpecialty>(this.doctorSpecialtiesUrl, doctorSpecialty,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public getNewSpecialtiesForDoctor(doctor: number): Observable<Specialty[]> {
@@ -38,6 +41,6 @@ export class DoctorSpecialtyService {
 
   deleteUser(id: number): Observable<Object> {
     return this.http.delete(`${this.doctorSpecialtiesUrl}/${id}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }
