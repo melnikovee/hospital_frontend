@@ -11,7 +11,7 @@ import {CompositeService} from '../../_services/composite-service.service';
   styleUrls: ['./doctors-list.component.css']
 })
 export class DoctorsListComponent implements OnInit {
-  private dataSource!: MatTableDataSource<Composite>;
+  dataSource!: MatTableDataSource<Composite>;
   displayedColumns: string[] = ['doctor', 'specialty', 'phone', 'schedule', 'create'];
 
   constructor(private route: ActivatedRoute, private router: Router,

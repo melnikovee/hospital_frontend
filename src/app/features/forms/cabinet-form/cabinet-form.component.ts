@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CabinetFormComponent {
   cabinet = new Cabinet('');
   receivedCabinet!: Cabinet;
-  private done!: boolean;
+  done!: boolean;
   cabinetNameFormControl = new FormControl('', [
     Validators.required
   ]);

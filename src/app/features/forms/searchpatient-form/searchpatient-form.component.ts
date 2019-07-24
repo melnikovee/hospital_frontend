@@ -25,18 +25,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./searchpatient-form.component.css'],
 })
 export class SearchPatientFormComponent implements OnInit {
-  private selectedPatient!: Composite;
-  private diagnosis: Diagnosis | undefined;
-  private foundPatients!: PatientFullName[];
-  private lastName!: string;
-  private isGetSelectedPatient!: boolean;
-  private isGetPatients!: boolean;
-  private showAddForm!: boolean;
-  private showTables!: boolean;
-  private isGetCards!: boolean;
-  private timeSlotsForCheck!: Timeslot[];
-  private currentDoctorSpecialty!: number;
-  private hardcodedDoctor = 2;
+  selectedPatient!: Composite;
+  diagnosis: Diagnosis | undefined;
+  foundPatients!: PatientFullName[];
+  lastName!: string;
+  isGetSelectedPatient!: boolean;
+  isGetPatients!: boolean;
+  showAddForm!: boolean;
+  showTables!: boolean;
+  isGetCards!: boolean;
+  timeSlotsForCheck!: Timeslot[];
+  currentDoctorSpecialty!: number;
+  hardcodedDoctor = 2;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
 
   opinion = new FormControl();

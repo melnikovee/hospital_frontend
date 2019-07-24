@@ -21,10 +21,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./patient-update-form.component.css']
 })
 export class PatientUpdateFormComponent implements OnInit {
-  private user = new User('', '', '', '', '', '');
-  private patient = new Patient('', '');
-  private currentUser!: User;
-  private currentPatient!: Patient;
+  user = new User('', '', '', '', '', '');
+  patient = new Patient('', '');
+  currentUser!: User;
+  currentPatient!: Patient;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)

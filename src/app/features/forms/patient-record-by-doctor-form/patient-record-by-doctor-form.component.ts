@@ -13,10 +13,10 @@ import {PatientFullName} from '../../_models/patient-full-name';
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
-  private foundPatients!: PatientFullName[];
-  private lastName!: string;
-  private isGetPatients!: boolean;
-  private timeSlotsForCheck!: Timeslot[];
+  foundPatients!: PatientFullName[];
+  lastName!: string;
+  isGetPatients!: boolean;
+  timeSlotsForCheck!: Timeslot[];
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);

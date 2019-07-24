@@ -23,14 +23,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CreateScheduleFormComponent {
   id = 'id';
-  private doctorId = 0;
-  private cabinets: Cabinet[] | undefined;
-  private freeDays: string[] | undefined;
-  private schedule = new Schedule(0, '', '', '', 0, 0);
-  private receivedSchedule!: Schedule;
-  private dateForCabinets!: string;
-  private specialties!: Specialty[];
-  private done!: boolean;
+  doctorId = 0;
+  cabinets: Cabinet[] | undefined;
+  freeDays: string[] | undefined;
+  schedule = new Schedule(0, '', '', '', 0, 0);
+  receivedSchedule!: Schedule;
+  dateForCabinets!: string;
+  specialties!: Specialty[];
+  done!: boolean;
   specialtyFormControl = new FormControl('', [
     Validators.required
   ]);

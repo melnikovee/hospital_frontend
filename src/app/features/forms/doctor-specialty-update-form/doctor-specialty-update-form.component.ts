@@ -22,14 +22,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class DoctorSpecialtyUpdateFormComponent {
 
-  private foundDoctors!: DoctorFullName[];
-  private lastName!: string;
+  foundDoctors!: DoctorFullName[];
+  lastName!: string;
   doctorsColumns: string[] = ['doctor', 'specialties'];
   specialtiesColumns: string[] = ['specialtyName', 'duration', 'specialties'];
-  private isGetDoctors!: boolean;
-  private isGetSelectedDoctor!: boolean;
-  private doctorSpecialties!: Specialty[];
-  private selectedDoctor!: DoctorFullName;
+  isGetDoctors!: boolean;
+  isGetSelectedDoctor!: boolean;
+  doctorSpecialties!: Specialty[];
+  selectedDoctor!: DoctorFullName;
   allSpecialties: Specialty[] = [];
   addingSpecialties: FormControl = new FormControl();
 

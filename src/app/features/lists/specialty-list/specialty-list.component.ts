@@ -14,7 +14,7 @@ import {SpecialtyService} from '../../_services/specialty-service.service';
 export class SpecialtyListComponent implements OnInit {
 
   displayedColumns: string[] = ['specialty', 'action'];
-  private dataSource!: MatTableDataSource<Specialty>;
+  dataSource!: MatTableDataSource<Specialty>;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private specialtyService: SpecialtyService) {}

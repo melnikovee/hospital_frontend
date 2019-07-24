@@ -13,7 +13,7 @@ import {CabinetService} from '../../_services/cabinet-service.service';
 export class CabinetListComponent implements OnInit {
 
   displayedColumns: string[] = ['cabinet', 'action'];
-  private dataSource!: MatTableDataSource<Cabinet>;
+  dataSource!: MatTableDataSource<Cabinet>;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private cabinetService: CabinetService) {}

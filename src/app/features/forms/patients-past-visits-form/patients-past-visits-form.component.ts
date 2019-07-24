@@ -9,9 +9,9 @@ import {PatientTimeslot} from '../../_models/patient-timeslot';
 })
 export class PatientsPastVisitsFormComponent implements OnInit {
 
-  private foundPatientTimeslots!: PatientTimeslot[];
+  foundPatientTimeslots!: PatientTimeslot[];
   displayedColumns: string[] = ['doctorName', 'specialtyName', 'cabinetName', 'date', 'time'];
-  private hardcodedPatient = 5;
+  hardcodedPatient = 5;
 
   constructor(private timeslotService: TimeslotService) {
   }

@@ -14,8 +14,8 @@ import {CompositeService} from '../../_services/composite-service.service';
 export class DoctorTimeslotsListComponent implements OnInit {
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient'];
   id = 'id';
-  private dataSource!: MatTableDataSource<Composite>;
-  private doctorId!: number;
+  dataSource!: MatTableDataSource<Composite>;
+  doctorId!: number;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private compositeService: CompositeService) {
