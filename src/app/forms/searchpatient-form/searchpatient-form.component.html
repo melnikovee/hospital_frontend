@@ -45,18 +45,18 @@
       </table>
 
       <p></p>
-      <app-card-form></app-card-form>
+      <app-card-form [hidden]="!getCards"></app-card-form>
 
     </div>
 
     <div [hidden]="!showAddForm">
       <mat-form-field class="example-full-width">
-        <textarea [formControl]="opinion" matInput placeholder="Leave a comment"></textarea>
+        <textarea [formControl]="opinion" matInput placeholder="Введите заключение"></textarea>
       </mat-form-field>
     </div>
 
     <mat-button-toggle-group [hidden]="!getCards" aria-label="Font Style" name="fontStyle">
-      <mat-button-toggle [ngClass]="{'disabled-button' : !checkPatient()}" [disabled]="!checkPatient()" (click)="addDiagnosis()" value="underline" >
+      <mat-button-toggle [ngClass]="{'disabled-button' : !selectedPatient}" [disabled]="!selectedPatient" (click)="addDiagnosis()" value="underline" >
         Добавить заключение
       </mat-button-toggle>
     </mat-button-toggle-group>

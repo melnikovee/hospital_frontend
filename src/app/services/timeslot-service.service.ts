@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Timeslot} from '../models/timeslot';
 import {Specialty} from '../models/specialty';
 import {User} from '../models/user';
+import {PatientTimeslot} from '../models/patient-timeslot';
 
 @Injectable({
   providedIn: 'root'
@@ -57,11 +58,28 @@ export class TimeslotService {
   }
 
   public getTimeslotsForDoctor(id: number) {
-    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public getTimeslotsForRecord(id: number) {
-    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getPastTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getCurrentTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'current'}/${id}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public cancelRecord(id: number): Observable<Timeslot> {
+    return this.http.put<Timeslot>(`${this.timeslotsUrl}/${'cancel'}/${id}`,
+        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   deleteTimeslot(id: number): Observable<Object> {
