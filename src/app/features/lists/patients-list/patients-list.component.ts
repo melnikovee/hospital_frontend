@@ -12,7 +12,7 @@ import {CompositeService} from '../../_services/composite-service.service';
 })
 export class PatientsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['Пациент', 'Дата рождения', 'Телефон', 'Запись'];
+  displayedColumns: string[] = ['patient', 'birthday', 'phone', 'action'];
   private dataSource!: MatTableDataSource<Composite>;
 
   constructor(private route: ActivatedRoute, private router: Router,

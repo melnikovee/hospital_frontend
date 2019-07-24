@@ -20,7 +20,7 @@
       <th *matHeaderCellDef mat-header-cell>Заключение</th>
       <td *matCellDef="let element" mat-cell>
         <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-          <mat-button-toggle (click)="getOpinion(element)" value="underline">Просмотреть</mat-button-toggle>
+          <button mat-flat-button color="primary" (click)="getOpinion(element)" value="underline">Просмотреть</button>
         </mat-button-toggle-group>
       </td>
     </ng-container>

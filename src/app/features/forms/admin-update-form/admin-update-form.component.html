@@ -1,42 +1,40 @@
-<div class="card my-5">
-    <div class="card-body">
-        <form class="example-form" [formGroup]="adminForm">
+<form class="example-form" [formGroup]="adminForm">
 
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Имя" formControlName="firstName"
-                       [errorStateMatcher]="matcher">
-                <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
-                    Пожалуйста введите имя
-                </mat-error>
-            </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Имя" formControlName="firstName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
+      Пожалуйста введите имя
+    </mat-error>
+  </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Фамилия" formControlName="lastName"
-                       [errorStateMatcher]="matcher">
-                <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
-                    Пожалуйста введите фамилию
-                </mat-error>
-            </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Фамилия" formControlName="lastName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
+      Пожалуйста введите фамилию
+    </mat-error>
+  </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Отчество" formControlName="middleName"
-                       [errorStateMatcher]="matcher">
-            </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Отчество" formControlName="middleName"
+           [errorStateMatcher]="matcher">
+  </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email" [formControl]="emailFormControl"
-                       [errorStateMatcher]="matcher" formControlName="email">
-                <mat-error *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
-                    Пожалуйста введите действительный Email
-                </mat-error>
-            </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher" formControlName="email">
+    <mat-error
+      *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+      Пожалуйста введите действительный Email
+    </mat-error>
+  </mat-form-field>
 
-          <div *ngIf="done">
-            <p>Информация обновлена</p>
-          </div>
+  <div *ngIf="done">
+    <p>Информация обновлена</p>
+  </div>
 
-            <mat-button-toggle value="bold" [disabled]="!adminForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
+  <button mat-flat-button color="primary" value="bold" [disabled]="!adminForm.valid" (click)="onSubmit()">Применить
+  </button>
 
-        </form>
-    </div>
-</div>
+</form>

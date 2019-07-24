@@ -2,11 +2,8 @@ table {
   width: 100%;
 }
 
-
-.mat-column-delete {
-
-  flex: 0 0 35%;
-  width: 35%;
+.mat-column-action {
+  place-content: center;
 }
 
 

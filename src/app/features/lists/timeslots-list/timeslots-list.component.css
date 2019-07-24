@@ -11,3 +11,15 @@ mat-form-field {
 th.mat-sort-header-sorted {
   color: black;
 }
+
+.mat-column-time,
+.mat-column-specialty,
+.mat-column-doctor,
+.mat-column-cabinet,
+.mat-column-patient {
+  text-align: center;
+}
+
+.mat-column-delete {
+  place-content: center;
+}

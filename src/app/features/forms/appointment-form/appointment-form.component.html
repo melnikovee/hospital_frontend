@@ -1,46 +1,43 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form [formGroup]="appointmentForm" class="example-form">
+<form [formGroup]="appointmentForm" class="example-form">
 
-      <mat-form-field (click)="getSpecialties()" class="example-full-width">
-        <mat-select formControlName="specialty" matInput placeholder="Специальность">
-          <mat-option *ngFor="let specialty of specialties" [value]="specialty">
-            {{specialty.specialtyName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field (click)="getSpecialties()" class="example-full-width">
+    <mat-select formControlName="specialty" matInput placeholder="Специальность">
+      <mat-option *ngFor="let specialty of specialties" [value]="specialty">
+        {{specialty.specialtyName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field (click)="getDoctors()" class="example-full-width">
-        <mat-select formControlName="doctor" matInput placeholder="Доктор">
-          <mat-option *ngFor="let user of doctors" [value]="user">
-            {{user.lastName.concat(" " + user.firstName)}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field (click)="getDoctors()" class="example-full-width">
+    <mat-select formControlName="doctor" matInput placeholder="Доктор">
+      <mat-option *ngFor="let user of doctors" [value]="user">
+        {{user.lastName.concat(" " + user.firstName)}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field (click)="getDate()" class="example-full-width">
-        <mat-select formControlName="date" matInput placeholder="Дата">
-          <mat-option *ngFor="let date of freeDays" [value]="date">
-            {{date}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field (click)="getDate()" class="example-full-width">
+    <mat-select formControlName="date" matInput placeholder="Дата">
+      <mat-option *ngFor="let date of freeDays" [value]="date">
+        {{date}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field (click)="getTime()" class="example-full-width">
-        <mat-select formControlName="time" matInput placeholder="Время">
-          <mat-option *ngFor="let time of freeTime" [value]="time">
-            {{time}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field (click)="getTime()" class="example-full-width">
+    <mat-select formControlName="time" matInput placeholder="Время">
+      <mat-option *ngFor="let time of freeTime" [value]="time">
+        {{time}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <div *ngIf="done">
-        <p>Вы записаны на прием. Информация о записи добавлена в личный кабинет.</p>
-      </div>
-
-      <mat-button-toggle (click)="onSubmit()" [disabled]="!appointmentForm.valid" value="bold">Запись
-      </mat-button-toggle>
-
-    </form>
+  <div *ngIf="done">
+    <p>Вы записаны на прием. Информация о записи добавлена в личный кабинет.</p>
   </div>
-</div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!appointmentForm.valid" value="bold">Запись
+  </button>
+
+</form>
+

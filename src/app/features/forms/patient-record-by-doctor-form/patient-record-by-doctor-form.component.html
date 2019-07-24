@@ -1,45 +1,42 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form [formGroup]="spForm" class="example-form">
+<form [formGroup]="spForm" class="example-form">
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
-               placeholder="Фамилия">
-        <mat-error *ngIf="lastNameFormControl.hasError('required')">
-          Фамилия <strong>обязательна</strong>
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
+           placeholder="Фамилия">
+    <mat-error *ngIf="lastNameFormControl.hasError('required')">
+      Фамилия <strong>обязательна</strong>
+    </mat-error>
+  </mat-form-field>
 
-      <mat-button-toggle (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</mat-button-toggle>
-    </form>
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</button>
+</form>
 
-    <p></p>
+<p></p>
 
-    <table [dataSource]="foundPatients" [hidden]="!isGetPatients" class="mat-elevation-z8" mat-table>
+<table [dataSource]="foundPatients" [hidden]="!isGetPatients" class="mat-elevation-z8" mat-table>
 
-      <ng-container matColumnDef="patient">
-        <th *matHeaderCellDef mat-header-cell>Пациент</th>
-        <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
-      </ng-container>
+  <ng-container matColumnDef="patient">
+    <th *matHeaderCellDef mat-header-cell>Пациент</th>
+    <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="birthday">
-        <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
-        <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
-      </ng-container>
+  <ng-container matColumnDef="birthday">
+    <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
+    <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="record">
-        <th *matHeaderCellDef mat-header-cell>Запись</th>
-        <td *matCellDef="let element" mat-cell>
-          <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-            <mat-button-toggle [disabled]="!checkPatient(element)" value="underline">
-              Записать пациента на приём
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-        </td>
-      </ng-container>
+  <ng-container matColumnDef="record">
+    <th *matHeaderCellDef mat-header-cell>Запись</th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" [disabled]="!checkPatient(element)" value="underline">
+          Записать пациента на приём
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
 
-      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-    </table>
-  </div>
-</div>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
