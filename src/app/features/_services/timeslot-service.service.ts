@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {PatientTimeslot} from '../_models/patient-timeslot';
+import {User} from '../_models/user';
 import {Timeslot} from '../_models/timeslot';
 import {Specialty} from '../_models/specialty';
-import {User} from '../_models/user';
-
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +37,7 @@ export class TimeslotService {
     return this.http.get<string[]>(`${this.timeslotsUrl}/${'time'}/${specialtyId}/${doctorId}/${date}`);
   }
 
-  public findTimeslotForAppointment(specialtyId: number, doctorId: number,
-                                    date: string, time: string): Observable<Timeslot> {
+  public findTimeslotForAppointment(specialtyId: number, doctorId: number, date: string, time: string): Observable<Timeslot> {
     return this.http.get<Timeslot>(`${this.timeslotsUrl}/${specialtyId}/${doctorId}/${date}/${time}`);
   }
 
@@ -58,7 +57,19 @@ export class TimeslotService {
     return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`);
   }
 
-  deleteTimeslot(id: number) {
+  public getPastTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`);
+  }
+
+  public getCurrentTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'current'}/${id}`);
+  }
+
+  public cancelRecord(id: number): Observable<Timeslot> {
+    return this.http.put<Timeslot>(`${this.timeslotsUrl}/${'cancel'}/${id}`, id);
+  }
+
+  deleteTimeslot(id: number): Observable<Object> {
     return this.http.delete(`${this.timeslotsUrl}/${id}`);
   }
 }

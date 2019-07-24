@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MyErrorStateMatcher} from '../searchpatient-form/searchpatient-form.component';
 import {Timeslot} from '../../_models/timeslot';
 import {Composite} from '../../_models/composite';
-import {CompositeService} from '../../_services/composite-service.service';
 import {TimeslotService} from '../../_services/timeslot-service.service';
+import {UserService} from '../../_services/user-service.service';
+import {PatientFullName} from '../../_models/patient-full-name';
 
 @Component({
   selector: 'app-patient-record-by-doctor-form',
@@ -13,7 +14,7 @@ import {TimeslotService} from '../../_services/timeslot-service.service';
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
-  private foundPatients!: Composite[];
+  private foundPatients!: PatientFullName[];
   private lastName!: string;
   private isGetPatients!: boolean;
   private timeSlotsForCheck!: Timeslot[];

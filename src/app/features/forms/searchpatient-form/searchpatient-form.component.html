@@ -45,8 +45,7 @@
       </table>
 
       <p></p>
-      <app-card-form [hidden]="!getCards"></app-card-form>
-
+      <app-card-form [hidden]="!isGetCards"></app-card-form>
     </div>
 
     <div [hidden]="!showAddForm">
@@ -55,8 +54,9 @@
       </mat-form-field>
     </div>
 
-    <mat-button-toggle-group [hidden]="!getCards" aria-label="Font Style" name="fontStyle">
-      <mat-button-toggle [ngClass]="{'disabled-button' : !selectedPatient}" [disabled]="!selectedPatient" (click)="addDiagnosis()" value="underline" >
+    <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+      <mat-button-toggle [ngClass]="{'disabled-button' : !selectedPatient}" [hidden]="!isGetCards"
+                         [disabled]="!selectedPatient" (click)="addDiagnosis()" value="underline" >
         Добавить заключение
       </mat-button-toggle>
     </mat-button-toggle-group>

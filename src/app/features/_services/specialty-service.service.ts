@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Specialty} from '../_models/specialty';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,11 +18,19 @@ export class SpecialtyService {
     return this.http.get<Specialty[]>(this.specialtiesUrl);
   }
 
+  public find(id: number): Observable<Specialty> {
+    return this.http.get<Specialty>(`${this.specialtiesUrl}/${id}`);
+  }
+
+  public getSpecialtiesByDoctor(doctor: number): Observable<Specialty[]> {
+    return this.http.get<Specialty[]>(`${this.specialtiesUrl}/${'get_specialties'}/${doctor}`);
+  }
+
   public save(specialty: Specialty) {
     return this.http.post<Specialty>(this.specialtiesUrl, specialty);
   }
 
-  deleteSpecialty(id: number) {
+  deleteSpecialty(id: number): Observable<Object> {
     return this.http.delete(`${this.specialtiesUrl}/${id}`);
   }
 }

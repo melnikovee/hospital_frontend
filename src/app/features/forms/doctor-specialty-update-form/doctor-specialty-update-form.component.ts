@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
-import {Specialty} from '../../models/specialty';
-import {SpecialtyService} from '../../services/specialty-service.service';
-import {UserService} from '../../services/user-service.service';
-import {DoctorFullName} from '../../models/doctor-full-name';
-import {DoctorSpecialtyService} from '../../services/doctorspecialty-service.service';
-import {DoctorSpecialty} from '../../models/doctorspecialty';
+import {DoctorFullName} from '../../_models/doctor-full-name';
+import {Specialty} from '../../_models/specialty';
+import {DoctorSpecialtyService} from '../../_services/doctorspecialty-service.service';
+import {UserService} from '../../_services/user-service.service';
+import {SpecialtyService} from '../../_services/specialty-service.service';
+import {DoctorSpecialty} from '../../_models/doctorspecialty';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -22,14 +22,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class DoctorSpecialtyUpdateFormComponent {
 
-  foundDoctors: DoctorFullName[];
-  lastName: string;
+  private foundDoctors!: DoctorFullName[];
+  private lastName!: string;
   doctorsColumns: string[] = ['doctor', 'specialties'];
   specialtiesColumns: string[] = ['specialtyName', 'duration', 'specialties']
-  isGetDoctors: boolean;
-  isGetSelectedDoctor: boolean;
-  doctorSpecialties: Specialty[];
-  selectedDoctor: DoctorFullName;
+  private isGetDoctors!: boolean;
+  private isGetSelectedDoctor!: boolean;
+  private doctorSpecialties!: Specialty[];
+  private selectedDoctor!: DoctorFullName;
   allSpecialties: Specialty[] = [];
   addingSpecialties: FormControl = new FormControl();
 
@@ -49,7 +49,7 @@ export class DoctorSpecialtyUpdateFormComponent {
   }
 
   onSubmit() {
-    this.lastName = this.spForm.get('lastName').value;
+    this.lastName = this.spForm.controls.lastName.value;
     this.isGetSelectedDoctor = false;
 
     this.userService.getDoctorsByLastName(this.lastName).subscribe(data => {
@@ -61,7 +61,7 @@ export class DoctorSpecialtyUpdateFormComponent {
     });
   }
 
-  getSpecialties(element) {
+  getSpecialties(element: any) {
     this.selectedDoctor = element;
     this.isGetSelectedDoctor = true;
 
@@ -70,7 +70,7 @@ export class DoctorSpecialtyUpdateFormComponent {
     });
   }
 
-  deleteSpecialty(element) {
+  deleteSpecialty(element: any) {
     this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe();
   }
 

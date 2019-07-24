@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Schedule} from '../_models/schedule';
 import {Cabinet} from '../_models/cabinet';
-
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,15 @@ export class ScheduleService {
     return this.http.get<Cabinet[]>(`${this.schedulsUrl}/${'cabinets'}/${date}`);
   }
 
+  public getScheduleByDoctorAndCurrentDate(doctor: number): Observable<Schedule> {
+    return this.http.get<Schedule>(`${this.schedulsUrl}/${'get_spec'}/${doctor}`);
+  }
+
   public save(schedule: Schedule) {
     return this.http.post<Schedule>(this.schedulsUrl, schedule);
+  }
+
+  deleteSchedule(id: number): Observable<Object> {
+    return this.http.delete(`${this.schedulsUrl}/${id}`);
   }
 }

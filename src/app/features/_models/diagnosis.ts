@@ -3,12 +3,11 @@ export class Diagnosis {
   patient: number;
   doctor: number;
   specialty: number;
-  date: string;
+  date?: string;
   medicalOpinion?: string;
-  constructor(patient: number, doctor: number, specialty: number, date: string) {
+  constructor(patient: number, doctor: number, specialty: number) {
     this.patient = patient;
     this.doctor = doctor;
     this.specialty = specialty;
-    this.date = date;
   }
 }

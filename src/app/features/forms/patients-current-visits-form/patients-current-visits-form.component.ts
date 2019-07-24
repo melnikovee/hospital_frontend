@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PatientTimeslot} from '../../models/patient-timeslot';
-import {TimeslotService} from '../../services/timeslot-service.service';
+import {PatientTimeslot} from '../../_models/patient-timeslot';
+import {TimeslotService} from '../../_services/timeslot-service.service';
 
 @Component({
   selector: 'app-patients-current-visits-form',
@@ -9,9 +9,9 @@ import {TimeslotService} from '../../services/timeslot-service.service';
 })
 export class PatientsCurrentVisitsFormComponent implements OnInit {
 
-  foundPatientTimeslots: PatientTimeslot[];
+  private foundPatientTimeslots!: PatientTimeslot[];
   displayedColumns: string[] = ['doctorName', 'specialtyName', 'cabinetName', 'date', 'time', 'record'];
-  hardcodedPatient: 5;
+  private hardcodedPatient = 5;
 
   constructor(private timeslotService: TimeslotService) {
   }

@@ -39,6 +39,9 @@ import {AppRoutingModule} from '../app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialAppModule} from '../ngmaterial.module';
+import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
+import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
+import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-update-form/doctor-specialty-update-form.component';
 
 
 @NgModule({
@@ -64,7 +67,10 @@ import {MaterialAppModule} from '../ngmaterial.module';
     DoctorTimeslotsListComponent,
     DoctorUpdateFormComponent,
     PatientUpdateFormComponent,
-    AdminUpdateFormComponent
+    AdminUpdateFormComponent,
+    PatientsPastVisitsFormComponent,
+    PatientsCurrentVisitsFormComponent,
+    DoctorSpecialtyUpdateFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -88,7 +94,10 @@ import {MaterialAppModule} from '../ngmaterial.module';
     DoctorTimeslotsListComponent,
     DoctorUpdateFormComponent,
     PatientUpdateFormComponent,
-    AdminUpdateFormComponent
+    AdminUpdateFormComponent,
+    PatientsPastVisitsFormComponent,
+    PatientsCurrentVisitsFormComponent,
+    DoctorSpecialtyUpdateFormComponent
   ],
   imports: [
     CommonModule,

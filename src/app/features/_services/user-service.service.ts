@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {DoctorFullName} from '../_models/doctor-full-name';
+import {PatientFullName} from '../_models/patient-full-name';
 import {User} from '../_models/user';
-
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,15 @@ export class UserService {
     return this.http.get<User>(`${this.usersUrl}/${id}`);
   }
 
-  deleteUser(id: number) {
+  public getDoctorsByLastName(lastName: string): Observable<DoctorFullName[]> {
+    return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`);
+  }
+
+  public getPatientsByLastName(lastName: string): Observable<PatientFullName[]> {
+    return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`);
+  }
+
+  deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.usersUrl}/${id}`);
   }
 

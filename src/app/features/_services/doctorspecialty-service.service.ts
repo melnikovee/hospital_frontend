@@ -25,8 +25,7 @@ export class DoctorSpecialtyService {
   }
 
   public save(doctorSpecialty: DoctorSpecialty) {
-    return this.http.post<DoctorSpecialty>(this.doctorSpecialtiesUrl, doctorSpecialty,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.post<DoctorSpecialty>(this.doctorSpecialtiesUrl, doctorSpecialty);
   }
 
   public getNewSpecialtiesForDoctor(doctor: number): Observable<Specialty[]> {
