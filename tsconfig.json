@@ -8,6 +8,7 @@
     "downlevelIteration": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -19,6 +20,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "strict": true
+  },
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true
   }
 }
+

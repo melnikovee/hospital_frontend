@@ -1,0 +1,31 @@
+<div class="example-container">
+  <table [dataSource]="patientCard" class="mat-elevation-z8" mat-table>
+
+    <ng-container matColumnDef="doctor">
+      <th *matHeaderCellDef mat-header-cell>Доктор</th>
+      <td *matCellDef="let element" mat-cell> {{element.doctor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th *matHeaderCellDef mat-header-cell>Дата</th>
+      <td *matCellDef="let element" mat-cell> {{element.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="specialty">
+      <th *matHeaderCellDef mat-header-cell>Специалность</th>
+      <td *matCellDef="let element" mat-cell> {{element.specialty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="medicalOpinion">
+      <th *matHeaderCellDef mat-header-cell>Заключение</th>
+      <td *matCellDef="let element" mat-cell>
+        <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+          <button mat-flat-button color="primary" (click)="getOpinion(element)" value="underline">Просмотреть</button>
+        </mat-button-toggle-group>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</div>

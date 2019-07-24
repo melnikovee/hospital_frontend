@@ -17,7 +17,7 @@
 
 -- 4. Удаление своей записи на прием (кнопка в таблице записей). PUT timeslots where timeslotId.
 
--- 5. Просмотр своей карточки - таблица (дата, специальность, ФИО доктора, заключение). GET diagnosis where patientId, GET doctorspecialties where doctorId, GET doctors where doctorId (добавить специальность в diagnosis?).
++- 5. Просмотр своей карточки - таблица (дата, специальность, ФИО доктора, заключение). GET diagnosis where patientId, GET doctorspecialties where doctorId, GET doctors where doctorId (добавить специальность в diagnosis?).
 
 
 Доктор:
@@ -45,7 +45,7 @@
 
 ++ 6. Регистрация специальностей. POST specialties.
 
--- 7. Редактирование специальностей докторов. POST doctorspecialties, DELETE doctorspecialties where doctorId.
+++ 7. Редактирование специальностей докторов. POST doctorspecialties, DELETE doctorspecialties where doctorId.
 
 ++  8. Запись пациента на прием (ФИО пациента -> специальность -> ФИО доктора -> дата -> время -> печать талона). GET users where firstName, GET patients where userId, GET specialties, GET doctorspecialties where specialtyId, GET doctors where doctorId, GET timeslots where doctorId, PUT timeslots.
 
@@ -55,40 +55,3 @@
 
 ++ 11. Составление расписания (Доктор -> специальность -> дата -> начальное время -> конечное время -> кабинет).
 GET doctorspecialties where userId, GET schedules where userId, date (проверка занятости кабинета и доктора на указанную дату). 
-
-
-
-
-
-
-
-
-
-
-# Angularclient
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+
+.mat-column-birthday,
+.mat-column-phone {
+  text-align: center;
+}
+
+.mat-column-action {
+  place-content: center;
+}

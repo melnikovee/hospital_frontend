@@ -1,0 +1,53 @@
+<form [formGroup]="scheduleForm" class="example-form">
+
+  <mat-form-field (click)="getSpecialties()" class="example-full-width">
+    <mat-select formControlName="specialty" matInput placeholder="Специальность">
+      <mat-option *ngFor="let specialty of specialties" [value]="specialty">
+        {{specialty.specialtyName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field (click)="getFreeDays()" class="example-full-width">
+    <mat-select formControlName="date" matInput placeholder="Дата">
+      <mat-option *ngFor="let date of freeDays" [value]="date">
+        {{date}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="startTime" matInput
+           placeholder="Начальное время">
+    <mat-hint>Введите время в формате 09:00</mat-hint>
+    <mat-error *ngIf="startTimeFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
+           placeholder="Конечное время">
+    <mat-hint>Введите время в формате 18:35</mat-hint>
+    <mat-error *ngIf="endTimeFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field (click)="getCabinets()" class="example-full-width">
+    <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
+      <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
+        {{cabinet.cabinetName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="done">
+    <p>Расписание создано</p>
+  </div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!scheduleForm.valid" value="bold">Создать
+  </button>
+
+</form>
+
