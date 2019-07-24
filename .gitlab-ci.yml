@@ -1,0 +1,30 @@
+image: node:12.6.0-alpine
+
+cache:
+  paths:
+    - $CI_PROJECT_DIR/.npm
+  key: $CI_COMMIT_REF_SLUG
+
+stages:
+  - lint
+  - build
+
+before_script:
+  - npm config set cache $CI_PROJECT_DIR/.npm
+  - npm ci
+
+lint:
+  stage: lint
+  script:
+    - npm run lint:ng
+    - npm run lint:sass
+
+build:
+  stage: build
+  script:
+    - npm run build:ci
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 5 days
+

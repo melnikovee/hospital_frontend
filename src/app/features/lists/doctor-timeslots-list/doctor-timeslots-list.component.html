@@ -1,0 +1,51 @@
+<div class="card my-5">
+  <div class="card-body">
+    <mat-form-field>
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
+    </mat-form-field>
+
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+
+      <ng-container matColumnDef="date">
+        <th *matHeaderCellDef mat-header-cell>Дата</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <th *matHeaderCellDef mat-header-cell>Время</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.time}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="specialty">
+        <th *matHeaderCellDef mat-header-cell>Специальность</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.specialty}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="doctor">
+        <th *matHeaderCellDef mat-header-cell>Доктор</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.doctor}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cabinet">
+        <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.cabinet}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="patient">
+        <th *matHeaderCellDef mat-header-cell>Пациент</th>
+        <td *matCellDef="let composite" mat-cell> {{composite.patient}} </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+

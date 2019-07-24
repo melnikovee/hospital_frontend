@@ -17,37 +17,30 @@ export class UserService {
   }
 
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<User[]>(this.usersUrl);
   }
 
   public save(user: User) {
-    return this.http.post<User>(this.usersUrl, user,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.post<User>(this.usersUrl, user);
   }
 
   public getUserById(id: number) {
-    return this.http.get<User>(`${this.usersUrl}/${id}`,
-        { headers : new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<User>(`${this.usersUrl}/${id}`);
   }
 
   public getDoctorsByLastName(lastName: string): Observable<DoctorFullName[]> {
-    return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`,
-        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`);
   }
 
   public getPatientsByLastName(lastName: string): Observable<PatientFullName[]> {
-    return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`,
-        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`);
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.usersUrl}/${id}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.delete(`${this.usersUrl}/${id}`);
   }
 
   updateUser(id: number, user: User) {
-    return this.http.put(`${this.usersUrl}/${id}`, user,
-        { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.put(`${this.usersUrl}/${id}`, user);
   }
 }

@@ -18,18 +18,15 @@ export class TimeslotService {
   }
 
   public findAll(): Observable<Timeslot[]> {
-    return this.http.get<Timeslot[]>(this.timeslotsUrl,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Timeslot[]>(this.timeslotsUrl);
   }
 
   public findSpecialties(): Observable<Specialty[]> {
-    return this.http.get<Specialty[]>(`${this.timeslotsUrl}/${'specialties'}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Specialty[]>(`${this.timeslotsUrl}/${'specialties'}`);
   }
 
   public findDoctors(specialtyId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.timeslotsUrl}/${'doctors'}/${specialtyId}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<User[]>(`${this.timeslotsUrl}/${'doctors'}/${specialtyId}`);
   }
 
   public findDate(specialtyId: number, doctorId: number): Observable<string[]> {
@@ -68,22 +65,18 @@ export class TimeslotService {
   }
 
   public getPastTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
-    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`);
   }
 
   public getCurrentTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
-    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'current'}/${id}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'current'}/${id}`);
   }
 
   public cancelRecord(id: number): Observable<Timeslot> {
-    return this.http.put<Timeslot>(`${this.timeslotsUrl}/${'cancel'}/${id}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.put<Timeslot>(`${this.timeslotsUrl}/${'cancel'}/${id}`);
   }
 
   deleteTimeslot(id: number): Observable<Object> {
-    return this.http.delete(`${this.timeslotsUrl}/${id}`,
-        {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.delete(`${this.timeslotsUrl}/${id}`);
   }
 }

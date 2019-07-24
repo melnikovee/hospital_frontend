@@ -33,7 +33,6 @@ const routes: Routes = [
   {path: 'addpatient', component: PatientFormComponent},
   {path: 'adddoctor', component: DoctorFormComponent},
   {path: 'addspecialty', component: SpecialtyFormComponent},
-  {path: 'adddoctor', component: DoctorFormComponent},
   {path: 'timeslots', component: TimeslotsListComponent},
   {path: 'searchpatient', component: SearchPatientFormComponent},
   {path: 'createSchedule/:id', component: CreateScheduleFormComponent},

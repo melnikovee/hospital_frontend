@@ -1,0 +1,6 @@
+options:
+  formatter: stylish
+  merge-default-rules: true
+files:
+  include: 'src/**/*.s+(a|c)ss'
+

@@ -15,22 +15,22 @@ export class SpecialtyService {
   }
 
   public findAll(): Observable<Specialty[]> {
-    return this.http.get<Specialty[]>(this.specialtiesUrl, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Specialty[]>(this.specialtiesUrl);
   }
 
   public find(id: number): Observable<Specialty> {
-    return this.http.get<Specialty>(`${this.specialtiesUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Specialty>(`${this.specialtiesUrl}/${id}`);
   }
 
   public getSpecialtiesByDoctor(doctor: number): Observable<Specialty[]> {
-    return this.http.get<Specialty[]>(`${this.specialtiesUrl}/${'get_specialties'}/${doctor}`, { headers : new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.get<Specialty[]>(`${this.specialtiesUrl}/${'get_specialties'}/${doctor}`);
   }
 
   public save(specialty: Specialty) {
-    return this.http.post<Specialty>(this.specialtiesUrl, specialty, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.post<Specialty>(this.specialtiesUrl, specialty);
   }
 
   deleteSpecialty(id: number): Observable<Object> {
-    return this.http.delete(`${this.specialtiesUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.delete(`${this.specialtiesUrl}/${id}`);
   }
 }
