@@ -14,7 +14,7 @@ import {SearchPatientFormComponent} from './forms/searchpatient-form/searchpatie
 import {CreateScheduleFormComponent} from './forms/create-schedule-form/create-schedule-form.component';
 import {PatientRecordByDoctorFormComponent} from './forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {AppointmentFormComponent} from './forms/appointment-form/appointment-form.component';
-import {DoctorUpdateFormComponent} from "./forms/doctor-update-form/doctor-update-form.component";
+import {DoctorUpdateFormComponent} from './forms/doctor-update-form/doctor-update-form.component';
 import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.component';
 import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './forms/patient-update-form/patient-update-form.component';

@@ -19,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './patient-update-form.component.html',
   styleUrls: ['./patient-update-form.component.css']
 })
-export class PatientUpdateFormComponent implements OnInit{
+export class PatientUpdateFormComponent implements OnInit {
   private user = new User('', '', '', '', '', '');
   private patient = new Patient('', '');
   private currentUser!: User;
