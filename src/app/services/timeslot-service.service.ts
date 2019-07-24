@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Timeslot} from '../models/timeslot';
 import {Specialty} from '../models/specialty';
 import {User} from '../models/user';
+import {PatientTimeslots} from '../models/patient-timeslots';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,10 @@ export class TimeslotService {
 
   public getTimeslotsForRecord(id: number) {
     return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  public getTimeslotsByPatient(id: number): Observable<PatientTimeslots[]> {
+    return this.http.get<PatientTimeslots[]>(`${this.timeslotsUrl}/${'by_patient'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   deleteTimeslot(id: number): Observable<Object> {

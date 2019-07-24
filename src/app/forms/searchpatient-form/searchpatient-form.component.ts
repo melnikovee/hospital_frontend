@@ -30,6 +30,7 @@ export class SearchPatientFormComponent implements OnInit {
   lastName: string;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
   isGetPatients: boolean;
+  isGetSelectedPatient: boolean;
   selectedPatient: Composite;
   diagnosis: Diagnosis;
   showAddForm: boolean;
@@ -43,10 +44,13 @@ export class SearchPatientFormComponent implements OnInit {
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
+
   spForm = new FormGroup({
     lastName: this.lastNameFormControl
   });
+
   matcher = new MyErrorStateMatcher();
+
   @ViewChild(CardFormComponent, {static: false})
   private childComponent: CardFormComponent;
 
@@ -58,18 +62,21 @@ export class SearchPatientFormComponent implements OnInit {
   onSubmit() {
     this.lastName = this.spForm.get('lastName').value;
     this.isGetPatients = false;
+    this.showTables = true;
+    this.getCards = false;
 
     this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
       this.foundPatients = data;
 
       if (data.length !== 0) {
         this.isGetPatients = true;
+        this.showTables = false;
       }
     });
   }
 
   getCard(patient: Composite) {
-    this.selectedPatient = patient;
+    this.checkPatient(patient);
     this.getCards = true;
     this.childComponent.getCard(patient);
   }
@@ -101,19 +108,20 @@ export class SearchPatientFormComponent implements OnInit {
       this.timeSlotsForCheck = data;
       console.log(this.timeSlotsForCheck);
     });
-
-    this.scheduleService.getScheduleByDoctorAndCurrentDate(this.hardcodedDoctor).subscribe(data => {
-      this.currentDoctorSpecialty = data.specialty;
-    });
   }
 
-  checkPatient(): boolean {
+  checkPatient(patient: Composite): boolean {
 
-    if (this.selectedPatient !== undefined) {
-      for (const timeslot of this.timeSlotsForCheck) {
-        if (timeslot.patient === this.selectedPatient.id) {
-          return true;
-        }
+    for (const timeslot of this.timeSlotsForCheck) {
+      if (timeslot.patient === patient.id) {
+        this.isGetSelectedPatient = true;
+        this.selectedPatient = patient;
+
+        this.scheduleService.getScheduleByDoctorAndCurrentDate(this.hardcodedDoctor).subscribe(data => {
+          this.currentDoctorSpecialty = data.specialty;
+        });
+
+        return true;
       }
     }
 
