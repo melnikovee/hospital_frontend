@@ -1,7 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
 import {SpecialtyService} from '../../services/specialty-service.service';
+import {Specialty} from '../../models/specialty';
+
 
 @Component({
   selector: 'app-specialty-list',
@@ -11,11 +13,10 @@ import {SpecialtyService} from '../../services/specialty-service.service';
 export class SpecialtyListComponent implements OnInit {
 
   displayedColumns: string[] = ['specialty', 'delete'];
-  dataSource: any;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  private dataSource!: MatTableDataSource<Specialty>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private specialtyService: SpecialtyService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router,
+              private specialtyService: SpecialtyService) {}
 
   ngOnInit() {
     this.reloadData();

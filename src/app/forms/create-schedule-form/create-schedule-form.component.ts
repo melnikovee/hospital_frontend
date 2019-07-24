@@ -22,15 +22,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./create-schedule-form.component.css']
 })
 export class CreateScheduleFormComponent {
-  doctorId!: number;
-  dateForCabinets!: string | undefined;
-  specialties!: Specialty[];
-  cabinets!: Cabinet[] | undefined;
-  freeDays!: string[] | undefined;
-  schedule: Schedule;
-  receivedSchedule!: Schedule;
-  done!: boolean;
-
+  id = 'id';
+  private doctorId = 0;
+  private cabinets: Cabinet[] | undefined;
+  private freeDays: string[] | undefined;
+  private schedule = new Schedule(0, '', '', '', 0, 0);
+  private receivedSchedule!: Schedule;
+  private dateForCabinets!: string;
+  private specialties!: Specialty[];
+  private done!: boolean;
   specialtyFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -63,19 +63,17 @@ export class CreateScheduleFormComponent {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private doctorSpecialtyService: DoctorSpecialtyService,
-              private specialtyService: SpecialtyService,
-              private scheduleService: ScheduleService) {
-    this.route.params.subscribe(params => this.doctorId = params['id']);
-    this.schedule = new Schedule();
+              private specialtyService: SpecialtyService, private scheduleService: ScheduleService) {
+    this.route.params.subscribe(params => this.doctorId = params[this.id]);
   }
 
   putData() {
     this.schedule.userId = this.doctorId;
-    this.schedule.date = this.scheduleForm.get('date')!.value;
-    this.schedule.startTime = this.scheduleForm.get('startTime')!.value.concat(':00');
-    this.schedule.endTime = this.scheduleForm.get('endTime')!.value.concat(':00');
-    this.schedule.cabinet = this.scheduleForm.get('cabinet')!.value.id;
-    this.schedule.specialty = this.scheduleForm.get('specialty')!.value.id;
+    this.schedule.date = this.scheduleForm.controls.date.value;
+    this.schedule.startTime = this.scheduleForm.controls.startTime.value.concat(':00');
+    this.schedule.endTime = this.scheduleForm.controls.endTime.value.concat(':00');
+    this.schedule.cabinet = this.scheduleForm.controls.cabinet.value.id;
+    this.schedule.specialty = this.scheduleForm.controls.specialty.value.id;
   }
 
   getSpecialties() {
@@ -88,8 +86,8 @@ export class CreateScheduleFormComponent {
   }
 
   getCabinets() {
-    this.dateForCabinets = this.scheduleForm.get('date')!.value;
-    this.scheduleService.findFreeCabinets(this.dateForCabinets!).subscribe(
+    this.dateForCabinets = this.scheduleForm.controls.date.value;
+    this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
         (data: Cabinet[]) => {
           this.cabinets = data;
         },
@@ -119,7 +117,7 @@ export class CreateScheduleFormComponent {
   }
 
   cleanData() {
-    this.dateForCabinets = undefined;
+    this.dateForCabinets = '';
     this.cabinets = undefined;
     this.freeDays = undefined;
   }

@@ -18,11 +18,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./cabinet-form.component.css']
 })
 export class CabinetFormComponent {
-
-  cabinet: Cabinet;
+  cabinet = new Cabinet('');
   receivedCabinet!: Cabinet;
-  done!: boolean;
-
+  private done!: boolean;
   cabinetNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -33,12 +31,11 @@ export class CabinetFormComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {
-    this.cabinet = new Cabinet();
-  }
+  constructor(private route: ActivatedRoute, private router: Router,
+              private cabinetService: CabinetService) {}
 
   putData() {
-    this.cabinet.cabinetName = this.cabForm.get('cabinetName')!.value;
+    this.cabinet.cabinetName = this.cabForm.controls.cabinetName.value;
   }
 
   onSubmit() {

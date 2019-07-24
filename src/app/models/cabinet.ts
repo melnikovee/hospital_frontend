@@ -1,4 +1,9 @@
 export class Cabinet {
   id!: number;
-  cabinetName!: string;
+  cabinetName: string;
+
+
+  constructor(cabinetName: string) {
+    this.cabinetName = cabinetName;
+  }
 }

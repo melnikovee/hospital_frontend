@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
-import {MatSort, MatTableDataSource} from '@angular/material';
-import {TimeslotService} from '../../services/timeslot-service.service';
+import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Composite} from '../../models/composite';
 
 
 @Component({
@@ -11,16 +11,14 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./doctor-timeslots-list.component.css']
 })
 export class DoctorTimeslotsListComponent implements OnInit {
-
-  doctorId!: number;
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient'];
-  dataSource: any;
-
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  id = 'id';
+  private dataSource!: MatTableDataSource<Composite>;
+  private doctorId!: number;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private compositeService: CompositeService, private timeSlotService: TimeslotService) {
-    this.route.params.subscribe(params => this.doctorId = params['id']);
+              private compositeService: CompositeService) {
+    this.route.params.subscribe(params => this.doctorId = params[this.id]);
   }
 
   ngOnInit() {

@@ -12,13 +12,11 @@ import {MyErrorStateMatcher} from '../searchpatient-form/searchpatient-form.comp
   styleUrls: ['./patient-record-by-doctor-form.component.css']
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
-
-  foundPatients!: Composite[];
-  lastName!: string;
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
-  isGetPatients!: boolean;
-  timeSlotsForCheck!: Timeslot[];
-
+  private foundPatients!: Composite[];
+  private lastName!: string;
+  private isGetPatients!: boolean;
+  private timeSlotsForCheck!: Timeslot[];
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -29,11 +27,10 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private compositeService: CompositeService, private timeslotService: TimeslotService) {
-  }
+  constructor(private compositeService: CompositeService, private timeslotService: TimeslotService) {}
 
   onSubmit() {
-    this.lastName = this.spForm.get('lastName')!.value;
+    this.lastName = this.spForm.controls.lastName.value;
 
     this.compositeService.getUsersByName(this.lastName).subscribe(data => {
       this.foundPatients = data;

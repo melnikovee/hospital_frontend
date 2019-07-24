@@ -30,7 +30,7 @@ export class DoctorSpecialtyService {
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  deleteUser(id: number): Observable<Object> {
+  deleteUser(id: number) {
     return this.http.delete(`${this.doctorSpecialtiesUrl}/${id}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }

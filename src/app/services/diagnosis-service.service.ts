@@ -15,15 +15,18 @@ export class DiagnosisService {
   }
 
   public findAll(): Observable<Diagnosis[]> {
-    return this.http.get<Diagnosis[]>(this.diagnosisUrl, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Diagnosis[]>(this.diagnosisUrl,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public save(diagnosis: Diagnosis) {
-    return this.http.post<Diagnosis>(this.diagnosisUrl, diagnosis, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.post<Diagnosis>(this.diagnosisUrl, diagnosis,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  deleteDiagnosis(id: number): Observable<Object> {
-    return this.http.delete(`${this.diagnosisUrl}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  deleteDiagnosis(id: number) {
+    return this.http.delete(`${this.diagnosisUrl}/${id}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 }
 

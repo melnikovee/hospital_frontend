@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {MatDialog} from '@angular/material';
-import {DiagnosisService} from '../../services/diagnosis-service.service';
 import {Composite} from '../../models/composite';
 import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
 
@@ -11,14 +10,12 @@ import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diag
   styleUrls: ['./card-form.component.css']
 })
 export class CardFormComponent {
-
-  selectedOpinion!: Composite;
+  private selectedOpinion = new Composite(0, 0, '', '', '',
+    '', '', '', '', false, '', '', '');
+  private patientCard!: Composite[];
+  private isGetCards!: boolean
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
-  isGetCards!: boolean;
-  patientCard!: Composite[];
-
-  constructor(private compositeService: CompositeService, private dialog: MatDialog, private diagnosisService: DiagnosisService) {
-  }
+  constructor(private compositeService: CompositeService, private dialog: MatDialog) {}
 
   getCard(patient: Composite) {
     this.compositeService.getDiagnosisByPatient(patient.id).subscribe(data => {

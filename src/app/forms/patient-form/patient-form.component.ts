@@ -20,9 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./patient-form.component.css']
 })
 export class PatientFormComponent {
-
-  user: User;
-  patient: Patient;
+  user = new User('', '', '', '', '', '');
+  patient = new Patient('', '');
   startDate = new Date(1970, 1, 1);
 
   loginFormControl = new FormControl('', [
@@ -74,20 +73,17 @@ export class PatientFormComponent {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private patientService: PatientService, private userService: UserService) {
-    this.user = new User();
-    this.patient = new Patient();
-  }
+              private patientService: PatientService, private userService: UserService) {}
 
   putData() {
-    this.user.login = this.patientForm.get('login')!.value;
-    this.user.password = this.patientForm.get('password')!.value;
-    this.user.firstName = this.patientForm.get('firstName')!.value;
-    this.user.lastName = this.patientForm.get('lastName')!.value;
-    this.user.middleName = this.patientForm.get('middleName')!.value;
-    this.user.email = this.patientForm.get('email')!.value;
-    this.patient.phone = this.patientForm.get('phone')!.value;
-    this.patient.birthday = this.patientForm.get('birthday')!.value;
+    this.user.login = this.patientForm.controls.login.value;
+    this.user.password = this.patientForm.controls.password.value;
+    this.user.firstName = this.patientForm.controls.firstName.value;
+    this.user.lastName = this.patientForm.controls.lastName.value;
+    this.user.middleName = this.patientForm.controls.middleName.value;
+    this.user.email = this.patientForm.controls.email.value;
+    this.patient.phone = this.patientForm.controls.phone.value;
+    this.patient.birthday = this.patientForm.controls.birthday.value;
     this.user.role = 'PATIENT';
   }
 

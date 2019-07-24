@@ -29,7 +29,7 @@ export class UserService {
         { headers : new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: number) {
     return this.http.delete(`${this.usersUrl}/${id}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }

@@ -24,15 +24,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./doctor-form.component.css']
 })
 export class DoctorFormComponent {
-
-  user: User;
-  doctor: Doctor;
-  specialties!: Specialty[];
-  selectedSpecialtiesFormControl = new FormControl();
-  selectedSpecialties!: Specialty[];
+  user = new User('', '', '', '', '', '');
+  doctor = new Doctor('');
   receivedUser!: User;
+  specialties!: Specialty[];
+  selectedSpecialties!: Specialty[];
   done!: boolean;
-
+  selectedSpecialtiesFormControl = new FormControl();
   loginFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(32)
@@ -78,19 +76,16 @@ export class DoctorFormComponent {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private doctorService: DoctorService, private userService: UserService,
-              private specialtyService: SpecialtyService, private doctorSpecialtyService: DoctorSpecialtyService) {
-    this.user = new User();
-    this.doctor = new Doctor();
-  }
+              private specialtyService: SpecialtyService, private doctorSpecialtyService: DoctorSpecialtyService) {}
 
   putData() {
-    this.user.login = this.docForm.get('login')!.value;
-    this.user.password = this.docForm.get('password')!.value;
-    this.user.firstName = this.docForm.get('firstName')!.value;
-    this.user.lastName = this.docForm.get('lastName')!.value;
-    this.user.middleName = this.docForm.get('middleName')!.value;
-    this.user.email = this.docForm.get('email')!.value;
-    this.doctor.phone = this.docForm.get('phone')!.value;
+    this.user.login = this.docForm.controls.login.value;
+    this.user.password = this.docForm.controls.password.value;
+    this.user.firstName = this.docForm.controls.firstName.value;
+    this.user.lastName = this.docForm.controls.lastName.value;
+    this.user.middleName = this.docForm.controls.middleName.value;
+    this.user.email = this.docForm.controls.email.value;
+    this.doctor.phone = this.docForm.controls.phone.value;
     this.user.role = 'DOCTOR';
   }
 

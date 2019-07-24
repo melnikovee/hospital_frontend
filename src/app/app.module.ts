@@ -39,6 +39,7 @@ import {SpecialtyListComponent} from './lists/specialty-list/specialty-list.comp
 import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './forms/patient-update-form/patient-update-form.component';
 import {AdminUpdateFormComponent} from './forms/admin-update-form/admin-update-form.component';
+import {User} from './models/user';
 
 @NgModule({
   declarations: [

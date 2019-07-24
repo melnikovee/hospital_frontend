@@ -20,23 +20,23 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent {
-  patientId!: number;
-  specialtyForDoctor!: number;
-  doctorForDate!: number;
-  dateForTime!: string;
-  specialties!: Specialty[];
-  doctors!: User[];
-  freeDays!: string[];
-  freeTime!: string[];
-  specialty!: number;
-  doctor!: number;
-  date!: string;
-  time!: string;
-  id!: number;
-  timeslot: Timeslot;
-  receivedTimeslot!: Timeslot;
-  done!: boolean;
-
+  private patientId!: number;
+  private specialtyForDoctor!: number;
+  private doctorForDate!: number;
+  private dateForTime!: string;
+  private specialties!: Specialty[];
+  private doctors!: User[];
+  private freeDays!: string[];
+  private freeTime!: string[];
+  private specialty!: number;
+  private doctor!: number;
+  private date!: string;
+  private time!: string;
+  private id!: number;
+  private done!: boolean;
+  private timeslot = new Timeslot(0, 0, 0, 0, '', '', false);
+  private receivedTimeslot!: Timeslot;
+  idStr = 'id';
   specialtyFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -64,15 +64,14 @@ export class AppointmentFormComponent {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private timeslotService: TimeslotService) {
-    this.route.params.subscribe(params => this.patientId = params['id']);
-    this.timeslot = new Timeslot();
+    this.route.params.subscribe(params => this.patientId = params[this.idStr]);
   }
 
   putData() {
-    this.specialty = this.appointmentForm.get('specialty')!.value.id;
-    this.doctor = this.appointmentForm.get('doctor')!.value.id;
-    this.date = this.appointmentForm.get('date')!.value;
-    this.time = this.appointmentForm.get('time')!.value;
+    this.specialty = this.appointmentForm.controls.specialty.value.id;
+    this.doctor = this.appointmentForm.controls.doctor.value.id;
+    this.date = this.appointmentForm.controls.date.value;
+    this.time = this.appointmentForm.controls.time.value;
   }
 
   getSpecialties() {
@@ -86,7 +85,7 @@ export class AppointmentFormComponent {
   }
 
   getDoctors() {
-    this.specialtyForDoctor = this.appointmentForm.get('specialty')!.value.id;
+    this.specialtyForDoctor = this.appointmentForm.controls.specialty.value.id;
     this.timeslotService.findDoctors(this.specialtyForDoctor).subscribe(
         (data: User[]) => {
           this.doctors = data;
@@ -97,7 +96,7 @@ export class AppointmentFormComponent {
   }
 
   getDate() {
-    this.doctorForDate = this.appointmentForm.get('doctor')!.value.id;
+    this.doctorForDate = this.appointmentForm.controls.doctor.value.id;
     this.timeslotService.findDate(this.specialtyForDoctor, this.doctorForDate).subscribe(
         (data: string[]) => {
           this.freeDays = data;
@@ -108,7 +107,7 @@ export class AppointmentFormComponent {
   }
 
   getTime() {
-    this.dateForTime = this.appointmentForm.get('date')!.value;
+    this.dateForTime = this.appointmentForm.controls.date.value;
     this.timeslotService.findTime(this.specialtyForDoctor, this.doctorForDate, this.dateForTime).subscribe(
         (data: string[]) => {
           this.freeTime = data;
@@ -120,10 +119,6 @@ export class AppointmentFormComponent {
 
   onSubmit() {
     this.putData();
-    console.log(this.specialty);
-    console.log(this.doctor);
-    console.log(this.date);
-    console.log(this.time);
     this.timeslotService.findTimeslotForAppointment(this.specialty, this.doctor, this.date, this.time).subscribe(
         data => {
           this.timeslot.id = data.id;

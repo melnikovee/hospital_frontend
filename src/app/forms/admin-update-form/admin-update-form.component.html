@@ -31,6 +31,10 @@
                 </mat-error>
             </mat-form-field>
 
+          <div *ngIf="done">
+            <p>Информация обновлена</p>
+          </div>
+
             <mat-button-toggle value="bold" [disabled]="!adminForm.valid" (click)="onSubmit()">Применить</mat-button-toggle>
 
         </form>

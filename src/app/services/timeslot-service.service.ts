@@ -41,7 +41,8 @@ export class TimeslotService {
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  public findTimeslotForAppointment(specialtyId: number, doctorId: number, date: string, time: string): Observable<Timeslot> {
+  public findTimeslotForAppointment(specialtyId: number, doctorId: number,
+                                    date: string, time: string): Observable<Timeslot> {
     return this.http.get<Timeslot>(`${this.timeslotsUrl}/${specialtyId}/${doctorId}/${date}/${time}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
@@ -57,14 +58,16 @@ export class TimeslotService {
   }
 
   public getTimeslotsForDoctor(id: number) {
-    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
   public getTimeslotsForRecord(id: number) {
-    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  deleteTimeslot(id: number): Observable<Object> {
+  deleteTimeslot(id: number) {
     return this.http.delete(`${this.timeslotsUrl}/${id}`,
         {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }

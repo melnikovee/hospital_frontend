@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CabinetService} from '../../services/cabinet-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
+import {Cabinet} from '../../models/cabinet';
 
 @Component({
   selector: 'app-cabinet-list',
@@ -11,11 +12,10 @@ import {MatSort, MatTableDataSource} from '@angular/material';
 export class CabinetListComponent implements OnInit {
 
   displayedColumns: string[] = ['cabinet', 'delete'];
-  dataSource: any;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
+  private dataSource!: MatTableDataSource<Cabinet>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private cabinetService: CabinetService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router,
+              private cabinetService: CabinetService) {}
 
   ngOnInit() {
     this.reloadData();

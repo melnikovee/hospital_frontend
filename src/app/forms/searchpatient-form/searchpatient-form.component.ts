@@ -22,34 +22,35 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./searchpatient-form.component.css'],
 })
 export class SearchPatientFormComponent implements OnInit {
-
-  foundPatients!: Composite[];
-  lastName!: string;
+  private selectedPatient!: Composite;
+  private diagnosis: Diagnosis | undefined;
+  private foundPatients!: Composite[];
+  private lastName!: string;
+  private isGetPatients!: boolean;
+  private showAddForm!: boolean;
+  private showTables!: boolean;
+  private getCards!: boolean;
+  private timeSlotsForCheck!: Timeslot[];
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
-  isGetPatients!: boolean;
-  selectedPatient!: Composite;
-  diagnosis!: Diagnosis | undefined;
-  showAddForm!: boolean;
+
   opinion = new FormControl();
-  showTables!: boolean;
-  getCards!: boolean;
-  timeSlotsForCheck!: Timeslot[];
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
+
   spForm = new FormGroup({
     lastName: this.lastNameFormControl
   });
   matcher = new MyErrorStateMatcher();
+
   @ViewChild(CardFormComponent, {static: false})
   private childComponent!: CardFormComponent;
 
   constructor(private compositeService: CompositeService, public dialog: MatDialog,
-              private diagnosisService: DiagnosisService, private timeslotService: TimeslotService) {
-  }
+              private diagnosisService: DiagnosisService, private timeslotService: TimeslotService) {}
 
   onSubmit() {
-    this.lastName = this.spForm.get('lastName')!.value;
+    this.lastName = this.spForm.controls.lastName.value;
 
     this.compositeService.getUsersByName(this.lastName).subscribe(data => {
       this.foundPatients = data;
@@ -69,12 +70,7 @@ export class SearchPatientFormComponent implements OnInit {
     this.showTables = !this.showTables;
 
     if (this.diagnosis === undefined) {
-      this.diagnosis = new Diagnosis();
-
-      this.diagnosis.patient = this.selectedPatient.id;
-      this.diagnosis.doctor = 1;
-      this.diagnosis.date = new Date('2017-10-10');
-      this.diagnosis.specialty = 3;
+      this.diagnosis = new Diagnosis(this.selectedPatient.id, 1, 3, '2017-10-10');
     } else {
       this.diagnosis.medicalOpinion = this.opinion.value;
 

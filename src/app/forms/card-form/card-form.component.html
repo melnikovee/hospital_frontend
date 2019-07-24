@@ -1,25 +1,21 @@
 <div [hidden]="!isGetCards" class="example-container">
   <table [dataSource]="patientCard" class="mat-elevation-z8" mat-table>
 
-    <!-- Position Column -->
     <ng-container matColumnDef="doctor">
       <th *matHeaderCellDef mat-header-cell>Доктор</th>
       <td *matCellDef="let element" mat-cell> {{element.doctor}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="date">
       <th *matHeaderCellDef mat-header-cell>Дата</th>
       <td *matCellDef="let element" mat-cell> {{element.date}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="specialty">
       <th *matHeaderCellDef mat-header-cell>Специалность</th>
       <td *matCellDef="let element" mat-cell> {{element.specialty}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="medicalOpinion">
       <th *matHeaderCellDef mat-header-cell>Заключение</th>
       <td *matCellDef="let element" mat-cell>

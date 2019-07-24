@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CompositeService} from '../../services/composite-service.service';
 import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Composite} from '../../models/composite';
 
 @Component({
   selector: 'app-doctors-list',
@@ -9,13 +10,11 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./doctors-list.component.css']
 })
 export class DoctorsListComponent implements OnInit {
-
+  private dataSource!: MatTableDataSource<Composite>;
   displayedColumns: string[] = ['Doctor', 'Specialty', 'Phone', 'Schedule', 'createSchedule'];
-  // tslint:disable-next-line:no-any
-  dataSource: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {
-  }
+  constructor(private route: ActivatedRoute, private router: Router,
+              private compositeService: CompositeService) {}
 
   ngOnInit() {
     this.reloadData();

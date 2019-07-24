@@ -8,9 +8,7 @@ import {ScheduleService} from '../../services/schedule-service.service';
   styleUrls: ['./schedule-list.component.css']
 })
 export class ScheduleListComponent implements OnInit {
-
-  schedules!: Schedule[];
-
+  private schedules!: Schedule[];
   constructor(private scheduleService: ScheduleService) {
   }
 

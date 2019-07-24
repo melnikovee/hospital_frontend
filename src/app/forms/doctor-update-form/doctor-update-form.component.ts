@@ -20,12 +20,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./doctor-update-form.component.css']
 })
 export class DoctorUpdateFormComponent implements OnInit{
-
-  user: User;
-  doctor: Doctor;
+  user = new User('', '', '', '', '', '');
+  doctor = new Doctor('');
   currentUser!: User;
   currentDoctor!: Doctor;
-
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -54,10 +52,7 @@ export class DoctorUpdateFormComponent implements OnInit{
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private doctorService: DoctorService, private userService: UserService) {
-    this.user = new User();
-    this.doctor = new Doctor();
-  }
+              private doctorService: DoctorService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.doctorService.getDoctorById(15).subscribe(data => {
@@ -73,19 +68,19 @@ export class DoctorUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.docForm.get('firstName')!.value;
+    let changedData = this.docForm.controls.firstName.value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.docForm.get('lastName')!.value;
+    changedData = this.docForm.controls.lastName.value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.docForm.get('middleName')!.value;
+    changedData = this.docForm.controls.middleName.value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.docForm.get('email')!.value;
+    changedData = this.docForm.controls.email.value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
 
-    changedData = this.docForm.get('phone')!.value;
+    changedData = this.docForm.controls.phone.value;
     this.doctor.phone = changedData === '' ? this.currentDoctor.phone : changedData;
   }
 

@@ -18,11 +18,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./specialty-form.component.css']
 })
 export class SpecialtyFormComponent {
-
-  specialty: Specialty;
+  specialty = new Specialty('', 0);
   receivedSpecialty!: Specialty;
   done!: boolean;
-
   specialtyNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -38,13 +36,13 @@ export class SpecialtyFormComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private route: ActivatedRoute, private router: Router, private specialtyService: SpecialtyService) {
-    this.specialty = new Specialty();
+  constructor(private route: ActivatedRoute, private router: Router,
+              private specialtyService: SpecialtyService) {
   }
 
   putData() {
-    this.specialty.specialtyName = this.specForm.get('specialtyName')!.value;
-    this.specialty.duration = this.specForm.get('duration')!.value;
+    this.specialty.specialtyName = this.specForm.controls.specialtyName.value;
+    this.specialty.duration = this.specForm.controls.duration.value;
   }
 
   onSubmit() {
@@ -58,9 +56,4 @@ export class SpecialtyFormComponent {
         error => console.log(error)
     );
   }
-
-  gotoCabinetList() {
-    this.router.navigate(['/specialties']);
-  }
-
 }

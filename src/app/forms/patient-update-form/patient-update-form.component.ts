@@ -20,11 +20,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./patient-update-form.component.css']
 })
 export class PatientUpdateFormComponent implements OnInit{
-
-  user: User;
-  patient: Patient;
-  currentUser!: User;
-  currentPatient!: Patient;
+  private user = new User('', '', '', '', '', '');
+  private patient = new Patient('', '');
+  private currentUser!: User;
+  private currentPatient!: Patient;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -54,10 +53,7 @@ export class PatientUpdateFormComponent implements OnInit{
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private patientService: PatientService, private userService: UserService) {
-    this.user = new User();
-    this.patient = new Patient();
-  }
+              private patientService: PatientService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.patientService.getPatientById(23).subscribe(data => {
@@ -73,28 +69,25 @@ export class PatientUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.patientForm.get('firstName')!.value;
+    let changedData = this.patientForm.controls.firstName.value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.patientForm.get('lastName')!.value;
+    changedData = this.patientForm.controls.lastName.value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.patientForm.get('middleName')!.value;
+    changedData = this.patientForm.controls.middleName.value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.patientForm.get('email')!.value;
+    changedData = this.patientForm.controls.email.value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
 
-    changedData = this.patientForm.get('phone')!.value;
+    changedData = this.patientForm.controls.phone.value;
     this.patient.phone = changedData === '' ? this.currentPatient.phone : changedData;
     this.patient.birthday = this.currentPatient.birthday;
   }
 
   onSubmit() {
     this.putData();
-
-    console.log(this.user);
-    console.log(this.patient);
 
     this.userService.updateUser(23, this.user).subscribe();
     this.patientService.updatePatient(23, this.patient).subscribe();

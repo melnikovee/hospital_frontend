@@ -17,11 +17,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './admin-update-form.component.html',
   styleUrls: ['./admin-update-form.component.css']
 })
-export class AdminUpdateFormComponent implements OnInit{
-
-  user: User;
-  currentUser!: User;
-
+export class AdminUpdateFormComponent implements OnInit {
+  private user = new User('', '', '', '', '', '');
+  private currentUser!: User;
+  private done!: boolean;
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -45,9 +44,7 @@ export class AdminUpdateFormComponent implements OnInit{
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private userService: UserService) {
-    this.user = new User();
-  }
+              private userService: UserService) {}
 
   ngOnInit(): void {
     this.userService.getUserById(13).subscribe(data => {
@@ -58,24 +55,22 @@ export class AdminUpdateFormComponent implements OnInit{
 
   putData() {
 
-    let changedData = this.adminForm.get('firstName')!.value;
+    let changedData = this.adminForm.controls.firstName.value;
     this.user.firstName = changedData === '' ? this.currentUser.firstName : changedData;
 
-    changedData = this.adminForm.get('lastName')!.value;
+    changedData = this.adminForm.controls.lastName.value;
     this.user.lastName = changedData === '' ? this.currentUser.lastName : changedData;
 
-    changedData = this.adminForm.get('middleName')!.value;
+    changedData = this.adminForm.controls.middleName.value;
     this.user.middleName = changedData === '' ? this.currentUser.middleName : changedData;
 
-    changedData = this.adminForm.get('email')!.value;
+    changedData = this.adminForm.controls.email.value;
     this.user.email = changedData === '' ? this.currentUser.email : changedData;
   }
 
   onSubmit() {
     this.putData();
-
-    console.log(this.user);
-
     this.userService.updateUser(13, this.user).subscribe();
+    this.done = true;
   }
 }
