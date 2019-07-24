@@ -41,6 +41,7 @@ import {DoctorTimeslotsListComponent} from './lists/doctor-timeslots-list/doctor
 import {PatientUpdateFormComponent} from './forms/patient-update-form/patient-update-form.component';
 import {AdminUpdateFormComponent} from './forms/admin-update-form/admin-update-form.component';
 import { PatientsPastVisitsFormComponent } from './forms/patients-past-visits-form/patients-past-visits-form.component';
+import { PatientsCurrentVisitsFormComponent } from './forms/patients-current-visits-form/patients-current-visits-form.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { PatientsPastVisitsFormComponent } from './forms/patients-past-visits-fo
     PatientUpdateFormComponent,
     AdminUpdateFormComponent,
     DoctorSpecialtyUpdateFormComponent,
-    PatientsPastVisitsFormComponent
+    PatientsPastVisitsFormComponent,
+    PatientsCurrentVisitsFormComponent
   ],
   imports: [
     MatSortModule,

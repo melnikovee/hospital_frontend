@@ -1,4 +1,4 @@
-export class PatientTimeslots {
+export class PatientTimeslot {
 
   id: number;
   doctorName: string;
