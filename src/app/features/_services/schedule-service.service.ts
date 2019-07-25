@@ -35,7 +35,8 @@ export class ScheduleService {
     return this.http.post<Schedule>(this.schedulsUrl, schedule);
   }
 
-  deleteSchedule(id: number): Observable<Object> {
+  // tslint:disable-next-line:no-any
+  deleteSchedule(id: number): Observable<any> {
     return this.http.delete(`${this.schedulsUrl}/${id}`);
   }
 }

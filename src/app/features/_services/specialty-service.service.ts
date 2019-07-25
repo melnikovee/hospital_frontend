@@ -30,7 +30,8 @@ export class SpecialtyService {
     return this.http.post<Specialty>(this.specialtiesUrl, specialty);
   }
 
-  deleteSpecialty(id: number): Observable<Object> {
+  // tslint:disable-next-line:no-any
+  deleteSpecialty(id: number): Observable<any> {
     return this.http.delete(`${this.specialtiesUrl}/${id}`);
   }
 }
