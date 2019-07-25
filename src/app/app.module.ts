@@ -25,7 +25,6 @@ import {SharedModule} from './_shared/shared.module';
     MaterialAppModule,
     CoreModule,
     SharedModule
-
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'ru'}

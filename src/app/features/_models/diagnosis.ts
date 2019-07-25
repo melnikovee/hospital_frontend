@@ -11,3 +11,4 @@ export class Diagnosis {
     this.specialty = specialty;
   }
 }
+

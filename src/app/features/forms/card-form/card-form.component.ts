@@ -10,9 +10,9 @@ import {CompositeService} from '../../_services/composite-service.service';
   styleUrls: ['./card-form.component.css']
 })
 export class CardFormComponent {
-  private selectedOpinion = new Composite(0, 0, '', '', '',
+  selectedOpinion = new Composite(0, 0, '', '', '',
     '', '', '', '', false, '', '', '');
-  private patientCard!: Composite[];
+  patientCard!: Composite[];
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
   constructor(private compositeService: CompositeService, private dialog: MatDialog) {}
 

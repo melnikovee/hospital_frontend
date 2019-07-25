@@ -14,7 +14,7 @@ import {TimeslotService} from '../../_services/timeslot-service.service';
 export class TimeslotsListComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient', 'delete'];
-  private dataSource!: MatTableDataSource<Composite>;
+  dataSource!: MatTableDataSource<Composite>;
   constructor(private compositeService: CompositeService, private timeSlotService: TimeslotService) {}
 
   ngOnInit() {

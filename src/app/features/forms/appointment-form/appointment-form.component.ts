@@ -22,22 +22,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent {
-  private patientId!: number;
-  private specialtyForDoctor!: number;
-  private doctorForDate!: number;
-  private dateForTime!: string;
-  private specialties!: Specialty[];
-  private doctors!: User[];
-  private freeDays!: string[];
-  private freeTime!: string[];
-  private specialty!: number;
-  private doctor!: number;
-  private date!: string;
-  private time!: string;
-  private id!: number;
-  private done!: boolean;
-  private timeslot = new Timeslot(0, 0, 0, 0, '', '', false);
-  private receivedTimeslot!: Timeslot;
+  patientId!: number;
+  specialtyForDoctor!: number;
+  doctorForDate!: number;
+  dateForTime!: string;
+  specialties!: Specialty[];
+  doctors!: User[];
+  freeDays!: string[];
+  freeTime!: string[];
+  specialty!: number;
+  doctor!: number;
+  date!: string;
+  time!: string;
+  id!: number;
+  done!: boolean;
+  timeslot = new Timeslot(0, 0, 0, 0, '', '', false);
+  receivedTimeslot!: Timeslot;
   idStr = 'id';
   specialtyFormControl = new FormControl('', [
     Validators.required

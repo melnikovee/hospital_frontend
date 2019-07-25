@@ -39,9 +39,9 @@ import {AppRoutingModule} from '../app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialAppModule} from '../ngmaterial.module';
-import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
-import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
 import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-update-form/doctor-specialty-update-form.component';
+import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
+import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
 
 
 @NgModule({
@@ -68,9 +68,9 @@ import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-updat
     DoctorUpdateFormComponent,
     PatientUpdateFormComponent,
     AdminUpdateFormComponent,
-    PatientsPastVisitsFormComponent,
+    DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
-    DoctorSpecialtyUpdateFormComponent
+    PatientsPastVisitsFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -95,9 +95,9 @@ import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-updat
     DoctorUpdateFormComponent,
     PatientUpdateFormComponent,
     AdminUpdateFormComponent,
-    PatientsPastVisitsFormComponent,
+    DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
-    DoctorSpecialtyUpdateFormComponent
+    PatientsPastVisitsFormComponent
   ],
   imports: [
     CommonModule,

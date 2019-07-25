@@ -9,3 +9,4 @@ export class PatientFullName {
     this.birthday = birthday;
   }
 }
+

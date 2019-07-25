@@ -22,14 +22,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class DoctorSpecialtyUpdateFormComponent {
 
-  private foundDoctors!: DoctorFullName[];
-  private lastName!: string;
+  foundDoctors!: DoctorFullName[];
+  lastName!: string;
   doctorsColumns: string[] = ['doctor', 'specialties'];
-  specialtiesColumns: string[] = ['specialtyName', 'duration', 'specialties']
-  private isGetDoctors!: boolean;
-  private isGetSelectedDoctor!: boolean;
-  private doctorSpecialties!: Specialty[];
-  private selectedDoctor!: DoctorFullName;
+  specialtiesColumns: string[] = ['specialtyName', 'duration', 'specialties'];
+  isGetDoctors!: boolean;
+  isGetSelectedDoctor!: boolean;
+  doctorSpecialties!: Specialty[];
+  selectedDoctor!: DoctorFullName;
   allSpecialties: Specialty[] = [];
   addingSpecialties: FormControl = new FormControl();
 
@@ -61,6 +61,7 @@ export class DoctorSpecialtyUpdateFormComponent {
     });
   }
 
+  // tslint:disable-next-line:no-any
   getSpecialties(element: any) {
     this.selectedDoctor = element;
     this.isGetSelectedDoctor = true;
@@ -70,6 +71,7 @@ export class DoctorSpecialtyUpdateFormComponent {
     });
   }
 
+  // tslint:disable-next-line:no-any
   deleteSpecialty(element: any) {
     this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe();
   }

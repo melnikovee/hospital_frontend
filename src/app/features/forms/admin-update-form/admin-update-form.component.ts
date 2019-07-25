@@ -18,9 +18,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./admin-update-form.component.css']
 })
 export class AdminUpdateFormComponent implements OnInit {
-  private user = new User('', '', '', '', '', '');
-  private currentUser!: User;
-  private done!: boolean;
+  user = new User('', '', '', '', '', '');
+  currentUser!: User;
+  done!: boolean;
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);

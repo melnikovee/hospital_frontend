@@ -39,3 +39,4 @@ export class ScheduleService {
     return this.http.delete(`${this.schedulsUrl}/${id}`);
   }
 }
+

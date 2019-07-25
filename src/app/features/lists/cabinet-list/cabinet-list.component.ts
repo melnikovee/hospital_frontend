@@ -12,8 +12,8 @@ import {CabinetService} from '../../_services/cabinet-service.service';
 })
 export class CabinetListComponent implements OnInit {
 
-  displayedColumns: string[] = ['cabinet', 'delete'];
-  private dataSource!: MatTableDataSource<Cabinet>;
+  displayedColumns: string[] = ['cabinet', 'action'];
+  dataSource!: MatTableDataSource<Cabinet>;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private cabinetService: CabinetService) {}

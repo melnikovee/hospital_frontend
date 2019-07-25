@@ -36,6 +36,7 @@ export class UserService {
     return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`);
   }
 
+  // tslint:disable-next-line:no-any
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.usersUrl}/${id}`);
   }
@@ -44,3 +45,4 @@ export class UserService {
     return this.http.put(`${this.usersUrl}/${id}`, user);
   }
 }
+

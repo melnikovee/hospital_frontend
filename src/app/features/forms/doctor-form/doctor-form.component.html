@@ -1,93 +1,91 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form [formGroup]="docForm" class="example-form">
+<form [formGroup]="docForm" class="example-form">
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="login" matInput
-               placeholder="Логин">
-        <mat-error *ngIf="loginFormControl.hasError('maxLength') && !loginFormControl.hasError('required')">
-          Пожалуйста введите логин
-        </mat-error>
-        <mat-error *ngIf="loginFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="login" matInput
+           placeholder="Логин">
+    <mat-error *ngIf="loginFormControl.hasError('maxLength') && !loginFormControl.hasError('required')">
+      Пожалуйста введите логин
+    </mat-error>
+    <mat-error *ngIf="loginFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="password" matInput
-               placeholder="Пароль">
-        <mat-error *ngIf="passwordFormControl.hasError('maxLength') && !passwordFormControl.hasError('required')">
-          Пожалуйста введите пароль
-        </mat-error>
-        <mat-error *ngIf="passwordFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="password" matInput
+           placeholder="Пароль">
+    <mat-error *ngIf="passwordFormControl.hasError('maxLength') && !passwordFormControl.hasError('required')">
+      Пожалуйста введите пароль
+    </mat-error>
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="firstName" matInput
-               placeholder="Имя">
-        <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
-          Пожалуйста введите имя
-        </mat-error>
-        <mat-error *ngIf="firstNameFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="firstName" matInput
+           placeholder="Имя">
+    <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
+      Пожалуйста введите имя
+    </mat-error>
+    <mat-error *ngIf="firstNameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
-               placeholder="Фамилия">
-        <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
-          Пожалуйста введите фамилию
-        </mat-error>
-        <mat-error *ngIf="lastNameFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
+           placeholder="Фамилия">
+    <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
+      Пожалуйста введите фамилию
+    </mat-error>
+    <mat-error *ngIf="lastNameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="middleName" matInput
-               placeholder="Отчество">
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="middleName" matInput
+           placeholder="Отчество">
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" formControlName="email"
-               matInput placeholder="Email">
-        <mat-error
-            *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
-          Пожалуйста введите действительный Email
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" formControlName="email"
+           matInput placeholder="Email">
+    <mat-error
+      *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+      Пожалуйста введите действительный Email
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <input [errorStateMatcher]="matcher" formControlName="phone" matInput
-               placeholder="Телефон">
-        <mat-hint>Введите номер телефона в формате 89001234567</mat-hint>
-        <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
-          Пожалуйста введите номер телефона
-        </mat-error>
-        <mat-error *ngIf="phoneFormControl.hasError('required')">
-          Обязательное поле
-        </mat-error>
-      </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="phone" matInput
+           placeholder="Телефон">
+    <mat-hint>Введите номер телефона в формате 89001234567</mat-hint>
+    <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
+      Пожалуйста введите номер телефона
+    </mat-error>
+    <mat-error *ngIf="phoneFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
 
-      <mat-form-field (click)="getSpecialties()" class="example-full-width">
-        <mat-label>Специальности</mat-label>
-        <mat-select [formControl]="selectedSpecialtiesFormControl" multiple>
-          <mat-option *ngFor="let specialty of specialties" [value]="specialty">{{specialty.specialtyName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field (click)="getSpecialties()" class="example-full-width">
+    <mat-label>Специальности</mat-label>
+    <mat-select [formControl]="selectedSpecialtiesFormControl" multiple>
+      <mat-option *ngFor="let specialty of specialties" [value]="specialty">{{specialty.specialtyName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <div *ngIf="done">
-        <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
-      </div>
-
-      <mat-button-toggle (click)="onSubmit()" [disabled]="!docForm.valid" value="bold">Регистрация</mat-button-toggle>
-
-    </form>
+  <div *ngIf="done">
+    <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
   </div>
-</div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!docForm.valid" value="bold">Регистрация
+  </button>
+
+</form>
+

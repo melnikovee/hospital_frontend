@@ -1,22 +1,17 @@
-<div class="card my-5">
-  <div class="card-body">
+<table [dataSource]="dataSource" mat-table>
+  <ng-container matColumnDef="cabinet">
+    <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+    <td *matCellDef="let cabinet" mat-cell> {{cabinet.cabinetName}} </td>
+  </ng-container>
 
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <mat-cell *matCellDef="let cabinet">
+      <button mat-flat-button color="primary" (click)="deleteCabinet(cabinet.id)" mat-button>Удалить</button>
+    </mat-cell>
+  </ng-container>
 
-      <ng-container matColumnDef="cabinet">
-        <th *matHeaderCellDef mat-header-cell>Кабинет</th>
-        <td *matCellDef="let cabinet" mat-cell> {{cabinet.cabinetName}} </td>
-      </ng-container>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
 
-      <ng-container matColumnDef="delete">
-        <th *matHeaderCellDef mat-header-cell></th>
-        <mat-cell *matCellDef="let cabinet">
-          <button (click)="deleteCabinet(cabinet.id)" mat-button>Удалить</button>
-        </mat-cell>
-      </ng-container>
-
-      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-    </table>
-  </div>
-</div>

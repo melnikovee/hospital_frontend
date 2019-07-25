@@ -69,7 +69,9 @@ export class TimeslotService {
     return this.http.put<Timeslot>(`${this.timeslotsUrl}/${'cancel'}/${id}`, id);
   }
 
-  deleteTimeslot(id: number): Observable<Object> {
+  // tslint:disable-next-line:no-any
+  deleteTimeslot(id: number): Observable<any> {
     return this.http.delete(`${this.timeslotsUrl}/${id}`);
   }
 }
+

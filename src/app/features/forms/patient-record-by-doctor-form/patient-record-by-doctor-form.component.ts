@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MyErrorStateMatcher} from '../searchpatient-form/searchpatient-form.component';
 import {Timeslot} from '../../_models/timeslot';
-import {Composite} from '../../_models/composite';
 import {TimeslotService} from '../../_services/timeslot-service.service';
 import {UserService} from '../../_services/user-service.service';
 import {PatientFullName} from '../../_models/patient-full-name';
@@ -14,10 +13,10 @@ import {PatientFullName} from '../../_models/patient-full-name';
 })
 export class PatientRecordByDoctorFormComponent implements OnInit {
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
-  private foundPatients!: PatientFullName[];
-  private lastName!: string;
-  private isGetPatients!: boolean;
-  private timeSlotsForCheck!: Timeslot[];
+  foundPatients!: PatientFullName[];
+  lastName!: string;
+  isGetPatients!: boolean;
+  timeSlotsForCheck!: Timeslot[];
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);

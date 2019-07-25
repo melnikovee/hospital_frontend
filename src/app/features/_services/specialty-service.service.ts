@@ -34,3 +34,4 @@ export class SpecialtyService {
     return this.http.delete(`${this.specialtiesUrl}/${id}`);
   }
 }
+

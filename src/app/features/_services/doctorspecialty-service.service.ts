@@ -32,11 +32,9 @@ export class DoctorSpecialtyService {
     return this.http.get<Specialty[]>(`${this.doctorSpecialtiesUrl}/${'get_new_specialties'}/${doctor}`);
   }
 
-  deleteOneDoctorSpecialty(doctor: number, specialty: number): Observable<Object> {
+  // tslint:disable-next-line:no-any
+  deleteOneDoctorSpecialty(doctor: number, specialty: number): Observable<any> {
     return this.http.delete(`${this.doctorSpecialtiesUrl}/${'delete'}/${doctor}/${specialty}`);
   }
-
-  deleteUser(id: number): Observable<Object> {
-    return this.http.delete(`${this.doctorSpecialtiesUrl}/${id}`);
-  }
 }
+
