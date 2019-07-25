@@ -5,6 +5,7 @@ import {Timeslot} from '../../_models/timeslot';
 import {TimeslotService} from '../../_services/timeslot-service.service';
 import {UserService} from '../../_services/user-service.service';
 import {PatientFullName} from '../../_models/patient-full-name';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-patient-record-by-doctor-form',
@@ -27,19 +28,22 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private timeslotService: TimeslotService, private userService: UserService) {}
+  constructor(private timeslotService: TimeslotService, private userService: UserService,
+              private router: Router) {}
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
     this.isGetPatients = false;
 
-    this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
-      this.foundPatients = data;
+    if (this.lastName !== '') {
+      this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
+        this.foundPatients = data;
 
-      if (data.length !== 0) {
-        this.isGetPatients = true;
-      }
-    });
+        if (data.length !== 0) {
+          this.isGetPatients = true;
+        }
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -55,5 +59,9 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  makeAppointment(id: number) {
+    this.router.navigate(['/makeAppointment', id]);
   }
 }

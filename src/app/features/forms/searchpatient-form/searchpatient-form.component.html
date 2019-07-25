@@ -53,8 +53,8 @@
 </div>
 
 <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-      <mat-button-toggle [ngClass]="{'disabled-button' : !selectedPatient}" [hidden]="!isGetCards"
-                         [disabled]="!selectedPatient" (click)="addDiagnosis()" value="underline">
+      <mat-button-toggle [ngClass]="{'disabled-button' : !isGetSelectedPatient}" [hidden]="!isGetCards"
+                         [disabled]="!isGetSelectedPatient" (click)="addDiagnosis()" value="underline">
     Добавить заключение
   </mat-button-toggle>
 </mat-button-toggle-group>

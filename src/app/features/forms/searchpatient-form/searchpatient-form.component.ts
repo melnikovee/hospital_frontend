@@ -36,7 +36,7 @@ export class SearchPatientFormComponent implements OnInit {
   isGetCards!: boolean;
   timeSlotsForCheck!: Timeslot[];
   currentDoctorSpecialty!: number;
-  hardcodedDoctor = 2;
+  hardcodedDoctor = 4;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
 
   opinion = new FormControl();
@@ -55,25 +55,29 @@ export class SearchPatientFormComponent implements OnInit {
 
   constructor(private compositeService: CompositeService, public dialog: MatDialog,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
-              private scheduleService: ScheduleService, private userService: UserService) {}
+              private scheduleService: ScheduleService, private userService: UserService) {
+  }
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
-    this.isGetPatients = false;
     this.showTables = true;
     this.isGetCards = false;
+    this.isGetSelectedPatient = false;
 
-    this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
-      this.foundPatients = data;
+    if (this.lastName !== '') {
+      this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
+        this.foundPatients = data;
 
-      if (data.length !== 0) {
-        this.isGetPatients = true;
-        this.showTables = false;
-      }
-    });
+        if (data.length !== 0) {
+          this.isGetPatients = true;
+          this.showTables = false;
+        }
+      });
+    }
   }
 
   getCard(patient: Composite) {
+    this.isGetSelectedPatient = false;
     this.checkPatient(patient);
     this.isGetCards = true;
     this.childComponent.getCard(patient);
