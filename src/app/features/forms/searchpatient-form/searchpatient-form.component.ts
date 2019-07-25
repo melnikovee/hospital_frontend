@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher, MatDialog} from '@angular/material';
+import {ErrorStateMatcher} from '@angular/material';
 import {CardFormComponent} from '../card-form/card-form.component';
 import {Composite} from '../../_models/composite';
 import {Diagnosis} from '../../_models/diagnosis';
@@ -53,7 +53,7 @@ export class SearchPatientFormComponent implements OnInit {
   @ViewChild(CardFormComponent, {static: false})
   private childComponent!: CardFormComponent;
 
-  constructor(private compositeService: CompositeService, public dialog: MatDialog,
+  constructor(private compositeService: CompositeService,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
               private scheduleService: ScheduleService, private userService: UserService) {}
 
@@ -79,7 +79,7 @@ export class SearchPatientFormComponent implements OnInit {
     this.isGetSelectedPatient = false;
     this.checkPatient(patient);
     this.isGetCards = true;
-    this.childComponent.getCard(patient);
+    this.childComponent.getCard(patient.id);
   }
 
   addDiagnosis() {
