@@ -16,9 +16,9 @@ export class CardFormComponent {
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
   constructor(private compositeService: CompositeService, private dialog: MatDialog) {}
 
-  getCard(patient: Composite) {
+  getCard(patient: number) {
 
-    this.compositeService.getDiagnosisByPatient(patient.id).subscribe(data => {
+    this.compositeService.getDiagnosisByPatient(patient).subscribe(data => {
       this.patientCard = data;
     });
   }

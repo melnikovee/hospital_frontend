@@ -42,6 +42,7 @@ import {MaterialAppModule} from '../ngmaterial.module';
 import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-update-form/doctor-specialty-update-form.component';
 import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
 import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
+import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-form.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form
     AdminUpdateFormComponent,
     DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
-    PatientsPastVisitsFormComponent
+    PatientsPastVisitsFormComponent,
+    PatientCardFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -97,7 +99,8 @@ import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form
     AdminUpdateFormComponent,
     DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
-    PatientsPastVisitsFormComponent
+    PatientsPastVisitsFormComponent,
+    PatientCardFormComponent
   ],
   imports: [
     CommonModule,
