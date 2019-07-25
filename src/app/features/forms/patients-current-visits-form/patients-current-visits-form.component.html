@@ -1,4 +1,4 @@
-<table [dataSource]="foundPatientTimeslots" class="mat-elevation-z8" mat-table>
+<table [dataSource]="foundPatientTimeslots" mat-table>
 
   <ng-container matColumnDef="doctorName">
     <th *matHeaderCellDef mat-header-cell>Доктор</th>
@@ -29,8 +29,8 @@
     <th *matHeaderCellDef mat-header-cell>Запись</th>
     <td *matCellDef="let element" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <mat-button-toggle value="underline" (click)="cancelRecord(element)">Отменить запись
-        </mat-button-toggle>
+        <button mat-flat-button color="primary" value="underline" (click)="cancelRecord(element)">Отменить запись
+        </button>
       </mat-button-toggle-group>
     </td>
   </ng-container>

@@ -36,7 +36,7 @@ export class SearchPatientFormComponent implements OnInit {
   isGetCards!: boolean;
   timeSlotsForCheck!: Timeslot[];
   currentDoctorSpecialty!: number;
-  hardcodedDoctor = 2;
+  hardcodedDoctor = 18;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
 
   opinion = new FormControl();

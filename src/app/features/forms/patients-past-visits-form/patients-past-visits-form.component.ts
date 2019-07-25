@@ -11,7 +11,7 @@ export class PatientsPastVisitsFormComponent implements OnInit {
 
   foundPatientTimeslots!: PatientTimeslot[];
   displayedColumns: string[] = ['doctorName', 'specialtyName', 'cabinetName', 'date', 'time'];
-  hardcodedPatient = 5;
+  hardcodedPatient = 34;
 
   constructor(private timeslotService: TimeslotService) {
   }
