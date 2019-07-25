@@ -1,34 +1,32 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table [dataSource]="foundPatientTimeslots" class="mat-elevation-z8" mat-table>
+<table [dataSource]="foundPatientTimeslots" mat-table>
 
-      <ng-container matColumnDef="doctorName">
-        <th *matHeaderCellDef mat-header-cell>Доктор</th>
-        <td *matCellDef="let element" mat-cell> {{element.doctorName}} </td>
-      </ng-container>
+  <ng-container matColumnDef="doctorName">
+    <th *matHeaderCellDef mat-header-cell>Доктор</th>
+    <td *matCellDef="let element" mat-cell> {{element.doctorName}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="specialtyName">
-        <th *matHeaderCellDef mat-header-cell>Специальность</th>
-        <td *matCellDef="let element" mat-cell> {{element.specialtyName}} </td>
-      </ng-container>
+  <ng-container matColumnDef="specialtyName">
+    <th *matHeaderCellDef mat-header-cell>Специальность</th>
+    <td *matCellDef="let element" mat-cell> {{element.specialtyName}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="cabinetName">
-        <th *matHeaderCellDef mat-header-cell>Кабинет</th>
-        <td *matCellDef="let element" mat-cell> {{element.cabinetName}} </td>
-      </ng-container>
+  <ng-container matColumnDef="cabinetName">
+    <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+    <td *matCellDef="let element" mat-cell> {{element.cabinetName}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th *matHeaderCellDef mat-header-cell>Дата</th>
-        <td *matCellDef="let element" mat-cell> {{element.date}} </td>
-      </ng-container>
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell>Дата</th>
+    <td *matCellDef="let element" mat-cell> {{element.date}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="time">
-        <th *matHeaderCellDef mat-header-cell>Время</th>
-        <td *matCellDef="let element" mat-cell> {{element.time}} </td>
-      </ng-container>
+  <ng-container matColumnDef="time">
+    <th *matHeaderCellDef mat-header-cell>Время</th>
+    <td *matCellDef="let element" mat-cell> {{element.time}} </td>
+  </ng-container>
 
-      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-    </table>
-  </div>
-</div>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+

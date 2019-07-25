@@ -11,18 +11,22 @@ export class PatientsCurrentVisitsFormComponent implements OnInit {
 
   foundPatientTimeslots!: PatientTimeslot[];
   displayedColumns: string[] = ['doctorName', 'specialtyName', 'cabinetName', 'date', 'time', 'record'];
-  hardcodedPatient = 5;
+  hardcodedPatient = 34;
 
   constructor(private timeslotService: TimeslotService) {
   }
 
   ngOnInit(): void {
+    this.reloadData();
+  }
+  reloadData() {
     this.timeslotService.getCurrentTimeslotsByPatient(this.hardcodedPatient).subscribe(data => {
       this.foundPatientTimeslots = data;
     });
   }
-
   cancelRecord(record: PatientTimeslot) {
-    this.timeslotService.cancelRecord(record.id).subscribe();
+    this.timeslotService.cancelRecord(record.id).subscribe(data => {
+      this.reloadData();
+    });
   }
 }

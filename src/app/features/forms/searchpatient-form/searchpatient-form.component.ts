@@ -55,11 +55,11 @@ export class SearchPatientFormComponent implements OnInit {
 
   constructor(private compositeService: CompositeService, public dialog: MatDialog,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
-              private scheduleService: ScheduleService, private userService: UserService) {
-  }
+              private scheduleService: ScheduleService, private userService: UserService) {}
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
+    this.isGetPatients = false;
     this.showTables = true;
     this.isGetCards = false;
     this.isGetSelectedPatient = false;
@@ -124,3 +124,4 @@ export class SearchPatientFormComponent implements OnInit {
     return false;
   }
 }
+

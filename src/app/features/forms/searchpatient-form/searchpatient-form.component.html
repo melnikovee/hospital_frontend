@@ -10,7 +10,7 @@
 
   <div *ngIf="foundPatients !== undefined && foundPatients.length === 0">Пациентов с выбранной фамилией не найдено</div>
 
-  <mat-button-toggle (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</mat-button-toggle>
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</button>
 </form>
 
 <p></p>
@@ -32,8 +32,8 @@
       <th *matHeaderCellDef mat-header-cell>Карта</th>
       <td *matCellDef="let element" mat-cell>
         <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-          <mat-button-toggle (click)="getCard(element)" value="underline">Просмотреть
-          </mat-button-toggle>
+          <button mat-flat-button color="primary" (click)="getCard(element)" value="underline">Просмотреть
+          </button>
         </mat-button-toggle-group>
       </td>
     </ng-container>
@@ -53,10 +53,10 @@
 </div>
 
 <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-      <mat-button-toggle [ngClass]="{'disabled-button' : !isGetSelectedPatient}" [hidden]="!isGetCards"
+      <button mat-flat-button color="primary" [ngClass]="{'disabled-button' : !isGetSelectedPatient}" [hidden]="!isGetCards"
                          [disabled]="!isGetSelectedPatient" (click)="addDiagnosis()" value="underline">
     Добавить заключение
-  </mat-button-toggle>
+  </button>
 </mat-button-toggle-group>
 
 
