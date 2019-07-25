@@ -59,7 +59,6 @@ export class SearchPatientFormComponent implements OnInit {
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
-    this.isGetPatients = false;
     this.showTables = true;
     this.isGetCards = false;
     this.isGetSelectedPatient = false;
