@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Schedule} from '../_models/schedule';
 import {Cabinet} from '../_models/cabinet';
@@ -33,6 +33,11 @@ export class ScheduleService {
 
   public save(schedule: Schedule) {
     return this.http.post<Schedule>(this.schedulsUrl, schedule);
+  }
+
+  // tslint:disable-next-line:no-any
+  deleteSchedule(id: number): Observable<any> {
+    return this.http.delete(`${this.schedulsUrl}/${id}`);
   }
 }
 

@@ -11,10 +11,10 @@
     </mat-error>
   </mat-form-field>
 
-  <div *ngIf="foundDoctors !== undefined && foundDoctors.length === 0">Докторов с выбранной фамилией не найдено</div>
+      <div *ngIf="foundDoctors !== undefined && foundDoctors.length === 0">Докторов с выбранной фамилией не найдено</div>
 
-  <button mat-flat-button color="primary" value="bold" [disabled]="!spForm.valid" (click)="onSubmit()">Принять</button>
-</form>
+      <button mat-flat-button color="primary" value="bold" [disabled]="!spForm.valid" (click)="onSubmit()">Принять</button>
+    </form>
 
 <p></p>
 
@@ -25,16 +25,16 @@
     <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="specialties">
-    <th mat-header-cell *matHeaderCellDef>Специальность</th>
-    <td mat-cell *matCellDef="let element">
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <button mat-flat-button color="primary" value="underline" (click)="getSpecialties(element)">
-          Просмотреть
-        </button>
-      </mat-button-toggle-group>
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="specialties">
+        <th mat-header-cell *matHeaderCellDef>Специальность</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <button mat-flat-button color="primary" value="underline" (click)="getSpecialties(element)">
+              Просмотреть
+            </button>
+          </mat-button-toggle-group>
+        </td>
+      </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="doctorsColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: doctorsColumns;"></tr>
@@ -55,16 +55,16 @@
       <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="specialties">
-      <th mat-header-cell *matHeaderCellDef>Специальность</th>
-      <td mat-cell *matCellDef="let element">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <button mat-flat-button color="primary" value="underline" (click)="deleteSpecialty(element)">
-            Удалить
-          </button>
-        </mat-button-toggle-group>
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="specialties">
+          <th mat-header-cell *matHeaderCellDef>Специальность</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+              <button mat-flat-button color="primary" value="underline" (click)="deleteSpecialty(element)">
+                Удалить
+              </button>
+            </mat-button-toggle-group>
+          </td>
+        </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="specialtiesColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: specialtiesColumns;"></tr>
@@ -78,6 +78,6 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-flat-button color="primary" value="bold" (click)="putSpecialties()">Добавить специальность</button>
-</div>
+      <button mat-flat-button color="primary" value="bold" (click)="putSpecialties()">Добавить специальность</button>
+    </div>
 

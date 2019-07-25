@@ -31,7 +31,8 @@
     <th *matHeaderCellDef mat-header-cell>Запись</th>
     <td *matCellDef="let element" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="primary" [disabled]="!checkPatient(element)" value="underline">
+        <button mat-flat-button color="primary" [ngClass]="{'disabled-button' : !checkPatient(element)}"
+                           [disabled]="!checkPatient(element)" (click)="makeAppointment(element.id)" value="underline">
           Записать пациента на приём
         </button>
       </mat-button-toggle-group>

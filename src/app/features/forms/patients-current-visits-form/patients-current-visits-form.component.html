@@ -25,15 +25,15 @@
     <td *matCellDef="let element" mat-cell> {{element.time}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="record">
-    <th *matHeaderCellDef mat-header-cell>Запись</th>
-    <td *matCellDef="let element" mat-cell>
-      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="primary" value="underline" (click)="cancelRecord(element)">Отменить запись
-        </button>
-      </mat-button-toggle-group>
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="record">
+        <th *matHeaderCellDef mat-header-cell>Запись</th>
+        <td *matCellDef="let element" mat-cell>
+          <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+            <button mat-flat-button color="primary" value="underline" (click)="cancelRecord(element)">Отменить запись
+            </button>
+          </mat-button-toggle-group>
+        </td>
+      </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>

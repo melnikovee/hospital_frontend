@@ -17,10 +17,8 @@ export class PatientsPastVisitsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.hardcodedPatient);
     this.timeslotService.getPastTimeslotsByPatient(this.hardcodedPatient).subscribe(data => {
       this.foundPatientTimeslots = data;
     });
   }
 }
-

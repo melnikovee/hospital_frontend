@@ -13,7 +13,6 @@ export class CardFormComponent {
   selectedOpinion = new Composite(0, 0, '', '', '',
     '', '', '', '', false, '', '', '');
   patientCard!: Composite[];
-  isGetCards!: boolean;
   displayedColumns: string[] = ['doctor', 'date', 'specialty', 'medicalOpinion'];
   constructor(private compositeService: CompositeService, private dialog: MatDialog) {}
 

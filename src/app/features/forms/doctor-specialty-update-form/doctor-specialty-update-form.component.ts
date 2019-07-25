@@ -51,14 +51,17 @@ export class DoctorSpecialtyUpdateFormComponent {
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
     this.isGetSelectedDoctor = false;
+    this.isGetDoctors = false;
 
-    this.userService.getDoctorsByLastName(this.lastName).subscribe(data => {
-      this.foundDoctors = data;
+    if (this.lastName !== '') {
+      this.userService.getDoctorsByLastName(this.lastName).subscribe(data => {
+        this.foundDoctors = data;
 
-      if (data.length !== 0) {
-        this.isGetDoctors = true;
-      }
-    });
+        if (data.length !== 0) {
+          this.isGetDoctors = true;
+        }
+      });
+    }
   }
 
   // tslint:disable-next-line:no-any
@@ -83,7 +86,6 @@ export class DoctorSpecialtyUpdateFormComponent {
   }
 
   putSpecialties() {
-    console.log(this.addingSpecialties.value);
     for (const spec of this.addingSpecialties.value) {
       this.doctorSpecialtyService.save(new DoctorSpecialty(this.selectedDoctor.id, spec.id)).subscribe();
     }
