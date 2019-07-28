@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -21,6 +21,7 @@ export class AdminUpdateFormComponent implements OnInit {
   user = new User('', '', '', '', '', '');
   currentUser!: User;
   done!: boolean;
+  id!: number;
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -44,10 +45,18 @@ export class AdminUpdateFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private userService: UserService) {}
+              private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    this.userService.getUserById(13).subscribe(data => {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
       console.log(this.currentUser);
     });
@@ -70,7 +79,7 @@ export class AdminUpdateFormComponent implements OnInit {
 
   onSubmit() {
     this.putData();
-    this.userService.updateUser(13, this.user).subscribe();
+    this.userService.updateUser(this.id, this.user).subscribe();
     this.done = true;
   }
 }

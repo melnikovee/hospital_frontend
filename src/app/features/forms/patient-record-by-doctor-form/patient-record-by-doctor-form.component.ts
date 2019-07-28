@@ -18,6 +18,8 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
   lastName!: string;
   isGetPatients!: boolean;
   timeSlotsForCheck!: Timeslot[];
+  id!: number;
+
   lastNameFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -47,7 +49,14 @@ export class PatientRecordByDoctorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timeslotService.getTimeslotsForRecord(18).subscribe(data => {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.timeslotService.getTimeslotsForRecord(this.id).subscribe(data => {
       this.timeSlotsForCheck = data;
     });
   }

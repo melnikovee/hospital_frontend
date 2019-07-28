@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -25,6 +25,7 @@ export class PatientUpdateFormComponent implements OnInit {
   patient = new Patient('', '');
   currentUser!: User;
   currentPatient!: Patient;
+  id!: number;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -54,17 +55,24 @@ export class PatientUpdateFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private patientService: PatientService, private userService: UserService) {}
+              private patientService: PatientService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    this.patientService.getPatientById(23).subscribe(data => {
+
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.patientService.getPatientById(this.id).subscribe(data => {
       this.currentPatient = data;
-      console.log(this.currentPatient);
     });
 
-    this.userService.getUserById(23).subscribe(data => {
+    this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
-      console.log(this.currentUser);
     });
   }
 
@@ -90,7 +98,7 @@ export class PatientUpdateFormComponent implements OnInit {
   onSubmit() {
     this.putData();
 
-    this.userService.updateUser(23, this.user).subscribe();
-    this.patientService.updatePatient(23, this.patient).subscribe();
+    this.userService.updateUser(this.id, this.user).subscribe();
+    this.patientService.updatePatient(this.id, this.patient).subscribe();
   }
 }

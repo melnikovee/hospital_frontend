@@ -34,7 +34,6 @@ export class DoctorSpecialtyUpdateFormComponent {
   addingSpecialties: FormControl = new FormControl();
 
   lastNameFormControl = new FormControl('', [
-    Validators.pattern('[A-Z][a-z]{1,31}'),
     Validators.required
   ]);
 

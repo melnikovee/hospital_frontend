@@ -36,7 +36,7 @@ export class SearchPatientFormComponent implements OnInit {
   isGetCards!: boolean;
   timeSlotsForCheck!: Timeslot[];
   currentDoctorSpecialty!: number;
-  hardcodedDoctor = 4;
+  id!: number;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
 
   opinion = new FormControl();
@@ -55,13 +55,15 @@ export class SearchPatientFormComponent implements OnInit {
 
   constructor(private compositeService: CompositeService,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
-              private scheduleService: ScheduleService, private userService: UserService) {}
+              private scheduleService: ScheduleService, private userService: UserService) {
+  }
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
     this.showTables = true;
     this.isGetCards = false;
     this.isGetSelectedPatient = false;
+    this.showAddForm = false;
 
     if (this.lastName !== '') {
       this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
@@ -100,7 +102,14 @@ export class SearchPatientFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.timeslotService.getTimeslotsForDoctor(this.hardcodedDoctor).subscribe(data => {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.timeslotService.getTimeslotsForDoctor(this.id).subscribe(data => {
       this.timeSlotsForCheck = data;
     });
   }

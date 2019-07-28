@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CardFormComponent} from '../card-form/card-form.component';
 
 @Component({
@@ -6,9 +6,9 @@ import {CardFormComponent} from '../card-form/card-form.component';
   templateUrl: './patient-card-form.component.html',
   styleUrls: ['./patient-card-form.component.css']
 })
-export class PatientCardFormComponent {
+export class PatientCardFormComponent implements OnInit {
 
-  hardcodedPatient = 5;
+  id!: number;
   showTable!: boolean;
 
   @ViewChild(CardFormComponent, {static: false})
@@ -19,6 +19,15 @@ export class PatientCardFormComponent {
 
   getCards() {
     this.showTable = true;
-    this.childComponent.getCard(this.hardcodedPatient);
+    this.childComponent.getCard(this.id);
+  }
+
+  ngOnInit(): void {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
   }
 }
