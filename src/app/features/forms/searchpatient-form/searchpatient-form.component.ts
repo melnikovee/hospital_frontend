@@ -90,7 +90,7 @@ export class SearchPatientFormComponent implements OnInit {
     this.showTables = !this.showTables;
 
     if (this.diagnosis === undefined) {
-      this.diagnosis = new Diagnosis(this.selectedPatient.id, this.hardcodedDoctor, this.currentDoctorSpecialty);
+      this.diagnosis = new Diagnosis(this.selectedPatient.id, this.id, this.currentDoctorSpecialty);
     } else {
       this.diagnosis.medicalOpinion = this.opinion.value;
 
@@ -121,7 +121,7 @@ export class SearchPatientFormComponent implements OnInit {
         this.isGetSelectedPatient = true;
         this.selectedPatient = patient;
 
-        this.scheduleService.getScheduleByDoctorAndCurrentDate(this.hardcodedDoctor).subscribe(data => {
+        this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
           this.currentDoctorSpecialty = data.specialty;
         });
 
