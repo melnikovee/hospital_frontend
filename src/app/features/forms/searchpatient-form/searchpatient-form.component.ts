@@ -36,7 +36,7 @@ export class SearchPatientFormComponent implements OnInit {
   isGetCards!: boolean;
   timeSlotsForCheck!: Timeslot[];
   currentDoctorSpecialty!: number;
-  hardcodedDoctor = 4;
+  id!: number;
   displayedColumns: string[] = ['patient', 'birthday', 'card'];
 
   opinion = new FormControl();
@@ -55,13 +55,15 @@ export class SearchPatientFormComponent implements OnInit {
 
   constructor(private compositeService: CompositeService,
               private diagnosisService: DiagnosisService, private timeslotService: TimeslotService,
-              private scheduleService: ScheduleService, private userService: UserService) {}
+              private scheduleService: ScheduleService, private userService: UserService) {
+  }
 
   onSubmit() {
     this.lastName = this.spForm.controls.lastName.value;
     this.showTables = true;
     this.isGetCards = false;
     this.isGetSelectedPatient = false;
+    this.showAddForm = false;
 
     if (this.lastName !== '') {
       this.userService.getPatientsByLastName(this.lastName).subscribe(data => {
@@ -88,7 +90,7 @@ export class SearchPatientFormComponent implements OnInit {
     this.showTables = !this.showTables;
 
     if (this.diagnosis === undefined) {
-      this.diagnosis = new Diagnosis(this.selectedPatient.id, this.hardcodedDoctor, this.currentDoctorSpecialty);
+      this.diagnosis = new Diagnosis(this.selectedPatient.id, this.id, this.currentDoctorSpecialty);
     } else {
       this.diagnosis.medicalOpinion = this.opinion.value;
 
@@ -100,7 +102,14 @@ export class SearchPatientFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.timeslotService.getTimeslotsForDoctor(this.hardcodedDoctor).subscribe(data => {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.timeslotService.getTimeslotsForDoctor(this.id).subscribe(data => {
       this.timeSlotsForCheck = data;
     });
   }
@@ -112,7 +121,7 @@ export class SearchPatientFormComponent implements OnInit {
         this.isGetSelectedPatient = true;
         this.selectedPatient = patient;
 
-        this.scheduleService.getScheduleByDoctorAndCurrentDate(this.hardcodedDoctor).subscribe(data => {
+        this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
           this.currentDoctorSpecialty = data.specialty;
         });
 

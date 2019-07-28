@@ -11,13 +11,20 @@ export class PatientsPastVisitsFormComponent implements OnInit {
 
   foundPatientTimeslots!: PatientTimeslot[];
   displayedColumns: string[] = ['doctorName', 'specialtyName', 'cabinetName', 'date', 'time'];
-  hardcodedPatient = 34;
 
   constructor(private timeslotService: TimeslotService) {
   }
 
   ngOnInit(): void {
-    this.timeslotService.getPastTimeslotsByPatient(this.hardcodedPatient).subscribe(data => {
+
+    let id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      id = parseInt(stringId, 10);
+    }
+
+    this.timeslotService.getPastTimeslotsByPatient(id).subscribe(data => {
       this.foundPatientTimeslots = data;
     });
   }

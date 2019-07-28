@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -25,6 +25,8 @@ export class DoctorUpdateFormComponent implements OnInit {
   doctor = new Doctor('');
   currentUser!: User;
   currentDoctor!: Doctor;
+  id!: number;
+
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -53,15 +55,23 @@ export class DoctorUpdateFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private doctorService: DoctorService, private userService: UserService) {}
+              private doctorService: DoctorService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    this.doctorService.getDoctorById(15).subscribe(data => {
+    this.id = -1;
+    const stringId = localStorage.getItem('id');
+
+    if (stringId) {
+      this.id = parseInt(stringId, 10);
+    }
+
+    this.doctorService.getDoctorById(this.id).subscribe(data => {
       this.currentDoctor = data;
       console.log(this.currentDoctor);
     });
 
-    this.userService.getUserById(15).subscribe(data => {
+    this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
       console.log(this.currentUser);
     });
@@ -91,7 +101,7 @@ export class DoctorUpdateFormComponent implements OnInit {
     console.log(this.user);
     console.log(this.doctor);
 
-    this.userService.updateUser(15, this.user).subscribe();
-    this.doctorService.updateDoctor(15, this.doctor).subscribe();
+    this.userService.updateUser(this.id, this.user).subscribe();
+    this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
   }
 }

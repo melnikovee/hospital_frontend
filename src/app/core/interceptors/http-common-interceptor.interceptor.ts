@@ -24,21 +24,15 @@ export class HttpCommonInterceptor implements HttpInterceptor {
     let modified;
 
     const idToken = localStorage.getItem('token');
-    console.log(idToken);
-
 
     modified = req.clone({
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
 
-    console.log(req.method);
     const cloned = modified.clone({
       headers: modified.headers.set('Authorization',
         'Bearer ' + idToken)
     });
-
-    console.log(cloned.headers);
-    console.log(cloned.body);
 
     return next.handle(cloned).pipe(
       tap(res => {

@@ -51,6 +51,11 @@ export class UserService {
     return this.http.post<{authToken: string, refreshToken: string}>('http://localhost:8080/login',
       {login, password}).subscribe(res => {
       localStorage.setItem('token', res.authToken);
+
+      const helper = new JwtHelperService();
+      const id = helper.decodeToken(res.authToken).id;
+
+      localStorage.setItem('id', id);
     });
   }
 }
