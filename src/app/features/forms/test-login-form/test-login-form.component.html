@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="login" matInput
+           placeholder="Логин">
+    <mat-error *ngIf="loginFormControl.hasError('maxLength') && !loginFormControl.hasError('required')">
+      Пожалуйста введите логин
+    </mat-error>
+    <mat-error *ngIf="loginFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="password" matInput
+           placeholder="Пароль">
+    <mat-error *ngIf="passwordFormControl.hasError('maxLength') && !passwordFormControl.hasError('required')">
+      Пожалуйста введите пароль
+    </mat-error>
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!loginForm.valid" value="bold">
+    Вход
+  </button>
+
+  <div>
+    <p>Текущий пользователь: {{currentUser}}</p>
+  </div>
+</form>
+
+<button mat-flat-button color="primary" (click)="logout()"value="bold">
+  Выход
+</button>

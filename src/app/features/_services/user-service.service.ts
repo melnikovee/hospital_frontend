@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DoctorFullName} from '../_models/doctor-full-name';
 import {PatientFullName} from '../_models/patient-full-name';
 import {User} from '../_models/user';
+import {LoginInfo} from '../_models/login-info';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,13 @@ export class UserService {
 
   updateUser(id: number, user: User) {
     return this.http.put(`${this.usersUrl}/${id}`, user);
+  }
+
+  login(login: string, password: string) {
+    return this.http.post<{authToken: string, refreshToken: string}>('http://localhost:8080/login',
+      {login, password}).subscribe(res => {
+      localStorage.setItem('token', res.authToken);
+    });
   }
 }
 
