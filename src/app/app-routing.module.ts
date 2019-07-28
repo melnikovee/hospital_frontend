@@ -23,6 +23,7 @@ import {DoctorUpdateFormComponent} from './features/forms/doctor-update-form/doc
 import {DoctorTimeslotsListComponent} from './features/lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
+import {TestLoginFormComponent} from './features/forms/test-login-form/test-login-form.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -47,7 +48,8 @@ const routes: Routes = [
   {path: 'updateadmin', component: AdminUpdateFormComponent},
   {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent},
   {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent},
-  {path: 'patientcard', component: PatientCardFormComponent}
+  {path: 'patientcard', component: PatientCardFormComponent},
+  {path: 'login', component: TestLoginFormComponent}
 ];
 
 @NgModule({

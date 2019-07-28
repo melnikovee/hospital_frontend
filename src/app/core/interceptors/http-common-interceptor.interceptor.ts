@@ -13,18 +13,34 @@ import {catchError, tap} from 'rxjs/operators';
 @Injectable()
 export class HttpCommonInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor() {
+  }
 
   // tslint:disable-next-line:no-any
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // tslint:disable-next-line:no-console
     console.info('request to', req.url, req.body);
 
-    const modified = req.clone({
+    let modified;
+
+    const idToken = localStorage.getItem('token');
+    console.log(idToken);
+
+
+    modified = req.clone({
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
 
-    return next.handle(modified).pipe(
+    console.log(req.method);
+    const cloned = modified.clone({
+      headers: modified.headers.set('Authorization',
+        'Bearer ' + idToken)
+    });
+
+    console.log(cloned.headers);
+    console.log(cloned.body);
+
+    return next.handle(cloned).pipe(
       tap(res => {
         if (res.type === HttpEventType.Response) {
           // tslint:disable-next-line:no-console

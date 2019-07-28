@@ -43,6 +43,7 @@ import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-updat
 import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
 import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
 import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-form.component';
+import {TestLoginFormComponent} from './forms/test-login-form/test-login-form.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-f
     DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
     PatientsPastVisitsFormComponent,
-    PatientCardFormComponent
+    PatientCardFormComponent,
+    TestLoginFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -100,7 +102,8 @@ import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-f
     DoctorSpecialtyUpdateFormComponent,
     PatientsCurrentVisitsFormComponent,
     PatientsPastVisitsFormComponent,
-    PatientCardFormComponent
+    PatientCardFormComponent,
+    TestLoginFormComponent
   ],
   imports: [
     CommonModule,
