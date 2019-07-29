@@ -24,6 +24,10 @@ import {DoctorTimeslotsListComponent} from './features/lists/doctor-timeslots-li
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
 import {TestLoginFormComponent} from './features/forms/test-login-form/test-login-form.component';
+import {AdminHomepageComponent} from './features/home/admin-homepage/admin-homepage.component';
+import {DoctorHomepageComponent} from './features/home/doctor-homepage/doctor-homepage.component';
+import {PatientHomepageComponent} from './features/home/patient-homepage/patient-homepage.component';
+
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent},
@@ -49,13 +53,18 @@ const routes: Routes = [
   {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent},
   {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent},
   {path: 'patientcard', component: PatientCardFormComponent},
-  {path: 'login', component: TestLoginFormComponent}
+  {path: 'login', component: TestLoginFormComponent},
+  {path: 'admin', component: AdminHomepageComponent},
+  {path: 'doctor', component: DoctorHomepageComponent},
+  {path: 'patient', component: PatientHomepageComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+
 })
 export class AppRoutingModule {
 }
+
 

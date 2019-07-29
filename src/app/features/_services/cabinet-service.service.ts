@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Cabinet} from '../_models/cabinet';
 
@@ -24,6 +24,8 @@ export class CabinetService {
   }
 
   deleteCabinet(id: number) {
-    return this.http.delete(`${this.cabinetsUrl}/${id}`);
+    return this.http.delete(`${this.cabinetsUrl}/${id}`,
+      {headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
   }
 }

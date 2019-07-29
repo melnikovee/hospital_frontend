@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {DoctorFullName} from '../_models/doctor-full-name';
 import {PatientFullName} from '../_models/patient-full-name';
 import {User} from '../_models/user';
-import {LoginInfo} from '../_models/login-info';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
@@ -54,8 +53,11 @@ export class UserService {
 
       const helper = new JwtHelperService();
       const id = helper.decodeToken(res.authToken).id;
-
       localStorage.setItem('id', id);
+      const role = helper.decodeToken(res.authToken).role;
+      localStorage.setItem('role', role);
+      const loginFromToken = helper.decodeToken(res.authToken).login;
+      localStorage.setItem('login', loginFromToken);
     });
   }
 }

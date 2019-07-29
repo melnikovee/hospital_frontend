@@ -36,7 +36,7 @@ export class DoctorUpdateFormComponent implements OnInit {
   ]);
 
   phoneFormControl = new FormControl('', [
-    Validators.pattern('[0-9]{1,11}')
+    Validators.pattern('[0-9]{1,32}')
   ]);
 
   emailFormControl = new FormControl('', [

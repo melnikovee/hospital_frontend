@@ -3,10 +3,11 @@ import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BodyComponent} from './body/body.component';
-import {HTTP_COMMON_INTERCEPTOR_PROVIDER} from './interceptors/http-common-interceptor.interceptor';
 import {RouterModule} from '@angular/router';
-import {MatButtonModule, MatNativeDateModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatMenuModule, MatNativeDateModule, MatToolbarModule} from '@angular/material';
 import {FeaturesModule} from '../features/features.module';
+import {SharedModule} from '../_shared/shared.module';
+import {HTTP_COMMON_INTERCEPTOR_PROVIDER} from './interceptors/http-common-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,16 @@ import {FeaturesModule} from '../features/features.module';
     RouterModule,
     MatToolbarModule,
     MatButtonModule,
+
     MatNativeDateModule,
+    SharedModule,
+    MatMenuModule,
+    MatIconModule
+
   ],
   providers: [
     HTTP_COMMON_INTERCEPTOR_PROVIDER
-  ]
+     ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() coreModule?: CoreModule) {
