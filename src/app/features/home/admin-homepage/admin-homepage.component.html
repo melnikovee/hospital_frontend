@@ -1,16 +1,27 @@
+<mat-list>
+  <h3 mat-subheader>Личный кабинет</h3>
+  <mat-list-item *ngFor="let folder of folders">
+    <h4 mat-line>{{folder.name}}</h4>
+    <p mat-line> {{folder.value}} </p>
+  </mat-list-item>
+</mat-list>
+<a mat-button routerLink="/users">List Users</a>
+<a mat-button routerLink="/cabinets">List Cabinets</a>
+<a mat-button routerLink="/specialties">List Specialties</a>
+<a mat-button routerLink="/patients">List Patients</a>
+<a mat-button routerLink="/doctors">List Doctors</a>
+<a mat-button routerLink="/timeslots">Timeslots</a>
+<a mat-button routerLink="/addadmin">Add Admin</a>
+<a mat-button routerLink="/addcabinet">Add Cabinet</a>
+<a mat-button routerLink="/addpatient">Add Patient</a>
+<a mat-button routerLink="/adddoctor">Add Doctor</a>
+<a mat-button routerLink="/addspecialty">Add Specialty</a>
+<a mat-button routerLink="/updatedoctor">Update Doctor</a>
+<a mat-button routerLink="/updatepatient">Update Patient</a>
+<a mat-button routerLink="/updateadmin">Update Admin</a>
+<a mat-button routerLink="/updatespecialtydoctor">Update Doctor's specialty</a>
 
-  <a mat-button routerLink="/users">List Users</a>
-  <a mat-button routerLink="/cabinets">List Cabinets</a>
-  <a mat-button routerLink="/specialties">List Specialties</a>
-  <a mat-button routerLink="/patients">List Patients</a>
-  <a mat-button routerLink="/doctors">List Doctors</a>
-  <a mat-button routerLink="/timeslots">Timeslots</a>
-  <a mat-button routerLink="/addadmin">Add Admin</a>
-  <a mat-button routerLink="/addcabinet">Add Cabinet</a>
-  <a mat-button routerLink="/addpatient">Add Patient</a>
-  <a mat-button routerLink="/adddoctor">Add Doctor</a>
-  <a mat-button routerLink="/addspecialty">Add Specialty</a>
-  <a mat-button routerLink="/updatedoctor">Update Doctor</a>
-  <a mat-button routerLink="/updatepatient">Update Patient</a>
-  <a mat-button routerLink="/updateadmin">Update Admin</a>
-  <a mat-button routerLink="/updatespecialtydoctor">Update Doctor's specialty</a>
+
+
+
+

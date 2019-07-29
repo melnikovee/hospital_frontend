@@ -4,6 +4,8 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {ErrorStateMatcher} from '@angular/material';
 import {Router} from '@angular/router';
 import {CurrentUser} from '../../_models/current-user';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {delay} from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -44,16 +46,19 @@ export class TestLoginFormComponent implements OnInit {
   onSubmit() {
     const login = this.loginForm.controls.login.value;
     const password = this.loginForm.controls.password.value;
-
     this.userService.login(login, password);
     this.reloadData();
     this.navigateByRole();
   }
 
   reloadData() {
-    this.currentUser.id = localStorage.getItem('id');
-    this.currentUser.role = localStorage.getItem('role');
-    this.currentUser.login = localStorage.getItem('login');
+    const token = localStorage.getItem('token');
+    if (token) {
+      const helper = new JwtHelperService();
+      this.currentUser.login = helper.decodeToken(token).sub;
+      this.currentUser.id = localStorage.getItem('id');
+      this.currentUser.role = localStorage.getItem('role');
+    }
   }
 
   logout() {
@@ -64,9 +69,9 @@ export class TestLoginFormComponent implements OnInit {
   ngOnInit(): void {
     this.reloadData();
   }
-  navigateByRole() {
-    const role = this.currentUser.role;
-    console.log(role);
+  async navigateByRole() {
+    await this.sleep(3000);
+    const role = localStorage.getItem('role');
     if (role === 'ADMINISTRATOR') {
       this.router.navigate(['/admin']);
     }
@@ -76,5 +81,9 @@ export class TestLoginFormComponent implements OnInit {
     if (role === 'PATIENT') {
       this.router.navigate(['/patient']);
     }
+  }
+
+  sleep(ms: number) {
+    return new Promise(r => setTimeout(r, ms));
   }
 }

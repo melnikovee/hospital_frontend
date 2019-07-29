@@ -24,8 +24,6 @@ export class CabinetService {
   }
 
   deleteCabinet(id: number) {
-    return this.http.delete(`${this.cabinetsUrl}/${id}`,
-      {headers: new HttpHeaders().set('Content-Type', 'application/json')
-    });
+    return this.http.delete(`${this.cabinetsUrl}/${id}`);
   }
 }
