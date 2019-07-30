@@ -23,19 +23,19 @@ export class LoginFormComponent implements OnInit {
   }
 
   getErrorLogin() {
-    return this._loginForm.controls['login'].hasError('required') ? 'Не может быть пустым' :
+    return this._loginForm.controls.login.value.hasError('required') ? 'Не может быть пустым' :
       '';
   }
 
   getErrorPassword() {
-    return this._loginForm.controls['password'].hasError('required') ? 'Не может быть пустым' :
+    return this._loginForm.controls.password.value.hasError('required') ? 'Не может быть пустым' :
       '';
   }
 
   handleLoginClick() {
     this.currentUserService.authenticate(
-      this._loginForm.controls['login'].value,
-      this._loginForm.controls['password'].value
+      this._loginForm.controls.login.value,
+      this._loginForm.controls.password.value
     ).subscribe(() => this.router.navigate(['']));
   }
 }

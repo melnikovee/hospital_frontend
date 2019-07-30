@@ -43,8 +43,7 @@ export class AdminHomepageComponent implements OnInit {
       },
       {
         name: 'ФИО',
-        value: this.user.middleName === null ? this.user.lastName + ' ' + this.user.firstName :
-          this.user.lastName + ' ' + this.user.firstName + ' ' + this.user.middleName,
+        value: this.user.lastName + ' ' + this.user.firstName + ' ' + this.user.middleName,
       }
     ];
   }

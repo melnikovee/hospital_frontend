@@ -82,9 +82,8 @@ export class HttpAuthInterceptorInterceptor implements HttpInterceptor {
     if (!(error instanceof HttpErrorResponse && error.status === 401)) {
       return throwError(error);
     }
-
     return throwError(Error('unauthorized after refresh')); // TODO: throw concreate error
-  };
+  }
 }
 
 export function authInterceptorFactory(currentUserService: CurrentUserService) {

@@ -69,7 +69,8 @@ export class CurrentUserService {
         Authorization: `Basic ${btoa('main-client:secret')}`
       })
     };
-    return this.httpClient.post<RawAuthInfo>('http://localhost:8080/login', JSON.stringify({login: login, password: password}), options).pipe(
+    return this.httpClient.post<RawAuthInfo>('http://localhost:8080/login',
+      JSON.stringify({login, password}), options).pipe(
       tap(auth => {
         this._auth$.next(auth);
       }),
