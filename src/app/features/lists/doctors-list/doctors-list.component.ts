@@ -32,7 +32,7 @@ export class DoctorsListComponent implements OnInit {
   }
 
   doctorSchedule(id: number) {
-    this.router.navigate(['/doctorTimeslots', id]);
+    this.router.navigate(['/doctorTimeslotsAdmin', id]);
   }
 
   createSchedule(id: number) {

@@ -20,13 +20,15 @@ import {AppointmentFormComponent} from './features/forms/appointment-form/appoin
 import {SpecialtyListComponent} from './features/lists/specialty-list/specialty-list.component';
 import {PatientRecordByDoctorFormComponent} from './features/forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {DoctorUpdateFormComponent} from './features/forms/doctor-update-form/doctor-update-form.component';
-import {DoctorTimeslotsListComponent} from './features/lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
 import {LoginFormComponent} from './features/forms/login-form/login-form.component';
 import {AdminHomepageComponent} from './features/home/admin-homepage/admin-homepage.component';
 import {DoctorHomepageComponent} from './features/home/doctor-homepage/doctor-homepage.component';
 import {PatientHomepageComponent} from './features/home/patient-homepage/patient-homepage.component';
+import {DoctorTimeslotsAdminFormComponent} from './features/forms/doctor-timeslots-admin-form/doctor-timeslots-admin-form.component';
+// tslint:disable-next-line:max-line-length
+import {DoctorTimeslotsForDoctorFormComponent} from './features/forms/doctor-timeslots-for-doctor-form/doctor-timeslots-for-doctor-form.component';
 
 
 const routes: Routes = [
@@ -47,7 +49,7 @@ const routes: Routes = [
   {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent},
   {path: 'updatedoctor', component: DoctorUpdateFormComponent},
   {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent},
-  {path: 'doctorTimeslots/:id', component: DoctorTimeslotsListComponent},
+  {path: 'doctorTimeslotsAdmin/:id', component: DoctorTimeslotsAdminFormComponent},
   {path: 'updatepatient', component: PatientUpdateFormComponent},
   {path: 'updateadmin', component: AdminUpdateFormComponent},
   {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent},
@@ -57,6 +59,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminHomepageComponent},
   {path: 'doctor', component: DoctorHomepageComponent},
   {path: 'patient', component: PatientHomepageComponent},
+  {path: 'doctorTimeslots', component: DoctorTimeslotsForDoctorFormComponent}
 ];
 
 @NgModule({

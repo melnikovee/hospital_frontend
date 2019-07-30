@@ -12,7 +12,6 @@ import {SharedModule} from './_shared/shared.module';
 import {GuardsCheckEnd, Router} from '@angular/router';
 import {filter, map} from 'rxjs/operators';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -45,5 +44,4 @@ export class AppModule {
       }
     });
   }
-
 }
