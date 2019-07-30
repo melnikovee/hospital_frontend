@@ -1,6 +1,6 @@
 import {APP_INITIALIZER, Injectable, Provider} from '@angular/core';
-import {Observable, of, OperatorFunction, ReplaySubject, throwError} from 'rxjs';
-import {delay, filter, first, map, shareReplay, skip, switchMap, tap} from 'rxjs/operators';
+import {Observable, ReplaySubject, throwError} from 'rxjs';
+import {filter, first, map, shareReplay, skip, switchMap, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 
@@ -57,8 +57,15 @@ export class CurrentUserService {
     this._auth$.pipe(skip(1)).subscribe(auth => {
       if (auth == undefined) {
         localStorage.removeItem('auth');
+        localStorage.removeItem('id');
       } else {
         localStorage.setItem('auth', JSON.stringify(auth));
+
+        this.auth$.subscribe(info => {
+          if (info) {
+            localStorage.setItem('id', info.id);
+          }
+        });
       }
     });
   }
