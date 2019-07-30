@@ -27,36 +27,48 @@ import {LoginFormComponent} from './features/forms/login-form/login-form.compone
 import {AdminHomepageComponent} from './features/home/admin-homepage/admin-homepage.component';
 import {DoctorHomepageComponent} from './features/home/doctor-homepage/doctor-homepage.component';
 import {PatientHomepageComponent} from './features/home/patient-homepage/patient-homepage.component';
+import {AdministratorGuard} from './core/auth/_guards/administrator.guard';
+import {DoctorGuard} from './core/auth/_guards/doctor.guard';
+import {PatientGuard} from './core/auth/_guards/patient.guard';
+import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor.guard';
+import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
+import {LoggedUserGuard} from './core/auth/_guards/logged-user.guard';
 
 
 const routes: Routes = [
-  {path: 'users', component: UserListComponent},
-  {path: 'cabinets', component: CabinetListComponent},
-  {path: 'patients', component: PatientsListComponent},
-  {path: 'doctors', component: DoctorsListComponent},
-  {path: 'addadmin', component: AdminFormComponent},
-  {path: 'addcabinet', component: CabinetFormComponent},
-  {path: 'addpatient', component: PatientFormComponent},
-  {path: 'adddoctor', component: DoctorFormComponent},
-  {path: 'addspecialty', component: SpecialtyFormComponent},
-  {path: 'timeslots', component: TimeslotsListComponent},
-  {path: 'searchpatient', component: SearchPatientFormComponent},
-  {path: 'createSchedule/:id', component: CreateScheduleFormComponent},
-  {path: 'makeAppointment/:id', component: AppointmentFormComponent},
-  {path: 'specialties', component: SpecialtyListComponent},
-  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent},
-  {path: 'updatedoctor', component: DoctorUpdateFormComponent},
-  {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent},
-  {path: 'doctorTimeslots/:id', component: DoctorTimeslotsListComponent},
-  {path: 'updatepatient', component: PatientUpdateFormComponent},
-  {path: 'updateadmin', component: AdminUpdateFormComponent},
-  {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent},
-  {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent},
-  {path: 'patientcard', component: PatientCardFormComponent},
+  {path: 'users', component: UserListComponent, canActivate: [AdministratorGuard]},
+  {path: 'cabinets', component: CabinetListComponent, canActivate: [AdministratorGuard]},
+  {path: 'patients', component: PatientsListComponent, canActivate: [AdministratorGuard]},
+  {path: 'doctors', component: DoctorsListComponent, canActivate: [AdministratorGuard]},
+  {path: 'addadmin', component: AdminFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'addcabinet', component: CabinetFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'adddoctor', component: DoctorFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'addspecialty', component: SpecialtyFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'timeslots', component: TimeslotsListComponent, canActivate: [AdministratorGuard]},
+  {path: 'createSchedule/:id', component: CreateScheduleFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'specialties', component: SpecialtyListComponent, canActivate: [AdministratorGuard]},
+  {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'updateadmin', component: AdminUpdateFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'admin', component: AdminHomepageComponent, canActivate: [AdministratorGuard]},
+
+  {path: 'searchpatient', component: SearchPatientFormComponent, canActivate: [DoctorGuard]},
+  {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent, canActivate: [DoctorGuard]},
+  {path: 'doctor', component: DoctorHomepageComponent, canActivate: [DoctorGuard]},
+
+  {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent, canActivate: [PatientGuard]},
+  {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent, canActivate: [PatientGuard]},
+  {path: 'patientcard', component: PatientCardFormComponent, canActivate: [PatientGuard]},
+  {path: 'patient', component: PatientHomepageComponent, canActivate: [PatientGuard]},
+
+  {path: 'updatedoctor', component: DoctorUpdateFormComponent, canActivate: [AdministratorDoctorGuard]},
+  {path: 'doctorTimeslots/:id', component: DoctorTimeslotsListComponent, canActivate: [AdministratorDoctorGuard]},
+
+  {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [LoggedUserGuard]},
+  {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [AdministratorPatientGuard]},
+
+
   {path: 'login', component: LoginFormComponent},
-  {path: 'admin', component: AdminHomepageComponent},
-  {path: 'doctor', component: DoctorHomepageComponent},
-  {path: 'patient', component: PatientHomepageComponent},
+  {path: 'addpatient', component: PatientFormComponent}
 ];
 
 @NgModule({

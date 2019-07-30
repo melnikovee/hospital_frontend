@@ -19,7 +19,7 @@ export class PermissionService {
         if (auth == undefined) {
           return false;
         }
-        return auth.role === permittedRole;
+        return auth.role.toString() === permittedRole;
       }),
       distinctUntilChanged(),
       shareReplay(1)

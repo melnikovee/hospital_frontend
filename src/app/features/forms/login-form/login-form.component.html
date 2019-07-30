@@ -2,7 +2,7 @@
   <mat-form-field>
     <mat-label>Логин</mat-label>
     <input matInput formControlName="login">
-    <mat-error *ngIf="_loginForm.controls['login'].invalid">{{getErrorLogin()}}</mat-error>
+    <!--mat-error *ngIf="_loginForm.controls.login.invalid">{{getErrorLogin()}}</mat-error-->
   </mat-form-field>
   <mat-form-field>
     <mat-label>Пароль</mat-label>
@@ -11,7 +11,7 @@
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Скрыть'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="_loginForm.controls['password'].invalid">{{getErrorPassword()}}</mat-error>
+    <!--mat-error *ngIf="_loginForm.controls.password.invalid">{{getErrorPassword()}}</mat-error-->
   </mat-form-field>
 </ng-container>
 <button mat-button color="primary" (click)="handleLoginClick()">Войти</button>

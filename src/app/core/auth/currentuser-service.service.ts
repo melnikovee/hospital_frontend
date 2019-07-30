@@ -37,6 +37,8 @@ export class CurrentUserService {
           return undefined;
         }
         const accessToken = jwt_decode(auth.authToken) as DecodedAccessToken;
+        console.log(accessToken.sub);
+        console.log(accessToken.id);
         return {
           login: accessToken.sub,
           role: accessToken.role,
