@@ -1,4 +1,18 @@
 <mat-toolbar color="primary">
-  <a mat-button routerLink="/login">Login</a>
+  <a mat-button routerLink="/login">Войти</a>
+  <button mat-button [matMenuTriggerFor]="doctor">Доктор</button>
+  <mat-menu #doctor="matMenu">
+    <button mat-menu-item routerLink="/updatedoctor">Редактировать доктора</button>
+    <button mat-menu-item routerLink="/patientcurrentvisits">Patient Current Visits</button>
+    <button mat-menu-item routerLink="/patientrecordbydoctor">Запись пациента доктором</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="patient">Пациент</button>
+  <mat-menu #patient="matMenu">
+    <button mat-menu-item routerLink="/updatepatient">Редактировать пациента</button>
+    <button mat-menu-item routerLink="/patientcurrentvisits">Мои записи</button>
+    <button mat-menu-item routerLink="/patientpastvisits">Прошлые посещения</button>
+    <button mat-menu-item routerLink="/patientcard">Карточка пациента</button>
+  </mat-menu>
 </mat-toolbar>
 

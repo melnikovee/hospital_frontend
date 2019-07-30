@@ -38,6 +38,16 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="update">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let composite" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="updateDoctor(composite.doctorId)">Редактировать
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
   <!--ng-container matColumnDef="schedule">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let composite">

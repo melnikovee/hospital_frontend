@@ -24,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./doctor-form.component.css']
 })
 export class DoctorFormComponent {
-  user = new User('', '', '', '', '', '');
+  user = new User('', '', '', '', '', '', '');
   doctor = new Doctor('');
   receivedUser!: User;
   specialties!: Specialty[];
@@ -51,6 +51,10 @@ export class DoctorFormComponent {
     Validators.required
   ]);
 
+  middleNameFormControl = new FormControl('', [
+    Validators.maxLength(32)
+  ]);
+
   phoneFormControl = new FormControl('', [
     Validators.pattern('[0-9]{1,11}'),
     Validators.required
@@ -67,7 +71,7 @@ export class DoctorFormComponent {
     password: this.passwordFormControl,
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
-    middleName: new FormControl(),
+    middleName: this.middleNameFormControl,
     phone: this.phoneFormControl,
     email: this.emailFormControl
   });

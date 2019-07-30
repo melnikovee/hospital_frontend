@@ -1,3 +1,7 @@
+<mat-button-toggle-group aria-label="Font Style" name="create">
+  <button mat-flat-button color="primary" (click)="createSpecialty()">Добавить специальность</button>
+</mat-button-toggle-group>
+
 <table [dataSource]="dataSource" mat-table>
 
   <ng-container matColumnDef="specialty">
@@ -5,11 +9,20 @@
     <td *matCellDef="let specialty" mat-cell> {{specialty.specialtyName}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="action">
+  <!--ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
     <mat-cell *matCellDef="let specialty">
       <button mat-flat-button color="primary" (click)="deleteSpecialty(specialty.id)" mat-button>Удалить</button>
     </mat-cell>
+  </ng-container-->
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let specialty" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="deleteSpecialty(specialty.id)">Удалить</button>
+      </mat-button-toggle-group>
+    </td>
   </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>

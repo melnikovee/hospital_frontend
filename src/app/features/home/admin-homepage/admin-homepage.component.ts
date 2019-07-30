@@ -31,7 +31,7 @@ export class AdminHomepageComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe(data => {
       this.user = data;
     });
-    await this.sleep(100);
+    await this.sleep(300);
     this.folders = [
       {
         name: 'Логин',

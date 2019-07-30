@@ -30,6 +30,10 @@ export class SpecialtyListComponent implements OnInit {
     });
   }
 
+  createSpecialty() {
+    this.router.navigate(['/addspecialty']);
+  }
+
   deleteSpecialty(id: number) {
     if (confirm('Уверены что хотите удалить?')) {
       this.specialtyService.deleteSpecialty(id)

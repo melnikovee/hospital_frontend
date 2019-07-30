@@ -4,6 +4,7 @@ table {
 
 .mat-column-action {
   place-content: center;
+  width: 20%;
 }
 
 

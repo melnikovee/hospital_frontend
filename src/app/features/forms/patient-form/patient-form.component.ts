@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./patient-form.component.css']
 })
 export class PatientFormComponent {
-  user = new User('', '', '', '', '', '');
+  user = new User('', '', '', '', '', '', '');
   patient = new Patient('', '');
   startDate = new Date(1970, 1, 1);
 

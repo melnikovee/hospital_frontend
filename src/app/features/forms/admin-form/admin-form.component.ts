@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./admin-form.component.css']
 })
 export class AdminFormComponent {
-  user = new User('', '', '', '', '', '');
+  user = new User('', '', '', '', '', '', '');
   receivedUser!: User;
   done!: boolean;
   loginFormControl = new FormControl('', [
@@ -43,6 +43,10 @@ export class AdminFormComponent {
     Validators.required
   ]);
 
+  middleNameFormControl = new FormControl('', [
+    Validators.maxLength(32)
+  ]);
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -54,7 +58,7 @@ export class AdminFormComponent {
     password: this.passwordFormControl,
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
-    middleName: new FormControl(),
+    middleName: this.middleNameFormControl,
     email: this.emailFormControl
   });
 

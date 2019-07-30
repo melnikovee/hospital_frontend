@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./patient-update-form.component.css']
 })
 export class PatientUpdateFormComponent implements OnInit {
-  user = new User('', '', '', '', '', '');
+  user = new User('', '', '', '', '', '', '');
   patient = new Patient('', '');
   currentUser!: User;
   currentPatient!: Patient;
@@ -32,6 +32,10 @@ export class PatientUpdateFormComponent implements OnInit {
   ]);
 
   lastNameFormControl = new FormControl('', [
+    Validators.maxLength(32)
+  ]);
+
+  middleNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
 
@@ -47,7 +51,7 @@ export class PatientUpdateFormComponent implements OnInit {
   patientForm = new FormGroup({
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
-    middleName: new FormControl(),
+    middleName: this.middleNameFormControl,
     phone: this.phoneFormControl,
     email: this.emailFormControl
   });

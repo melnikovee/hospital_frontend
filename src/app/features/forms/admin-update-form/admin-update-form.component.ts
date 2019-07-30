@@ -18,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./admin-update-form.component.css']
 })
 export class AdminUpdateFormComponent implements OnInit {
-  user = new User('', '', '', '', '', '');
+  user = new User('', '', '', '', '', '', '');
   currentUser!: User;
   done!: boolean;
   id!: number;
@@ -30,6 +30,9 @@ export class AdminUpdateFormComponent implements OnInit {
     Validators.maxLength(32)
   ]);
 
+  middleNameFormControl = new FormControl('', [
+    Validators.maxLength(32)
+  ]);
   emailFormControl = new FormControl('', [
     Validators.email,
     Validators.maxLength(32)
@@ -38,7 +41,7 @@ export class AdminUpdateFormComponent implements OnInit {
   adminForm = new FormGroup({
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
-    middleName: new FormControl(),
+    middleName: this.middleNameFormControl,
     email: this.emailFormControl
   });
 

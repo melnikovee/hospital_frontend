@@ -1,5 +1,36 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
   <a mat-button routerLink="/home">Home</a>
+
+  <button mat-button [matMenuTriggerFor]="schedule">Расписание</button>
+  <mat-menu #schedule="matMenu">
+    <button mat-menu-item routerLink="/timeslots">Расписание</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="patients">Пациенты</button>
+  <mat-menu #patients="matMenu">
+    <button mat-menu-item routerLink="/patients">Пациенты</button>
+    <button mat-menu-item routerLink="/addpatient">Регистрация пациента</button>
+    <button mat-menu-item routerLink="/updatepatient">Редактировать пациента</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="doctors">Доктора</button>
+  <mat-menu #doctors="matMenu">
+    <button mat-menu-item routerLink="/doctors">Доктора</button>
+    <button mat-menu-item routerLink="/adddoctor">Регистрация доктора</button>
+    <button mat-menu-item routerLink="/updatedoctor">Редактировать доктора</button>
+    <button mat-menu-item routerLink="/updatespecialtydoctor">Редактировать специальности доктора</button>
+  </mat-menu>
+
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/cabinets">Кабинеты</button>
+    <button mat-menu-item routerLink="/specialties">Специальности</button>
+    <button mat-menu-item routerLink="/addadmin">Регистрация администратора</button>
+    <button mat-menu-item routerLink="/users">Пользователи</button>
+  </mat-menu>
 </mat-toolbar>
 

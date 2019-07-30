@@ -75,7 +75,8 @@ export class DoctorSpecialtyUpdateFormComponent {
 
   // tslint:disable-next-line:no-any
   deleteSpecialty(element: any) {
-    this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe();
+    this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe(res =>
+    this.getSpecialties(this.selectedDoctor));
   }
 
   getAllSpecialties() {
@@ -86,7 +87,8 @@ export class DoctorSpecialtyUpdateFormComponent {
 
   putSpecialties() {
     for (const spec of this.addingSpecialties.value) {
-      this.doctorSpecialtyService.save(new DoctorSpecialty(this.selectedDoctor.id, spec.id)).subscribe();
+      this.doctorSpecialtyService.save(new DoctorSpecialty(this.selectedDoctor.id, spec.id)).subscribe(res =>
+        this.getSpecialties(this.selectedDoctor));
     }
   }
 }

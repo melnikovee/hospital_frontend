@@ -29,6 +29,11 @@ export class CabinetListComponent implements OnInit {
     });
   }
 
+
+  createCabinet() {
+    this.router.navigate(['/addcabinet']);
+  }
+
   deleteCabinet(id: number) {
     if (confirm('Уверены что хотите удалить?')) {
       this.cabinetService.deleteCabinet(id)
