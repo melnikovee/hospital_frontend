@@ -19,7 +19,7 @@ export interface Tokens {
 }
 
 @Injectable()
-export class HttpAuthInterceptor implements HttpInterceptor {
+export class HttpAuthInterceptorInterceptor implements HttpInterceptor {
   private tokens$ = new BehaviorSubject<Tokens | undefined | null>(undefined);
 
   constructor(private currentUserService: CurrentUserService) {
@@ -88,7 +88,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
 }
 
 export function authInterceptorFactory(currentUserService: CurrentUserService) {
-  return new HttpAuthInterceptor(currentUserService);
+  return new HttpAuthInterceptorInterceptor(currentUserService);
 }
 
 export const HTTP_AUTH_INTERCEPTOR_PROVIDER: Provider = {
