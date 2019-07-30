@@ -13,7 +13,7 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatMenuModule
+  MatMenuModule, MatIconModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
@@ -22,11 +22,11 @@ import {NgModule} from '@angular/core';
   imports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
     MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule,
     MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule,
-    MatRippleModule, MatMenuModule, MatPaginatorModule],
+    MatRippleModule, MatMenuModule, MatPaginatorModule, MatIconModule],
   exports: [MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
     MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSortModule,
     MatSelectModule, MatTableModule, MatBottomSheetModule, MatListModule, MatExpansionModule,
-    MatRippleModule, MatPaginatorModule, MatMenuModule]
+    MatRippleModule, MatPaginatorModule, MatMenuModule, MatIconModule]
 })
 export class MaterialAppModule {
 }

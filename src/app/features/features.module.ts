@@ -43,10 +43,10 @@ import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-updat
 import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
 import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
 import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-form.component';
-import {TestLoginFormComponent} from './forms/test-login-form/test-login-form.component';
 import {DoctorHomepageComponent} from './home/doctor-homepage/doctor-homepage.component';
 import {PatientHomepageComponent} from './home/patient-homepage/patient-homepage.component';
 import {AdminHomepageComponent} from './home/admin-homepage/admin-homepage.component';
+import {LoginFormComponent} from './forms/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import {AdminHomepageComponent} from './home/admin-homepage/admin-homepage.compo
     PatientsCurrentVisitsFormComponent,
     PatientsPastVisitsFormComponent,
     PatientCardFormComponent,
-    TestLoginFormComponent,
+    LoginFormComponent,
     AdminHomepageComponent,
     DoctorHomepageComponent,
     PatientHomepageComponent
@@ -108,7 +108,7 @@ import {AdminHomepageComponent} from './home/admin-homepage/admin-homepage.compo
     PatientsCurrentVisitsFormComponent,
     PatientsPastVisitsFormComponent,
     PatientCardFormComponent,
-    TestLoginFormComponent,
+    LoginFormComponent,
     AdminHomepageComponent,
     DoctorHomepageComponent,
     PatientHomepageComponent

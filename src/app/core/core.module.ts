@@ -7,13 +7,17 @@ import {RouterModule} from '@angular/router';
 import {MatButtonModule, MatIconModule, MatMenuModule, MatNativeDateModule, MatToolbarModule} from '@angular/material';
 import {FeaturesModule} from '../features/features.module';
 import {SharedModule} from '../_shared/shared.module';
-import {HTTP_COMMON_INTERCEPTOR_PROVIDER} from './interceptors/http-common-interceptor.interceptor';
+import {AUTH_INITIALIZER, CurrentUserService} from './auth/currentuser-service.service';
+import {PermissionService} from './auth/permision.service';
+import {HTTP_AUTH_INTERCEPTOR_PROVIDER} from './interceptors/http-auth-interceptor.interceptor';
+import {PermitDirective} from './auth/permit.directive';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    BodyComponent
+    BodyComponent,
+    PermitDirective
   ],
   exports: [
     HeaderComponent,
@@ -35,7 +39,10 @@ import {HTTP_COMMON_INTERCEPTOR_PROVIDER} from './interceptors/http-common-inter
 
   ],
   providers: [
-    HTTP_COMMON_INTERCEPTOR_PROVIDER
+    HTTP_AUTH_INTERCEPTOR_PROVIDER,
+    AUTH_INITIALIZER,
+    CurrentUserService,
+    PermissionService
      ]
 })
 export class CoreModule {
