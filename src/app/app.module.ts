@@ -9,6 +9,8 @@ import {MaterialAppModule} from './ngmaterial.module';
 import {MatSortModule} from '@angular/material';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './_shared/shared.module';
+import {GuardsCheckEnd, Router} from '@angular/router';
+import {filter, map} from 'rxjs/operators';
 
 
 @NgModule({
@@ -31,4 +33,17 @@ import {SharedModule} from './_shared/shared.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(private router: Router) {
+    router.events.pipe(
+      filter(event => event instanceof GuardsCheckEnd),
+      map(event => (event as GuardsCheckEnd).shouldActivate)
+    ).subscribe(shouldActivate => {
+      if (!shouldActivate) {
+        this.router.navigate(['auth']);
+      }
+    });
+  }
+
+}
