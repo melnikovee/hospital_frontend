@@ -15,7 +15,7 @@ export class DoctorGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-    return this.permissionService.has('Doctor');
+    return this.permissionService.has('DOCTOR');
   }
 
 }

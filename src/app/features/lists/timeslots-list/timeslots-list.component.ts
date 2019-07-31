@@ -4,8 +4,6 @@ import {Composite} from '../../_models/composite';
 import {CompositeService} from '../../_services/composite-service.service';
 import {TimeslotService} from '../../_services/timeslot-service.service';
 
-
-
 @Component({
   selector: 'app-timeslots-list',
   templateUrl: './timeslots-list.component.html',
@@ -13,7 +11,7 @@ import {TimeslotService} from '../../_services/timeslot-service.service';
 })
 export class TimeslotsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient', 'delete'];
+  displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient', 'action'];
   dataSource!: MatTableDataSource<Composite>;
   constructor(private compositeService: CompositeService, private timeSlotService: TimeslotService) {}
 
@@ -43,6 +41,13 @@ export class TimeslotsListComponent implements OnInit {
             this.reloadData();
           },
           error => console.log(error));
+    }
+  }
+  cancelRecord(id: number) {
+    if (confirm('Уверены что хотите отменить запись?')) {
+      this.timeSlotService.cancelRecord(id).subscribe(data => {
+        this.reloadData();
+      });
     }
   }
 }

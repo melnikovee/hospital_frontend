@@ -40,12 +40,12 @@ export class PatientUpdateFormComponent implements OnInit {
   ]);
 
   phoneFormControl = new FormControl('', [
-    Validators.pattern('[0-9]{1,11}')
+    Validators.pattern('[0-9]{1,32}')
   ]);
 
   emailFormControl = new FormControl('', [
     Validators.email,
-    Validators.maxLength(32)
+    Validators.maxLength(64)
   ]);
 
   patientForm = new FormGroup({

@@ -7,7 +7,6 @@ import {Patient} from '../../_models/patient';
 import {PatientService} from '../../_services/patient-service.service';
 import {UserService} from '../../_services/user-service.service';
 
-
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -23,6 +22,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class PatientFormComponent {
   user = new User('', '', '', '', '', '', '');
   patient = new Patient('', '');
+  receivedUser!: User;
+  done!: boolean;
+  alreadyExists!: boolean;
   startDate = new Date(1970, 1, 1);
 
   loginFormControl = new FormControl('', [
@@ -32,7 +34,7 @@ export class PatientFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.maxLength(88)
+    Validators.minLength(8)
   ]);
 
   firstNameFormControl = new FormControl('', [
@@ -44,16 +46,18 @@ export class PatientFormComponent {
     Validators.maxLength(32),
     Validators.required
   ]);
-
+  middleNameFormControl = new FormControl('', [
+    Validators.maxLength(32)
+  ]);
   phoneFormControl = new FormControl('', [
-    Validators.pattern('[0-9]{1,11}'),
+    Validators.pattern('[0-9]{1,32}'),
     Validators.required
   ]);
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-    Validators.maxLength(32)
+    Validators.maxLength(64)
   ]);
 
   birthdayFormControl = new FormControl('', [
@@ -65,7 +69,7 @@ export class PatientFormComponent {
     password: this.passwordFormControl,
     firstName: this.firstNameFormControl,
     lastName: this.lastNameFormControl,
-    middleName: new FormControl(),
+    middleName: this.middleNameFormControl,
     phone: this.phoneFormControl,
     email: this.emailFormControl,
     birthday: this.birthdayFormControl
@@ -90,18 +94,20 @@ export class PatientFormComponent {
 
   onSubmit() {
     this.putData();
+    this.alreadyExists = false;
+    this.done = false;
     this.userService.save(this.user).subscribe(
         (data: User) => {
           this.patient.id = data.id;
-          this.patientService.save(this.patient).subscribe(result => this.gotoUserList());
+          this.receivedUser = data;
+          this.done = true;
+          this.patientService.save(this.patient).subscribe(
+            error => console.log(error));
         },
-        error => console.log(error)
-    );
-
+      error => {
+        this.alreadyExists = true;
+        console.log(error);
+      }
+        );
   }
-
-  gotoUserList() {
-    this.router.navigate(['/patients']);
-  }
-
 }

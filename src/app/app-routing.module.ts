@@ -20,19 +20,18 @@ import {AppointmentFormComponent} from './features/forms/appointment-form/appoin
 import {SpecialtyListComponent} from './features/lists/specialty-list/specialty-list.component';
 import {PatientRecordByDoctorFormComponent} from './features/forms/patient-record-by-doctor-form/patient-record-by-doctor-form.component';
 import {DoctorUpdateFormComponent} from './features/forms/doctor-update-form/doctor-update-form.component';
-import {DoctorTimeslotsListComponent} from './features/lists/doctor-timeslots-list/doctor-timeslots-list.component';
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
 import {LoginFormComponent} from './features/forms/login-form/login-form.component';
 import {AdminHomepageComponent} from './features/home/admin-homepage/admin-homepage.component';
-import {DoctorHomepageComponent} from './features/home/doctor-homepage/doctor-homepage.component';
-import {PatientHomepageComponent} from './features/home/patient-homepage/patient-homepage.component';
 import {AdministratorGuard} from './core/auth/_guards/administrator.guard';
 import {DoctorGuard} from './core/auth/_guards/doctor.guard';
 import {PatientGuard} from './core/auth/_guards/patient.guard';
-import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor.guard';
-import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
 import {LoggedUserGuard} from './core/auth/_guards/logged-user.guard';
+// tslint:disable-next-line:max-line-length
+import {DoctorTimeslotsForDoctorFormComponent} from './features/forms/doctor-timeslots-for-doctor-form/doctor-timeslots-for-doctor-form.component';
+import {DoctorTimeslotsAdminFormComponent} from './features/forms/doctor-timeslots-admin-form/doctor-timeslots-admin-form.component';
+import {SpecialtyUpdateFormComponent} from './features/forms/specialty-update-form/specialty-update-form.component';
 
 
 const routes: Routes = [
@@ -47,25 +46,23 @@ const routes: Routes = [
   {path: 'timeslots', component: TimeslotsListComponent, canActivate: [AdministratorGuard]},
   {path: 'createSchedule/:id', component: CreateScheduleFormComponent, canActivate: [AdministratorGuard]},
   {path: 'specialties', component: SpecialtyListComponent, canActivate: [AdministratorGuard]},
+  {path: 'updatespecialty/:id', component: SpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'updateadmin', component: AdminUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'admin', component: AdminHomepageComponent, canActivate: [AdministratorGuard]},
+  {path: 'doctorTimeslotsAdmin/:id', component: DoctorTimeslotsAdminFormComponent, canActivate: [AdministratorGuard]},
 
   {path: 'searchpatient', component: SearchPatientFormComponent, canActivate: [DoctorGuard]},
   {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent, canActivate: [DoctorGuard]},
-  {path: 'doctor', component: DoctorHomepageComponent, canActivate: [DoctorGuard]},
+  {path: 'doctorTimeslots', component: DoctorTimeslotsForDoctorFormComponent, canActivate: [DoctorGuard]},
+  {path: 'updatedoctor', component: DoctorUpdateFormComponent, canActivate: [DoctorGuard]},
 
   {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent, canActivate: [PatientGuard]},
   {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent, canActivate: [PatientGuard]},
   {path: 'patientcard', component: PatientCardFormComponent, canActivate: [PatientGuard]},
-  {path: 'patient', component: PatientHomepageComponent, canActivate: [PatientGuard]},
-
-  {path: 'updatedoctor', component: DoctorUpdateFormComponent, canActivate: [AdministratorDoctorGuard]},
-  {path: 'doctorTimeslots/:id', component: DoctorTimeslotsListComponent, canActivate: [AdministratorDoctorGuard]},
+  {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [PatientGuard]},
 
   {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [LoggedUserGuard]},
-  {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [AdministratorPatientGuard]},
-
 
   {path: 'login', component: LoginFormComponent},
   {path: 'addpatient', component: PatientFormComponent}

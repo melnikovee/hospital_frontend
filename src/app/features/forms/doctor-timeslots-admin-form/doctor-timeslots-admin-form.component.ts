@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CompositeService} from '../../_services/composite-service.service';
 
 @Component({
   selector: 'app-doctor-timeslots-admin-form',

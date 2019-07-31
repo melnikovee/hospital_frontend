@@ -35,7 +35,7 @@ export class AdminUpdateFormComponent implements OnInit {
   ]);
   emailFormControl = new FormControl('', [
     Validators.email,
-    Validators.maxLength(32)
+    Validators.maxLength(64)
   ]);
 
   adminForm = new FormGroup({

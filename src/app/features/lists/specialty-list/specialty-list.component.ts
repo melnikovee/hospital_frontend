@@ -13,8 +13,9 @@ import {SpecialtyService} from '../../_services/specialty-service.service';
 })
 export class SpecialtyListComponent implements OnInit {
 
-  displayedColumns: string[] = ['specialty', 'action'];
+  displayedColumns: string[] = ['specialty', 'duration', 'action'];
   dataSource!: MatTableDataSource<Specialty>;
+  isNotFree!: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private specialtyService: SpecialtyService) {}
@@ -24,6 +25,7 @@ export class SpecialtyListComponent implements OnInit {
   }
 
   reloadData() {
+    this.isNotFree = false;
     this.specialtyService.findAll().subscribe(data => {
       const sorted = data.sort((a, b) => a.specialtyName.localeCompare(b.specialtyName));
       this.dataSource = new MatTableDataSource(sorted);
@@ -34,6 +36,10 @@ export class SpecialtyListComponent implements OnInit {
     this.router.navigate(['/addspecialty']);
   }
 
+  updateSpecialty(id: number) {
+    this.router.navigate(['/updatespecialty', id]);
+  }
+
   deleteSpecialty(id: number) {
     if (confirm('Уверены что хотите удалить?')) {
       this.specialtyService.deleteSpecialty(id)
@@ -42,7 +48,11 @@ export class SpecialtyListComponent implements OnInit {
             console.log(data);
             this.reloadData();
           },
-          error => console.log(error));
+          error => {
+            this.isNotFree = true;
+            console.log(error);
+          }
+      );
     }
   }
 }
