@@ -9,11 +9,11 @@ export interface Section {
 }
 
 @Component({
-  selector: 'app-admin-homepage-form',
-  templateUrl: './admin-homepage.component.html',
-  styleUrls: ['./admin-homepage.component.css']
+  selector: 'app-homepage-form',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.css']
 })
-export class AdminHomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit {
   user!: User;
   id!: number;
   folders: Section[] = [];

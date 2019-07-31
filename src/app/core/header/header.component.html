@@ -1,27 +1,22 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
   <a mat-button routerLink="/home">Главная</a>
+  <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/timeslots">Расписание</a>
 
-  <button mat-button [matMenuTriggerFor]="schedule">Расписание</button>
-  <mat-menu #schedule="matMenu">
-    <button mat-menu-item routerLink="/timeslots">Расписание</button>
-  </mat-menu>
-
-  <button mat-button [matMenuTriggerFor]="patients">Пациенты</button>
+  <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="patients">Пациенты</button>
   <mat-menu #patients="matMenu">
     <button mat-menu-item routerLink="/patients">Пациенты</button>
     <button mat-menu-item routerLink="/addpatient">Регистрация пациента</button>
   </mat-menu>
 
-  <button mat-button [matMenuTriggerFor]="doctors">Доктора</button>
+  <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="doctors">Доктора</button>
   <mat-menu #doctors="matMenu">
     <button mat-menu-item routerLink="/doctors">Доктора</button>
     <button mat-menu-item routerLink="/adddoctor">Регистрация доктора</button>
 
   </mat-menu>
 
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -31,5 +26,19 @@
     <button mat-menu-item routerLink="/updatespecialtydoctor">Редактировать специальностей доктора</button>
     <button mat-menu-item routerLink="/users">Пользователи</button>
   </mat-menu>
+
+  <a mat-button *appPermit="'PATIENT'" routerLink="/patientAppointment">Запись на прием</a>
+  <a mat-button *appPermit="'PATIENT'" routerLink="/patientcard">Карточка пациента</a>
+  <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="appointments">Записи на прием</button>
+  <mat-menu #appointments="matMenu">
+    <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие записи</button>
+    <button mat-menu-item routerLink="/patientpastvisits">Прошлые записи</button>
+  </mat-menu>
+
+  <a mat-button *appPermit="'DOCTOR'" routerLink="/doctorTimeslots">Расписание</a>
+  <a mat-button *appPermit="'DOCTOR'" routerLink="/searchpatient">Медицинское заключение</a>
+  <a mat-button *appPermit="'DOCTOR'" routerLink="/patientrecordbydoctor">Запись пациента на прием</a>
+
+  <a mat-button class="logout" routerLink="/logout">Выход</a>
 </mat-toolbar>
 
