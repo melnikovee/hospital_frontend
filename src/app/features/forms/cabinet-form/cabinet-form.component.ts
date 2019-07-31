@@ -21,7 +21,9 @@ export class CabinetFormComponent {
   cabinet = new Cabinet('');
   receivedCabinet!: Cabinet;
   done!: boolean;
+  alreadyExists!: boolean;
   cabinetNameFormControl = new FormControl('', [
+    Validators.maxLength(32),
     Validators.required
   ]);
 
@@ -40,13 +42,17 @@ export class CabinetFormComponent {
 
   onSubmit() {
     this.putData();
-
+    this.alreadyExists = false;
+    this.done = false;
     this.cabinetService.save(this.cabinet).subscribe(
         (data: Cabinet) => {
           this.receivedCabinet = data;
           this.done = true;
         },
-        error => console.log(error)
+        error => {
+          this.alreadyExists = true;
+          console.log(error);
+        }
     );
   }
 }

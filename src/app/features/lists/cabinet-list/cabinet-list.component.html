@@ -2,6 +2,10 @@
   <button mat-flat-button color="primary" (click)="createCabinet()">Добавить кабинет</button>
 </mat-button-toggle-group>
 
+<div *ngIf="isNotFree">
+  <p>Невозможно удалить кабинет используемый в расписании</p>
+</div>
+
 <table [dataSource]="dataSource" mat-table>
   <ng-container matColumnDef="cabinet">
     <th *matHeaderCellDef mat-header-cell>Кабинет</th>

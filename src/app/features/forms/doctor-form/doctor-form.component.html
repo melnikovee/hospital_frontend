@@ -4,7 +4,7 @@
     <input [errorStateMatcher]="matcher" formControlName="login" matInput
            placeholder="Логин">
     <mat-error *ngIf="loginFormControl.hasError('maxLength') && !loginFormControl.hasError('required')">
-      Пожалуйста введите логин
+      Максимальная длина 32 символа
     </mat-error>
     <mat-error *ngIf="loginFormControl.hasError('required')">
       Обязательное поле
@@ -14,8 +14,8 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="password" matInput
            placeholder="Пароль">
-    <mat-error *ngIf="passwordFormControl.hasError('maxLength') && !passwordFormControl.hasError('required')">
-      Пожалуйста введите пароль
+    <mat-error *ngIf="passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
+      Максимальная длина 32 символа
     </mat-error>
     <mat-error *ngIf="passwordFormControl.hasError('required')">
       Обязательное поле
@@ -25,8 +25,8 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="firstName" matInput
            placeholder="Имя">
-    <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
-      Пожалуйста введите имя
+    <mat-error *ngIf="firstNameFormControl.hasError('maxLength') && !firstNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
     </mat-error>
     <mat-error *ngIf="firstNameFormControl.hasError('required')">
       Обязательное поле
@@ -36,8 +36,8 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
            placeholder="Фамилия">
-    <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
-      Пожалуйста введите фамилию
+    <mat-error *ngIf="lastNameFormControl.hasError('maxLength') && !lastNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
     </mat-error>
     <mat-error *ngIf="lastNameFormControl.hasError('required')">
       Обязательное поле
@@ -47,6 +47,9 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="middleName" matInput
            placeholder="Отчество">
+    <mat-error *ngIf="middleNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -82,6 +85,9 @@
 
   <div *ngIf="done">
     <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
+  </div>
+  <div *ngIf="alreadyExists">
+    <p>Пользователь с таким логином уже зарегистрирован, пожалуйста выберите другой логин</p>
   </div>
 
   <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!docForm.valid" value="bold">Регистрация

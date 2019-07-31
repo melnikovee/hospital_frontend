@@ -34,12 +34,35 @@
     <td *matCellDef="let composite" mat-cell> {{composite.patient}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="delete">
+  <ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
-    <mat-cell *matCellDef="let composite">
-      <button mat-flat-button color="primary" (click)="deleteTimeslot(composite.id)" mat-button>Удалить</button>
-    </mat-cell>
+    <td *matCellDef="let composite" mat-cell>
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="update">Редактировать</button>
+    <mat-menu #update="matMenu">
+      <button mat-menu-item (click)="cancelRecord(composite.id)">Отменить запись</button>
+      <button mat-menu-item (click)="deleteTimeslot(composite.id)">Удалить</button>
+    </mat-menu>
+    </td>
   </ng-container>
+
+  <!--ng-container matColumnDef="delete">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let composite" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+      <button mat-flat-button color="primary" (click)="deleteTimeslot(composite.id)" mat-button>Удалить</button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cancel">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let composite" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="cancelRecord(composite.id)">Отменить запись
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container-->
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>

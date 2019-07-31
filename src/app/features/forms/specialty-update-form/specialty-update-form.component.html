@@ -1,0 +1,25 @@
+<form class="example-form" [formGroup]="specialtyForm">
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Название специальности" formControlName="specialtyName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="specialtyNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Длительность приема" formControlName="duration"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="durationFormControl.hasError('pattern')">
+      Пожалуйста введите длительность приема в минутах
+    </mat-error>
+  </mat-form-field>
+
+  <div *ngIf="done">
+    <p>Информация обновлена</p>
+  </div>
+
+  <button mat-flat-button color="primary" value="bold" [disabled]="!specialtyForm.valid" (click)="onSubmit()">Применить</button>
+
+</form>

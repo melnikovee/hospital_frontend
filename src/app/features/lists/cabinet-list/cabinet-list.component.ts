@@ -14,6 +14,7 @@ export class CabinetListComponent implements OnInit {
 
   displayedColumns: string[] = ['cabinet', 'action'];
   dataSource!: MatTableDataSource<Cabinet>;
+  isNotFree!: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private cabinetService: CabinetService) {}
@@ -23,6 +24,7 @@ export class CabinetListComponent implements OnInit {
   }
 
   reloadData() {
+    this.isNotFree = false;
     this.cabinetService.findAll().subscribe(data => {
       const sorted = data.sort((a, b) => a.cabinetName.localeCompare(b.cabinetName));
       this.dataSource = new MatTableDataSource(sorted);
@@ -42,7 +44,10 @@ export class CabinetListComponent implements OnInit {
             console.log(data);
             this.reloadData();
           },
-          error => console.log(error));
+          error => {
+            this.isNotFree = true;
+            console.log(error);
+          });
     }
   }
 }

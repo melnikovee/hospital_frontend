@@ -3,6 +3,9 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="cabinetName" matInput
            placeholder="Название кабинета">
+    <mat-error *ngIf="cabinetNameFormControl.hasError('maxLength') && !cabinetNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
     <mat-error *ngIf="cabinetNameFormControl.hasError('required')">
       Обязательное поле
     </mat-error>
@@ -10,6 +13,9 @@
 
   <div *ngIf="done">
     <p>Кабинет {{receivedCabinet.cabinetName}} успешно добавлен</p>
+  </div>
+  <div *ngIf="alreadyExists">
+    <p>Кабинет {{cabinet.cabinetName}} уже есть в базе</p>
   </div>
 
   <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!cabForm.valid" value="bold">Добавить
