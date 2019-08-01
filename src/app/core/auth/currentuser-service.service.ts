@@ -61,6 +61,7 @@ export class CurrentUserService {
         localStorage.removeItem('auth');
         localStorage.removeItem('id');
         localStorage.removeItem('login');
+        localStorage.removeItem('role');
       } else {
         localStorage.setItem('auth', JSON.stringify(auth));
 
@@ -68,6 +69,7 @@ export class CurrentUserService {
           if (info) {
             localStorage.setItem('id', info.id);
             localStorage.setItem('login', info.login);
+            localStorage.setItem('role', info.role);
           }
         });
       }
