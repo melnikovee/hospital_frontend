@@ -48,6 +48,7 @@ import {LoginFormComponent} from './forms/login-form/login-form.component';
 import {DoctorTimeslotsAdminFormComponent} from './forms/doctor-timeslots-admin-form/doctor-timeslots-admin-form.component';
 import {DoctorTimeslotsForDoctorFormComponent} from './forms/doctor-timeslots-for-doctor-form/doctor-timeslots-for-doctor-form.component';
 import {SpecialtyUpdateFormComponent} from './forms/specialty-update-form/specialty-update-form.component';
+import {PasswordChangeDialogFormComponent} from './forms/password-change-dialog-form/password-change-dialog-form.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import {SpecialtyUpdateFormComponent} from './forms/specialty-update-form/specia
     AdminHomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
+    PasswordChangeDialogFormComponent,
     SpecialtyUpdateFormComponent
   ],
   exports: [
@@ -114,7 +116,8 @@ import {SpecialtyUpdateFormComponent} from './forms/specialty-update-form/specia
     AdminHomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
-    SpecialtyUpdateFormComponent
+    SpecialtyUpdateFormComponent,
+    PasswordChangeDialogFormComponent
   ],
   imports: [
     CommonModule,
@@ -133,6 +136,6 @@ import {SpecialtyUpdateFormComponent} from './forms/specialty-update-form/specia
   ],
   providers: [UserService, CabinetService, PatientService, DoctorService,
     TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService, DiagnosisService],
-  entryComponents: [DialogDiagnosisFormComponent]
+  entryComponents: [DialogDiagnosisFormComponent, PasswordChangeDialogFormComponent]
 })
 export class FeaturesModule { }
