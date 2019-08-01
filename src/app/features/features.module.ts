@@ -82,7 +82,7 @@ import {PasswordChangeDialogFormComponent} from './forms/password-change-dialog-
     AdminHomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
-    PasswordChangeDialogFormComponent
+    PasswordChangeDialogFormComponent,
     SpecialtyUpdateFormComponent
   ],
   exports: [
@@ -116,7 +116,7 @@ import {PasswordChangeDialogFormComponent} from './forms/password-change-dialog-
     AdminHomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
-    SpecialtyUpdateFormComponent
+    SpecialtyUpdateFormComponent,
     PasswordChangeDialogFormComponent
   ],
   imports: [
