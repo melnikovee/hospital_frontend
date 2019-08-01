@@ -23,7 +23,7 @@ import {DoctorUpdateFormComponent} from './features/forms/doctor-update-form/doc
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
 import {LoginFormComponent} from './features/forms/login-form/login-form.component';
-import {HomepageComponent} from './features/home/homepage/homepage.component';
+import {HomepageComponent} from './core/home/homepage/homepage.component';
 import {AdministratorGuard} from './core/auth/_guards/administrator.guard';
 import {DoctorGuard} from './core/auth/_guards/doctor.guard';
 import {PatientGuard} from './core/auth/_guards/patient.guard';

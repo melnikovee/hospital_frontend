@@ -43,7 +43,6 @@ import {DoctorSpecialtyUpdateFormComponent} from './forms/doctor-specialty-updat
 import {PatientsCurrentVisitsFormComponent} from './forms/patients-current-visits-form/patients-current-visits-form.component';
 import {PatientsPastVisitsFormComponent} from './forms/patients-past-visits-form/patients-past-visits-form.component';
 import {PatientCardFormComponent} from './forms/patient-card-form/patient-card-form.component';
-import {HomepageComponent} from './home/homepage/homepage.component';
 import {LoginFormComponent} from './forms/login-form/login-form.component';
 import {DoctorTimeslotsAdminFormComponent} from './forms/doctor-timeslots-admin-form/doctor-timeslots-admin-form.component';
 import {DoctorTimeslotsForDoctorFormComponent} from './forms/doctor-timeslots-for-doctor-form/doctor-timeslots-for-doctor-form.component';
@@ -79,7 +78,6 @@ import {PatientAppointmentFormComponent} from './forms/patient-appointment-form/
     PatientsPastVisitsFormComponent,
     PatientCardFormComponent,
     LoginFormComponent,
-    HomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
     SpecialtyUpdateFormComponent,
@@ -113,7 +111,6 @@ import {PatientAppointmentFormComponent} from './forms/patient-appointment-form/
     PatientsPastVisitsFormComponent,
     PatientCardFormComponent,
     LoginFormComponent,
-    HomepageComponent,
     DoctorTimeslotsAdminFormComponent,
     DoctorTimeslotsForDoctorFormComponent,
     SpecialtyUpdateFormComponent,
