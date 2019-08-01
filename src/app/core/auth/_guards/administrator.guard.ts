@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {PermissionService} from './permision.service';
+import {PermissionService} from '../permision.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class PatientGuard implements CanActivate {
+export class AdministratorGuard implements CanActivate {
 
   constructor(private permissionService: PermissionService) {
   }
@@ -15,7 +15,7 @@ export class PatientGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-    return this.permissionService.has('PATIENT');
+    return this.permissionService.has('ADMINISTRATOR');
   }
 
 }

@@ -21,7 +21,9 @@ export class SpecialtyFormComponent {
   specialty = new Specialty('', 0);
   receivedSpecialty!: Specialty;
   done!: boolean;
+  alreadyExists!: boolean;
   specialtyNameFormControl = new FormControl('', [
+    Validators.maxLength(32),
     Validators.required
   ]);
 
@@ -47,13 +49,17 @@ export class SpecialtyFormComponent {
 
   onSubmit() {
     this.putData();
-
+    this.alreadyExists = false;
+    this.done = false;
     this.specialtyService.save(this.specialty).subscribe(
         (data: Specialty) => {
           this.receivedSpecialty = data;
           this.done = true;
         },
-        error => console.log(error)
+        error => {
+          this.alreadyExists = true;
+          console.log(error);
+        }
     );
   }
 }

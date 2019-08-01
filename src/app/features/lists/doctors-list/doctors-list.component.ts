@@ -12,7 +12,7 @@ import {CompositeService} from '../../_services/composite-service.service';
 })
 export class DoctorsListComponent implements OnInit {
   dataSource!: MatTableDataSource<Composite>;
-  displayedColumns: string[] = ['doctor', 'specialty', 'phone', 'schedule', 'create', 'update'];
+  displayedColumns: string[] = ['doctor', 'specialty', 'phone', 'schedule', 'create'];
 
   constructor(private route: ActivatedRoute, private router: Router,
               private compositeService: CompositeService) {}
@@ -37,9 +37,5 @@ export class DoctorsListComponent implements OnInit {
 
   createSchedule(id: number) {
     this.router.navigate(['/createSchedule', id]);
-  }
-
-  updateDoctor(id: number) {
-    this.router.navigate(['/updateDoctor', id]);
   }
 }

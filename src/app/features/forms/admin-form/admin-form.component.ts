@@ -23,6 +23,7 @@ export class AdminFormComponent {
   user = new User('', '', '', '', '', '', '');
   receivedUser!: User;
   done!: boolean;
+  alreadyExists!: boolean;
   loginFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(32)
@@ -30,7 +31,7 @@ export class AdminFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.maxLength(88)
+    Validators.minLength(8)
   ]);
 
   firstNameFormControl = new FormControl('', [
@@ -50,7 +51,7 @@ export class AdminFormComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-    Validators.maxLength(32)
+    Validators.maxLength(64)
   ]);
 
   adminForm = new FormGroup({
@@ -79,12 +80,17 @@ export class AdminFormComponent {
 
   onSubmit() {
     this.putData();
+    this.alreadyExists = false;
+    this.done = false;
     this.userService.save(this.user).subscribe(
         (data: User) => {
           this.receivedUser = data;
           this.done = true;
         },
-        error => console.log(error)
+        error => {
+          this.alreadyExists = true;
+          console.log(error);
+        }
     );
   }
 }

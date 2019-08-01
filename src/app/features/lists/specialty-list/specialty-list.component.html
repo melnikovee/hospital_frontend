@@ -2,6 +2,10 @@
   <button mat-flat-button color="primary" (click)="createSpecialty()">Добавить специальность</button>
 </mat-button-toggle-group>
 
+<div *ngIf="isNotFree">
+  <p>Невозможно удалить специальность используемую в расписании</p>
+</div>
+
 <table [dataSource]="dataSource" mat-table>
 
   <ng-container matColumnDef="specialty">
@@ -9,19 +13,28 @@
     <td *matCellDef="let specialty" mat-cell> {{specialty.specialtyName}} </td>
   </ng-container>
 
-  <!--ng-container matColumnDef="action">
-    <th *matHeaderCellDef mat-header-cell></th>
-    <mat-cell *matCellDef="let specialty">
-      <button mat-flat-button color="primary" (click)="deleteSpecialty(specialty.id)" mat-button>Удалить</button>
-    </mat-cell>
-  </ng-container-->
+  <ng-container matColumnDef="duration">
+    <th *matHeaderCellDef mat-header-cell>Длительность приема</th>
+    <td *matCellDef="let specialty" mat-cell> {{specialty.duration}} </td>
+  </ng-container>
 
-  <ng-container matColumnDef="action">
+  <!--ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let specialty" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
         <button mat-flat-button color="primary" (click)="deleteSpecialty(specialty.id)">Удалить</button>
       </mat-button-toggle-group>
+    </td>
+  </ng-container-->
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let specialty" mat-cell>
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="update">Редактировать</button>
+      <mat-menu #update="matMenu">
+        <button mat-menu-item (click)="updateSpecialty(specialty.id)">Редактировать специальность</button>
+        <button mat-menu-item (click)="deleteSpecialty(specialty.id)">Удалить специальность</button>
+      </mat-menu>
     </td>
   </ng-container>
 

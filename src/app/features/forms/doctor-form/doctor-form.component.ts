@@ -30,6 +30,7 @@ export class DoctorFormComponent {
   specialties!: Specialty[];
   selectedSpecialties!: Specialty[];
   done!: boolean;
+  alreadyExists!: boolean;
   selectedSpecialtiesFormControl = new FormControl();
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -38,7 +39,7 @@ export class DoctorFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.maxLength(88)
+    Validators.minLength(8)
   ]);
 
   firstNameFormControl = new FormControl('', [
@@ -56,14 +57,14 @@ export class DoctorFormComponent {
   ]);
 
   phoneFormControl = new FormControl('', [
-    Validators.pattern('[0-9]{1,11}'),
+    Validators.pattern('[0-9]{1,32}'),
     Validators.required
   ]);
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-    Validators.maxLength(32)
+    Validators.maxLength(64)
   ]);
 
   docForm = new FormGroup({
@@ -104,6 +105,8 @@ export class DoctorFormComponent {
 
   onSubmit() {
     this.putData();
+    this.alreadyExists = false;
+    this.done = false;
     this.userService.save(this.user).subscribe(
         (data: User) => {
           this.doctor.id = data.id;
@@ -119,7 +122,10 @@ export class DoctorFormComponent {
             }
           });
         },
-        error => console.log(error)
+        error => {
+          this.alreadyExists = true;
+          console.log(error);
+        }
     );
   }
 }

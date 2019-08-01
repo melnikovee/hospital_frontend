@@ -3,22 +3,25 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Имя" formControlName="firstName"
            [errorStateMatcher]="matcher">
-    <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
-      Пожалуйста введите имя
+    <mat-error *ngIf="firstNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Фамилия" formControlName="lastName"
            [errorStateMatcher]="matcher">
-    <mat-error *ngIf="lastNameFormControl.hasError('pattern') && !lastNameFormControl.hasError('required')">
-      Пожалуйста введите фамилию
+    <mat-error *ngIf="lastNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Отчество" formControlName="middleName"
            [errorStateMatcher]="matcher">
+    <mat-error *ngIf="middleNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">

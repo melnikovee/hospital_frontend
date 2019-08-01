@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Specialty} from '../_models/specialty';
+import {User} from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class SpecialtyService {
     return this.http.get<Specialty[]>(this.specialtiesUrl);
   }
 
-  public find(id: number): Observable<Specialty> {
+  public getSpecialtyById(id: number): Observable<Specialty> {
     return this.http.get<Specialty>(`${this.specialtiesUrl}/${id}`);
   }
 
@@ -33,6 +34,10 @@ export class SpecialtyService {
   // tslint:disable-next-line:no-any
   deleteSpecialty(id: number): Observable<any> {
     return this.http.delete(`${this.specialtiesUrl}/${id}`);
+  }
+
+  updateSpecialty(id: number, specialty: Specialty) {
+    return this.http.put(`${this.specialtiesUrl}/${id}`, specialty);
   }
 }
 
