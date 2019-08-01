@@ -12,27 +12,49 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 })
 export class PasswordChangeDialogFormComponent implements OnInit {
 
-  binding!: string;
+  bindingCurrentPassword!: string;
+  bindingNewPassword!: string;
+  bindingRepeatedPassword!: string;
   isCurrentPasswordSent!: boolean;
   isCurrentPasswordRight!: boolean;
+  enableChange!: boolean;
   isDone!: boolean;
-  newPassword!: string;
-  repeatedPassword!: string;
-  text$: ReplaySubject<string> = new ReplaySubject<string>();
+  newPassword = '';
+  repeatedPassword = '';
+  textCurrentPassword$: ReplaySubject<string> = new ReplaySubject<string>();
+  textNewPassword$: ReplaySubject<string> = new ReplaySubject<string>();
+  textRepeatedPassword$: ReplaySubject<string> = new ReplaySubject<string>();
 
   constructor(private currentUserService: CurrentUserService,
               private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.text$.pipe(distinctUntilChanged(), debounceTime(600)).subscribe(text => {
-      console.log(text);
+    this.textCurrentPassword$.pipe(distinctUntilChanged(), debounceTime(600)).subscribe(text => {
       this.checkPassword(text);
+    });
+
+    this.textNewPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
+      this.newPassword = text;
+      this.permitChange();
+    });
+
+    this.textRepeatedPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
+      this.repeatedPassword = text;
+      this.permitChange();
     });
   }
 
-  trigger() {
-    this.text$.next(this.binding);
+  triggerCurrentPassword() {
+    this.textCurrentPassword$.next(this.bindingCurrentPassword);
+  }
+
+  triggerNewPassword() {
+    this.textNewPassword$.next(this.bindingNewPassword);
+  }
+
+  triggerRepeatedPassword() {
+    this.textRepeatedPassword$.next(this.bindingRepeatedPassword);
   }
 
   checkPassword(text: string) {
@@ -55,11 +77,12 @@ export class PasswordChangeDialogFormComponent implements OnInit {
         this.isDone = true;
       });
       this.isCurrentPasswordRight = false;
+      this.enableChange = false;
     }
   }
 
-  permitChange(): boolean {
-    return this.newPassword !== undefined && this.repeatedPassword !== undefined
-      && this.newPassword === this.repeatedPassword;
+  permitChange() {
+    this.enableChange = (this.newPassword.length !== 0) && (this.repeatedPassword.length !== 0)
+      && (this.newPassword === this.repeatedPassword);
   }
 }
