@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
+import {ErrorStateMatcher, MatDialog} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../_models/user';
 import {Doctor} from '../../_models/doctor';
 import {DoctorService} from '../../_services/doctor-service.service';
 import {UserService} from '../../_services/user-service.service';
+import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
+import {PasswordChangeDialogFormComponent} from '../password-change-dialog-form/password-change-dialog-form.component';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -59,7 +61,8 @@ export class DoctorUpdateFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private doctorService: DoctorService, private userService: UserService) {
+              private doctorService: DoctorService, private userService: UserService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -107,5 +110,9 @@ export class DoctorUpdateFormComponent implements OnInit {
 
     this.userService.updateUser(this.id, this.user).subscribe();
     this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
+  }
+
+  openDialog() {
+    this.dialog.open(PasswordChangeDialogFormComponent, {width: '50%'});
   }
 }

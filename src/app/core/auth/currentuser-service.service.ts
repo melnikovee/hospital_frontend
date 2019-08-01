@@ -60,12 +60,14 @@ export class CurrentUserService {
       if (auth == undefined) {
         localStorage.removeItem('auth');
         localStorage.removeItem('id');
+        localStorage.removeItem('login');
       } else {
         localStorage.setItem('auth', JSON.stringify(auth));
 
         this.auth$.subscribe(info => {
           if (info) {
             localStorage.setItem('id', info.id);
+            localStorage.setItem('login', info.login);
           }
         });
       }
@@ -109,6 +111,10 @@ export class CurrentUserService {
         }));
       })
     );
+  }
+
+  checkPassword(login: string, password: string) {
+    return this.httpClient.post<boolean>(`${'http://localhost:8080/change_password'}`, {login, password});
   }
 }
 
