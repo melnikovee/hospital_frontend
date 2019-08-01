@@ -14,8 +14,16 @@ export class LoggedUserGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
-    return this.permissionService.has('ADMINISTRATOR') || this.permissionService.has('PATIENT')
-      || this.permissionService.has('DOCTOR');
+    state: RouterStateSnapshot): boolean {
+    if (this.permissionService.has('ADMINISTRATOR')) {
+      return true;
+    }
+    if (this.permissionService.has('PATIENT')) {
+      return true;
+    }
+    if (this.permissionService.has('DOCTOR')) {
+      return true;
+    }
+    return false;
   }
 }

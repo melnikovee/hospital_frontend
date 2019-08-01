@@ -23,7 +23,7 @@ import {DoctorUpdateFormComponent} from './features/forms/doctor-update-form/doc
 import {PatientUpdateFormComponent} from './features/forms/patient-update-form/patient-update-form.component';
 import {PatientCardFormComponent} from './features/forms/patient-card-form/patient-card-form.component';
 import {LoginFormComponent} from './features/forms/login-form/login-form.component';
-import {AdminHomepageComponent} from './features/home/admin-homepage/admin-homepage.component';
+import {HomepageComponent} from './features/home/homepage/homepage.component';
 import {AdministratorGuard} from './core/auth/_guards/administrator.guard';
 import {DoctorGuard} from './core/auth/_guards/doctor.guard';
 import {PatientGuard} from './core/auth/_guards/patient.guard';
@@ -32,6 +32,8 @@ import {LoggedUserGuard} from './core/auth/_guards/logged-user.guard';
 import {DoctorTimeslotsForDoctorFormComponent} from './features/forms/doctor-timeslots-for-doctor-form/doctor-timeslots-for-doctor-form.component';
 import {DoctorTimeslotsAdminFormComponent} from './features/forms/doctor-timeslots-admin-form/doctor-timeslots-admin-form.component';
 import {SpecialtyUpdateFormComponent} from './features/forms/specialty-update-form/specialty-update-form.component';
+import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor.guard';
+import {PatientAppointmentFormComponent} from './features/forms/patient-appointment-form/patient-appointment-form.component';
 
 
 const routes: Routes = [
@@ -49,7 +51,6 @@ const routes: Routes = [
   {path: 'updatespecialty/:id', component: SpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'updateadmin', component: AdminUpdateFormComponent, canActivate: [AdministratorGuard]},
-  {path: 'admin', component: AdminHomepageComponent, canActivate: [AdministratorGuard]},
   {path: 'doctorTimeslotsAdmin/:id', component: DoctorTimeslotsAdminFormComponent, canActivate: [AdministratorGuard]},
 
   {path: 'searchpatient', component: SearchPatientFormComponent, canActivate: [DoctorGuard]},
@@ -61,8 +62,10 @@ const routes: Routes = [
   {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent, canActivate: [PatientGuard]},
   {path: 'patientcard', component: PatientCardFormComponent, canActivate: [PatientGuard]},
   {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [PatientGuard]},
+  {path: 'patientAppointment', component: PatientAppointmentFormComponent, canActivate: [PatientGuard]},
 
-  {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [LoggedUserGuard]},
+  {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [AdministratorDoctorGuard]},
+  {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},
 
   {path: 'login', component: LoginFormComponent},
   {path: 'addpatient', component: PatientFormComponent}

@@ -33,8 +33,10 @@ export class PatientsCurrentVisitsFormComponent implements OnInit {
     });
   }
   cancelRecord(record: PatientTimeslot) {
-    this.timeslotService.cancelRecord(record.id).subscribe(data => {
-      this.reloadData();
-    });
+    if (confirm('Уверены что хотите отменить запись?')) {
+      this.timeslotService.cancelRecord(record.id).subscribe(data => {
+        this.reloadData();
+      });
+    }
   }
 }
