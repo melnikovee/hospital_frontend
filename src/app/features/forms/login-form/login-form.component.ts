@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CurrentUserService} from '../../../core/auth/currentuser-service.service';
 
@@ -23,6 +22,6 @@ export class LoginFormComponent implements OnInit {
     this.currentUserService.authenticate(
       this.username,
       this.password
-    ).subscribe(() => this.router.navigate(['']));
+    ).subscribe(() => this.router.navigate(['/home']));
   }
 }
