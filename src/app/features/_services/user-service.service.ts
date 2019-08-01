@@ -46,6 +46,10 @@ export class UserService {
     return this.http.put(`${this.usersUrl}/${id}`, user);
   }
 
+  changePassword(id: number, password: string) {
+    return this.http.put('http://localhost:8080/users/password', {id, password});
+  }
+
   login(login: string, password: string) {
     return this.http.post<{authToken: string, refreshToken: string}>('http://localhost:8080/login',
       {login, password}).subscribe(res => {

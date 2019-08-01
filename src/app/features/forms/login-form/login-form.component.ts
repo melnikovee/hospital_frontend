@@ -9,33 +9,20 @@ import {CurrentUserService} from '../../../core/auth/currentuser-service.service
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  _loginForm: FormGroup;
-  hide = true;
+  username!: string;
+  password!: string;
 
-  constructor(private fb: FormBuilder, private currentUserService: CurrentUserService, private router: Router) {
-    this._loginForm = fb.group({
-      login: fb.control(undefined, [Validators.required]),
-      password: fb.control(undefined, [Validators.required])
-    });
+  constructor(private currentUserService: CurrentUserService,
+              private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  getErrorLogin() {
-    return this._loginForm.controls.login.value.hasError('required') ? 'Не может быть пустым' :
-      '';
-  }
-
-  getErrorPassword() {
-    return this._loginForm.controls.password.value.hasError('required') ? 'Не может быть пустым' :
-      '';
-  }
-
   handleLoginClick() {
     this.currentUserService.authenticate(
-      this._loginForm.controls.login.value,
-      this._loginForm.controls.password.value
+      this.username,
+      this.password
     ).subscribe(() => this.router.navigate(['']));
   }
 }

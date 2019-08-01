@@ -3,3 +3,33 @@
   flex-direction: column;
   align-items: center;
 }
+
+mat-card {
+  background: #f5f5f5;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.entry {
+  display: flex;
+  justify-content: center;
+}
+
+.entry-text {
+  font-size: x-large;
+}
+
+.login {
+  width: 50%;
+}
+
+.font {
+  font-size: large;
+}
+
+.enable-button {
+  background: #3f51b5;
+  color: white;
+}
