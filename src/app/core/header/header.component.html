@@ -39,6 +39,6 @@
   <a mat-button *appPermit="'DOCTOR'" routerLink="/searchpatient">Медицинское заключение</a>
   <a mat-button *appPermit="'DOCTOR'" routerLink="/patientrecordbydoctor">Запись пациента на прием</a>
 
-  <a mat-button class="logout" routerLink="/logout">Выход</a>
+  <a mat-button class="logout" routerLink="/login" (click)="logout()">Выход</a>
 </mat-toolbar>
 

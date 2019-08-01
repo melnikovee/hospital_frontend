@@ -6,6 +6,8 @@ import {PatientService} from '../../../features/_services/patient-service.servic
 import {DoctorService} from '../../../features/_services/doctor-service.service';
 import {Doctor} from '../../../features/_models/doctor';
 import {Patient} from '../../../features/_models/patient';
+import {PasswordChangeDialogFormComponent} from '../../../features/forms/password-change-dialog-form/password-change-dialog-form.component';
+import {MatDialog} from '@angular/material';
 
 export interface Section {
   name: string;
@@ -29,7 +31,7 @@ export class HomepageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService, private patientService: PatientService,
-              private doctorService: DoctorService) {
+              private doctorService: DoctorService, private dialog: MatDialog) {
   }
 
   async ngOnInit() {
@@ -85,5 +87,9 @@ export class HomepageComponent implements OnInit {
         ];
       });
     }
+  }
+
+  openDialog() {
+    this.dialog.open(PasswordChangeDialogFormComponent, {width: '50%'});
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CurrentUserService} from '../auth/currentuser-service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   title = 'Hospital';
 
-  constructor() { }
+  constructor(private currentUserService: CurrentUserService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.currentUserService.logout();
+  }
 }
