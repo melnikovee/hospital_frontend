@@ -28,8 +28,7 @@ import {filter, map} from 'rxjs/operators';
     SharedModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'ru'}
-  ],
+    {provide: LOCALE_ID, useValue: 'ru'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
