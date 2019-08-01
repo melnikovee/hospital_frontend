@@ -61,8 +61,7 @@ export class DoctorUpdateFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private doctorService: DoctorService, private userService: UserService,
-              private dialog: MatDialog) {
+              private doctorService: DoctorService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -110,9 +109,5 @@ export class DoctorUpdateFormComponent implements OnInit {
 
     this.userService.updateUser(this.id, this.user).subscribe();
     this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
-  }
-
-  openDialog() {
-    this.dialog.open(PasswordChangeDialogFormComponent, {width: '50%'});
   }
 }
