@@ -53,6 +53,7 @@ export class HomepageComponent implements OnInit {
         },
         {
           name: 'ФИО',
+          // tslint:disable-next-line
           value: this.user.middleName == null ? this.user.lastName + ' ' + this.user.firstName :
             this.user.lastName + ' ' + this.user.firstName + ' ' + this.user.middleName,
         }
