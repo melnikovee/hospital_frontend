@@ -70,6 +70,7 @@ const routes: Routes = [
 
   {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [AdministratorDoctorGuard]},
   {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},
+
   {path: 'addpatient', component: PatientFormComponent},
   {path: 'login', component: LoginFormComponent}
 ];
