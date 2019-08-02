@@ -9,17 +9,8 @@ import {CardFormComponent} from '../card-form/card-form.component';
 export class PatientCardFormComponent implements OnInit {
 
   id!: number;
-  showTable!: boolean;
-
-  @ViewChild(CardFormComponent, {static: false})
-  private childComponent!: CardFormComponent;
 
   constructor() {
-  }
-
-  getCards() {
-    this.showTable = true;
-    this.childComponent.getCard(this.id);
   }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 <div class="example-container">
+  <p></p>
   <table [dataSource]="patientCard" class="mat-elevation-z8" mat-table>
 
     <ng-container matColumnDef="doctor">
@@ -28,4 +29,30 @@
     <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
     <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
   </table>
+</div>
+
+<p>Специальные смены:</p>
+
+<div class="example-container">
+  <table [dataSource]="specialShifts" class="mat-elevation-z8" mat-table>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Смена</th>
+      <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th *matHeaderCellDef mat-header-cell>Дата</th>
+      <td *matCellDef="let element" mat-cell> {{element.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th *matHeaderCellDef mat-header-cell>Время</th>
+      <td *matCellDef="let element" mat-cell> {{element.startTime.toLocaleString().substring(0, 5)}} - {{element.endTime.toLocaleString().substring(0, 5)}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumnsSpecShifts; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumnsSpecShifts;" mat-row></tr>
+  </table>
+  <p></p>
 </div>

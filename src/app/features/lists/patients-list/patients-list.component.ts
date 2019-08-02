@@ -12,7 +12,7 @@ import {CompositeService} from '../../_services/composite-service.service';
 })
 export class PatientsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['patient', 'birthday', 'phone', 'action'];
+  displayedColumns: string[] = ['patient', 'birthday', 'phone', 'action', 'actionTwo'];
   dataSource!: MatTableDataSource<Composite>;
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -36,4 +36,7 @@ export class PatientsListComponent implements OnInit {
     this.router.navigate(['/makeAppointment', id]);
   }
 
+  makeSpecialShiftRecord(id: number) {
+    this.router.navigate(['/patientspecialshiftrecord', id]);
+  }
 }
