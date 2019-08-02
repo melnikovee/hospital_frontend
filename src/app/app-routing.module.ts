@@ -34,6 +34,9 @@ import {DoctorTimeslotsAdminFormComponent} from './features/forms/doctor-timeslo
 import {SpecialtyUpdateFormComponent} from './features/forms/specialty-update-form/specialty-update-form.component';
 import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor.guard';
 import {PatientAppointmentFormComponent} from './features/forms/patient-appointment-form/patient-appointment-form.component';
+import {SpecialShiftFormComponent} from './features/forms/special-shift-form/special-shift-form.component';
+// tslint:disable-next-line:max-line-length
+import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
 
 const routes: Routes = [
@@ -52,6 +55,7 @@ const routes: Routes = [
   {path: 'updatespecialtydoctor', component: DoctorSpecialtyUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'updateadmin', component: AdminUpdateFormComponent, canActivate: [AdministratorGuard]},
   {path: 'doctorTimeslotsAdmin/:id', component: DoctorTimeslotsAdminFormComponent, canActivate: [AdministratorGuard]},
+  {path: 'addspecialshift', component: SpecialShiftFormComponent, canActivate: [AdministratorGuard]},
 
   {path: 'searchpatient', component: SearchPatientFormComponent, canActivate: [DoctorGuard]},
   {path: 'patientrecordbydoctor', component: PatientRecordByDoctorFormComponent, canActivate: [DoctorGuard]},
@@ -63,6 +67,7 @@ const routes: Routes = [
   {path: 'patientcard', component: PatientCardFormComponent, canActivate: [PatientGuard]},
   {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [PatientGuard]},
   {path: 'patientAppointment', component: PatientAppointmentFormComponent, canActivate: [PatientGuard]},
+  {path: 'patientspecialshift', component: SpecialShiftForPatientFormComponent, canActivate: [PatientGuard]},
 
   {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [AdministratorDoctorGuard]},
   {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},

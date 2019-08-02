@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+mat-form-field {
+  font-size: 14px;
+  margin-left: 2%;
+  width: 80%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-column-time,
+.mat-column-specialty,
+.mat-column-doctor,
+.mat-column-cabinet,
+.mat-column-patient {
+  text-align: center;
+}
+
+.mat-column-delete {
+  place-content: center;
+}
