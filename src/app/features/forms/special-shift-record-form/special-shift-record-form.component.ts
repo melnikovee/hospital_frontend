@@ -83,9 +83,11 @@ export class SpecialShiftRecordFormComponent {
   }
 
   cancelRecord(id: number) {
-    this.patientSpecialShiftService.deleteOnePatientSpecialShift(this.patientId, id).subscribe();
-    this.specialShiftService.cancelRecord(id).subscribe(data => {
-      this.reloadData();
-    });
+    if (confirm('Уверены что хотите отменить запись?')) {
+      this.patientSpecialShiftService.deleteOnePatientSpecialShift(this.patientId, id).subscribe();
+      this.specialShiftService.cancelRecord(id).subscribe(data => {
+        this.reloadData();
+      });
+    }
   }
 }

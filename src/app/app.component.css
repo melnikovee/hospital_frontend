@@ -6,17 +6,17 @@
 
 .header {
   //position: fixed;
-  margin-left: 8%;
-  margin-right: 8%;
+  //margin-left: 8%;
+  //margin-right: 8%;
 }
 
 .body {
   flex: 1;
-  margin: 2% 13% 5%;
+  margin: 2% 2% 2%;
 }
 
 .footer {
-  margin-left: 8%;
-  margin-right: 8%;
+  //margin-left: 8%;
+  //margin-right: 8%;
 }
 

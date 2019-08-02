@@ -16,7 +16,10 @@ th.mat-sort-header-sorted {
 .mat-column-specialty,
 .mat-column-doctor,
 .mat-column-cabinet,
-.mat-column-patient {
+.mat-column-patient,
+.mat-column-numberPatients,
+.mat-column-maxNumberPatients,
+.mat-column-action {
   text-align: center;
 }
 
