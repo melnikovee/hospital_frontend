@@ -24,10 +24,12 @@
     <button mat-menu-item routerLink="/specialties">Специальности</button>
     <button mat-menu-item routerLink="/addadmin">Регистрация администратора</button>
     <button mat-menu-item routerLink="/updatespecialtydoctor">Редактировать специальностей доктора</button>
+    <button mat-menu-item routerLink="/addspecialshift">Добавить специальную смену</button>
   </mat-menu>
 
   <a mat-button *appPermit="'PATIENT'" routerLink="/patientAppointment">Запись на прием</a>
   <a mat-button *appPermit="'PATIENT'" routerLink="/patientcard">Карточка пациента</a>
+  <a mat-button *appPermit="'PATIENT'" routerLink="/patientspecialshift">Специальные смены</a>
   <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="appointments">Мои записи</button>
   <mat-menu #appointments="matMenu">
     <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие записи</button>

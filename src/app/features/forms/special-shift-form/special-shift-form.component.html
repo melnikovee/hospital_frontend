@@ -1,0 +1,78 @@
+<form [formGroup]="specialShiftForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="name" matInput
+           placeholder="Название смены">
+    <mat-error *ngIf="nameFormControl.hasError('maxLength') && !nameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [matDatepicker]="date" formControlName="date" matInput placeholder="Выберите дату">
+    <mat-datepicker-toggle [for]="date" matSuffix></mat-datepicker-toggle>
+    <mat-error *ngIf="dateFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+    <mat-datepicker #date [startAt]="startDate" startView="year"></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field (click)="getFreeCabinets()" class="example-full-width">
+    <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
+      <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
+        {{cabinet.cabinetName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="startTime" matInput
+           placeholder="Начало смены">
+    <mat-hint>Пример 09:30</mat-hint>
+    <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+      Введите время в формате 09:30
+    </mat-error>
+    <mat-error *ngIf="startTimeFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
+           placeholder="Оконочание смены">
+    <mat-hint>Пример 09:30</mat-hint>
+    <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+      Введите время в формате 09:30
+    </mat-error>
+    <mat-error *ngIf="endTimeFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" [formControl]="maxPatientsFormControl" formControlName="maxPatients"
+           matInput placeholder="Максимальное количество пациентов">
+    <mat-error
+      *ngIf="maxPatientsFormControl.hasError('max') && !maxPatientsFormControl.hasError('required')">
+      Не более 30 человек
+    </mat-error>
+    <mat-error *ngIf="maxPatientsFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <!--<div *ngIf="done">
+    <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
+  </div>-->
+<!--  <div *ngIf="alreadyExists">
+    <p>Пользователь с таким логином уже зарегистрирован, пожалуйста выберите другой логин</p>
+  </div>-->
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specialShiftForm.valid" value="bold">Добавить смену
+  </button>
+
+</form>
+

@@ -90,11 +90,14 @@ export class PatientFormComponent {
     this.patient.phone = this.patientForm.controls.phone.value;
     this.patient.birthday = this.patientForm.controls.birthday.value;
     this.user.role = 'PATIENT';
+
+    console.log(this.patientForm.controls.birthday.value);
+    console.log(this.patient.birthday);
   }
 
   onSubmit() {
     this.putData();
-    this.alreadyExists = false;
+    /*this.alreadyExists = false;
     this.done = false;
     this.userService.createPatient(this.user).subscribe(
         (data: User) => {
@@ -108,6 +111,6 @@ export class PatientFormComponent {
         this.alreadyExists = true;
         console.log(error);
       }
-        );
+        );*/
   }
 }
