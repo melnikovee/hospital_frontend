@@ -40,7 +40,6 @@ import {SpecialShiftRecordFormComponent} from './features/forms/special-shift-re
 import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
 import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
-
 const routes: Routes = [
   {path: 'users', component: UserListComponent, canActivate: [AdministratorGuard]},
   {path: 'cabinets', component: CabinetListComponent, canActivate: [AdministratorGuard]},
@@ -75,8 +74,8 @@ const routes: Routes = [
   {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [AdministratorDoctorGuard]},
   {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},
 
-  {path: 'login', component: LoginFormComponent},
-  {path: 'addpatient', component: PatientFormComponent}
+  {path: 'addpatient', component: PatientFormComponent},
+  {path: 'login', component: LoginFormComponent}
 ];
 
 @NgModule({
