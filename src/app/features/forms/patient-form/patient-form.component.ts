@@ -34,7 +34,7 @@ export class PatientFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(8)
+    Validators.pattern('[a-zA-Z0-9].{7,32}')
   ]);
 
   firstNameFormControl = new FormControl('', [
@@ -97,9 +97,9 @@ export class PatientFormComponent {
 
   onSubmit() {
     this.putData();
-    /*this.alreadyExists = false;
+    this.alreadyExists = false;
     this.done = false;
-    this.userService.save(this.user).subscribe(
+    this.userService.createPatient(this.user).subscribe(
         (data: User) => {
           this.patient.id = data.id;
           this.receivedUser = data;
@@ -111,6 +111,6 @@ export class PatientFormComponent {
         this.alreadyExists = true;
         console.log(error);
       }
-        );*/
+        );
   }
 }

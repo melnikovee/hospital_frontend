@@ -103,6 +103,9 @@ export class PatientUpdateFormComponent implements OnInit {
     this.putData();
 
     this.userService.updateUser(this.id, this.user).subscribe();
-    this.patientService.updatePatient(this.id, this.patient).subscribe();
+    this.patientService.updatePatient(this.id, this.patient).subscribe(value => this.navigateToHomepage());
+  }
+  navigateToHomepage() {
+    this.router.navigate(['/home']);
   }
 }

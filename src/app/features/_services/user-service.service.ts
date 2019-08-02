@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, user);
   }
 
+  public createPatient(user: User) {
+    return this.http.post<User>('http://localhost:8080/users/patients/create', user);
+  }
+
   public getUserById(id: number) {
     return this.http.get<User>(`${this.usersUrl}/${id}`);
   }

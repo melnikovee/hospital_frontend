@@ -136,9 +136,16 @@ export class AppointmentFormComponent {
               (ts: Timeslot) => {
                 this.receivedTimeslot = ts;
                 this.done = true;
+                this.navigateToSchedule();
               });
         },
         error => console.log(error)
     );
+  }
+  navigateToSchedule() {
+    // @ts-ignore
+    if (localStorage.getItem('role').toString() === 'ADMINISTRATOR') {
+      this.router.navigate(['/timeslots']);
+    }
   }
 }
