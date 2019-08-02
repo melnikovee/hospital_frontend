@@ -52,7 +52,7 @@ export class SpecialShiftFormComponent {
   ]);
 
   maxPatientsFormControl = new FormControl('', [
-    Validators.max(30),
+    Validators.max(100),
     Validators.required
   ]);
 

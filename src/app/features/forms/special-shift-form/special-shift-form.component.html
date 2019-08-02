@@ -42,7 +42,7 @@
 
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
-           placeholder="Оконочание смены">
+           placeholder="Окончание смены">
     <mat-hint>Пример 09:30</mat-hint>
     <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
       Введите время в формате 09:30
@@ -57,7 +57,7 @@
            matInput placeholder="Максимальное количество пациентов">
     <mat-error
       *ngIf="maxPatientsFormControl.hasError('max') && !maxPatientsFormControl.hasError('required')">
-      Не более 30 человек
+      Не более 100 человек
     </mat-error>
     <mat-error *ngIf="maxPatientsFormControl.hasError('required')">
       Обязательное поле

@@ -25,12 +25,12 @@
   </ng-container>
 
   <ng-container matColumnDef="numberPatients">
-    <th *matHeaderCellDef mat-header-cell>Текущее<p></p> кол-во пациентов</th>
+    <th *matHeaderCellDef mat-header-cell>Записано<p></p> пациентов</th>
     <td *matCellDef="let specialShift" mat-cell> {{specialShift.numberOfPatients}}</td>
   </ng-container>
 
   <ng-container matColumnDef="maxNumberPatients">
-    <th *matHeaderCellDef mat-header-cell>Максимально<p></p> кол-во пациентов</th>
+    <th *matHeaderCellDef mat-header-cell>Максимальное<p></p> кол-во пациентов</th>
     <td *matCellDef="let specialShift" mat-cell>{{specialShift.maxNumberOfPatients}}</td>
   </ng-container>
 
