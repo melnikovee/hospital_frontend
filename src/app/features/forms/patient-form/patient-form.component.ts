@@ -97,7 +97,7 @@ export class PatientFormComponent {
 
   onSubmit() {
     this.putData();
-    /*this.alreadyExists = false;
+    this.alreadyExists = false;
     this.done = false;
     this.userService.createPatient(this.user).subscribe(
         (data: User) => {
@@ -111,6 +111,6 @@ export class PatientFormComponent {
         this.alreadyExists = true;
         console.log(error);
       }
-        );*/
+        );
   }
 }
