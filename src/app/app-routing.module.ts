@@ -38,6 +38,7 @@ import {SpecialShiftFormComponent} from './features/forms/special-shift-form/spe
 // tslint:disable-next-line:max-line-length
 import {SpecialShiftRecordFormComponent} from './features/forms/special-shift-record-form/special-shift-record-form.component';
 import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
+// tslint:disable-next-line:max-line-length
 import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
 const routes: Routes = [
