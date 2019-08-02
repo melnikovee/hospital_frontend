@@ -39,7 +39,7 @@ export class SpecialShiftService {
   }
 
   // tslint:disable-next-line:no-any
-  deleteSpecialty(id: number): Observable<any> {
+  deleteSpecialShift(id: number): Observable<any> {
     return this.http.delete(`${this.specialShiftsUrl}/${id}`);
   }
 

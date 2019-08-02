@@ -54,6 +54,7 @@ import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shif
 import {SpecialShiftRecordFormComponent} from './forms/special-shift-record-form/special-shift-record-form.component';
 import {PatientSpecialShiftService} from './_services/patient-special-shift-service.service';
 import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
+import {SpecialShiftListComponent} from './lists/special-shift-list/special-shift-list.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-pat
     PasswordChangeDialogFormComponent,
     SpecialShiftFormComponent,
     SpecialShiftRecordFormComponent,
-    SpecialShiftForPatientFormComponent
+    SpecialShiftForPatientFormComponent,
+    SpecialShiftListComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -128,7 +130,8 @@ import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-pat
     PasswordChangeDialogFormComponent,
     SpecialShiftFormComponent,
     SpecialShiftRecordFormComponent,
-    SpecialShiftForPatientFormComponent
+    SpecialShiftForPatientFormComponent,
+    SpecialShiftListComponent
   ],
   imports: [
     CommonModule,

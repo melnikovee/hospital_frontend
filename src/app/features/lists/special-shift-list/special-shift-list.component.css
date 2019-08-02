@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.mat-column-specialty,
+.mat-column-phone {
+  text-align: center;
+}
+
+.mat-column-schedule {
+  place-content: center;
+}
+
+.mat-column-create {
+  place-content: center;
+}
+

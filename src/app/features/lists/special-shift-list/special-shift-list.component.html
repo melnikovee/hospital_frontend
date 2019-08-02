@@ -30,19 +30,25 @@
   </ng-container>
 
   <ng-container matColumnDef="maxNumberPatients">
-    <th *matHeaderCellDef mat-header-cell>Максимальное<p></p> кол-во пациентов</th>
+    <th *matHeaderCellDef mat-header-cell>Максимально<p></p> кол-во пациентов</th>
     <td *matCellDef="let specialShift" mat-cell>{{specialShift.maxNumberOfPatients}}</td>
   </ng-container>
 
   <ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let specialShift" mat-cell>
-      <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!checkSign(specialShift.id)">
-        <button mat-flat-button color="primary" [disabled]="!hasPlace(specialShift)" (click)="signUp(specialShift.id)">Записаться
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="delete(specialShift.id)">Удалить
         </button>
       </mat-button-toggle-group>
-      <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="checkSign(specialShift.id)">
-        <button mat-flat-button color="accent" (click)="cancelRecord(specialShift.id)">Отмена записи
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actionTwo">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let specialShift" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="accent">Редактировать
         </button>
       </mat-button-toggle-group>
     </td>
