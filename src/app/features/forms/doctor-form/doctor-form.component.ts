@@ -39,7 +39,7 @@ export class DoctorFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,32}')
+    Validators.pattern('[a-zA-Z0-9].{7,32}')
   ]);
 
   firstNameFormControl = new FormControl('', [
