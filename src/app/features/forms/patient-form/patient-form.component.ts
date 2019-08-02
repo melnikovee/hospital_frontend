@@ -34,7 +34,7 @@ export class PatientFormComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(8)
+    Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,32}')
   ]);
 
   firstNameFormControl = new FormControl('', [
@@ -96,7 +96,7 @@ export class PatientFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.userService.save(this.user).subscribe(
+    this.userService.createPatient(this.user).subscribe(
         (data: User) => {
           this.patient.id = data.id;
           this.receivedUser = data;

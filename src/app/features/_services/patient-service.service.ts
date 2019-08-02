@@ -24,8 +24,7 @@ export class PatientService {
   }
 
   public save(patient: Patient) {
-    console.log(patient);
-    return this.http.post<Patient>(this.patientsUrl, patient);
+    return this.http.post<Patient>('http://localhost:8080/patients/create', patient);
   }
 
   updatePatient(id: number, patient: Patient) {

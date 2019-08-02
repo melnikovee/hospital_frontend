@@ -14,8 +14,8 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="password" matInput
            placeholder="Пароль">
-    <mat-error *ngIf="passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
-      Пожалуйста введите пароль длиннее 8 символов
+    <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('required')">
+      Введите пароль длиннее 8 символов. Можно использовать буквы английского алфавита, цифры, знаки препинания.
     </mat-error>
     <mat-error *ngIf="passwordFormControl.hasError('required')">
       Обязательное поле
