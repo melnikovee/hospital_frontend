@@ -15,19 +15,23 @@ export class SpecialShiftService {
   }
 
   public findAll(): Observable<SpecialShift[]> {
-    return this.http.get<SpecialShift[]>(this.specialShiftsUrl);
+    return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}`);
   }
 
   public getSpecialtyById(id: number): Observable<SpecialShift> {
     return this.http.get<SpecialShift>(`${this.specialShiftsUrl}/${id}`);
   }
 
+  public listSpecialShiftsForPatient(): Observable<SpecialShift[]> {
+    return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}/${'for_patient'}`);
+  }
+
   public save(specialShift: SpecialShift) {
     return this.http.post<SpecialShift>(this.specialShiftsUrl, specialShift);
   }
 
-  public signUp(id: number) {
-    return this.http.put(`${this.specialShiftsUrl}/${'occupy'}/${id}`, null);
+  public signUp(patientId: number, specialShiftId: number) {
+    return this.http.put<boolean>(`${this.specialShiftsUrl}/${'occupy'}/${patientId}/${specialShiftId}`, null);
   }
 
   public cancelRecord(id: number) {

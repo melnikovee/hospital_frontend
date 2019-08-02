@@ -16,6 +16,7 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   displayedColumns: string[] = ['name', 'date', 'cabinet', 'time', 'numberPatients', 'maxNumberPatients', 'action'];
   dataSource!: MatTableDataSource<SpecialShift>;
   patientSpecialShifts!: PatientSpecialShift[];
+  isRecordSuccess!: boolean;
   patientId!: number;
 
   constructor(private specialShiftService: SpecialShiftService, private patientSpecialShiftService: PatientSpecialShiftService) {
@@ -36,7 +37,7 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   }
 
   reloadData() {
-    this.specialShiftService.findAll().subscribe(data => {
+    this.specialShiftService.listSpecialShiftsForPatient().subscribe(data => {
       const sorted = data.sort((a, b) => a.startTime.localeCompare(b.startTime))
       .sort((a, b) => a.endTime.localeCompare(b.endTime))
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -45,6 +46,11 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
 
       this.getPatientSpecialShifts();
     });
+  }
+
+  hasPlace(specShift: SpecialShift): boolean {
+    console.log('++++');
+    return specShift.numberOfPatients < specShift.maxNumberOfPatients;
   }
 
   getPatientSpecialShifts() {
@@ -56,6 +62,7 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   }
 
   checkSign(specShiftId: number): boolean {
+    console.log('++++');
     if (this.patientSpecialShifts !== undefined) {
       for (const patientSpecShift of this.patientSpecialShifts) {
         if (patientSpecShift.specialShift === specShiftId) {
@@ -70,9 +77,9 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   }
 
   signUp(id: number) {
-    console.log(id);
-    this.specialShiftService.signUp(id).subscribe();
-    this.patientSpecialShiftService.save(new PatientSpecialShift(this.patientId, id)).subscribe(data => {
+    //console.log(id);
+    this.specialShiftService.signUp(this.patientId, id).subscribe(result => {
+      this.isRecordSuccess = result;
       this.reloadData();
     });
   }

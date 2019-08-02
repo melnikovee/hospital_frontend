@@ -38,7 +38,7 @@
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let specialShift" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!checkSign(specialShift.id)">
-        <button mat-flat-button color="primary" (click)="signUp(specialShift.id)">Записаться
+        <button mat-flat-button color="primary" [disabled]="!hasPlace(specialShift)" (click)="signUp(specialShift.id)">Записаться
         </button>
       </mat-button-toggle-group>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="checkSign(specialShift.id)">
