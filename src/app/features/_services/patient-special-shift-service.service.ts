@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {DoctorSpecialty} from '../_models/doctorspecialty';
 import {Specialty} from '../_models/specialty';
 import {PatientSpecialShift} from '../_models/patient-special-shift';
+import {SpecialShift} from '../_models/special-shift';
 
 
 @Injectable({
@@ -23,6 +24,10 @@ export class PatientSpecialShiftService {
 
   public findPatientSpecialShifts(id: number): Observable<PatientSpecialShift[]> {
     return this.http.get<PatientSpecialShift[]>(`${this.patientSpecialShiftUrl}/${id}`);
+  }
+
+  public getPatientSpecialShiftCard(id: number): Observable<SpecialShift[]> {
+    return this.http.get<SpecialShift[]>(`${this.patientSpecialShiftUrl}/${'info'}/${id}`);
   }
 
   public save(patientSpecialShift: PatientSpecialShift) {
