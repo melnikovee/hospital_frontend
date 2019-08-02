@@ -22,7 +22,7 @@
 
   <ng-container matColumnDef="time">
     <th *matHeaderCellDef mat-header-cell>Время</th>
-    <td *matCellDef="let element" mat-cell> {{element.time}} </td>
+    <td *matCellDef="let element" mat-cell> {{element.time.toLocaleString().substring(0, 5)}} </td>
   </ng-container>
 
       <ng-container matColumnDef="record">
