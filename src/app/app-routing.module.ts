@@ -35,6 +35,7 @@ import {SpecialtyUpdateFormComponent} from './features/forms/specialty-update-fo
 import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor.guard';
 import {PatientAppointmentFormComponent} from './features/forms/patient-appointment-form/patient-appointment-form.component';
 import {SpecialShiftFormComponent} from './features/forms/special-shift-form/special-shift-form.component';
+// tslint:disable-next-line:max-line-length
 import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
 

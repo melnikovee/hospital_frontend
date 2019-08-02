@@ -15,7 +15,7 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'date', 'cabinet', 'time', 'numberPatients', 'maxNumberPatients', 'action'];
   dataSource!: MatTableDataSource<SpecialShift>;
-  patientSpecialShifts!: PatientSpecialShift[];
+  patientSpecialShifts: PatientSpecialShift[] = [];
   isRecordSuccess!: boolean;
   patientId!: number;
 
@@ -49,7 +49,6 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   }
 
   hasPlace(specShift: SpecialShift): boolean {
-    console.log('++++');
     return specShift.numberOfPatients < specShift.maxNumberOfPatients;
   }
 
@@ -62,22 +61,16 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
   }
 
   checkSign(specShiftId: number): boolean {
-    console.log('++++');
-    if (this.patientSpecialShifts !== undefined) {
-      for (const patientSpecShift of this.patientSpecialShifts) {
-        if (patientSpecShift.specialShift === specShiftId) {
-          return false;
-        }
+    for (const patientSpecShift of this.patientSpecialShifts) {
+      if (patientSpecShift.specialShift === specShiftId) {
+        return false;
       }
-
-      return true;
-    } else {
-      return false;
     }
+
+    return true;
   }
 
   signUp(id: number) {
-    //console.log(id);
     this.specialShiftService.signUp(this.patientId, id).subscribe(result => {
       this.isRecordSuccess = result;
       this.reloadData();
@@ -90,24 +83,4 @@ export class SpecialShiftForPatientFormComponent implements OnInit {
       this.reloadData();
     });
   }
-
-  /*deleteTimeslot(id: number) {
-    if (confirm('Уверены что хотите удалить?')) {
-      this.timeSlotService.deleteTimeslot(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
-    }
-  }*/
-  /*cancelRecord(id: number) {
-    if (confirm('Уверены что хотите отменить запись?')) {
-      this.timeSlotService.cancelRecord(id).subscribe(data => {
-        this.reloadData();
-      });
-    }
-  }*/
-
 }
