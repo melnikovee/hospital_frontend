@@ -51,8 +51,9 @@ import {PatientAppointmentFormComponent} from './forms/patient-appointment-form/
 import {PasswordChangeDialogFormComponent} from './forms/password-change-dialog-form/password-change-dialog-form.component';
 import {SpecialShiftService} from './_services/special-shift-service.service';
 import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shift-form.component';
-import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
+import {SpecialShiftRecordFormComponent} from './forms/special-shift-record-form/special-shift-record-form.component';
 import {PatientSpecialShiftService} from './_services/patient-special-shift-service.service';
+import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {PatientSpecialShiftService} from './_services/patient-special-shift-serv
     PatientAppointmentFormComponent,
     PasswordChangeDialogFormComponent,
     SpecialShiftFormComponent,
+    SpecialShiftRecordFormComponent,
     SpecialShiftForPatientFormComponent
   ],
   exports: [
@@ -125,6 +127,7 @@ import {PatientSpecialShiftService} from './_services/patient-special-shift-serv
     PatientAppointmentFormComponent,
     PasswordChangeDialogFormComponent,
     SpecialShiftFormComponent,
+    SpecialShiftRecordFormComponent,
     SpecialShiftForPatientFormComponent
   ],
   imports: [

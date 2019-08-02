@@ -36,6 +36,8 @@ import {AdministratorDoctorGuard} from './core/auth/_guards/administrator-doctor
 import {PatientAppointmentFormComponent} from './features/forms/patient-appointment-form/patient-appointment-form.component';
 import {SpecialShiftFormComponent} from './features/forms/special-shift-form/special-shift-form.component';
 // tslint:disable-next-line:max-line-length
+import {SpecialShiftRecordFormComponent} from './features/forms/special-shift-record-form/special-shift-record-form.component';
+import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
 import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 
 
@@ -63,12 +65,13 @@ const routes: Routes = [
   {path: 'updatedoctor', component: DoctorUpdateFormComponent, canActivate: [DoctorGuard]},
 
   {path: 'patientpastvisits', component: PatientsPastVisitsFormComponent, canActivate: [PatientGuard]},
+  {path: 'patientspecialshift', component: SpecialShiftForPatientFormComponent, canActivate: [PatientGuard]},
   {path: 'patientcurrentvisits', component: PatientsCurrentVisitsFormComponent, canActivate: [PatientGuard]},
   {path: 'patientcard', component: PatientCardFormComponent, canActivate: [PatientGuard]},
   {path: 'updatepatient', component: PatientUpdateFormComponent, canActivate: [PatientGuard]},
   {path: 'patientAppointment', component: PatientAppointmentFormComponent, canActivate: [PatientGuard]},
-  {path: 'patientspecialshift', component: SpecialShiftForPatientFormComponent, canActivate: [PatientGuard]},
 
+  {path: 'patientspecialshiftrecord/:id', component: SpecialShiftRecordFormComponent, canActivate: [AdministratorPatientGuard]},
   {path: 'makeAppointment/:id', component: AppointmentFormComponent, canActivate: [AdministratorDoctorGuard]},
   {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},
 
