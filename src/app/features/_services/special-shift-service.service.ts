@@ -26,6 +26,14 @@ export class SpecialShiftService {
     return this.http.post<SpecialShift>(this.specialShiftsUrl, specialShift);
   }
 
+  public signUp(id: number) {
+    return this.http.put(`${this.specialShiftsUrl}/${'occupy'}/${id}`, null);
+  }
+
+  public cancelRecord(id: number) {
+    return this.http.put(`${this.specialShiftsUrl}/${'cancel'}/${id}`, null);
+  }
+
   // tslint:disable-next-line:no-any
   deleteSpecialty(id: number): Observable<any> {
     return this.http.delete(`${this.specialShiftsUrl}/${id}`);

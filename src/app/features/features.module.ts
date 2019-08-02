@@ -51,6 +51,8 @@ import {PatientAppointmentFormComponent} from './forms/patient-appointment-form/
 import {PasswordChangeDialogFormComponent} from './forms/password-change-dialog-form/password-change-dialog-form.component';
 import {SpecialShiftService} from './_services/special-shift-service.service';
 import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shift-form.component';
+import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
+import {PatientSpecialShiftService} from './_services/patient-special-shift-service.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,8 @@ import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shif
     SpecialtyUpdateFormComponent,
     PatientAppointmentFormComponent,
     PasswordChangeDialogFormComponent,
-    SpecialShiftFormComponent
+    SpecialShiftFormComponent,
+    SpecialShiftForPatientFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -121,7 +124,8 @@ import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shif
     SpecialtyUpdateFormComponent,
     PatientAppointmentFormComponent,
     PasswordChangeDialogFormComponent,
-    SpecialShiftFormComponent
+    SpecialShiftFormComponent,
+    SpecialShiftForPatientFormComponent
   ],
   imports: [
     CommonModule,
@@ -139,7 +143,8 @@ import {SpecialShiftFormComponent} from './forms/special-shift-form/special-shif
     MaterialAppModule
   ],
   providers: [UserService, CabinetService, PatientService, DoctorService,
-    TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService, DiagnosisService, SpecialShiftService],
+    TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService, DiagnosisService, SpecialShiftService,
+    PatientSpecialShiftService],
   entryComponents: [DialogDiagnosisFormComponent, PasswordChangeDialogFormComponent]
 })
 export class FeaturesModule { }
