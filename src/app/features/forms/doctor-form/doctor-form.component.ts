@@ -31,6 +31,7 @@ export class DoctorFormComponent {
   selectedSpecialties!: Specialty[];
   done!: boolean;
   alreadyExists!: boolean;
+  hide = true;
   selectedSpecialtiesFormControl = new FormControl();
   loginFormControl = new FormControl('', [
     Validators.required,

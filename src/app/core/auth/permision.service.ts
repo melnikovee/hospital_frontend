@@ -17,7 +17,7 @@ export class PermissionService {
     return this.currentUserService.auth$.pipe(
       map(auth => {
         if (auth == undefined) {
-          return false;
+          return permittedRole === 'NoLoggedUser';
         }
         return auth.role.toString() === permittedRole;
       }),

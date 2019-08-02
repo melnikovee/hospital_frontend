@@ -10,6 +10,8 @@ import {CurrentUserService} from '../../../core/auth/currentuser-service.service
 export class LoginFormComponent implements OnInit {
   username!: string;
   password!: string;
+  notExists!: boolean;
+  hide = true;
 
   constructor(private currentUserService: CurrentUserService,
               private router: Router) {
@@ -22,6 +24,12 @@ export class LoginFormComponent implements OnInit {
     this.currentUserService.authenticate(
       this.username,
       this.password
-    ).subscribe(() => this.router.navigate(['/home']));
+    ).subscribe(() =>
+      this.router.navigate(['/home']),
+      error => {
+        this.notExists = true;
+        console.log(error);
+      }
+    );
   }
 }

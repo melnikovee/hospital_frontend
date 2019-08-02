@@ -26,6 +26,7 @@ export class PatientFormComponent {
   done!: boolean;
   alreadyExists!: boolean;
   startDate = new Date(1970, 1, 1);
+  hide = true;
 
   loginFormControl = new FormControl('', [
     Validators.required,

@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <a mat-button routerLink="/login">Войти</a>
-  <button mat-flat-button color="primary" routerLink="/addpatient">Регистрация пациента</button>
+  <a mat-button *appPermit="'NoLoggedUser'" routerLink="/login">Войти</a>
+
 </mat-toolbar>
 

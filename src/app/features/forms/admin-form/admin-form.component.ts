@@ -24,6 +24,7 @@ export class AdminFormComponent {
   receivedUser!: User;
   done!: boolean;
   alreadyExists!: boolean;
+  hide = true;
   loginFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(32)

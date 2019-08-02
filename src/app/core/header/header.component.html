@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
-  <a mat-button routerLink="/home">Главная</a>
+  <button mat-flat-button *appPermit="'NoLoggedUser'" color="primary" routerLink="/addpatient">Регистрация пациента</button>
+  <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/home">Главная</a>
+  <a mat-button *appPermit="'DOCTOR'" routerLink="/home">Главная</a>
+  <a mat-button *appPermit="'PATIENT'" routerLink="/home">Главная</a>
   <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/timeslots">Расписание</a>
 
   <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="patients">Пациенты</button>
@@ -40,6 +43,8 @@
   <a mat-button *appPermit="'DOCTOR'" routerLink="/searchpatient">Медицинское заключение</a>
   <a mat-button *appPermit="'DOCTOR'" routerLink="/patientrecordbydoctor">Запись пациента на прием</a>
 
-  <a mat-button class="logout" routerLink="/login" (click)="logout()">Выход</a>
+  <a mat-button *appPermit="'ADMINISTRATOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
+  <a mat-button *appPermit="'DOCTOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
+  <a mat-button *appPermit="'PATIENT'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
 </mat-toolbar>
 
