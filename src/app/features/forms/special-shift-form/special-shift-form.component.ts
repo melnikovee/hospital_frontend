@@ -24,8 +24,8 @@ export class SpecialShiftFormComponent {
 
   specialShift = new SpecialShift('', '', '', '', '', 0);
   cabinets!: Cabinet[];
+  todaySpecialShifts: SpecialShift[] = [];
   startDate = Date.now();
-  selectedCabinetFormControl = new FormControl();
   normalDate!: string;
 
   nameFormControl = new FormControl('', [
@@ -52,7 +52,7 @@ export class SpecialShiftFormComponent {
   ]);
 
   maxPatientsFormControl = new FormControl('', [
-    Validators.max(300),
+    Validators.max(100),
     Validators.required
   ]);
 
@@ -71,11 +71,27 @@ export class SpecialShiftFormComponent {
               private specialShiftService: SpecialShiftService, private scheduleService: ScheduleService) {
   }
 
+  checkName() {
+    console.log('+++');
+    if (this.nameFormControl.value !== undefined && this.todaySpecialShifts !== undefined) {
+      for (const specShift of this.todaySpecialShifts) {
+        if (specShift.name.toLocaleLowerCase() === this.nameFormControl.value.toLocaleString().toLocaleLowerCase()) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   getFreeCabinets() {
     this.normalDate = moment(this.specialShiftForm.controls.date.value).format('YYYY-MM-DD');
 
     this.scheduleService.findFreeCabinets(this.normalDate).subscribe(data => {
       this.cabinets = data;
+    });
+
+    this.specialShiftService.listSpecialShiftsByDate(this.normalDate).subscribe(data => {
+      this.todaySpecialShifts = data;
     });
   }
 
@@ -90,7 +106,6 @@ export class SpecialShiftFormComponent {
 
   onSubmit() {
     this.putData();
-    console.log(this.specialShift);
     this.specialShiftService.save(this.specialShift).subscribe();
   }
 }

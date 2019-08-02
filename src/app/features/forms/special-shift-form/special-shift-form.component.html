@@ -1,17 +1,6 @@
 <form [formGroup]="specialShiftForm" class="example-form">
 
   <mat-form-field class="example-full-width">
-    <input [errorStateMatcher]="matcher" formControlName="name" matInput
-           placeholder="Название смены">
-    <mat-error *ngIf="nameFormControl.hasError('maxLength') && !nameFormControl.hasError('required')">
-      Максимальная длина 32 символа
-    </mat-error>
-    <mat-error *ngIf="nameFormControl.hasError('required')">
-      Обязательное поле
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
     <input [matDatepicker]="date" formControlName="date" matInput placeholder="Выберите дату">
     <mat-datepicker-toggle [for]="date" matSuffix></mat-datepicker-toggle>
     <mat-error *ngIf="dateFormControl.hasError('required')">
@@ -26,6 +15,17 @@
         {{cabinet.cabinetName}}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="name" matInput
+           placeholder="Название смены">
+    <mat-error *ngIf="nameFormControl.hasError('maxLength') && !nameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -57,21 +57,14 @@
            matInput placeholder="Максимальное количество пациентов">
     <mat-error
       *ngIf="maxPatientsFormControl.hasError('max') && !maxPatientsFormControl.hasError('required')">
-      Не более 30 человек
+      Не более 100 человек
     </mat-error>
     <mat-error *ngIf="maxPatientsFormControl.hasError('required')">
       Обязательное поле
     </mat-error>
   </mat-form-field>
 
-  <!--<div *ngIf="done">
-    <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
-  </div>-->
-<!--  <div *ngIf="alreadyExists">
-    <p>Пользователь с таким логином уже зарегистрирован, пожалуйста выберите другой логин</p>
-  </div>-->
-
-  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specialShiftForm.valid" value="bold">Добавить смену
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specialShiftForm.valid || !checkName()" value="bold">Добавить смену
   </button>
 
 </form>
