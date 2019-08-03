@@ -8,10 +8,10 @@
   <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="schedule">Расписание</button>
   <mat-menu #schedule="matMenu">
     <button mat-menu-item routerLink="/timeslots">Общее расписание</button>
+    <button mat-menu-item routerLink="/specialshifts">Специальные смены</button>
     <button mat-menu-item routerLink="/doctors">Доктора</button>
     <button mat-menu-item routerLink="/addspecialshift">Добавить специальную смену</button>
   </mat-menu>
-  <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/specialshifts">Специальные смены</a>
 
   <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="patients">Пациенты</button>
   <mat-menu #patients="matMenu">
