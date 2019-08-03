@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {DoctorSpecialty} from '../_models/doctorspecialty';
-import {Specialty} from '../_models/specialty';
 import {PatientSpecialShift} from '../_models/patient-special-shift';
 import {SpecialShift} from '../_models/special-shift';
 import {PatientFullName} from '../_models/patient-full-name';
@@ -17,10 +15,6 @@ export class PatientSpecialShiftService {
 
   constructor(private http: HttpClient) {
     this.patientSpecialShiftUrl = 'http://localhost:8080/patient_special_shifts';
-  }
-
-  public findAll(): Observable<PatientSpecialShift[]> {
-    return this.http.get<PatientSpecialShift[]>(this.patientSpecialShiftUrl);
   }
 
   public findPatientSpecialShifts(id: number): Observable<PatientSpecialShift[]> {

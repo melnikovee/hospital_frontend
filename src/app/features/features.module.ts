@@ -4,7 +4,6 @@ import {ProjectCompletionPipe} from './_pipes/project-completion.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSortModule} from '@angular/material';
 import {SharedModule} from '../_shared/shared.module';
-import {UserListComponent} from './lists/user-list/user-list.component';
 import {AdminFormComponent} from './forms/admin-form/admin-form.component';
 import {CabinetFormComponent} from './forms/cabinet-form/cabinet-form.component';
 import {PatientFormComponent} from './forms/patient-form/patient-form.component';
@@ -60,7 +59,6 @@ import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-updat
 @NgModule({
   declarations: [
     ProjectCompletionPipe,
-    UserListComponent,
     AdminFormComponent,
     CabinetFormComponent,
     PatientFormComponent,
@@ -99,7 +97,6 @@ import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-updat
   ],
   exports: [
     ProjectCompletionPipe,
-    UserListComponent,
     AdminFormComponent,
     CabinetFormComponent,
     PatientFormComponent,
