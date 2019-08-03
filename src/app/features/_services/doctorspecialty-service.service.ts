@@ -16,10 +16,6 @@ export class DoctorSpecialtyService {
     this.doctorSpecialtiesUrl = 'http://localhost:8080/doctor_specialties';
   }
 
-  public findAll(): Observable<DoctorSpecialty[]> {
-    return this.http.get<DoctorSpecialty[]>(this.doctorSpecialtiesUrl);
-  }
-
   public findDoctorSpecialties(id: number): Observable<Specialty[]> {
     return this.http.get<Specialty[]>(`${this.doctorSpecialtiesUrl}/${id}`);
   }

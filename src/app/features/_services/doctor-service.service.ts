@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Doctor} from '../_models/doctor';
 
 
@@ -13,10 +12,6 @@ export class DoctorService {
 
   constructor(private http: HttpClient) {
     this.doctorsUrl = 'http://localhost:8080/doctors';
-  }
-
-  public findAll(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.doctorsUrl);
   }
 
   public save(doctor: Doctor) {

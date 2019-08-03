@@ -17,10 +17,6 @@ export class UserService {
     this.usersUrl = 'http://localhost:8080/users';
   }
 
-  public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl);
-  }
-
   public save(user: User) {
     return this.http.post<User>(this.usersUrl, user);
   }
@@ -37,33 +33,12 @@ export class UserService {
     return this.http.get<DoctorFullName[]>(`${this.usersUrl}/${'doctors'}/${lastName}`);
   }
 
-  public getPatientsByLastName(lastName: string): Observable<PatientFullName[]> {
-    return this.http.get<PatientFullName[]>(`${this.usersUrl}/${'patients'}/${lastName}`);
-  }
-
-  // tslint:disable-next-line:no-any
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.usersUrl}/${id}`);
-  }
-
   updateUser(id: number, user: User) {
     return this.http.put(`${this.usersUrl}/${id}`, user);
   }
 
   changePassword(id: number, password: string) {
     return this.http.put('http://localhost:8080/users/password', {id, password});
-  }
-
-  login(login: string, password: string) {
-    return this.http.post<{authToken: string, refreshToken: string}>('http://localhost:8080/login',
-      {login, password}).subscribe(res => {
-      localStorage.setItem('token', res.authToken);
-      const helper = new JwtHelperService();
-      const id = helper.decodeToken(res.authToken).id;
-      localStorage.setItem('id', id);
-      const role = helper.decodeToken(res.authToken).role;
-      localStorage.setItem('role', role);
-  });
   }
 }
 

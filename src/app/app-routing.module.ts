@@ -5,7 +5,6 @@ import {PatientsPastVisitsFormComponent} from './features/forms/patients-past-vi
 import {PatientsCurrentVisitsFormComponent} from './features/forms/patients-current-visits-form/patients-current-visits-form.component';
 import {AdminUpdateFormComponent} from './features/forms/admin-update-form/admin-update-form.component';
 import {AdminFormComponent} from './features/forms/admin-form/admin-form.component';
-import {UserListComponent} from './features/lists/user-list/user-list.component';
 import {CabinetListComponent} from './features/lists/cabinet-list/cabinet-list.component';
 import {PatientsListComponent} from './features/lists/patients-list/patients-list.component';
 import {DoctorsListComponent} from './features/lists/doctors-list/doctors-list.component';
@@ -43,7 +42,6 @@ import {SpecialShiftForPatientFormComponent} from './features/forms/special-shif
 import {SpecialShiftListComponent} from './features/lists/special-shift-list/special-shift-list.component';
 
 const routes: Routes = [
-  {path: 'users', component: UserListComponent, canActivate: [AdministratorGuard]},
   {path: 'cabinets', component: CabinetListComponent, canActivate: [AdministratorGuard]},
   {path: 'patients', component: PatientsListComponent, canActivate: [AdministratorGuard]},
   {path: 'doctors', component: DoctorsListComponent, canActivate: [AdministratorGuard]},
