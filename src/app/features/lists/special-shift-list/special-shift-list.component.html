@@ -38,7 +38,7 @@
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let specialShift" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!checkDate(specialShift)">
-        <button mat-flat-button color="primary" (click)="delete(specialShift.id)">Удалить
+        <button mat-flat-button color="primary" [disabled]="specialShift.numberOfPatients > 0" (click)="delete(specialShift.id)">Удалить
         </button>
       </mat-button-toggle-group>
     </td>
