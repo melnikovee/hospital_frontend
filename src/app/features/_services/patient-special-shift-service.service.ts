@@ -5,6 +5,7 @@ import {DoctorSpecialty} from '../_models/doctorspecialty';
 import {Specialty} from '../_models/specialty';
 import {PatientSpecialShift} from '../_models/patient-special-shift';
 import {SpecialShift} from '../_models/special-shift';
+import {PatientFullName} from '../_models/patient-full-name';
 
 
 @Injectable({
@@ -24,6 +25,10 @@ export class PatientSpecialShiftService {
 
   public findPatientSpecialShifts(id: number): Observable<PatientSpecialShift[]> {
     return this.http.get<PatientSpecialShift[]>(`${this.patientSpecialShiftUrl}/${id}`);
+  }
+
+  public getPatientsBySpecialShiftId(id: number): Observable<PatientFullName[]> {
+    return this.http.get<PatientFullName[]>(`${this.patientSpecialShiftUrl}/${'shifts'}/${id}`);
   }
 
   public getPatientSpecialShiftCard(id: number): Observable<SpecialShift[]> {
