@@ -35,6 +35,7 @@ export class DoctorFormComponent {
   selectedSpecialtiesFormControl = new FormControl();
   loginFormControl = new FormControl('', [
     Validators.required,
+    Validators.pattern('[a-zA-Z0-9].{2,32}'),
     Validators.maxLength(32)
   ]);
 

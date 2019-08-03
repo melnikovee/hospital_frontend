@@ -2,7 +2,6 @@ import {Injectable, Provider} from '@angular/core';
 import {
   HTTP_INTERCEPTORS, HttpErrorResponse,
   HttpEvent,
-  HttpEventType,
   HttpHandler, HttpHeaders,
   HttpInterceptor, HttpParams,
   HttpRequest
@@ -42,7 +41,7 @@ export class HttpAuthInterceptorInterceptor implements HttpInterceptor {
         }
 
         if (tokens.refreshToken == undefined) {
-          return throwError(Error('unauthorized')); // TODO: throw concreate error and navigate to login in handler
+          return throwError(Error('unauthorized'));
         }
 
         // suspend future requests
@@ -82,7 +81,8 @@ export class HttpAuthInterceptorInterceptor implements HttpInterceptor {
     if (!(error instanceof HttpErrorResponse && error.status === 401)) {
       return throwError(error);
     }
-    return throwError(Error('unauthorized after refresh')); // TODO: throw concreate error
+    this.currentUserService.logout();
+    return throwError(Error('unauthorized after refresh'));
   }
 }
 

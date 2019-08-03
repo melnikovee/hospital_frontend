@@ -21,6 +21,10 @@ export class TimeslotService {
     return this.http.get<Timeslot[]>(this.timeslotsUrl);
   }
 
+  public getTimeslotById(id: number): Observable<Timeslot> {
+    return this.http.get<Timeslot>(`${this.timeslotsUrl}/${id}`);
+  }
+
   public findSpecialties(): Observable<Specialty[]> {
     return this.http.get<Specialty[]>(`${this.timeslotsUrl}/${'specialties'}`);
   }
@@ -52,10 +56,6 @@ export class TimeslotService {
   public getTimeslotsForDoctor(id: number) {
     return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`);
   }
-
-  /*public getTimeslotsForRecord(id: number) {
-    return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`);
-  }*/
 
   public getPastTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
     return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`);

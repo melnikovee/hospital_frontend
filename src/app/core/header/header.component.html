@@ -50,6 +50,7 @@
     <button mat-menu-item routerLink="/patientrecordbydoctor">Запись пациента на прием</button>
   </mat-menu>
   <span class="spacer"></span>
+  <a mat-button *appPermit="'NoLoggedUser'" routerLink="/login">Войти</a>
   <a mat-button *appPermit="'ADMINISTRATOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'DOCTOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'PATIENT'" class="logout" routerLink="/login" (click)="logout()">Выход</a>

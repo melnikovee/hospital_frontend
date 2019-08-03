@@ -1,3 +1,7 @@
+<div *ngIf="isPatientInTimeslot">
+  <p>Нельзя удалить запись с пациентом</p>
+</div>
+
 <mat-form-field>
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
 </mat-form-field>
@@ -44,25 +48,6 @@
     </mat-menu>
     </td>
   </ng-container>
-
-  <!--ng-container matColumnDef="delete">
-    <th *matHeaderCellDef mat-header-cell></th>
-    <td *matCellDef="let composite" mat-cell>
-      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-      <button mat-flat-button color="primary" (click)="deleteTimeslot(composite.id)" mat-button>Удалить</button>
-      </mat-button-toggle-group>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="cancel">
-    <th *matHeaderCellDef mat-header-cell></th>
-    <td *matCellDef="let composite" mat-cell>
-      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="primary" (click)="cancelRecord(composite.id)">Отменить запись
-        </button>
-      </mat-button-toggle-group>
-    </td>
-  </ng-container-->
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
