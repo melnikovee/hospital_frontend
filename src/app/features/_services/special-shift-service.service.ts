@@ -18,10 +18,6 @@ export class SpecialShiftService {
     return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}`);
   }
 
-  public getSpecialShiftById(id: number): Observable<SpecialShift> {
-    return this.http.get<SpecialShift>(`${this.specialShiftsUrl}/${id}`);
-  }
-
   public listSpecialShiftsByDate(date: string): Observable<SpecialShift[]> {
     return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}/${'by_date'}/${date}`);
   }
@@ -47,8 +43,5 @@ export class SpecialShiftService {
     return this.http.delete(`${this.specialShiftsUrl}/${id}`);
   }
 
-  updateSpecialShift(id: number, specialShift: SpecialShift) {
-    return this.http.put(`${this.specialShiftsUrl}/${id}`, specialShift);
-  }
 }
 

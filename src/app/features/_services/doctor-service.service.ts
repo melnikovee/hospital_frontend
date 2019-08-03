@@ -15,10 +15,6 @@ export class DoctorService {
     this.doctorsUrl = 'http://localhost:8080/doctors';
   }
 
-  public findAll(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(this.doctorsUrl);
-  }
-
   public save(doctor: Doctor) {
     return this.http.post<Doctor>(this.doctorsUrl, doctor);
   }
