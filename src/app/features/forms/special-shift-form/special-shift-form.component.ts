@@ -46,7 +46,7 @@ export class SpecialShiftFormComponent {
 
   startTimeFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('(([0,1][0-9])|(2[0-3])):[0-5][0-9]')
+    Validators.pattern('(([0,1][0-9о])|(2[0-3])):[0-5][0-9]')
   ]);
 
   endTimeFormControl = new FormControl('', [
