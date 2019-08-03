@@ -28,7 +28,7 @@ export class SpecialShiftFormComponent {
   startDate = Date.now();
   normalDate!: string;
   isDone!: boolean;
-  alreadyExists!: boolean;
+  isError!: boolean;
 
   nameFormControl = new FormControl('', [
     Validators.required,
@@ -46,12 +46,12 @@ export class SpecialShiftFormComponent {
 
   startTimeFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('[0-1][0-9]|[2][0-3]:[0-5][0-9]')
+    Validators.pattern('(([0,1][0-9])|(2[0-3])):[0-5][0-9]')
   ]);
 
   endTimeFormControl = new FormControl('', [
     Validators.maxLength(32),
-    Validators.pattern('[0-1][0-9]|[2][0-3]:[0-5][0-9]')
+    Validators.pattern('(([0,1][0-9])|(2[0-3])):[0-5][0-9]')
   ]);
 
   maxPatientsFormControl = new FormControl('', [
@@ -104,12 +104,12 @@ export class SpecialShiftFormComponent {
   }
 
   getInfo() {
-    this.isDone = false;
-    this.alreadyExists = false;
-
     this.normalDate = moment(this.specialShiftForm.controls.date.value).format('YYYY-MM-DD');
     this.getFreeCabinets();
     this.getSpecialShifts();
+
+    this.isDone = false;
+    this.isError = false;
   }
 
   getFreeCabinets() {
@@ -136,12 +136,12 @@ export class SpecialShiftFormComponent {
   onSubmit() {
     this.putData();
     this.specialShiftService.save(this.specialShift).subscribe(result => {
-      if (result.name === this.specialShift.name) {
-        this.isDone = true;
+      if (result) {
         this.getInfo();
+        this.isDone = true;
+      } else {
+        this.isError = true;
       }
-    }, error => {
-      this.alreadyExists = true;
     });
   }
 }

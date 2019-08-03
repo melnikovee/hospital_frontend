@@ -79,7 +79,7 @@
     <p>Смена {{specialShift.name}} успешно добавлена</p>
   </div>
 
-  <div *ngIf="alreadyExists">
+  <div *ngIf="isError">
     <p>Смена {{specialShift.name}} на {{normalDate}} уже существует</p>
   </div>
 
