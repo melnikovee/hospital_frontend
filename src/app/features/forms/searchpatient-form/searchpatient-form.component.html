@@ -1,50 +1,35 @@
-<form [formGroup]="spForm" class="example-form">
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
+</mat-form-field>
+<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
 
-  <mat-form-field class="example-full-width">
-    <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
-           placeholder="Фамилия">
-    <mat-error *ngIf="lastNameFormControl.hasError('required')">
-      Фамилия <strong>обязательна</strong>
-    </mat-error>
-  </mat-form-field>
+  <ng-container matColumnDef="patient">
+    <th *matHeaderCellDef mat-header-cell>Пациент</th>
+    <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
+  </ng-container>
 
-  <div *ngIf="foundPatients !== undefined && foundPatients.length === 0">Пациентов с выбранной фамилией не найдено</div>
+  <ng-container matColumnDef="birthday">
+    <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
+    <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
+  </ng-container>
 
-  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</button>
-</form>
+  <ng-container matColumnDef="record">
+    <th *matHeaderCellDef mat-header-cell>Карта</th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="getCard(element)" value="underline">Просмотреть
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
 
 <p></p>
+<app-card-form></app-card-form>
 
-<div [hidden]="showTables">
-  <table [dataSource]="foundPatients" [hidden]="!isGetPatients" class="mat-elevation-z8" mat-table>
-
-    <ng-container matColumnDef="patient">
-      <th *matHeaderCellDef mat-header-cell>Пациент</th>
-      <td *matCellDef="let element" mat-cell> {{element.fullName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="birthday">
-      <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
-      <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="card">
-      <th *matHeaderCellDef mat-header-cell>Карта</th>
-      <td *matCellDef="let element" mat-cell>
-        <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-          <button mat-flat-button color="primary" (click)="getCard(element)" value="underline">Просмотреть
-          </button>
-        </mat-button-toggle-group>
-      </td>
-    </ng-container>
-
-    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-  </table>
-
-  <p></p>
-  <app-card-form [hidden]="!isGetCards"></app-card-form>
-</div>
 
 <div [hidden]="!showAddForm">
   <mat-form-field class="example-full-width">
@@ -53,8 +38,7 @@
 </div>
 
 <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!isGetCards">
-      <button mat-flat-button color="primary" [ngClass]="{'disabled-button' : !isGetSelectedPatient}"
-                         [disabled]="!isGetSelectedPatient" (click)="addDiagnosis()" value="underline">
+  <button mat-flat-button color="primary" (click)="addDiagnosis()" value="underline">
     Добавить заключение
   </button>
 </mat-button-toggle-group>

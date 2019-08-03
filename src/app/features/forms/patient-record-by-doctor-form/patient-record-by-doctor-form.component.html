@@ -1,25 +1,8 @@
-<form [formGroup]="spForm" class="example-form">
-
-  <mat-form-field class="example-full-width">
-    <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
-           placeholder="Фамилия">
-    <mat-error *ngIf="lastNameFormControl.hasError('required')">
-      Фамилия <strong>обязательна</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <div *ngIf="foundPatients !== undefined && foundPatients.length === 0">Пациентов с выбранной фамилией не найдено</div>
-
-  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!spForm.valid" value="bold">Принять</button>
-</form>
-
-<p></p>
-
-<table [dataSource]="foundPatients" [hidden]="!isGetPatients" class="mat-elevation-z8" mat-table>
+<table [dataSource]="foundPatients" class="mat-elevation-z8" mat-table>
 
   <ng-container matColumnDef="patient">
     <th *matHeaderCellDef mat-header-cell>Пациент</th>
-    <td *matCellDef="let element" mat-cell> {{element.fullName}} </td>
+    <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
   </ng-container>
 
   <ng-container matColumnDef="birthday">
@@ -31,8 +14,7 @@
     <th *matHeaderCellDef mat-header-cell>Запись</th>
     <td *matCellDef="let element" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="primary" [ngClass]="{'disabled-button' : !checkPatient(element)}"
-                           [disabled]="!checkPatient(element)" (click)="makeAppointment(element.id)" value="underline">
+        <button mat-flat-button color="primary" (click)="makeAppointment(element.patientId)" value="underline">
           Записать пациента на приём
         </button>
       </mat-button-toggle-group>

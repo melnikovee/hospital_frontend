@@ -42,4 +42,11 @@ export class CompositeService {
   public findPatients(): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients'}`);
   }
+
+  public recordByDoctor(id: number) {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'for_record'}/${id}`);
+  }
+  public patientsForDoctor(id: number) {
+    return this.http.get<Composite[]>(`${this.compositeUrl}/${'patients_for_doctor'}/${id}`);
+  }
 }
