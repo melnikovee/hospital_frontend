@@ -1,6 +1,6 @@
 <form [formGroup]="specialShiftForm" class="example-form">
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="example-full-width" (mouseenter)="getInfo()">
     <input [matDatepicker]="date" formControlName="date" matInput placeholder="Выберите дату">
     <mat-datepicker-toggle [for]="date" matSuffix></mat-datepicker-toggle>
     <mat-error *ngIf="dateFormControl.hasError('dateLate') && !dateFormControl.hasError('required')">
