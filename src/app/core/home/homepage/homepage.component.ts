@@ -39,6 +39,8 @@ export class HomepageComponent implements OnInit {
     const stringId = localStorage.getItem('id');
     if (stringId) {
       this.id = parseInt(stringId, 10);
+    } else {
+      this.navigateToLoginPage();
     }
     this.currentRole = localStorage.getItem('role');
     console.log(this.currentRole);
@@ -91,5 +93,8 @@ export class HomepageComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(PasswordChangeDialogFormComponent, {width: '50%'});
+  }
+  navigateToLoginPage() {
+    this.router.navigate(['/login']);
   }
 }

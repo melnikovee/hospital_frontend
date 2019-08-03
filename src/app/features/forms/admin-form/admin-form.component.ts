@@ -27,6 +27,7 @@ export class AdminFormComponent {
   hide = true;
   loginFormControl = new FormControl('', [
     Validators.required,
+    Validators.pattern('[a-zA-Z0-9].{2,32}'),
     Validators.maxLength(32)
   ]);
 
