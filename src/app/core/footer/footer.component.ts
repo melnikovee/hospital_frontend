@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  phone = '8-800-111-22-33';
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'phone',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/phone.svg'));
+  }
 
   ngOnInit() {
   }

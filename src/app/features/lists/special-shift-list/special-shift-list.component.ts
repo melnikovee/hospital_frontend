@@ -29,7 +29,7 @@ export class SpecialShiftListComponent implements OnInit {
   }
 
   reloadData() {
-    this.specialShiftService.findAll().subscribe(data => {
+    this.specialShiftService.listSpecialShiftsForPatient().subscribe(data => {
       const sorted = data.sort((a, b) => a.startTime.localeCompare(b.startTime))
       .sort((a, b) => a.endTime.localeCompare(b.endTime))
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -39,9 +39,11 @@ export class SpecialShiftListComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.specialShiftService.deleteSpecialShift(id).subscribe(data => {
-      this.reloadData();
-    });
+    if (confirm('Уверены что хотите удалить?')) {
+      this.specialShiftService.deleteSpecialShift(id).subscribe(data => {
+        this.reloadData();
+      });
+    }
   }
 
   checkDate(specialShift: SpecialShift) {
