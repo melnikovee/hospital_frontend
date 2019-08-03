@@ -22,6 +22,10 @@ export class SpecialShiftService {
     return this.http.get<SpecialShift>(`${this.specialShiftsUrl}/${id}`);
   }
 
+  public listSpecialShiftsByDate(date: string): Observable<SpecialShift[]> {
+    return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}/${'by_date'}/${date}`);
+  }
+
   public listSpecialShiftsForPatient(): Observable<SpecialShift[]> {
     return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}/${'for_patient'}`);
   }
@@ -39,7 +43,7 @@ export class SpecialShiftService {
   }
 
   // tslint:disable-next-line:no-any
-  deleteSpecialty(id: number): Observable<any> {
+  deleteSpecialShift(id: number): Observable<any> {
     return this.http.delete(`${this.specialShiftsUrl}/${id}`);
   }
 

@@ -40,12 +40,14 @@ import {SpecialShiftRecordFormComponent} from './features/forms/special-shift-re
 import {AdministratorPatientGuard} from './core/auth/_guards/administrator-patient.guard';
 // tslint:disable-next-line:max-line-length
 import {SpecialShiftForPatientFormComponent} from './features/forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
+import {SpecialShiftListComponent} from './features/lists/special-shift-list/special-shift-list.component';
 
 const routes: Routes = [
   {path: 'users', component: UserListComponent, canActivate: [AdministratorGuard]},
   {path: 'cabinets', component: CabinetListComponent, canActivate: [AdministratorGuard]},
   {path: 'patients', component: PatientsListComponent, canActivate: [AdministratorGuard]},
   {path: 'doctors', component: DoctorsListComponent, canActivate: [AdministratorGuard]},
+  {path: 'specialshifts', component: SpecialShiftListComponent, canActivate: [AdministratorGuard]},
   {path: 'addadmin', component: AdminFormComponent, canActivate: [AdministratorGuard]},
   {path: 'addcabinet', component: CabinetFormComponent, canActivate: [AdministratorGuard]},
   {path: 'adddoctor', component: DoctorFormComponent, canActivate: [AdministratorGuard]},

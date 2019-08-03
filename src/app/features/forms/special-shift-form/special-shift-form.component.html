@@ -1,6 +1,26 @@
 <form [formGroup]="specialShiftForm" class="example-form">
 
   <mat-form-field class="example-full-width">
+    <input [matDatepicker]="date" formControlName="date" matInput placeholder="Выберите дату">
+    <mat-datepicker-toggle [for]="date" matSuffix></mat-datepicker-toggle>
+    <mat-error *ngIf="dateFormControl.hasError('dateLate') && !dateFormControl.hasError('required')">
+      Необходимо ввести дату позже текущей
+    </mat-error>
+    <mat-error *ngIf="dateFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+    <mat-datepicker #date [startAt]="startDate" startView="year"></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field (click)="getInfo()" class="example-full-width">
+    <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
+      <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
+        {{cabinet.cabinetName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="name" matInput
            placeholder="Название смены">
     <mat-error *ngIf="nameFormControl.hasError('maxLength') && !nameFormControl.hasError('required')">
@@ -11,22 +31,9 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input [matDatepicker]="date" formControlName="date" matInput placeholder="Выберите дату">
-    <mat-datepicker-toggle [for]="date" matSuffix></mat-datepicker-toggle>
-    <mat-error *ngIf="dateFormControl.hasError('required')">
-      Обязательное поле
-    </mat-error>
-    <mat-datepicker #date [startAt]="startDate" startView="year"></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field (click)="getFreeCabinets()" class="example-full-width">
-    <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
-      <mat-option *ngFor="let cabinet of cabinets" [value]="cabinet">
-        {{cabinet.cabinetName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-error *ngIf="!checkName()">
+    Смена {{specialShift.name}} на {{normalDate}} уже существует
+  </mat-error>
 
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="startTime" matInput
@@ -43,14 +50,18 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
            placeholder="Окончание смены">
-    <mat-hint>Пример 09:30</mat-hint>
+    <mat-hint>Пример 10:30</mat-hint>
     <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
-      Введите время в формате 09:30
+      Введите время в формате 10:30
     </mat-error>
     <mat-error *ngIf="endTimeFormControl.hasError('required')">
       Обязательное поле
     </mat-error>
   </mat-form-field>
+
+  <mat-error *ngIf="startTimeFormControl.value.toLocaleString() > endTimeFormControl.value.toLocaleString()">
+    Время начала смены должно быть раньше времени окончания смены
+  </mat-error>
 
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" [formControl]="maxPatientsFormControl" formControlName="maxPatients"
@@ -64,14 +75,15 @@
     </mat-error>
   </mat-form-field>
 
-  <!--<div *ngIf="done">
-    <p>Доктор {{receivedUser.lastName}} успешно добавлен</p>
-  </div>-->
-<!--  <div *ngIf="alreadyExists">
-    <p>Пользователь с таким логином уже зарегистрирован, пожалуйста выберите другой логин</p>
-  </div>-->
+  <div *ngIf="isDone">
+    <p>Смена {{specialShift.name}} успешно добавлена</p>
+  </div>
 
-  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specialShiftForm.valid" value="bold">Добавить смену
+  <div *ngIf="isError">
+    <p>Смена {{specialShift.name}} на {{normalDate}} уже существует</p>
+  </div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specialShiftForm.valid || !checkName() || !checkTime()" value="bold">Добавить смену
   </button>
 
 </form>

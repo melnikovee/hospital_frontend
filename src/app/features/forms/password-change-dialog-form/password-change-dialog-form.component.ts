@@ -19,6 +19,7 @@ export class PasswordChangeDialogFormComponent implements OnInit {
   isCurrentPasswordRight!: boolean;
   enableChange!: boolean;
   isDone!: boolean;
+  isEnoughLength!: boolean;
   hideOldPassword = true;
   hideNewPassword = true;
   hideRepeatPassword = true;
@@ -81,11 +82,13 @@ export class PasswordChangeDialogFormComponent implements OnInit {
       });
       this.isCurrentPasswordRight = false;
       this.enableChange = false;
+      this.isEnoughLength = false;
     }
   }
 
   permitChange() {
     this.enableChange = (this.newPassword.length !== 0) && (this.repeatedPassword.length !== 0)
       && (this.newPassword === this.repeatedPassword);
+    this.isEnoughLength = this.newPassword.length >= 8 && this.repeatedPassword.length >= 8;
   }
 }

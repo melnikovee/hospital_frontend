@@ -27,16 +27,6 @@ export class SpecialShiftRecordFormComponent {
     this.reloadData();
   }
 
-/*  ngOnInit() {
-    this.reloadData();
-
-    const stringId = localStorage.getItem('id');
-
-    if (stringId) {
-      this.patientId = parseInt(stringId, 10);
-    }
-  }*/
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
