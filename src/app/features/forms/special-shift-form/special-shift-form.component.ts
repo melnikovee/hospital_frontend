@@ -104,9 +104,6 @@ export class SpecialShiftFormComponent {
   }
 
   getInfo() {
-    console.log('+++');
-
-    console.log(this.specialShiftForm.controls.date.value);
     if (this.specialShiftForm.controls.date.value !== '') {
       this.normalDate = moment(this.specialShiftForm.controls.date.value).format('YYYY-MM-DD');
       this.getFreeCabinets();
