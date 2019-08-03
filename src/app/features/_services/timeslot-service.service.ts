@@ -53,9 +53,9 @@ export class TimeslotService {
     return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_doctor'}/${id}`);
   }
 
-  public getTimeslotsForRecord(id: number) {
+  /*public getTimeslotsForRecord(id: number) {
     return this.http.get<Timeslot[]>(`${this.timeslotsUrl}/${'for_record'}/${id}`);
-  }
+  }*/
 
   public getPastTimeslotsByPatient(id: number): Observable<PatientTimeslot[]> {
     return this.http.get<PatientTimeslot[]>(`${this.timeslotsUrl}/${'by_patient'}/${'past'}/${id}`);
