@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {UserService} from '../../_services/user-service.service';
 import {ReplaySubject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-password-change-dialog-form',
@@ -19,6 +20,7 @@ export class PasswordChangeDialogFormComponent implements OnInit {
   isCurrentPasswordRight!: boolean;
   enableChange!: boolean;
   isDone!: boolean;
+  isEnoughLength!: boolean;
   newPassword = '';
   repeatedPassword = '';
   textCurrentPassword$: ReplaySubject<string> = new ReplaySubject<string>();
@@ -78,11 +80,13 @@ export class PasswordChangeDialogFormComponent implements OnInit {
       });
       this.isCurrentPasswordRight = false;
       this.enableChange = false;
+      this.isEnoughLength = false;
     }
   }
 
   permitChange() {
     this.enableChange = (this.newPassword.length !== 0) && (this.repeatedPassword.length !== 0)
       && (this.newPassword === this.repeatedPassword);
+    this.isEnoughLength = this.newPassword.length >= 8 && this.repeatedPassword.length >= 8;
   }
 }
