@@ -49,7 +49,7 @@
 
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
-           placeholder="Оконочание смены">
+           placeholder="Окончание смены">
     <mat-hint>Пример 10:30</mat-hint>
     <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
       Введите время в формате 10:30

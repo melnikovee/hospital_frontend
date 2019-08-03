@@ -18,18 +18,11 @@
     <td *matCellDef="let composite" mat-cell> {{composite.phone}} </td>
   </ng-container>
 
-  <!--ng-container matColumnDef="action">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let composite">
-      <button mat-flat-button color="primary" (click)="makeAppointment(composite.patientId)" mat-button>Запись</button>
-    </mat-cell>
-  </ng-container-->
-
   <ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let composite" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="accent" (click)="makeAppointment(composite.patientId)">Запись</button>
+        <button mat-flat-button color="primary" (click)="makeAppointment(composite.patientId)">Запись</button>
       </mat-button-toggle-group>
     </td>
   </ng-container>
@@ -38,7 +31,7 @@
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let composite" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="accent" (click)="makeSpecialShiftRecord(composite.patientId)">Запись на спец смену</button>
+        <button mat-flat-button color="accent" (click)="makeSpecialShiftRecord(composite.patientId)">Запись на процедуры</button>
       </mat-button-toggle-group>
     </td>
   </ng-container>

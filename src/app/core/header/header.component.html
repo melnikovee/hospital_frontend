@@ -4,7 +4,13 @@
   <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/home">Главная</a>
   <a mat-button *appPermit="'DOCTOR'" routerLink="/home">Главная</a>
   <a mat-button *appPermit="'PATIENT'" routerLink="/home">Главная</a>
-  <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/timeslots">Расписание</a>
+вв
+  <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="schedule">Расписание</button>
+  <mat-menu #schedule="matMenu">
+    <button mat-menu-item routerLink="/timeslots">Общее расписание</button>
+    <button mat-menu-item routerLink="/doctors">Доктора</button>
+    <button mat-menu-item routerLink="/addspecialshift">Добавить специальную смену</button>
+  </mat-menu>
   <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/specialshifts">Специальные смены</a>
 
   <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="patients">Пациенты</button>
@@ -13,37 +19,37 @@
     <button mat-menu-item routerLink="/addpatient">Регистрация пациента</button>
   </mat-menu>
 
-  <button mat-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="doctors">Доктора</button>
-  <mat-menu #doctors="matMenu">
-    <button mat-menu-item routerLink="/doctors">Доктора</button>
-    <button mat-menu-item routerLink="/adddoctor">Регистрация доктора</button>
-
-  </mat-menu>
-
   <button mat-icon-button *appPermit="'ADMINISTRATOR'" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="/cabinets">Кабинеты</button>
-    <button mat-menu-item routerLink="/specialties">Специальности</button>
+    <button mat-menu-item routerLink="/specialties">Специальности докторов</button>
     <button mat-menu-item routerLink="/addadmin">Регистрация администратора</button>
-    <button mat-menu-item routerLink="/updatespecialtydoctor">Редактировать специальностей доктора</button>
-    <button mat-menu-item routerLink="/addspecialshift">Добавить специальную смену</button>
+    <button mat-menu-item routerLink="/adddoctor">Регистрация доктора</button>
+    <button mat-menu-item routerLink="/updatespecialtydoctor">Редактирование специальностей доктора</button>
   </mat-menu>
 
-  <a mat-button *appPermit="'PATIENT'" routerLink="/patientAppointment">Запись на прием</a>
-  <a mat-button *appPermit="'PATIENT'" routerLink="/patientcard">Карточка пациента</a>
-  <a mat-button *appPermit="'PATIENT'" routerLink="/patientspecialshift">Специальные смены</a>
-  <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="appointments">Мои записи</button>
+  <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="makeAppointment">Запись</button>
+  <mat-menu #makeAppointment="matMenu">
+    <button mat-menu-item routerLink="/patientAppointment">Запись к врачу</button>
+    <button mat-menu-item routerLink="/patientspecialshift">Запись на процедуры</button>
+  </mat-menu>
+
+  <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="appointments">Карточка</button>
   <mat-menu #appointments="matMenu">
-    <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие записи</button>
-    <button mat-menu-item routerLink="/patientpastvisits">Прошлые записи</button>
+    <button mat-menu-item routerLink="/patientcard">Карточка пациента</button>
+    <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие посещения</button>
+    <button mat-menu-item routerLink="/patientpastvisits">Прошлые посещения</button>
   </mat-menu>
 
   <a mat-button *appPermit="'DOCTOR'" routerLink="/doctorTimeslots">Расписание</a>
-  <a mat-button *appPermit="'DOCTOR'" routerLink="/searchpatient">Медицинское заключение</a>
-  <a mat-button *appPermit="'DOCTOR'" routerLink="/patientrecordbydoctor">Запись пациента на прием</a>
-
+  <button mat-button *appPermit="'DOCTOR'" [matMenuTriggerFor]="current">Текущий прием</button>
+  <mat-menu #current="matMenu">
+    <button mat-menu-item routerLink="/searchpatient">Медицинское заключение</button>
+    <button mat-menu-item routerLink="/patientrecordbydoctor">Запись пациента на прием</button>
+  </mat-menu>
+  <span class="spacer"></span>
   <a mat-button *appPermit="'ADMINISTRATOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'DOCTOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'PATIENT'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
