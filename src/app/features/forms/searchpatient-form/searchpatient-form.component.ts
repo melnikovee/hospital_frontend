@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
+import {ErrorStateMatcher, MatTableDataSource} from '@angular/material';
 import {CardFormComponent} from '../card-form/card-form.component';
 import {Composite} from '../../_models/composite';
 import {Diagnosis} from '../../_models/diagnosis';
@@ -23,7 +23,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SearchPatientFormComponent implements OnInit {
 
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
-  foundPatients!: Composite[];
+  dataSource!: MatTableDataSource<Composite>;
+  // foundPatients!: Composite[];
   selectedPatientId!: number;
   currentDoctorSpecialty!: number;
   diagnosis: Diagnosis | undefined;
@@ -46,13 +47,17 @@ export class SearchPatientFormComponent implements OnInit {
     if (stringId) {
       this.id = parseInt(stringId, 10);
     }
-    this.compositeService.recordByDoctor(this.id).subscribe(data => {
-        this.foundPatients = data;
+    this.compositeService.patientsForDoctor(this.id).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
       }
     );
     this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
       this.currentDoctorSpecialty = data.specialty;
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getCard(patient: Composite) {
