@@ -1,0 +1,26 @@
+<div class="example-container">
+  <table [dataSource]="patients" class="mat-elevation-z8 example-full-width" mat-table>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>ФИО</th>
+      <td *matCellDef="let element" mat-cell> {{element.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthday">
+      <th *matHeaderCellDef mat-header-cell>Дата рождения</th>
+      <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+          <button mat-flat-button color="primary" value="underline" (click)="cancelRecord(element.id)">Отменить запись</button>
+        </mat-button-toggle-group>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+</div>
