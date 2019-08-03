@@ -18,13 +18,6 @@
     <td *matCellDef="let composite" mat-cell> {{composite.phone}} </td>
   </ng-container>
 
-  <!--ng-container matColumnDef="action">
-    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let composite">
-      <button mat-flat-button color="primary" (click)="makeAppointment(composite.patientId)" mat-button>Запись</button>
-    </mat-cell>
-  </ng-container-->
-
   <ng-container matColumnDef="action">
     <th *matHeaderCellDef mat-header-cell></th>
     <td *matCellDef="let composite" mat-cell>
