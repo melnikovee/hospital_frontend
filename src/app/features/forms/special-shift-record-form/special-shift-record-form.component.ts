@@ -66,10 +66,12 @@ export class SpecialShiftRecordFormComponent {
   }
 
   signUp(id: number) {
-    this.specialShiftService.signUp(this.patientId, id).subscribe(result => {
-      this.isRecordSuccess = result;
-      this.reloadData();
-    });
+    if (confirm('Записаться на смену?')) {
+      this.specialShiftService.signUp(this.patientId, id).subscribe(result => {
+        this.isRecordSuccess = result;
+        this.reloadData();
+      });
+    }
   }
 
   cancelRecord(id: number) {

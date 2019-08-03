@@ -104,12 +104,17 @@ export class SpecialShiftFormComponent {
   }
 
   getInfo() {
-    this.normalDate = moment(this.specialShiftForm.controls.date.value).format('YYYY-MM-DD');
-    this.getFreeCabinets();
-    this.getSpecialShifts();
+    console.log('+++');
 
-    this.isDone = false;
-    this.isError = false;
+    console.log(this.specialShiftForm.controls.date.value);
+    if (this.specialShiftForm.controls.date.value !== '') {
+      this.normalDate = moment(this.specialShiftForm.controls.date.value).format('YYYY-MM-DD');
+      this.getFreeCabinets();
+      this.getSpecialShifts();
+
+      this.isDone = false;
+      this.isError = false;
+    }
   }
 
   getFreeCabinets() {
