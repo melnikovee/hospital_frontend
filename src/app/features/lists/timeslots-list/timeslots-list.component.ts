@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material';
 import {Composite} from '../../_models/composite';
 import {CompositeService} from '../../_services/composite-service.service';
 import {TimeslotService} from '../../_services/timeslot-service.service';
+import {Timeslot} from '../../_models/timeslot';
 
 @Component({
   selector: 'app-timeslots-list',
@@ -13,6 +14,8 @@ export class TimeslotsListComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient', 'action'];
   dataSource!: MatTableDataSource<Composite>;
+  isTimeslotFree!: boolean;
+  isPatientInTimeslot!: boolean;
   constructor(private compositeService: CompositeService, private timeSlotService: TimeslotService) {}
 
   ngOnInit() {
@@ -24,6 +27,7 @@ export class TimeslotsListComponent implements OnInit {
   }
 
   reloadData() {
+    this.isPatientInTimeslot = false;
     this.compositeService.getTimeslots().subscribe(data => {
       const sorted = data.sort((a, b) => a.time.localeCompare(b.time))
       .sort((a, b) => a.doctor.localeCompare(b.doctor))
@@ -33,14 +37,21 @@ export class TimeslotsListComponent implements OnInit {
   }
 
   deleteTimeslot(id: number) {
-    if (confirm('Уверены что хотите удалить?')) {
-      this.timeSlotService.deleteTimeslot(id)
-      .subscribe(
+    this.timeSlotService.getTimeslotById(id).subscribe(data => {
+      this.isTimeslotFree = data.isFree;
+      console.log(this.isTimeslotFree);
+    });
+    if (this.isTimeslotFree) {
+      if (confirm('Уверены что хотите удалить?')) {
+        this.timeSlotService.deleteTimeslot(id)
+        .subscribe(
           data => {
-            console.log(data);
             this.reloadData();
           },
           error => console.log(error));
+      }
+    } else {
+      this.isPatientInTimeslot = true;
     }
   }
   cancelRecord(id: number) {

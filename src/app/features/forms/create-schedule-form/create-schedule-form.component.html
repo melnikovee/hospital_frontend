@@ -20,6 +20,9 @@
     <input [errorStateMatcher]="matcher" formControlName="startTime" matInput
            placeholder="Начальное время">
     <mat-hint>Введите время в формате 09:00</mat-hint>
+    <mat-error *ngIf="startTimeFormControl.hasError('pattern') && !startTimeFormControl.hasError('required')">
+      Введите время в формате 09:30
+    </mat-error>
     <mat-error *ngIf="startTimeFormControl.hasError('required')">
       Обязательное поле
     </mat-error>
@@ -29,10 +32,17 @@
     <input [errorStateMatcher]="matcher" formControlName="endTime" matInput
            placeholder="Конечное время">
     <mat-hint>Введите время в формате 18:35</mat-hint>
+    <mat-error *ngIf="endTimeFormControl.hasError('pattern') && !endTimeFormControl.hasError('required')">
+      Введите время в формате 10:30
+    </mat-error>
     <mat-error *ngIf="endTimeFormControl.hasError('required')">
       Обязательное поле
     </mat-error>
   </mat-form-field>
+
+  <mat-error *ngIf="startTimeFormControl.value.toLocaleString() > endTimeFormControl.value.toLocaleString()">
+    Время начала смены должно быть раньше времени окончания смены
+  </mat-error>
 
   <mat-form-field (click)="getCabinets()" class="example-full-width">
     <mat-select formControlName="cabinet" matInput placeholder="Кабинет">
@@ -46,7 +56,7 @@
     <p>Расписание создано</p>
   </div>
 
-  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!scheduleForm.valid" value="bold">Создать
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!scheduleForm.valid || !checkTime()" value="bold">Создать
   </button>
 
 </form>

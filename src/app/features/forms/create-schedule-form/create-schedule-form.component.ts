@@ -40,11 +40,13 @@ export class CreateScheduleFormComponent {
   ]);
 
   startTimeFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.pattern('(([0,1][0-9о])|(2[0-3])):[0-5][0-9]')
   ]);
 
   endTimeFormControl = new FormControl('', [
-    Validators.required
+    Validators.required,
+    Validators.pattern('(([0,1][0-9о])|(2[0-3])):[0-5][0-9]')
   ]);
 
   cabinetFormControl = new FormControl('', [
@@ -114,6 +116,10 @@ export class CreateScheduleFormComponent {
         },
         error => console.log(error)
     );
+  }
+
+  checkTime() {
+    return this.startTimeFormControl.value.toLocaleString() < this.endTimeFormControl.value.toLocaleString();
   }
 
   cleanData() {
