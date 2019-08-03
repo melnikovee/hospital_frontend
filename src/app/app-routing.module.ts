@@ -78,7 +78,9 @@ const routes: Routes = [
   {path: 'home', component: HomepageComponent, canActivate: [LoggedUserGuard]},
 
   {path: 'addpatient', component: PatientFormComponent},
-  {path: 'login', component: LoginFormComponent}
+  {path: 'login', component: LoginFormComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

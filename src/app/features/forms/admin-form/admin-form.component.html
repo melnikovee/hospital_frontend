@@ -3,8 +3,8 @@
   <mat-form-field class="example-full-width">
     <input [errorStateMatcher]="matcher" formControlName="login" matInput
            placeholder="Логин">
-    <mat-error *ngIf="loginFormControl.hasError('maxLength') && !loginFormControl.hasError('required')">
-      Максимальная длина 32 символа
+    <mat-error *ngIf="loginFormControl.hasError('pattern') && !loginFormControl.hasError('required')">
+      Можно использовать буквы английского алфавита и цифры
     </mat-error>
     <mat-error *ngIf="loginFormControl.hasError('required')">
       Обязательное поле
