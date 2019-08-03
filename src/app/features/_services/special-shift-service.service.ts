@@ -18,7 +18,7 @@ export class SpecialShiftService {
     return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}`);
   }
 
-  public getSpecialtyById(id: number): Observable<SpecialShift> {
+  public getSpecialShiftById(id: number): Observable<SpecialShift> {
     return this.http.get<SpecialShift>(`${this.specialShiftsUrl}/${id}`);
   }
 

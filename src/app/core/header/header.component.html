@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-  <span>{{ title }}</span>
+  <mat-icon svgIcon="logo" aria-hidden="false" aria-label="Logo"></mat-icon>
+  <span class="title">{{ title }}</span>
   <button mat-flat-button *appPermit="'NoLoggedUser'" color="primary" routerLink="/addpatient">Регистрация пациента</button>
   <a mat-button *appPermit="'ADMINISTRATOR'" routerLink="/home">Главная</a>
   <a mat-button *appPermit="'DOCTOR'" routerLink="/home">Главная</a>
