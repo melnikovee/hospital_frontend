@@ -38,8 +38,8 @@
   <button mat-button *appPermit="'PATIENT'" [matMenuTriggerFor]="appointments">Карточка</button>
   <mat-menu #appointments="matMenu">
     <button mat-menu-item routerLink="/patientcard">Карточка пациента</button>
-    <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие записи</button>
-    <button mat-menu-item routerLink="/patientpastvisits">Прошлые записи</button>
+    <button mat-menu-item routerLink="/patientcurrentvisits">Предстоящие посещения</button>
+    <button mat-menu-item routerLink="/patientpastvisits">Прошлые посещения</button>
   </mat-menu>
 
   <a mat-button *appPermit="'DOCTOR'" routerLink="/doctorTimeslots">Расписание</a>
@@ -48,7 +48,7 @@
     <button mat-menu-item routerLink="/searchpatient">Медицинское заключение</button>
     <button mat-menu-item routerLink="/patientrecordbydoctor">Запись пациента на прием</button>
   </mat-menu>
-
+  <span class="spacer"></span>
   <a mat-button *appPermit="'ADMINISTRATOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'DOCTOR'" class="logout" routerLink="/login" (click)="logout()">Выход</a>
   <a mat-button *appPermit="'PATIENT'" class="logout" routerLink="/login" (click)="logout()">Выход</a>

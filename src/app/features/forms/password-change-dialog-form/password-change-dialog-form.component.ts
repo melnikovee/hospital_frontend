@@ -19,6 +19,9 @@ export class PasswordChangeDialogFormComponent implements OnInit {
   isCurrentPasswordRight!: boolean;
   enableChange!: boolean;
   isDone!: boolean;
+  hideOldPassword = true;
+  hideNewPassword = true;
+  hideRepeatPassword = true;
   newPassword = '';
   repeatedPassword = '';
   textCurrentPassword$: ReplaySubject<string> = new ReplaySubject<string>();
