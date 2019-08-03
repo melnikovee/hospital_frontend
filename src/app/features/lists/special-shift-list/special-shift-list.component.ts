@@ -55,6 +55,9 @@ export class SpecialShiftListComponent implements OnInit {
       data: {
         specialShiftId: id
       }, width: '70%'
+
+    }).afterClosed().subscribe(data => {
+      this.reloadData();
     });
   }
 }

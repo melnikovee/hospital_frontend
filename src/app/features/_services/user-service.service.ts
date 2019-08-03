@@ -39,17 +39,5 @@ export class UserService {
   changePassword(id: number, password: string) {
     return this.http.put('http://localhost:8080/users/password', {id, password});
   }
-
-  login(login: string, password: string) {
-    return this.http.post<{authToken: string, refreshToken: string}>('http://localhost:8080/login',
-      {login, password}).subscribe(res => {
-      localStorage.setItem('token', res.authToken);
-      const helper = new JwtHelperService();
-      const id = helper.decodeToken(res.authToken).id;
-      localStorage.setItem('id', id);
-      const role = helper.decodeToken(res.authToken).role;
-      localStorage.setItem('role', role);
-  });
-  }
 }
 

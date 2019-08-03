@@ -17,10 +17,6 @@ export class TimeslotService {
     this.timeslotsUrl = 'http://localhost:8080/timeslots';
   }
 
-  public findAll(): Observable<Timeslot[]> {
-    return this.http.get<Timeslot[]>(this.timeslotsUrl);
-  }
-
   public getTimeslotById(id: number): Observable<Timeslot> {
     return this.http.get<Timeslot>(`${this.timeslotsUrl}/${id}`);
   }

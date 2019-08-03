@@ -17,10 +17,6 @@ export class PatientSpecialShiftService {
     this.patientSpecialShiftUrl = 'http://localhost:8080/patient_special_shifts';
   }
 
-  public findAll(): Observable<PatientSpecialShift[]> {
-    return this.http.get<PatientSpecialShift[]>(this.patientSpecialShiftUrl);
-  }
-
   public findPatientSpecialShifts(id: number): Observable<PatientSpecialShift[]> {
     return this.http.get<PatientSpecialShift[]>(`${this.patientSpecialShiftUrl}/${id}`);
   }

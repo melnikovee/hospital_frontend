@@ -14,10 +14,6 @@ export class SpecialShiftService {
     this.specialShiftsUrl = 'http://localhost:8080/special_shifts';
   }
 
-  public findAll(): Observable<SpecialShift[]> {
-    return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}`);
-  }
-
   public listSpecialShiftsByDate(date: string): Observable<SpecialShift[]> {
     return this.http.get<SpecialShift[]>(`${this.specialShiftsUrl}/${'by_date'}/${date}`);
   }
