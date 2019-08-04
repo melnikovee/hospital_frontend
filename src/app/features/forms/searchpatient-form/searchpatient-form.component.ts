@@ -24,7 +24,8 @@ export class SearchPatientFormComponent implements OnInit {
 
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
   dataSource!: MatTableDataSource<Composite>;
-  selectedPatient!: Composite;
+  // @ts-ignore
+  selectedPatient: Composite = new Composite();
   currentDoctorSpecialty!: number;
   id!: number;
   isGetCards!: boolean;
@@ -67,6 +68,10 @@ export class SearchPatientFormComponent implements OnInit {
     this.isGetCards = true;
     this.showAddButton = true;
     this.childComponent.getCard(this.selectedPatient.patientId);
+  }
+
+  checkPatient() {
+    return Date.parse(this.selectedPatient.time + ' ' + this.selectedPatient.date) <= Date.now();
   }
 
   openDialog() {
