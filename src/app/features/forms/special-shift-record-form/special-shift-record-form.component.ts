@@ -51,7 +51,6 @@ export class SpecialShiftRecordFormComponent {
 
     this.patientSpecialShiftService.findPatientSpecialShifts(this.patientId).subscribe(data => {
       this.patientSpecialShifts = data;
-      console.log(this.patientSpecialShifts);
     });
   }
 

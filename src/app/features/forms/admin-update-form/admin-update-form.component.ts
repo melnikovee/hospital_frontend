@@ -61,7 +61,6 @@ export class AdminUpdateFormComponent implements OnInit {
 
     this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
-      console.log(this.currentUser);
     });
   }
 

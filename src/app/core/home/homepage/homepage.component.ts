@@ -43,7 +43,6 @@ export class HomepageComponent implements OnInit {
       this.navigateToLoginPage();
     }
     this.currentRole = localStorage.getItem('role');
-    console.log(this.currentRole);
     this.userService.getUserById(this.id).subscribe(data => {
       this.user = data;
       this.usersData = [

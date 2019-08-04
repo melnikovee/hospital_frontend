@@ -46,7 +46,6 @@ export class SpecialtyUpdateFormComponent implements OnInit {
   ngOnInit(): void {
     this.specialtyService.getSpecialtyById(this.id).subscribe(data => {
       this.currentSpecialty = data;
-      console.log(this.currentSpecialty);
     });
   }
 

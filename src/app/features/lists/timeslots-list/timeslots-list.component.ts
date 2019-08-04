@@ -38,7 +38,6 @@ export class TimeslotsListComponent implements OnInit {
   deleteTimeslot(id: number) {
     this.timeSlotService.getTimeslotById(id).subscribe(data => {
       this.isTimeslotFree = data.isFree;
-      console.log(this.isTimeslotFree);
     });
     if (this.isTimeslotFree) {
       if (confirm('Уверены что хотите удалить?')) {

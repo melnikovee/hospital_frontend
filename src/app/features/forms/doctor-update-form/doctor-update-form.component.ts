@@ -71,12 +71,10 @@ export class DoctorUpdateFormComponent implements OnInit {
 
     this.doctorService.getDoctorById(this.id).subscribe(data => {
       this.currentDoctor = data;
-      console.log(this.currentDoctor);
     });
 
     this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
-      console.log(this.currentUser);
     });
   }
 
@@ -100,10 +98,6 @@ export class DoctorUpdateFormComponent implements OnInit {
 
   onSubmit() {
     this.putData();
-
-    console.log(this.user);
-    console.log(this.doctor);
-
     this.userService.updateUser(this.id, this.user).subscribe();
     this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
   }

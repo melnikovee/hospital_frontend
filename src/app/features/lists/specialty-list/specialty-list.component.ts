@@ -43,7 +43,6 @@ export class SpecialtyListComponent implements OnInit {
       this.specialtyService.deleteSpecialty(id)
       .subscribe(
           data => {
-            console.log(data);
             this.reloadData();
           },
           error => {

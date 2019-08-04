@@ -41,7 +41,6 @@ export class CabinetListComponent implements OnInit {
       this.cabinetService.deleteCabinet(id)
       .subscribe(
           data => {
-            console.log(data);
             this.reloadData();
           },
           error => {
