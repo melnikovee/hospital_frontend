@@ -1,0 +1,11 @@
+<p>Пациент {{patientName}}</p>
+
+<mat-form-field class="example-full-width">
+  <textarea rows="10" [formControl]="opinion" matInput placeholder="Введите заключение"></textarea>
+</mat-form-field>
+
+<mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+  <button mat-flat-button color="primary" [disabled]="opinion.invalid" (click)="addDiagnosis()" value="underline">
+    Сохранить заключение
+  </button>
+</mat-button-toggle-group>
