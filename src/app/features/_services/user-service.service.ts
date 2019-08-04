@@ -36,7 +36,7 @@ export class UserService {
   }
 
   changePassword(id: number, password: string) {
-    return this.http.put('hospital//users/password', {id, password});
+    return this.http.put('hospital/users/password', {id, password});
   }
 }
 

@@ -36,15 +36,13 @@ export class HttpAuthInterceptorInterceptor implements HttpInterceptor {
         }
 
         const tokens = this.tokens$.value;
-        if (tokens == undefined) { // if suspended
+        if (tokens == undefined) {
           return this.waitTokensAndDoRequest(req, next).pipe(catchError(this.handlePostRefreshRequest));
         }
 
         if (tokens.refreshToken == undefined) {
           return throwError(Error('unauthorized'));
         }
-
-        // suspend future requests
         this.tokens$.next(undefined);
         return this.currentUserService.refreshTokens(tokens.refreshToken)
         .pipe(
