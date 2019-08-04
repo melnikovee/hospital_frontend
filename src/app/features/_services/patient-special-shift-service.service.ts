@@ -14,7 +14,7 @@ export class PatientSpecialShiftService {
   private patientSpecialShiftUrl: string;
 
   constructor(private http: HttpClient) {
-    this.patientSpecialShiftUrl = 'http://localhost:8080/patient_special_shifts';
+    this.patientSpecialShiftUrl = '/hospital/patient_special_shifts';
   }
 
   public findPatientSpecialShifts(id: number): Observable<PatientSpecialShift[]> {

@@ -81,7 +81,8 @@ export class CreateScheduleFormComponent {
   getSpecialties() {
     this.doctorSpecialtyService.findDoctorSpecialties(this.doctorId).subscribe(
         (data: Specialty[]) => {
-          this.specialties = data;
+          const sorted = data.sort((a, b) => a.specialtyName.localeCompare(b.specialtyName));
+          this.specialties = sorted;
         },
         error => console.log(error)
     );
@@ -91,7 +92,8 @@ export class CreateScheduleFormComponent {
     this.dateForCabinets = this.scheduleForm.controls.date.value;
     this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
         (data: Cabinet[]) => {
-          this.cabinets = data;
+          const sorted = data.sort((a, b) => a.cabinetName.localeCompare(b.cabinetName));
+          this.cabinets = sorted;
         },
         error => console.log(error)
     );

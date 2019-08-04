@@ -11,7 +11,7 @@ export class SpecialtyService {
   private specialtiesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.specialtiesUrl = 'http://localhost:8080/specialties';
+    this.specialtiesUrl = '/hospital/specialties';
   }
 
   public findAll(): Observable<Specialty[]> {

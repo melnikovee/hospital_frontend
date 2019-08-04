@@ -11,7 +11,7 @@ export class SpecialShiftService {
   private specialShiftsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.specialShiftsUrl = 'http://localhost:8080/special_shifts';
+    this.specialShiftsUrl = '/hospital/special_shifts';
   }
 
   public listSpecialShiftsByDate(date: string): Observable<SpecialShift[]> {

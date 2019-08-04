@@ -11,7 +11,7 @@ export class PatientService {
   private patientsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.patientsUrl = 'http://localhost:8080/patients';
+    this.patientsUrl = '/hospital/patients';
   }
 
   public getPatientById(id: number) {
@@ -19,7 +19,7 @@ export class PatientService {
   }
 
   public save(patient: Patient) {
-    return this.http.post<Patient>('http://localhost:8080/patients/create', patient);
+    return this.http.post<Patient>('/hospital/patients/create', patient);
   }
 
   updatePatient(id: number, patient: Patient) {

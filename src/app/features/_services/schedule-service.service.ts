@@ -12,7 +12,7 @@ export class ScheduleService {
   private schedulsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.schedulsUrl = 'http://localhost:8080/schedules';
+    this.schedulsUrl = '/hospital/schedules';
   }
 
   public findFreeDays(doctorId: number): Observable<string[]> {

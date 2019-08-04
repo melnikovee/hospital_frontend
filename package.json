@@ -1,9 +1,9 @@
-{
+{"start": "ng serve --proxy-config proxy.conf.json",
   "name": "hospital",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "build:ci": "ng build --aot",

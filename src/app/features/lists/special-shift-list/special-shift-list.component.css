@@ -2,16 +2,16 @@ table {
   width: 100%;
 }
 
-.mat-column-specialty,
-.mat-column-phone {
+.mat-column-date,
+.mat-column-cabinet,
+.mat-column-time,
+.mat-column-numberPatients,
+.mat-column-maxNumberPatients {
   text-align: center;
 }
 
-.mat-column-schedule {
-  place-content: center;
-}
-
-.mat-column-create {
+.mat-column-action,
+.mat-column-action2 {
   place-content: center;
 }
 

@@ -12,7 +12,7 @@ export class CabinetService {
   private cabinetsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.cabinetsUrl = 'http://localhost:8080/cabinets';
+    this.cabinetsUrl = '/hospital/cabinets';
   }
 
   public findAll(): Observable<Cabinet[]> {
