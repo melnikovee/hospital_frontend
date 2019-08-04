@@ -12,7 +12,7 @@ export class CompositeService {
   private compositeUrl: string;
 
   constructor(private http: HttpClient) {
-    this.compositeUrl = 'http://localhost:8080/composite';
+    this.compositeUrl = '/hospital/composite';
   }
 
   public getTimeslots(): Observable<Composite[]> {

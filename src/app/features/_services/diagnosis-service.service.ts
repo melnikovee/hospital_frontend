@@ -10,7 +10,7 @@ export class DiagnosisService {
   private diagnosisUrl: string;
 
   constructor(private http: HttpClient) {
-    this.diagnosisUrl = 'http://localhost:8080/diagnoses';
+    this.diagnosisUrl = '/hospital/diagnoses';
   }
 
   public save(diagnosis: Diagnosis) {

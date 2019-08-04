@@ -11,7 +11,7 @@ export class DoctorService {
   private doctorsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.doctorsUrl = 'http://localhost:8080/doctors';
+    this.doctorsUrl = '/hospital/doctors';
   }
 
   public save(doctor: Doctor) {

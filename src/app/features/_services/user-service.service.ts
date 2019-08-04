@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DoctorFullName} from '../_models/doctor-full-name';
 import {User} from '../_models/user';
-import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class UserService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/users';
+    this.usersUrl = '/hospital/users';
   }
 
   public save(user: User) {
@@ -21,7 +20,7 @@ export class UserService {
   }
 
   public createPatient(user: User) {
-    return this.http.post<User>('http://localhost:8080/users/patients/create', user);
+    return this.http.post<User>('/hospital/users/patients/create', user);
   }
 
   public getUserById(id: number) {
@@ -37,7 +36,7 @@ export class UserService {
   }
 
   changePassword(id: number, password: string) {
-    return this.http.put('http://localhost:8080/users/password', {id, password});
+    return this.http.put('hospital//users/password', {id, password});
   }
 }
 

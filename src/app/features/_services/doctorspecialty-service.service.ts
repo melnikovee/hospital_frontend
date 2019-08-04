@@ -13,7 +13,7 @@ export class DoctorSpecialtyService {
   private doctorSpecialtiesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.doctorSpecialtiesUrl = 'http://localhost:8080/doctor_specialties';
+    this.doctorSpecialtiesUrl = '/hospital/doctor_specialties';
   }
 
   public findDoctorSpecialties(id: number): Observable<Specialty[]> {

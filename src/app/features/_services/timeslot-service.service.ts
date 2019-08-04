@@ -14,7 +14,7 @@ export class TimeslotService {
   private timeslotsUrl: string;
 
   constructor(private http: HttpClient) {
-    this.timeslotsUrl = 'http://localhost:8080/timeslots';
+    this.timeslotsUrl = '/hospital/timeslots';
   }
 
   public getTimeslotById(id: number): Observable<Timeslot> {

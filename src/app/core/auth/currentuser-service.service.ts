@@ -82,7 +82,7 @@ export class CurrentUserService {
         Authorization: `Basic ${btoa('main-client:secret')}`
       })
     };
-    return this.httpClient.post<RawAuthInfo>('http://localhost:8080/login',
+    return this.httpClient.post<RawAuthInfo>('/hospital/login',
       JSON.stringify({login, password}), options).pipe(
       tap(auth => {
         this._auth$.next(auth);
@@ -107,7 +107,7 @@ export class CurrentUserService {
             Authorization: 'Bearer ' + refreshToken
           })
         };
-        return this.httpClient.post<RawAuthInfo>('http://localhost:8080/refresh', null, options)
+        return this.httpClient.post<RawAuthInfo>('/hospital/refresh', null, options)
         .pipe(tap(refreshed => {
           this._auth$.next(refreshed);
         }));
@@ -116,7 +116,7 @@ export class CurrentUserService {
   }
 
   checkPassword(login: string, password: string) {
-    return this.httpClient.post<boolean>(`${'http://localhost:8080/change_password'}`, {login, password});
+    return this.httpClient.post<boolean>(`${'/hospital/change_password'}`, {login, password});
   }
 }
 
