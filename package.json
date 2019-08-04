@@ -1,5 +1,4 @@
-{"start": "ng serve --proxy-config proxy.conf.json",
-  "name": "hospital",
+{ "name": "hospital",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
