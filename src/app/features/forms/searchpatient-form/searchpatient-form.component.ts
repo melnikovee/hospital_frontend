@@ -65,18 +65,13 @@ export class SearchPatientFormComponent implements OnInit {
   }
 
   getCard() {
-    console.log(this.dataSource.data);
     this.isGetCards = true;
     this.showAddButton = true;
     this.childComponent.getCard(this.selectedPatient.patientId);
   }
 
   checkPatient() {
-    if (Date.parse(this.selectedPatient.time + ' ' + this.selectedPatient.date) <= Date.now()) {
-      return true;
-    }
-
-    return false;
+    return Date.parse(this.selectedPatient.time + ' ' + this.selectedPatient.date) <= Date.now();
   }
 
   openDialog() {
