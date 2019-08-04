@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ProjectCompletionPipe} from './_pipes/project-completion.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSortModule} from '@angular/material';
@@ -55,6 +55,7 @@ import {PatientSpecialShiftService} from './_services/patient-special-shift-serv
 import {SpecialShiftForPatientFormComponent} from './forms/special-shift-for-patient-form/special-shift-for-patient-form.component';
 import {SpecialShiftListComponent} from './lists/special-shift-list/special-shift-list.component';
 import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-update-dialog-form/special-shift-update-dialog-form.component';
+import {AddDiagnosisDialogFormComponent} from './forms/add-diagnosis-dialog-form/add-diagnosis-dialog-form.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-updat
     SpecialShiftRecordFormComponent,
     SpecialShiftForPatientFormComponent,
     SpecialShiftListComponent,
-    SpecialShiftUpdateDialogFormComponent
+    SpecialShiftUpdateDialogFormComponent,
+    AddDiagnosisDialogFormComponent
   ],
   exports: [
     ProjectCompletionPipe,
@@ -131,7 +133,8 @@ import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-updat
     SpecialShiftRecordFormComponent,
     SpecialShiftForPatientFormComponent,
     SpecialShiftListComponent,
-    SpecialShiftUpdateDialogFormComponent
+    SpecialShiftUpdateDialogFormComponent,
+    AddDiagnosisDialogFormComponent
   ],
   imports: [
     CommonModule,
@@ -151,6 +154,8 @@ import {SpecialShiftUpdateDialogFormComponent} from './forms/special-shift-updat
   providers: [UserService, CabinetService, PatientService, DoctorService,
     TimeslotService, SpecialtyService, CompositeService, DoctorSpecialtyService, DiagnosisService, SpecialShiftService,
     PatientSpecialShiftService],
-  entryComponents: [DialogDiagnosisFormComponent, PasswordChangeDialogFormComponent, SpecialShiftUpdateDialogFormComponent]
+  entryComponents: [DialogDiagnosisFormComponent, PasswordChangeDialogFormComponent,
+    SpecialShiftUpdateDialogFormComponent, AddDiagnosisDialogFormComponent]
 })
-export class FeaturesModule { }
+export class FeaturesModule {
+}
