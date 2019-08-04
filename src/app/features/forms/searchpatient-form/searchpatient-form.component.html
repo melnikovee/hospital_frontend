@@ -1,0 +1,42 @@
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
+</mat-form-field>
+<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+
+  <ng-container matColumnDef="patient">
+    <th *matHeaderCellDef mat-header-cell>Пациент</th>
+    <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthday">
+    <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
+    <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="record">
+    <th *matHeaderCellDef mat-header-cell>Карта</th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="getPatient(element)" value="underline">Просмотреть
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+<app-card-form [hidden]="!isGetCards"></app-card-form>
+
+<mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!showAddButton">
+  <button mat-flat-button color="primary" (click)="openDialog()" value="underline">
+    Добавить заключение
+  </button>
+</mat-button-toggle-group>
+
+
+
+
+
+

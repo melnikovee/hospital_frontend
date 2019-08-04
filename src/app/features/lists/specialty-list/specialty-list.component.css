@@ -1,0 +1,14 @@
+table {
+  width: 64%;
+}
+
+.mat-column-action {
+  place-content: center;
+  width: 20%;
+}
+
+
+.mat-column-duration {
+  text-align: center;
+}
+

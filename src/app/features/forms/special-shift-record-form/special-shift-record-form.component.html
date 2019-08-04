@@ -1,0 +1,53 @@
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
+</mat-form-field>
+
+<table [dataSource]="dataSource" mat-table>
+
+  <ng-container matColumnDef="name">
+    <th *matHeaderCellDef mat-header-cell>Смена</th>
+    <td *matCellDef="let specialShift" mat-cell> {{specialShift.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell>Дата</th>
+    <td *matCellDef="let specialShift" mat-cell> {{specialShift.date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cabinet">
+    <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+    <td *matCellDef="let specialShift" mat-cell> {{specialShift.cabinet}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="time">
+    <th *matHeaderCellDef mat-header-cell>Время</th>
+    <td *matCellDef="let specialShift" mat-cell> {{specialShift.startTime.toLocaleString().substring(0, 5)}} - {{specialShift.endTime.toLocaleString().substring(0, 5)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="numberPatients">
+    <th *matHeaderCellDef mat-header-cell>Записано<p></p> пациентов</th>
+    <td *matCellDef="let specialShift" mat-cell> {{specialShift.numberOfPatients}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="maxNumberPatients">
+    <th *matHeaderCellDef mat-header-cell>Максимальное<p></p> кол-во пациентов</th>
+    <td *matCellDef="let specialShift" mat-cell>{{specialShift.maxNumberOfPatients}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let specialShift" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!checkSign(specialShift.id)">
+        <button mat-flat-button color="primary" [disabled]="!hasPlace(specialShift)" (click)="signUp(specialShift.id)">Запись
+        </button>
+      </mat-button-toggle-group>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="checkSign(specialShift.id)">
+        <button mat-flat-button color="accent" (click)="cancelRecord(specialShift.id)">Отмена записи
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

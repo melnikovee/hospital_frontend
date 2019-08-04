@@ -1,0 +1,28 @@
+<table [dataSource]="foundPatients" class="mat-elevation-z8" mat-table>
+
+  <ng-container matColumnDef="patient">
+    <th *matHeaderCellDef mat-header-cell>Пациент</th>
+    <td *matCellDef="let element" mat-cell> {{element.patient}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthday">
+    <th *matHeaderCellDef mat-header-cell>Дата Рождения</th>
+    <td *matCellDef="let element" mat-cell> {{element.birthday}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="record">
+    <th *matHeaderCellDef mat-header-cell>Запись</th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="makeAppointment(element.patientId)" value="underline">
+          Записать пациента на приём
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+

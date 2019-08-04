@@ -1,0 +1,81 @@
+<form [formGroup]="adminForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="login" matInput
+           placeholder="Логин">
+    <mat-error *ngIf="loginFormControl.hasError('pattern') && !loginFormControl.hasError('required')">
+      Можно использовать буквы английского алфавита и цифры
+    </mat-error>
+    <mat-error *ngIf="loginFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher" formControlName="password" matInput
+           placeholder="Пароль">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Скрыть'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('required')">
+      Введите пароль длиннее 8 символов. Можно использовать буквы английского алфавита и цифры.
+    </mat-error>
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="firstName" matInput
+           placeholder="Имя">
+    <mat-error *ngIf="firstNameFormControl.hasError('maxLength') && !firstNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+    <mat-error *ngIf="firstNameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="lastName" matInput
+           placeholder="Фамилия">
+    <mat-error *ngIf="lastNameFormControl.hasError('maxLength') && !lastNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+    <mat-error *ngIf="lastNameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="middleName" matInput
+           placeholder="Отчество">
+    <mat-error *ngIf="middleNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" formControlName="email"
+           matInput placeholder="Email">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Пожалуйста введите действительный Email
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <div *ngIf="done">
+    <p>Администратор {{receivedUser.lastName}} успешно добавлен</p>
+  </div>
+  <div *ngIf="alreadyExists">
+    <p>Пользователь с таким логином уже зарегистрирован, пожалуйста выберите другой логин</p>
+  </div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!adminForm.valid" value="bold">Регистрация
+  </button>
+
+</form>
+
+

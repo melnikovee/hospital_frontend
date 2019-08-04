@@ -1,0 +1,59 @@
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Фильтр">
+</mat-form-field>
+<table [dataSource]="dataSource" mat-table>
+
+  <ng-container matColumnDef="doctor">
+    <th *matHeaderCellDef mat-header-cell>Доктор</th>
+    <td *matCellDef="let composite" mat-cell> {{composite.doctor}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="specialty">
+    <th *matHeaderCellDef mat-header-cell>Специальность</th>
+    <td *matCellDef="let composite" mat-cell> {{composite.specialty}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th *matHeaderCellDef mat-header-cell>Телефон</th>
+    <td *matCellDef="let composite" mat-cell> {{composite.phone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="schedule">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let composite" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="doctorSchedule(composite.doctorId)">Расписание
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="create">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let composite" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="accent" (click)="createSchedule(composite.doctorId)">Составить
+        </button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <!--ng-container matColumnDef="schedule">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let composite">
+      <button mat-flat-button color="primary" (click)="doctorSchedule(composite.doctorId)">Расписание</button>
+    </mat-cell>
+  </ng-container-->
+
+  <!--ng-container matColumnDef="create">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let composite">
+      <button mat-flat-button color="accent" (click)="createSchedule(composite.doctorId)">Составить</button>
+    </mat-cell>
+  </ng-container-->
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+</table>
+

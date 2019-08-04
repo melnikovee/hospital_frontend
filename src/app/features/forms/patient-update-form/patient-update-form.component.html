@@ -1,0 +1,48 @@
+<form class="example-form" [formGroup]="patientForm">
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Имя" formControlName="firstName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="firstNameFormControl.hasError('maxLength') && !firstNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Фамилия" formControlName="lastName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="lastNameFormControl.hasError('maxLength') && !lastNameFormControl.hasError('required')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Отчество" formControlName="middleName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="middleNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher" formControlName="email">
+    <mat-error
+      *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+      Пожалуйста введите действительный Email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Телефон" formControlName="phone"
+           [errorStateMatcher]="matcher">
+    <mat-hint>Введите номер телефона в формате 89001234567</mat-hint>
+    <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
+      Пожалуйста введите номер телефона
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" value="bold" [disabled]="!patientForm.valid" (click)="onSubmit()">Применить
+  </button>
+
+</form>

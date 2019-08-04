@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+
+.disabled-button {
+  pointer-events: none;
+}
+
+.mat-column-birthday,
+.mat-column-record {
+  text-align: center;
+}

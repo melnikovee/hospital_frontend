@@ -1,0 +1,43 @@
+<form class="example-form" [formGroup]="adminForm">
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Имя" formControlName="firstName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="firstNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Фамилия" formControlName="lastName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="lastNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Отчество" formControlName="middleName"
+           [errorStateMatcher]="matcher">
+    <mat-error *ngIf="middleNameFormControl.hasError('maxLength')">
+      Максимальная длина 32 символа
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher" formControlName="email">
+    <mat-error
+      *ngIf="emailFormControl.hasError('email') && emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+      Пожалуйста введите действительный Email
+    </mat-error>
+  </mat-form-field>
+
+  <div *ngIf="done">
+    <p>Информация обновлена</p>
+  </div>
+
+  <button mat-flat-button color="primary" value="bold" [disabled]="!adminForm.valid" (click)="onSubmit()">Применить
+  </button>
+
+</form>

@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+.mat-column-date,
+.mat-column-cabinet,
+.mat-column-time,
+.mat-column-numberPatients,
+.mat-column-maxNumberPatients {
+  text-align: center;
+}
+
+.mat-column-action,
+.mat-column-action2 {
+  place-content: center;
+}
+

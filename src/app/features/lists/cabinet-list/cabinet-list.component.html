@@ -1,0 +1,34 @@
+<mat-button-toggle-group aria-label="Font Style" name="create">
+  <button mat-flat-button color="primary" (click)="createCabinet()">Добавить кабинет</button>
+</mat-button-toggle-group>
+
+<div *ngIf="isNotFree">
+  <p>Невозможно удалить кабинет используемый в расписании</p>
+</div>
+
+<table [dataSource]="dataSource" mat-table>
+  <ng-container matColumnDef="cabinet">
+    <th *matHeaderCellDef mat-header-cell>Кабинет</th>
+    <td *matCellDef="let cabinet" mat-cell> {{cabinet.cabinetName}} </td>
+  </ng-container>
+
+  <!--ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <mat-cell *matCellDef="let cabinet">
+      <button mat-flat-button color="primary" (click)="deleteCabinet(cabinet.id)" mat-button>Удалить</button>
+    </mat-cell>
+  </ng-container-->
+
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef="let cabinet" mat-cell>
+      <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+        <button mat-flat-button color="primary" (click)="deleteCabinet(cabinet.id)">Удалить</button>
+      </mat-button-toggle-group>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+

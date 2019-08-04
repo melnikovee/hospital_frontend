@@ -1,0 +1,32 @@
+<mat-list>
+  <h2 mat-subheader>Персональные данные</h2>
+  <mat-list-item *ngFor="let row of usersData">
+    <h2 mat-line>{{row.name}}</h2>
+    <p mat-line> {{row.value}} </p>
+  </mat-list-item>
+  <div *appPermit="'DOCTOR'">
+    <mat-list-item *ngFor="let row of doctorsData">
+      <h2 mat-line>{{row.name}}</h2>
+      <p mat-line> {{row.value}} </p>
+    </mat-list-item>
+  </div>
+ <div *appPermit="'PATIENT'">
+   <mat-list-item *ngFor="let row of patientsData">
+     <h2 mat-line>{{row.name}}</h2>
+     <p mat-line> {{row.value}} </p>
+   </mat-list-item>
+ </div>
+  <button mat-flat-button color="primary" value="bold" *appPermit="'ADMINISTRATOR'" routerLink="/updateadmin">Редактировать</button>
+  <button mat-flat-button color="primary" value="bold" *appPermit="'DOCTOR'" routerLink="/updatedoctor">Редактировать</button>
+  <button mat-flat-button color="primary" value="bold" *appPermit="'PATIENT'" routerLink="/updatepatient">Редактировать</button>
+</mat-list>
+
+<p></p>
+
+<button mat-flat-button color="primary" (click)="openDialog()" value="underline">Изменить пароль</button>
+
+
+
+
+
+

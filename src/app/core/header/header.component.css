@@ -1,0 +1,16 @@
+.logout {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  padding: 0 6px;
+}
+
+.phone {
+  padding: 0 8px;
+  font-size: medium;
+}

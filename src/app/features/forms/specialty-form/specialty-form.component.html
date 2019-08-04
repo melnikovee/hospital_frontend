@@ -1,0 +1,33 @@
+<form [formGroup]="specForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="specialtyName" matInput
+           placeholder="Специальность">
+    <mat-error *ngIf="specialtyNameFormControl.hasError('maxLength') && !specialtyNameFormControl.hasError('required')">
+    Максимальная длина 32 символа
+    </mat-error>
+    <mat-error *ngIf="specialtyNameFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input [errorStateMatcher]="matcher" formControlName="duration" matInput
+           placeholder="Продолжительность приема">
+    <mat-error *ngIf="durationFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <div *ngIf="done">
+    <p>Специальность {{receivedSpecialty.specialtyName}} успешно добавлена</p>
+  </div>
+  <div *ngIf="alreadyExists">
+    <p>Специальность {{specialty.specialtyName}} уже есть в базе</p>
+  </div>
+
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="!specForm.valid" value="bold">Добавить
+  </button>
+
+</form>
+
