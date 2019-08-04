@@ -16,7 +16,7 @@ export class AddDiagnosisDialogFormComponent implements OnInit {
   specialtyId!: number;
   patientName!: string;
   diagnosis!: Diagnosis;
-  opinion = new FormControl('', Validators.required);
+  opinion = new FormControl('', [Validators.required, Validators.maxLength(10000)]);
 
   // tslint:disable-next-line:no-any
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private diagnosisService: DiagnosisService) {
