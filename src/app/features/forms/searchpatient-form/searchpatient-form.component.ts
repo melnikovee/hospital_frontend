@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {ErrorStateMatcher, MatDialog, MatTableDataSource} from '@angular/material';
 import {CardFormComponent} from '../card-form/card-form.component';
 import {Composite} from '../../_models/composite';
