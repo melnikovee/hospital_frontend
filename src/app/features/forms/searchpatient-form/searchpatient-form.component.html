@@ -17,7 +17,7 @@
     <th *matHeaderCellDef mat-header-cell>Карта</th>
     <td *matCellDef="let element" mat-cell>
       <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-        <button mat-flat-button color="primary" (click)="getCard(element)" value="underline">Просмотреть
+        <button mat-flat-button color="primary" (click)="getPatient(element)" value="underline">Просмотреть
         </button>
       </mat-button-toggle-group>
     </td>
@@ -27,18 +27,10 @@
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 </table>
 
-<p></p>
-<app-card-form></app-card-form>
+<app-card-form [hidden]="!isGetCards"></app-card-form>
 
-
-<div [hidden]="!showAddForm">
-  <mat-form-field class="example-full-width">
-    <textarea [formControl]="opinion" matInput placeholder="Введите заключение"></textarea>
-  </mat-form-field>
-</div>
-
-<mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!isGetCards">
-  <button mat-flat-button color="primary" (click)="addDiagnosis()" value="underline">
+<mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!showAddButton">
+  <button mat-flat-button color="primary" (click)="openDialog()" value="underline">
     Добавить заключение
   </button>
 </mat-button-toggle-group>

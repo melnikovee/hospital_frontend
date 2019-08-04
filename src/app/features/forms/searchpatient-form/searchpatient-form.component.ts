@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
-import {ErrorStateMatcher, MatTableDataSource} from '@angular/material';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher, MatDialog, MatTableDataSource} from '@angular/material';
 import {CardFormComponent} from '../card-form/card-form.component';
 import {Composite} from '../../_models/composite';
-import {Diagnosis} from '../../_models/diagnosis';
 import {CompositeService} from '../../_services/composite-service.service';
 import {DiagnosisService} from '../../_services/diagnosis-service.service';
 import {ScheduleService} from '../../_services/schedule-service.service';
+import {AddDiagnosisDialogFormComponent} from '../add-diagnosis-dialog-form/add-diagnosis-dialog-form.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,21 +24,19 @@ export class SearchPatientFormComponent implements OnInit {
 
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
   dataSource!: MatTableDataSource<Composite>;
-  // foundPatients!: Composite[];
-  selectedPatientId!: number;
+  selectedPatient!: Composite;
   currentDoctorSpecialty!: number;
-  diagnosis: Diagnosis | undefined;
   id!: number;
-  showAddForm!: boolean;
   isGetCards!: boolean;
-  opinion = new FormControl();
+  showAddButton!: boolean;
   @ViewChild(CardFormComponent, {static: false})
   private childComponent!: CardFormComponent;
 
   matcher = new MyErrorStateMatcher();
 
   constructor(private compositeService: CompositeService, private diagnosisService: DiagnosisService,
-              private scheduleService: ScheduleService) {}
+              private scheduleService: ScheduleService, private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.id = -1;
@@ -48,7 +46,7 @@ export class SearchPatientFormComponent implements OnInit {
       this.id = parseInt(stringId, 10);
     }
     this.compositeService.patientsForDoctor(this.id).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+        this.dataSource = new MatTableDataSource(data);
       }
     );
     this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
@@ -60,23 +58,29 @@ export class SearchPatientFormComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getCard(patient: Composite) {
-    this.isGetCards = true;
-    this.selectedPatientId = patient.patientId;
-    this.childComponent.getCard(patient.patientId);
+  getPatient(patient: Composite) {
+    this.selectedPatient = patient;
+    this.getCard();
   }
 
-  addDiagnosis() {
-    this.showAddForm = !this.showAddForm;
-    if (this.diagnosis === undefined) {
-      this.diagnosis = new Diagnosis(this.selectedPatientId, this.id, this.currentDoctorSpecialty);
-    } else {
-      this.diagnosis.medicalOpinion = this.opinion.value;
+  getCard() {
+    this.isGetCards = true;
+    this.showAddButton = true;
+    this.childComponent.getCard(this.selectedPatient.patientId);
+  }
 
-      this.diagnosisService.save(this.diagnosis).subscribe(data => {
-        this.diagnosis = undefined;
+  openDialog() {
+    this.dialog.open(AddDiagnosisDialogFormComponent, {
+      data: {
+        selectedPatientName: this.selectedPatient.patient,
+        selectedPatientId: this.selectedPatient.patientId,
+        doctorId: this.id,
+        doctorSpecialty: this.currentDoctorSpecialty
+      }, width: '70%'
+    }).afterClosed().subscribe(
+      data => {
+        this.getCard();
       });
-    }
   }
 }
 
