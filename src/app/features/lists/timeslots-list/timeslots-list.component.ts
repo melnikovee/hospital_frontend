@@ -3,7 +3,6 @@ import {MatTableDataSource} from '@angular/material';
 import {Composite} from '../../_models/composite';
 import {CompositeService} from '../../_services/composite-service.service';
 import {TimeslotService} from '../../_services/timeslot-service.service';
-import {Timeslot} from '../../_models/timeslot';
 
 @Component({
   selector: 'app-timeslots-list',

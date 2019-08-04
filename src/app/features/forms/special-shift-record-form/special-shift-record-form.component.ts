@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {SpecialShift} from '../../_models/special-shift';
 import {SpecialShiftService} from '../../_services/special-shift-service.service';

@@ -16,8 +16,10 @@
 
       <mat-form-field>
         <mat-label class="font">Пароль</mat-label>
-        <input class="font" matInput [type]="hide ? 'password' : 'text'" type="password" name="password" [(ngModel)]="password" required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Скрыть'" [attr.aria-pressed]="hide">
+        <input class="font" matInput [type]="hide ? 'password' : 'text'" type="password" name="password"
+               [(ngModel)]="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Скрыть'"
+                [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
@@ -28,7 +30,11 @@
     </div>
 
     <mat-card-actions align="end">
-      <button class="font" mat-button type="submit" [ngClass]="{'enable-button': !form.invalid}" [disabled]="form.invalid">Войти</button>
+      <button class="font" mat-button type="submit" [ngClass]="{'enable-button': !form.invalid}"
+              [disabled]="form.invalid">Войти
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>
+
+

@@ -4,8 +4,6 @@ import {MatTableDataSource} from '@angular/material';
 import {Specialty} from '../../_models/specialty';
 import {SpecialtyService} from '../../_services/specialty-service.service';
 
-
-
 @Component({
   selector: 'app-specialty-list',
   templateUrl: './specialty-list.component.html',

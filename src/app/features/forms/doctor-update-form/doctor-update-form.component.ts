@@ -1,14 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher, MatDialog} from '@angular/material';
+import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../_models/user';
 import {Doctor} from '../../_models/doctor';
 import {DoctorService} from '../../_services/doctor-service.service';
 import {UserService} from '../../_services/user-service.service';
-import {DialogDiagnosisFormComponent} from '../dialog-diagnosis-form/dialog-diagnosis-form.component';
-import {PasswordChangeDialogFormComponent} from '../password-change-dialog-form/password-change-dialog-form.component';
-
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

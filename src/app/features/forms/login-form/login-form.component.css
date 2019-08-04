@@ -23,6 +23,14 @@ mat-card {
 
 .login {
   width: 40%;
+  min-width: 400px;
+
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .font {

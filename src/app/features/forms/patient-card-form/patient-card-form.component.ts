@@ -1,5 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {CardFormComponent} from '../card-form/card-form.component';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-patient-card-form',

@@ -3,11 +3,11 @@ import {
   HTTP_INTERCEPTORS, HttpErrorResponse,
   HttpEvent,
   HttpHandler, HttpHeaders,
-  HttpInterceptor, HttpParams,
+  HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import {BehaviorSubject, EMPTY, Observable, OperatorFunction, throwError} from 'rxjs';
-import {catchError, filter, first, switchMap, tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, OperatorFunction, throwError} from 'rxjs';
+import {catchError, filter, first, switchMap} from 'rxjs/operators';
 import {CurrentUserService} from '../auth/currentuser-service.service';
 
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatTableDataSource} from '@angular/material';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {SpecialShift} from '../../_models/special-shift';
 import {SpecialShiftService} from '../../_services/special-shift-service.service';
 // tslint:disable-next-line:max-line-length
