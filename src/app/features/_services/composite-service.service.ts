@@ -23,10 +23,6 @@ export class CompositeService {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'schedule'}/${doctor}`);
   }
 
-  public getUsersByName(lastName: string): Observable<Composite[]> {
-    return this.http.get<Composite[]>(`${this.compositeUrl}/${'users'}/${lastName}`);
-  }
-
   public getDiagnosisByPatient(patient: number): Observable<Composite[]> {
     return this.http.get<Composite[]>(`${this.compositeUrl}/${'patient_diagnoses'}/${patient}`);
   }

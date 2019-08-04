@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {DoctorFullName} from '../_models/doctor-full-name';
-import {PatientFullName} from '../_models/patient-full-name';
 import {User} from '../_models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
 

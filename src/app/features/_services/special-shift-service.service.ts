@@ -39,8 +39,5 @@ export class SpecialShiftService {
     return this.http.delete(`${this.specialShiftsUrl}/${id}`);
   }
 
-  updateSpecialShift(id: number, specialShift: SpecialShift) {
-    return this.http.put(`${this.specialShiftsUrl}/${id}`, specialShift);
-  }
 }
 
