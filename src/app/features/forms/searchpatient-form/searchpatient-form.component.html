@@ -30,7 +30,7 @@
 <app-card-form [hidden]="!isGetCards"></app-card-form>
 
 <mat-button-toggle-group aria-label="Font Style" name="fontStyle" [hidden]="!showAddButton">
-  <button mat-flat-button color="primary" (click)="openDialog()" value="underline">
+  <button mat-flat-button color="primary" [disabled]="!checkPatient()" (click)="openDialog()" value="underline">
     Добавить заключение
   </button>
 </mat-button-toggle-group>
