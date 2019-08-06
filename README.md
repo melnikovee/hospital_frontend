@@ -7,15 +7,15 @@ Web application for monitoring the admission department of a hospital.
 
 There are three roles in the system: administrator(A), doctor(D), and patient(P).
 
-(A) User registration in the system
-(A) Scheduling doctors (characterized by date, time period and office)
-(A, P) recording / editing a recording / deleting an appointment
-(A) View the general schedule of doctors
-(D) View your schedule
-(P) View your visit history and patient card
-(D) View the patient card and make new entries in it, for patients made an appointment.
-(D) Record of the current patient (who was now at the appointment or was there for an hour at the appointment with another doctor)
-Editing user contact details
+- (A) User registration in the system
+- (A) Scheduling doctors (characterized by date, time period and office)
+- (A, P) recording / editing a recording / deleting an appointment
+- (A) View the general schedule of doctors
+- (D) View your schedule
+- (P) View your visit history and patient card
+- (D) View the patient card and make new entries in it, for patients made an appointment.
+- (D) Record of the current patient (who was now at the appointment or was there for an hour at the appointment with another doctor)
+- (All) Editing user contact details
 
 The following requirements are imposed:
 
