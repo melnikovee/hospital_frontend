@@ -19,9 +19,9 @@ There are three roles in the system: administrator(A), doctor(D), and patient(P)
 
 The following requirements are imposed:
 
-Each doctor has one or more specialties (e.g. therapist, surgeon, neurologist)
-Each specialty has an “average patient appointment time” (for example, 30 minutes), so the whole schedule is divided into such time slots
-A doctor cannot appear simultaneously in two or more schedules
-The patient cannot be recorded retroactively (but at the same time can be recorded in any slot if it is free and has not ended)
+Each doctor has one or more specialties (e.g. therapist, surgeon, neurologist).
+Each specialty has an “average patient appointment time” (for example, 30 minutes), so the whole schedule is divided into such time slots.
+A doctor cannot appear simultaneously in two or more schedules.
+The patient cannot be recorded retroactively (but at the same time can be recorded in any slot if it is free and has not ended).
 
-In addition, special shifts are implemented in the system without doctors and time slots, for example - blood test, other medical procedures
+In addition, special shifts are implemented in the system without doctors and time slots, for example - blood test, other medical procedures.
