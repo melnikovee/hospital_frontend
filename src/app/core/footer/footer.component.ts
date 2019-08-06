@@ -9,7 +9,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class FooterComponent implements OnInit {
 
-  phone = '8-800-111-22-33';
+  phone = '8-888-888-88-88';
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
