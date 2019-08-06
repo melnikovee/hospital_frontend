@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
@@ -6,6 +6,7 @@ import {User} from '../../_models/user';
 import {Patient} from '../../_models/patient';
 import {PatientService} from '../../_services/patient-service.service';
 import {UserService} from '../../_services/user-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './patient-form.component.html',
   styleUrls: ['./patient-form.component.css']
 })
-export class PatientFormComponent {
+export class PatientFormComponent implements OnDestroy {
   user = new User('', '', '', '', '', '', '');
   patient = new Patient('', '');
   receivedUser!: User;
@@ -27,6 +28,8 @@ export class PatientFormComponent {
   alreadyExists!: boolean;
   startDate = new Date(1970, 1, 1);
   hide = true;
+  private userSub = Subscription.EMPTY;
+  private patientSub = Subscription.EMPTY;
 
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -98,12 +101,12 @@ export class PatientFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.userService.createPatient(this.user).subscribe(
+    this.patientSub = this.userService.createPatient(this.user).subscribe(
         (data: User) => {
           this.patient.id = data.id;
           this.receivedUser = data;
           this.done = true;
-          this.patientService.save(this.patient).subscribe(
+          this.userSub = this.patientService.save(this.patient).subscribe(
             error => console.log(error));
         },
       error => {
@@ -111,5 +114,9 @@ export class PatientFormComponent {
         console.log(error);
       }
         );
+  }
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+    this.patientSub.unsubscribe();
   }
 }

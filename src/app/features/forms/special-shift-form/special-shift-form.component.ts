@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,6 +7,7 @@ import {SpecialShiftService} from '../../_services/special-shift-service.service
 import {Cabinet} from '../../_models/cabinet';
 import {ScheduleService} from '../../_services/schedule-service.service';
 import * as moment from 'moment';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './special-shift-form.component.html',
   styleUrls: ['./special-shift-form.component.css']
 })
-export class SpecialShiftFormComponent {
+export class SpecialShiftFormComponent implements OnDestroy {
 
   specialShift = new SpecialShift('', '', '', '', '', 0);
   cabinets!: Cabinet[];
@@ -29,6 +30,9 @@ export class SpecialShiftFormComponent {
   normalDate!: string;
   isDone!: boolean;
   isError!: boolean;
+  private cabinetSub = Subscription.EMPTY;
+  private specialShiftSub = Subscription.EMPTY;
+  private saveSub = Subscription.EMPTY;
 
   nameFormControl = new FormControl('', [
     Validators.required,
@@ -115,13 +119,13 @@ export class SpecialShiftFormComponent {
   }
 
   getFreeCabinets() {
-    this.scheduleService.findFreeCabinets(this.normalDate).subscribe(data => {
+    this.cabinetSub = this.scheduleService.findFreeCabinets(this.normalDate).subscribe(data => {
       this.cabinets = data;
     });
   }
 
   getSpecialShifts() {
-    this.specialShiftService.listSpecialShiftsByDate(this.normalDate).subscribe(data => {
+    this.specialShiftSub = this.specialShiftService.listSpecialShiftsByDate(this.normalDate).subscribe(data => {
       this.todaySpecialShifts = data;
     });
   }
@@ -137,7 +141,7 @@ export class SpecialShiftFormComponent {
 
   onSubmit() {
     this.putData();
-    this.specialShiftService.save(this.specialShift).subscribe(result => {
+    this.saveSub = this.specialShiftService.save(this.specialShift).subscribe(result => {
       if (result) {
         this.getInfo();
         this.isDone = true;
@@ -145,5 +149,11 @@ export class SpecialShiftFormComponent {
         this.isError = true;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.saveSub.unsubscribe();
+    this.cabinetSub.unsubscribe();
+    this.specialShiftSub.unsubscribe();
   }
 }

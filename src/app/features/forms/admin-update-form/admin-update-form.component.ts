@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../_models/user';
 import {UserService} from '../../_services/user-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,11 +18,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './admin-update-form.component.html',
   styleUrls: ['./admin-update-form.component.css']
 })
-export class AdminUpdateFormComponent implements OnInit {
+export class AdminUpdateFormComponent implements OnInit, OnDestroy {
   user = new User('', '', '', '', '', '', '');
   currentUser!: User;
   done!: boolean;
   id!: number;
+  private getUserSub = Subscription.EMPTY;
+  private updateUserSub = Subscription.EMPTY;
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -58,8 +61,7 @@ export class AdminUpdateFormComponent implements OnInit {
     if (stringId) {
       this.id = parseInt(stringId, 10);
     }
-
-    this.userService.getUserById(this.id).subscribe(data => {
+    this.getUserSub = this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
     });
   }
@@ -81,7 +83,11 @@ export class AdminUpdateFormComponent implements OnInit {
 
   onSubmit() {
     this.putData();
-    this.userService.updateUser(this.id, this.user).subscribe();
+    this.updateUserSub = this.userService.updateUser(this.id, this.user).subscribe();
     this.done = true;
+  }
+  ngOnDestroy(): void {
+    this.getUserSub.unsubscribe();
+    this.updateUserSub.unsubscribe();
   }
 }

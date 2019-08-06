@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 import {Cabinet} from '../../_models/cabinet';
 import {CabinetService} from '../../_services/cabinet-service.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -10,11 +11,13 @@ import {CabinetService} from '../../_services/cabinet-service.service';
   templateUrl: './cabinet-list.component.html',
   styleUrls: ['./cabinet-list.component.css']
 })
-export class CabinetListComponent implements OnInit {
+export class CabinetListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['cabinet', 'action'];
   dataSource!: MatTableDataSource<Cabinet>;
   isNotFree!: boolean;
+  private cabinetSub = Subscription.EMPTY;
+  private deleteSub = Subscription.EMPTY;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private cabinetService: CabinetService) {}
@@ -25,7 +28,7 @@ export class CabinetListComponent implements OnInit {
 
   reloadData() {
     this.isNotFree = false;
-    this.cabinetService.findAll().subscribe(data => {
+    this.cabinetSub = this.cabinetService.findAll().subscribe(data => {
       const sorted = data.sort((a, b) => a.cabinetName.localeCompare(b.cabinetName));
       this.dataSource = new MatTableDataSource(sorted);
     });
@@ -38,7 +41,7 @@ export class CabinetListComponent implements OnInit {
 
   deleteCabinet(id: number) {
     if (confirm('Уверены что хотите удалить?')) {
-      this.cabinetService.deleteCabinet(id)
+      this.deleteSub = this.cabinetService.deleteCabinet(id)
       .subscribe(
           data => {
             this.reloadData();
@@ -48,5 +51,10 @@ export class CabinetListComponent implements OnInit {
             console.log(error);
           });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.cabinetSub.unsubscribe();
+    this.deleteSub.unsubscribe();
   }
 }

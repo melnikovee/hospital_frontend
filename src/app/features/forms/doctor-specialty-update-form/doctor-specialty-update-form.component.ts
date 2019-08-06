@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {DoctorFullName} from '../../_models/doctor-full-name';
@@ -7,6 +7,7 @@ import {DoctorSpecialtyService} from '../../_services/doctorspecialty-service.se
 import {UserService} from '../../_services/user-service.service';
 import {SpecialtyService} from '../../_services/specialty-service.service';
 import {DoctorSpecialty} from '../../_models/doctorspecialty';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './doctor-specialty-update-form.component.html',
   styleUrls: ['./doctor-specialty-update-form.component.css']
 })
-export class DoctorSpecialtyUpdateFormComponent {
+export class DoctorSpecialtyUpdateFormComponent implements OnDestroy {
 
   foundDoctors!: DoctorFullName[];
   lastName!: string;
@@ -32,6 +33,11 @@ export class DoctorSpecialtyUpdateFormComponent {
   selectedDoctor!: DoctorFullName;
   allSpecialties: Specialty[] = [];
   addingSpecialties: FormControl = new FormControl();
+  private getSpecialtySub = Subscription.EMPTY;
+  private deleteSpecialtySub = Subscription.EMPTY;
+  private specialtySub = Subscription.EMPTY;
+  private doctorSub = Subscription.EMPTY;
+  private putSpecialtySub = Subscription.EMPTY;
 
   lastNameFormControl = new FormControl('', [
     Validators.required
@@ -53,7 +59,7 @@ export class DoctorSpecialtyUpdateFormComponent {
     this.isGetDoctors = false;
 
     if (this.lastName !== '') {
-      this.userService.getDoctorsByLastName(this.lastName).subscribe(data => {
+      this.doctorSub = this.userService.getDoctorsByLastName(this.lastName).subscribe(data => {
         this.foundDoctors = data;
 
         if (data.length !== 0) {
@@ -68,27 +74,35 @@ export class DoctorSpecialtyUpdateFormComponent {
     this.selectedDoctor = element;
     this.isGetSelectedDoctor = true;
 
-    this.specialtyService.getSpecialtiesByDoctor(element.id).subscribe(data => {
+    this.specialtySub = this.specialtyService.getSpecialtiesByDoctor(element.id).subscribe(data => {
       this.doctorSpecialties = data;
     });
   }
 
   // tslint:disable-next-line:no-any
   deleteSpecialty(element: any) {
-    this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe(res =>
+    this.deleteSpecialtySub = this.doctorSpecialtyService.deleteOneDoctorSpecialty(this.selectedDoctor.id, element.id).subscribe(res =>
     this.getSpecialties(this.selectedDoctor));
   }
 
   getAllSpecialties() {
-    this.doctorSpecialtyService.getNewSpecialtiesForDoctor(this.selectedDoctor.id).subscribe(data => {
+    this.getSpecialtySub = this.doctorSpecialtyService.getNewSpecialtiesForDoctor(this.selectedDoctor.id).subscribe(data => {
       this.allSpecialties = data;
     });
   }
 
   putSpecialties() {
     for (const spec of this.addingSpecialties.value) {
-      this.doctorSpecialtyService.save(new DoctorSpecialty(this.selectedDoctor.id, spec.id)).subscribe(res =>
+      this.putSpecialtySub = this.doctorSpecialtyService.save(new DoctorSpecialty(this.selectedDoctor.id, spec.id)).subscribe(res =>
         this.getSpecialties(this.selectedDoctor));
     }
+  }
+
+  ngOnDestroy(): void {
+    this.getSpecialtySub.unsubscribe();
+    this.doctorSub.unsubscribe();
+    this.specialtySub.unsubscribe();
+    this.deleteSpecialtySub.unsubscribe();
+    this.putSpecialtySub.unsubscribe();
   }
 }

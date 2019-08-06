@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Specialty} from '../../_models/specialty';
 import {SpecialtyService} from '../../_services/specialty-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,11 +18,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './specialty-form.component.html',
   styleUrls: ['./specialty-form.component.css']
 })
-export class SpecialtyFormComponent {
+export class SpecialtyFormComponent implements OnDestroy {
   specialty = new Specialty('', 0);
   receivedSpecialty!: Specialty;
   done!: boolean;
   alreadyExists!: boolean;
+  private sub = Subscription.EMPTY;
   specialtyNameFormControl = new FormControl('', [
     Validators.maxLength(32),
     Validators.required
@@ -51,7 +53,7 @@ export class SpecialtyFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.specialtyService.save(this.specialty).subscribe(
+    this.sub = this.specialtyService.save(this.specialty).subscribe(
         (data: Specialty) => {
           this.receivedSpecialty = data;
           this.done = true;
@@ -61,5 +63,9 @@ export class SpecialtyFormComponent {
           console.log(error);
         }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

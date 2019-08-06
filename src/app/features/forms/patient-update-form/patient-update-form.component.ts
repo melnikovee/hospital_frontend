@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,6 +6,7 @@ import {User} from '../../_models/user';
 import {Patient} from '../../_models/patient';
 import {PatientService} from '../../_services/patient-service.service';
 import {UserService} from '../../_services/user-service.service';
+import {Subscription} from 'rxjs';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -20,12 +21,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './patient-update-form.component.html',
   styleUrls: ['./patient-update-form.component.css']
 })
-export class PatientUpdateFormComponent implements OnInit {
+export class PatientUpdateFormComponent implements OnInit, OnDestroy {
   user = new User('', '', '', '', '', '', '');
   patient = new Patient('', '');
   currentUser!: User;
   currentPatient!: Patient;
   id!: number;
+  private userSub = Subscription.EMPTY;
+  private patientSub = Subscription.EMPTY;
+  private updateUserSub = Subscription.EMPTY;
+  private updatePatientSub = Subscription.EMPTY;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -71,11 +76,11 @@ export class PatientUpdateFormComponent implements OnInit {
       this.id = parseInt(stringId, 10);
     }
 
-    this.patientService.getPatientById(this.id).subscribe(data => {
+    this.patientSub = this.patientService.getPatientById(this.id).subscribe(data => {
       this.currentPatient = data;
     });
 
-    this.userService.getUserById(this.id).subscribe(data => {
+    this.userSub = this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
     });
   }
@@ -102,10 +107,16 @@ export class PatientUpdateFormComponent implements OnInit {
   onSubmit() {
     this.putData();
 
-    this.userService.updateUser(this.id, this.user).subscribe();
-    this.patientService.updatePatient(this.id, this.patient).subscribe(value => this.navigateToHomepage());
+    this.updateUserSub = this.userService.updateUser(this.id, this.user).subscribe();
+    this.updatePatientSub = this.patientService.updatePatient(this.id, this.patient).subscribe(value => this.navigateToHomepage());
   }
   navigateToHomepage() {
     this.router.navigate(['/home']);
+  }
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+    this.updateUserSub.unsubscribe();
+    this.patientSub.unsubscribe();
+    this.updatePatientSub.unsubscribe();
   }
 }

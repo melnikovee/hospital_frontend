@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Cabinet} from '../../_models/cabinet';
 import {CabinetService} from '../../_services/cabinet-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,11 +18,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './cabinet-form.component.html',
   styleUrls: ['./cabinet-form.component.css']
 })
-export class CabinetFormComponent {
+export class CabinetFormComponent implements OnDestroy {
   cabinet = new Cabinet('');
   receivedCabinet!: Cabinet;
   done!: boolean;
   alreadyExists!: boolean;
+  private cabunetSub = Subscription.EMPTY;
   cabinetNameFormControl = new FormControl('', [
     Validators.maxLength(32),
     Validators.required
@@ -44,7 +46,7 @@ export class CabinetFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.cabinetService.save(this.cabinet).subscribe(
+    this.cabunetSub = this.cabinetService.save(this.cabinet).subscribe(
         (data: Cabinet) => {
           this.receivedCabinet = data;
           this.done = true;
@@ -54,5 +56,9 @@ export class CabinetFormComponent {
           console.log(error);
         }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.cabunetSub.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
@@ -10,6 +10,7 @@ import {UserService} from '../../_services/user-service.service';
 import {SpecialtyService} from '../../_services/specialty-service.service';
 import {DoctorSpecialtyService} from '../../_services/doctorspecialty-service.service';
 import {DoctorSpecialty} from '../../_models/doctorspecialty';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './doctor-form.component.html',
   styleUrls: ['./doctor-form.component.css']
 })
-export class DoctorFormComponent {
+export class DoctorFormComponent implements OnDestroy{
   user = new User('', '', '', '', '', '', '');
   doctor = new Doctor('');
   receivedUser!: User;
@@ -32,6 +33,10 @@ export class DoctorFormComponent {
   done!: boolean;
   alreadyExists!: boolean;
   hide = true;
+  private userSub = Subscription.EMPTY;
+  private specialtySub = Subscription.EMPTY;
+  private doctorSub = Subscription.EMPTY;
+  private doctorSpecialtySub = Subscription.EMPTY;
   selectedSpecialtiesFormControl = new FormControl();
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -97,7 +102,7 @@ export class DoctorFormComponent {
   }
 
   getSpecialties() {
-    this.specialtyService.findAll().subscribe(
+    this.specialtySub = this.specialtyService.findAll().subscribe(
         (data: Specialty[]) => {
           this.specialties = data;
         },
@@ -109,17 +114,18 @@ export class DoctorFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.userService.save(this.user).subscribe(
+    this.userSub = this.userService.save(this.user).subscribe(
         (data: User) => {
           this.doctor.id = data.id;
           this.receivedUser = data;
           this.done = true;
-          this.doctorService.save(this.doctor).subscribe((doc: Doctor) => {
+          this.doctorSub = this.doctorService.save(this.doctor).subscribe((doc: Doctor) => {
 
             this.selectedSpecialties = this.selectedSpecialtiesFormControl.value;
 
             for (const spec of this.selectedSpecialties) {
-              this.doctorSpecialtyService.save(new DoctorSpecialty(doc.id, spec.id)).subscribe((sp: DoctorSpecialty) => {
+              this.doctorSpecialtySub = this.doctorSpecialtyService
+              .save(new DoctorSpecialty(doc.id, spec.id)).subscribe((sp: DoctorSpecialty) => {
               });
             }
           });
@@ -129,5 +135,12 @@ export class DoctorFormComponent {
           console.log(error);
         }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+    this.doctorSub.unsubscribe();
+    this.specialtySub.unsubscribe();
+    this.doctorSpecialtySub.unsubscribe();
   }
 }

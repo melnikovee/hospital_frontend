@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
@@ -8,6 +8,7 @@ import {Specialty} from '../../_models/specialty';
 import {DoctorSpecialtyService} from '../../_services/doctorspecialty-service.service';
 import {SpecialtyService} from '../../_services/specialty-service.service';
 import {ScheduleService} from '../../_services/schedule-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './create-schedule-form.component.html',
   styleUrls: ['./create-schedule-form.component.css']
 })
-export class CreateScheduleFormComponent {
+export class CreateScheduleFormComponent implements OnDestroy {
   id = 'id';
   doctorId = 0;
   cabinets: Cabinet[] | undefined;
@@ -31,6 +32,11 @@ export class CreateScheduleFormComponent {
   dateForCabinets!: string;
   specialties!: Specialty[];
   done!: boolean;
+  private routeSub = Subscription.EMPTY;
+  private specialtiesSub = Subscription.EMPTY;
+  private cabinetSub = Subscription.EMPTY;
+  private dateSub = Subscription.EMPTY;
+  private scheduleSub = Subscription.EMPTY;
   specialtyFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -66,7 +72,7 @@ export class CreateScheduleFormComponent {
   constructor(private route: ActivatedRoute, private router: Router,
               private doctorSpecialtyService: DoctorSpecialtyService,
               private specialtyService: SpecialtyService, private scheduleService: ScheduleService) {
-    this.route.params.subscribe(params => this.doctorId = params[this.id]);
+    this.routeSub = this.route.params.subscribe(params => this.doctorId = params[this.id]);
   }
 
   putData() {
@@ -79,7 +85,7 @@ export class CreateScheduleFormComponent {
   }
 
   getSpecialties() {
-    this.doctorSpecialtyService.findDoctorSpecialties(this.doctorId).subscribe(
+    this.specialtiesSub = this.doctorSpecialtyService.findDoctorSpecialties(this.doctorId).subscribe(
         (data: Specialty[]) => {
           const sorted = data.sort((a, b) => a.specialtyName.localeCompare(b.specialtyName));
           this.specialties = sorted;
@@ -90,7 +96,7 @@ export class CreateScheduleFormComponent {
 
   getCabinets() {
     this.dateForCabinets = this.scheduleForm.controls.date.value;
-    this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
+    this.cabinetSub = this.scheduleService.findFreeCabinets(this.dateForCabinets).subscribe(
         (data: Cabinet[]) => {
           const sorted = data.sort((a, b) => a.cabinetName.localeCompare(b.cabinetName));
           this.cabinets = sorted;
@@ -100,7 +106,7 @@ export class CreateScheduleFormComponent {
   }
 
   getFreeDays() {
-    this.scheduleService.findFreeDays(this.doctorId).subscribe(
+    this.dateSub = this.scheduleService.findFreeDays(this.doctorId).subscribe(
         (data: string[]) => {
           this.freeDays = data;
         },
@@ -110,7 +116,7 @@ export class CreateScheduleFormComponent {
 
   onSubmit() {
     this.putData();
-    this.scheduleService.save(this.schedule).subscribe(
+    this.scheduleSub = this.scheduleService.save(this.schedule).subscribe(
         (data: Schedule) => {
           this.receivedSchedule = data;
           this.done = true;
@@ -128,5 +134,12 @@ export class CreateScheduleFormComponent {
     this.dateForCabinets = '';
     this.cabinets = undefined;
     this.freeDays = undefined;
+  }
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
+    this.specialtiesSub.unsubscribe();
+    this.cabinetSub.unsubscribe();
+    this.dateSub.unsubscribe();
+    this.scheduleSub.unsubscribe();
   }
 }

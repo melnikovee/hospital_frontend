@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,6 +6,7 @@ import {User} from '../../_models/user';
 import {Doctor} from '../../_models/doctor';
 import {DoctorService} from '../../_services/doctor-service.service';
 import {UserService} from '../../_services/user-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,12 +20,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './doctor-update-form.component.html',
   styleUrls: ['./doctor-update-form.component.css']
 })
-export class DoctorUpdateFormComponent implements OnInit {
+export class DoctorUpdateFormComponent implements OnInit, OnDestroy {
   user = new User('', '', '', '', '', '', '');
   doctor = new Doctor('');
   currentUser!: User;
   currentDoctor!: Doctor;
   id!: number;
+  private userSub = Subscription.EMPTY;
+  private doctorSub = Subscription.EMPTY;
+  private updateUserSub = Subscription.EMPTY;
+  private updateDoctorSub = Subscription.EMPTY;
 
   firstNameFormControl = new FormControl('', [
     Validators.maxLength(32)
@@ -69,11 +74,11 @@ export class DoctorUpdateFormComponent implements OnInit {
       this.id = parseInt(stringId, 10);
     }
 
-    this.doctorService.getDoctorById(this.id).subscribe(data => {
+    this.doctorSub = this.doctorService.getDoctorById(this.id).subscribe(data => {
       this.currentDoctor = data;
     });
 
-    this.userService.getUserById(this.id).subscribe(data => {
+    this.userSub = this.userService.getUserById(this.id).subscribe(data => {
       this.currentUser = data;
     });
   }
@@ -98,7 +103,14 @@ export class DoctorUpdateFormComponent implements OnInit {
 
   onSubmit() {
     this.putData();
-    this.userService.updateUser(this.id, this.user).subscribe();
-    this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
+    this.updateUserSub = this.userService.updateUser(this.id, this.user).subscribe();
+    this.updateDoctorSub = this.doctorService.updateDoctor(this.id, this.doctor).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+    this.updateUserSub.unsubscribe();
+    this.doctorSub.unsubscribe();
+    this.updateDoctorSub.unsubscribe();
   }
 }

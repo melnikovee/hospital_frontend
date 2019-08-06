@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {User} from '../../_models/user';
 import {UserService} from '../../_services/user-service.service';
+import {Subscription} from 'rxjs';
 
 
 
@@ -19,12 +20,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './admin-form.component.html',
   styleUrls: ['./admin-form.component.css']
 })
-export class AdminFormComponent {
+export class AdminFormComponent implements OnDestroy {
   user = new User('', '', '', '', '', '', '');
   receivedUser!: User;
   done!: boolean;
   alreadyExists!: boolean;
   hide = true;
+  private sub = Subscription.EMPTY;
   loginFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('[a-zA-Z0-9].{2,32}'),
@@ -84,7 +86,7 @@ export class AdminFormComponent {
     this.putData();
     this.alreadyExists = false;
     this.done = false;
-    this.userService.save(this.user).subscribe(
+    this.sub = this.userService.save(this.user).subscribe(
         (data: User) => {
           this.receivedUser = data;
           this.done = true;
@@ -94,6 +96,10 @@ export class AdminFormComponent {
           console.log(error);
         }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
 

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CurrentUserService} from '../../../core/auth/currentuser-service.service';
 import {Router} from '@angular/router';
 import {UserService} from '../../_services/user-service.service';
-import {ReplaySubject} from 'rxjs';
+import {ReplaySubject, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
@@ -10,7 +10,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
   templateUrl: './password-change-dialog-form.component.html',
   styleUrls: ['./password-change-dialog-form.component.css']
 })
-export class PasswordChangeDialogFormComponent implements OnInit {
+export class PasswordChangeDialogFormComponent implements OnInit, OnDestroy {
 
   bindingCurrentPassword!: string;
   bindingNewPassword!: string;
@@ -28,22 +28,27 @@ export class PasswordChangeDialogFormComponent implements OnInit {
   textCurrentPassword$: ReplaySubject<string> = new ReplaySubject<string>();
   textNewPassword$: ReplaySubject<string> = new ReplaySubject<string>();
   textRepeatedPassword$: ReplaySubject<string> = new ReplaySubject<string>();
+  private currentPasswordSub = Subscription.EMPTY;
+  private newPasswordSub = Subscription.EMPTY;
+  private repeatPasswordSub = Subscription.EMPTY;
+  private checkPasswordSub = Subscription.EMPTY;
+  private changePasswordSub = Subscription.EMPTY;
 
   constructor(private currentUserService: CurrentUserService,
               private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.textCurrentPassword$.pipe(distinctUntilChanged(), debounceTime(600)).subscribe(text => {
+    this.currentPasswordSub = this.textCurrentPassword$.pipe(distinctUntilChanged(), debounceTime(600)).subscribe(text => {
       this.checkPassword(text);
     });
 
-    this.textNewPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
+    this.newPasswordSub = this.textNewPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
       this.newPassword = text;
       this.permitChange();
     });
 
-    this.textRepeatedPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
+    this.repeatPasswordSub = this.textRepeatedPassword$.pipe(distinctUntilChanged(), debounceTime(400)).subscribe(text => {
       this.repeatedPassword = text;
       this.permitChange();
     });
@@ -66,7 +71,7 @@ export class PasswordChangeDialogFormComponent implements OnInit {
     const login = localStorage.getItem('login');
 
     if (login) {
-      this.currentUserService.checkPassword(login, text).subscribe(res => {
+      this.checkPasswordSub = this.currentUserService.checkPassword(login, text).subscribe(res => {
         this.isCurrentPasswordSent = true;
         this.isCurrentPasswordRight = res;
       });
@@ -77,7 +82,7 @@ export class PasswordChangeDialogFormComponent implements OnInit {
     const id = localStorage.getItem('id');
 
     if (id && this.isCurrentPasswordRight) {
-      this.userService.changePassword(parseInt(id, 10), this.newPassword).subscribe(data => {
+      this.changePasswordSub = this.userService.changePassword(parseInt(id, 10), this.newPassword).subscribe(data => {
         this.isDone = true;
       });
       this.isCurrentPasswordRight = false;
@@ -90,5 +95,13 @@ export class PasswordChangeDialogFormComponent implements OnInit {
     this.enableChange = (this.newPassword.length !== 0) && (this.repeatedPassword.length !== 0)
       && (this.newPassword === this.repeatedPassword);
     this.isEnoughLength = this.newPassword.length >= 8 && this.repeatedPassword.length >= 8;
+  }
+
+  ngOnDestroy(): void {
+    this.currentPasswordSub.unsubscribe();
+    this.newPasswordSub.unsubscribe();
+    this.repeatPasswordSub.unsubscribe();
+    this.checkPasswordSub.unsubscribe();
+    this.changePasswordSub.unsubscribe();
   }
 }

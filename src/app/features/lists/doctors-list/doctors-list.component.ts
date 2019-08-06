@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Composite} from '../../_models/composite';
 import {CompositeService} from '../../_services/composite-service.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -10,9 +11,10 @@ import {CompositeService} from '../../_services/composite-service.service';
   templateUrl: './doctors-list.component.html',
   styleUrls: ['./doctors-list.component.css']
 })
-export class DoctorsListComponent implements OnInit {
+export class DoctorsListComponent implements OnInit, OnDestroy {
   dataSource!: MatTableDataSource<Composite>;
   displayedColumns: string[] = ['doctor', 'specialty', 'phone', 'schedule', 'create'];
+  private sub = Subscription.EMPTY;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private compositeService: CompositeService) {}
@@ -26,7 +28,7 @@ export class DoctorsListComponent implements OnInit {
   }
 
   reloadData() {
-    this.compositeService.findDoctors().subscribe(data => {
+    this.sub = this.compositeService.findDoctors().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
   }
@@ -37,5 +39,9 @@ export class DoctorsListComponent implements OnInit {
 
   createSchedule(id: number) {
     this.router.navigate(['/createSchedule', id]);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

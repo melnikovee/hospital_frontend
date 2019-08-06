@@ -1,8 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Composite} from '../../_models/composite';
 import {CompositeService} from '../../_services/composite-service.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -10,10 +11,11 @@ import {CompositeService} from '../../_services/composite-service.service';
   templateUrl: './doctor-timeslots-list.component.html',
   styleUrls: ['./doctor-timeslots-list.component.css']
 })
-export class DoctorTimeslotsListComponent {
+export class DoctorTimeslotsListComponent implements OnDestroy {
   displayedColumns: string[] = ['date', 'time', 'specialty', 'doctor', 'cabinet', 'patient'];
   id = 'id';
   dataSource!: MatTableDataSource<Composite>;
+  private sub = Subscription.EMPTY;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private compositeService: CompositeService) {
@@ -29,11 +31,15 @@ export class DoctorTimeslotsListComponent {
   }
 
   reloadData(doctorId: number) {
-    this.compositeService.getTimeslotsByDoctor(doctorId).subscribe(data => {
+    this.sub = this.compositeService.getTimeslotsByDoctor(doctorId).subscribe(data => {
       const sorted = data.sort((a, b) => a.time.localeCompare(b.time))
       .sort((a, b) => a.date.localeCompare(b.date));
       this.dataSource = new MatTableDataSource(sorted);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
 

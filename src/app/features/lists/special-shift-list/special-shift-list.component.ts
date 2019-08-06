@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {SpecialShift} from '../../_models/special-shift';
 import {SpecialShiftService} from '../../_services/special-shift-service.service';
 // tslint:disable-next-line:max-line-length
 import {SpecialShiftUpdateDialogFormComponent} from '../../forms/special-shift-update-dialog-form/special-shift-update-dialog-form.component';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -12,9 +13,12 @@ import {SpecialShiftUpdateDialogFormComponent} from '../../forms/special-shift-u
   templateUrl: './special-shift-list.component.html',
   styleUrls: ['./special-shift-list.component.css']
 })
-export class SpecialShiftListComponent implements OnInit {
+export class SpecialShiftListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'date', 'cabinet', 'time', 'numberPatients', 'maxNumberPatients', 'action', 'actionTwo'];
   dataSource!: MatTableDataSource<SpecialShift>;
+  private listSub = Subscription.EMPTY;
+  private deleteSub = Subscription.EMPTY;
+  private openDialogSub = Subscription.EMPTY;
 
   constructor(private route: ActivatedRoute, private specialShiftService: SpecialShiftService,
               private dialog: MatDialog) {
@@ -29,7 +33,7 @@ export class SpecialShiftListComponent implements OnInit {
   }
 
   reloadData() {
-    this.specialShiftService.listSpecialShiftsForPatient().subscribe(data => {
+    this.listSub = this.specialShiftService.listSpecialShiftsForPatient().subscribe(data => {
       const sorted = data.sort((a, b) => a.startTime.localeCompare(b.startTime))
       .sort((a, b) => a.endTime.localeCompare(b.endTime))
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -40,7 +44,7 @@ export class SpecialShiftListComponent implements OnInit {
 
   delete(id: number) {
     if (confirm('Уверены что хотите удалить?')) {
-      this.specialShiftService.deleteSpecialShift(id).subscribe(data => {
+      this.deleteSub = this.specialShiftService.deleteSpecialShift(id).subscribe(data => {
         this.reloadData();
       });
     }
@@ -51,7 +55,7 @@ export class SpecialShiftListComponent implements OnInit {
   }
 
   openDialog(id: number) {
-    this.dialog.open(SpecialShiftUpdateDialogFormComponent, {
+    this.openDialogSub = this.dialog.open(SpecialShiftUpdateDialogFormComponent, {
       data: {
         specialShiftId: id
       }, width: '70%'
@@ -59,5 +63,11 @@ export class SpecialShiftListComponent implements OnInit {
     }).afterClosed().subscribe(data => {
       this.reloadData();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.listSub.unsubscribe();
+    this.deleteSub.unsubscribe();
+    this.openDialogSub.unsubscribe();
   }
 }

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Specialty} from '../../_models/specialty';
 import {SpecialtyService} from '../../_services/specialty-service.service';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,12 +18,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './specialty-update-form.component.html',
   styleUrls: ['./specialty-update-form.component.css']
 })
-export class SpecialtyUpdateFormComponent implements OnInit {
+export class SpecialtyUpdateFormComponent implements OnInit, OnDestroy {
   specialty = new Specialty('', 0);
   currentSpecialty!: Specialty;
   done!: boolean;
   id!: number;
   idStr = 'id';
+  private routeSub = Subscription.EMPTY;
+  private specialtySub = Subscription.EMPTY;
+  private updateSpecialtySub = Subscription.EMPTY;
   specialtyNameFormControl = new FormControl('', [
     Validators.maxLength(32)
   ]);
@@ -40,11 +44,11 @@ export class SpecialtyUpdateFormComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private specialtyService: SpecialtyService) {
-    this.route.params.subscribe(params => this.id = params[this.idStr]);
+    this.routeSub = this.route.params.subscribe(params => this.id = params[this.idStr]);
   }
 
   ngOnInit(): void {
-    this.specialtyService.getSpecialtyById(this.id).subscribe(data => {
+    this.specialtySub = this.specialtyService.getSpecialtyById(this.id).subscribe(data => {
       this.currentSpecialty = data;
     });
   }
@@ -59,7 +63,13 @@ export class SpecialtyUpdateFormComponent implements OnInit {
 
   onSubmit() {
     this.putData();
-    this.specialtyService.updateSpecialty(this.id, this.specialty).subscribe();
+    this.updateSpecialtySub = this.specialtyService.updateSpecialty(this.id, this.specialty).subscribe();
     this.done = true;
+  }
+
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
+    this.specialtySub.unsubscribe();
+    this.updateSpecialtySub.unsubscribe();
   }
 }

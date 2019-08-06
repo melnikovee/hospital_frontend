@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from '../../../features/_models/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../features/_services/user-service.service';
@@ -8,6 +8,7 @@ import {Doctor} from '../../../features/_models/doctor';
 import {Patient} from '../../../features/_models/patient';
 import {PasswordChangeDialogFormComponent} from '../../../features/forms/password-change-dialog-form/password-change-dialog-form.component';
 import {MatDialog} from '@angular/material';
+import {Subscription} from 'rxjs';
 
 export interface Section {
   name: string;
@@ -19,7 +20,7 @@ export interface Section {
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnDestroy {
   user!: User;
   doctor!: Doctor;
   patient!: Patient;
@@ -28,6 +29,9 @@ export class HomepageComponent implements OnInit {
   usersData: Section[] = [];
   doctorsData: Section[] = [];
   patientsData: Section[] = [];
+  private sub = Subscription.EMPTY;
+  private doctorSub = Subscription.EMPTY;
+  private patientSub = Subscription.EMPTY;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UserService, private patientService: PatientService,
@@ -43,7 +47,7 @@ export class HomepageComponent implements OnInit {
       this.navigateToLoginPage();
     }
     this.currentRole = localStorage.getItem('role');
-    this.userService.getUserById(this.id).subscribe(data => {
+    this.sub = this.userService.getUserById(this.id).subscribe(data => {
       this.user = data;
       this.usersData = [
         {
@@ -63,7 +67,7 @@ export class HomepageComponent implements OnInit {
       ];
     });
     if (this.currentRole === 'DOCTOR') {
-      this.doctorService.getDoctorById(this.id).subscribe(data => {
+      this.doctorSub = this.doctorService.getDoctorById(this.id).subscribe(data => {
         this.doctor = data;
         this.doctorsData = [
           {
@@ -72,9 +76,10 @@ export class HomepageComponent implements OnInit {
           }
         ];
       });
+      // this.sub.add(doctorSub);
     }
     if (this.currentRole === 'PATIENT') {
-      this.patientService.getPatientById(this.id).subscribe(data => {
+      this.patientSub = this.patientService.getPatientById(this.id).subscribe(data => {
         this.patient = data;
         this.patientsData = [
           {
@@ -87,6 +92,7 @@ export class HomepageComponent implements OnInit {
           }
         ];
       });
+      // this.sub.add(patientSub);
     }
   }
 
@@ -95,5 +101,11 @@ export class HomepageComponent implements OnInit {
   }
   navigateToLoginPage() {
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    this.doctorSub.unsubscribe();
+    this.patientSub.unsubscribe();
+    this.sub.unsubscribe();
   }
 }

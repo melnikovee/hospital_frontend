@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {ErrorStateMatcher, MatDialog, MatTableDataSource} from '@angular/material';
 import {CardFormComponent} from '../card-form/card-form.component';
@@ -7,6 +7,7 @@ import {CompositeService} from '../../_services/composite-service.service';
 import {DiagnosisService} from '../../_services/diagnosis-service.service';
 import {ScheduleService} from '../../_services/schedule-service.service';
 import {AddDiagnosisDialogFormComponent} from '../add-diagnosis-dialog-form/add-diagnosis-dialog-form.component';
+import {Subscription} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './searchpatient-form.component.html',
   styleUrls: ['./searchpatient-form.component.css'],
 })
-export class SearchPatientFormComponent implements OnInit {
+export class SearchPatientFormComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['patient', 'birthday', 'record'];
   dataSource!: MatTableDataSource<Composite>;
@@ -32,6 +33,9 @@ export class SearchPatientFormComponent implements OnInit {
   showAddButton!: boolean;
   @ViewChild(CardFormComponent, {static: false})
   private childComponent!: CardFormComponent;
+  private patientSub = Subscription.EMPTY;
+  private scheduleSub = Subscription.EMPTY;
+  private dialogSub = Subscription.EMPTY;
 
   matcher = new MyErrorStateMatcher();
 
@@ -46,11 +50,11 @@ export class SearchPatientFormComponent implements OnInit {
     if (stringId) {
       this.id = parseInt(stringId, 10);
     }
-    this.compositeService.patientsForDoctor(this.id).subscribe(data => {
+    this.patientSub = this.compositeService.patientsForDoctor(this.id).subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
       }
     );
-    this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
+    this.scheduleSub = this.scheduleService.getScheduleByDoctorAndCurrentDate(this.id).subscribe(data => {
       this.currentDoctorSpecialty = data.specialty;
     });
   }
@@ -75,7 +79,7 @@ export class SearchPatientFormComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(AddDiagnosisDialogFormComponent, {
+    this.dialogSub = this.dialog.open(AddDiagnosisDialogFormComponent, {
       data: {
         selectedPatientName: this.selectedPatient.patient,
         selectedPatientId: this.selectedPatient.patientId,
@@ -86,6 +90,12 @@ export class SearchPatientFormComponent implements OnInit {
       data => {
         this.getCard();
       });
+  }
+
+  ngOnDestroy(): void {
+    this.scheduleSub.unsubscribe();
+    this.dialogSub.unsubscribe();
+    this.patientSub.unsubscribe();
   }
 }
 
